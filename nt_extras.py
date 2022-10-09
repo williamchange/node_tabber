@@ -7,6 +7,7 @@ MAPPING = ["INTERPOLATED", "NEAREST"]
 COMPONENT = ["MESH", "POINTCLOUD", "CURVE", "INSTANCES"]
 SPLINE_TYPE = ["CATMULL_ROM", "POLY", "BEZIER", "NURBS"]
 TARGET_EL = ["POINTS", "EDGES", "FACES"]
+INTERPOLATION = ["LINEAR", "STEPPED", "SMOOTHSTEP", "SMOOTHERSTEP"]
 
 
 def replace_dtype_labels(string):
@@ -201,3 +202,4 @@ attr_stat = gen_subnodes("AST", "ATTR STAT", ["FLOAT", "FLOAT_VECTOR"], DOMAIN)
 raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
+map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
