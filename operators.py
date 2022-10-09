@@ -5,7 +5,6 @@ import time
 
 import nodeitems_utils
 import pprint
-from .gn_items import geonodes_node_items
 from . import nt_extras
 
 import os
@@ -128,8 +127,6 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
         enum_items.clear()
         category = context.space_data.tree_type[0]
 
-        node_items = nodeitems_utils.node_items_iter(context)
-
         if category == "S":
             category = "shader.json"
         if category == "C":
@@ -137,7 +134,6 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
         if category == "T":
             category = "texture.json"
         if category == "G":
-            node_items = geonodes_node_items(context)
             category = "geometry.json"
 
         path = os.path.dirname(__file__) + "/" + category
@@ -160,18 +156,14 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             "Combine Color": -1,
             "Named Attribute": -1,
             "Raycast": -1,
-            "Interpolate Domain": -1,
             "Domain Size": -1,
             "Store Named Attribute": -1,
             "Attribute Statistic": -1,
             "Geometry Proximity": -1,
-            "Sample Nearest": -1,
-            "Sample Nearest Surface": -1,
-            "Sample UV Surface": -1,
             "Set Spline Type": -1,
         }
 
-        for index, item in enumerate(node_items):
+        for index, item in enumerate(nodeitems_utils.node_items_iter(context)):
             if isinstance(item, nodeitems_utils.NodeItem):
                 short = ""
                 tally = 0
@@ -199,7 +191,7 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             for s in [
                 (item_index["Math"], "math", nt_extras.math),
                 (item_index["Vector Math"], "vector math", nt_extras.vec_math),
-                (item_index["Mix"], "mix", nt_extras.color),
+                (item_index["MixRGB"], "mixrgb", nt_extras.color),
                 (item_index["Boolean Math"], "boolean math", nt_extras.bool_math),
                 (item_index["Random Value"], "random value", nt_extras.rand_val),
                 (item_index["Switch"], "switch", nt_extras.switch),
@@ -216,11 +208,6 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
                     nt_extras.named_attr,
                 ),
                 (item_index["Raycast"], "raycast", nt_extras.raycast),
-                (
-                    item_index["Interpolate Domain"],
-                    "interpolate domain",
-                    nt_extras.interpolate_dom,
-                ),
                 (item_index["Domain Size"], "domain size", nt_extras.dom_size),
                 (
                     item_index["Store Named Attribute"],
@@ -236,22 +223,6 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
                     item_index["Geometry Proximity"],
                     "geometry proximity",
                     nt_extras.geo_prox,
-                ),
-                (item_index["Sample Index"], "sample index", nt_extras.sample_index),
-                (
-                    item_index["Sample Nearest"],
-                    "sample nearest",
-                    nt_extras.sample_nearest,
-                ),
-                (
-                    item_index["Sample Nearest Surface"],
-                    "sample nearest surface",
-                    nt_extras.sample_nearest_surf,
-                ),
-                (
-                    item_index["Sample UV Surface"],
-                    "sample uv surface",
-                    nt_extras.sample_uv_surf,
                 ),
                 (
                     item_index["Set Spline Type"],
@@ -280,12 +251,8 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
         node_item = tmp
         extra = self.node_item.split()[1:]
         nice_name = " ".join(self.node_item.split()[3:])
-        node_items = nodeitems_utils.node_items_iter(context)
 
-        if context.space_data.tree_type == "GeometryNodeTree":
-            node_items = geonodes_node_items(context)
-
-        for index, item in enumerate(node_items):
+        for index, item in enumerate(nodeitems_utils.node_items_iter(context)):
             if index == node_item:
                 return [item, extra, nice_name]
         return None
@@ -356,15 +323,14 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
 
             # Mix Color
             if key == "C":
-                node_active.data_type = "RGBA"
                 node_active.blend_type = extra[1]
 
             # Named Attribute / Random Value
             if key in ["NA", "RV"]:
                 node_active.data_type = extra[1]
 
-            # Attribute Statistic / Sample Index
-            if key in ["AST", "SIN"]:
+            # Attribute Statistic
+            if key == "AST":
                 node_active.data_type = extra[1]
                 node_active.domain = extra[2].replace("SPLINE", "CURVE")
 
@@ -372,10 +338,6 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "STO":
                 node_active.data_type = extra[1].replace("FLOAT_COLOR", "BYTE_COLOR")
                 node_active.domain = extra[2].replace("SPLINE", "CURVE")
-
-            # Sample Nearest Surface / Sample UV Surface
-            if key in ["SNS", "SUS"]:
-                node_active.data_type = extra[1]
 
             # Switch
             if key == "SW":
@@ -385,14 +347,9 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "GPX":
                 node_active.target_element = extra[1]
 
-            # Sample Nearest
-            if key == "SN":
-                node_active.domain = extra[1]
-
-            # Capture Attribute / Interpolate Domain
-            if key in ["CAP", "INTER"]:
+            # Capture Attribute
+            if key == "CAP":
                 node_active.data_type = extra[1]
-                node_active.domain = extra[2].replace("SPLINE", "CURVE")
 
             # Separate/Combine Color
             if key in ["SEP", "COM"]:

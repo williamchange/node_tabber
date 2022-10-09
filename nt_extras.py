@@ -193,16 +193,11 @@ com_col = [
 
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
-sample_nearest = gen_non_dtype_subnodes("SN", "SAMPLE NEAREST", DOMAIN[:4])
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
 
 named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
-sample_uv_surf = gen_dtype_subnodes("SUS", "SAMPLE UV SURF")
-sample_nearest_surf = gen_dtype_subnodes("SNS", "SAMPLE NEAREST SURF")
 
 attr_stat = gen_subnodes("AST", "ATTR STAT", ["FLOAT", "FLOAT_VECTOR"], DOMAIN)
 raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
-interpolate_dom = gen_subnodes("INTER", "INTERPOLATE DOM", DATA_TYPE, DOMAIN)
-sample_index = gen_subnodes("SIN", "SAMPLE INDEX", DATA_TYPE, DOMAIN)
