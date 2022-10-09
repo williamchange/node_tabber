@@ -13,4 +13,4 @@ This is a fork which includes:
 - Fix for appending custom nodegroups (see https://github.com/jiggymoon69/node_tabber/pull/10)
   
 ## Installation
-Download this [repository(3.2 branch)](https://github.com/williamchange/node_tabber/archive/refs/heads/3.2.zip) and install from Blender's preferences, just like any other add-on (no need to unzip)
+Download this [repository(3.2 branch)](https://github.com/williamchange/node_tabber/archive/refs/heads/32.zip) and install from Blender's preferences, just like any other add-on (no need to unzip)
