@@ -163,6 +163,7 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             "Set Spline Type": -1,
             "Merge by Distance": -1,
             "Map Range": -1,
+            "Mesh Boolean": -1,
         }
 
         for index, item in enumerate(nodeitems_utils.node_items_iter(context)):
@@ -237,6 +238,7 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
                     nt_extras.merge_by_dist,
                 ),
                 (item_index["Map Range"], "map range", nt_extras.map_range),
+                (item_index["Mesh Boolean"], "mesh boolean", nt_extras.mesh_boolean),
             ]:
                 enum_items, index_offset = sub_search(
                     enum_items, s[0], s[1], s[2], index_offset, content
@@ -383,6 +385,10 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "MR":
                 node_active.data_type = extra[1]
                 node_active.interpolation_type = extra[2]
+
+            # Mesh Boolean
+            if key == "MB":
+                node_active.operation = extra[1]
 
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
