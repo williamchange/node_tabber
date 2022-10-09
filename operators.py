@@ -200,8 +200,6 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
                     "capture attribute",
                     nt_extras.capture_attr,
                 ),
-                (item_index["Separate Color"], "separate color", nt_extras.sep_col),
-                (item_index["Combine Color"], "combine color", nt_extras.com_col),
                 (
                     item_index["Named Attribute"],
                     "named attribute",

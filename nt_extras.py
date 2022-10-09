@@ -178,19 +178,6 @@ switch = [
     [" SW MATERIAL", "Material (M) SWITCH"],
 ]
 
-sep_col = [
-    [" SEP RGB", "RGB (SR) SEP RGB"],
-    [" SEP HSV", "HSV (SH) SEP HSV"],
-    [" SEP HSL", "HSL (SL) SEP HSL"],
-]
-
-com_col = [
-    [" COM RGB", "RGB (CR) COM RGB"],
-    [" COM HSV", "HSV (CH) COM HSV"],
-    [" COM HSL", "HSL (CL) COM HSL"],
-]
-
-
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
