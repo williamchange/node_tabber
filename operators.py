@@ -161,6 +161,7 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             "Attribute Statistic": -1,
             "Geometry Proximity": -1,
             "Set Spline Type": -1,
+            "Merge by Distance": -1,
         }
 
         for index, item in enumerate(nodeitems_utils.node_items_iter(context)):
@@ -226,6 +227,11 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
                     item_index["Set Spline Type"],
                     "set spline type",
                     nt_extras.set_spline_type,
+                ),
+                (
+                    item_index["Merge by Distance"],
+                    "merge by distance",
+                    nt_extras.merge_by_dist,
                 ),
             ]:
                 enum_items, index_offset = sub_search(
@@ -364,6 +370,10 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             # Domain Size
             if key == "DS":
                 node_active.component = extra[1]
+
+            # Merge By Distance
+            if key == "MbD":
+                node_active.mode = extra[1]
 
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
