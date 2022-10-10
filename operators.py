@@ -311,6 +311,11 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "DE":
                 node_active.domain = extra[1]
 
+            # Scale Elements
+            if key == "SE":
+                node_active.domain = extra[1]
+                node_active.scale_mode = extra[2]
+
             # Raycast
             if key == "RAY":
                 node_active.data_type = extra[1]

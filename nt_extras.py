@@ -9,6 +9,7 @@ SPLINE_TYPE = ["CATMULL_ROM", "POLY", "BEZIER", "NURBS"]
 TARGET_EL = ["POINTS", "EDGES", "FACES"]
 INTERPOLATION = ["LINEAR", "STEPPED", "SMOOTHSTEP", "SMOOTHERSTEP"]
 OPERATION = ["INTERSECT", "UNION", "DIFFERENCE"]
+SCALE_EL_MODES = ["UNIFORM", "SINGLE_AXIS"]
 
 
 def replace_dtype_labels(string):
@@ -20,8 +21,8 @@ def gen_subnodes(a, b, setting1, setting2):
         [
             " {} {} {}".format(a, d[0], d[1]),
             "{} {} ({}{}) {}".format(
-                str.capitalize(replace_dtype_labels(d[0])),
-                str.capitalize(d[1]),
+                str.title(replace_dtype_labels(d[0])),
+                str.title(d[1]).replace("_", ""),
                 d[0].replace("FLOAT_", "")[0],
                 d[1][0],
                 b,
@@ -36,7 +37,7 @@ def gen_dtype_subnodes(a, b):
         [
             " {} {}".format(a, d),
             "{} ({}) {}".format(
-                str.capitalize(replace_dtype_labels(d)),
+                str.title(replace_dtype_labels(d)),
                 d[0],
                 b,
             ),
@@ -47,7 +48,7 @@ def gen_dtype_subnodes(a, b):
 
 def gen_non_dtype_subnodes(a, b, setting1):
     return [
-        [" {} {}".format(a, d), "{} ({}) {}".format(str.capitalize(d), d[0], b)]
+        [" {} {}".format(a, d), "{} ({}) {}".format(str.title(d), d[0], b)]
         for d in setting1
     ]
 
@@ -209,6 +210,7 @@ store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
 field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
+scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
 
 SUBNODE_ENTRIES = {
     "Math": math,
@@ -233,4 +235,5 @@ SUBNODE_ENTRIES = {
     "Separate Geometry": sep_geo,
     "Duplicate Elements": dupe_el,
     "Field at Index": field_at_index,
+    "Scale Elements": scale_el,
 }
