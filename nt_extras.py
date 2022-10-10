@@ -197,6 +197,7 @@ dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
 mesh_boolean = gen_non_dtype_subnodes("MB", "MESH BOOLEAN", OPERATION)
+sep_geo = gen_non_dtype_subnodes("SG", "SEP GEO", DOMAIN[:3] + DOMAIN[-2:])
 
 named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
 
@@ -205,3 +206,24 @@ raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
+
+SUBNODE_ENTRIES = {
+    "Math": math,
+    "Vector Math": vec_math,
+    "Mix": color,
+    "Boolean Math": bool_math,
+    "Random Value": rand_val,
+    "Switch": switch,
+    "Separate Color": sep_col,
+    "Combine Color": com_col,
+    "Domain Size": dom_size,
+    "Geometry Proximity": geo_prox,
+    "Set Spline Type": set_spline_type,
+    "Mesh Boolean": mesh_boolean,
+    "Named Attribute": named_attr,
+    "Attribute Statistic": attr_stat,
+    "Raycast": raycast,
+    "Store Named Attribute": store_named_attr,
+    "Capture Attribute": capture_attr,
+    "Map Range": map_range,
+}
