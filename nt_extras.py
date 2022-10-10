@@ -199,6 +199,7 @@ set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
 merge_by_dist = gen_non_dtype_subnodes("MbD", "MERGE BY DIST", ["ALL", "CONNECTED"])
 mesh_boolean = gen_non_dtype_subnodes("MB", "MESH BOOLEAN", OPERATION)
 dupe_el = gen_non_dtype_subnodes("DE", "DUPLICATE ELEM", DOMAIN[:3] + DOMAIN[-2:])
+sep_geo = gen_non_dtype_subnodes("SG", "SEP GEO", DOMAIN[:3] + DOMAIN[-2:])
 
 named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
 
@@ -207,8 +208,7 @@ raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
-sep_geo = gen_non_dtype_subnodes("SG", "SEP GEO", DOMAIN[:3] + DOMAIN[-2:])
-
+field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
 
 SUBNODE_ENTRIES = {
     "Math": math,
@@ -232,4 +232,5 @@ SUBNODE_ENTRIES = {
     "Map Range": map_range,
     "Separate Geometry": sep_geo,
     "Duplicate Elements": dupe_el,
+    "Field at Index": field_at_index,
 }
