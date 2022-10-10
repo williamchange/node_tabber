@@ -192,4 +192,24 @@ attr_stat = gen_subnodes("AST", "ATTR STAT", ["FLOAT", "FLOAT_VECTOR"], DOMAIN)
 raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
-map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
+map_range = gen_subn
+
+SUBNODE_ENTRIES = {
+    "Math": math,
+    "Vector Math": vec_math,
+    "Mix": color,
+    "Boolean Math": bool_math,
+    "Random Value": rand_val,
+    "Switch": switch,
+    "Domain Size": dom_size,
+    "Geometry Proximity": geo_prox,
+    "Set Spline Type": set_spline_type,
+    "Merge by Distance": merge_by_dist,
+    "Mesh Boolean": mesh_boolean,
+    "Named Attribute": named_attr,
+    "Attribute Statistic": attr_stat,
+    "Raycast": raycast,
+    "Store Named Attribute": store_named_attr,
+    "Capture Attribute": capture_attr,
+    "Map Range": map_range,
+}
