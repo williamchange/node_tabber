@@ -328,6 +328,11 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "SG":
                 node_active.domain = extra[1].replace("SPLINE", "CURVE")
 
+            # Scale Elements
+            if key == "SE":
+                node_active.domain = extra[1]
+                node_active.scale_mode = extra[2]
+
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
