@@ -195,6 +195,7 @@ raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
+field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
 
 SUBNODE_ENTRIES = {
     "Math": math,
@@ -216,4 +217,5 @@ SUBNODE_ENTRIES = {
     "Map Range": map_range,
     "Separate Geometry": sep_geo,
     "Duplicate Elements": dupe_el,
+    "Field at Index": field_at_index,
 }
