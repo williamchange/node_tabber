@@ -198,7 +198,7 @@ geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
 merge_by_dist = gen_non_dtype_subnodes("MbD", "MERGE BY DIST", ["ALL", "CONNECTED"])
 mesh_boolean = gen_non_dtype_subnodes("MB", "MESH BOOLEAN", OPERATION)
-dupe_el = gen_non_dtype_subnodes("DE", "DUPLICATE ELEM", DOMAIN)
+dupe_el = gen_non_dtype_subnodes("DE", "DUPLICATE ELEM", DOMAIN[:3] + DOMAIN[-2:])
 
 named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
 
