@@ -303,8 +303,13 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key in ["SEP", "COM"]:
                 node_active.mode = extra[1]
 
+            # Set Spline Type
             if key == "SPT":
                 node_active.spline_type = extra[1]
+
+            # Duplicate Elements
+            if key == "DE":
+                node_active.domain = extra[1]
 
             # Raycast
             if key == "RAY":
