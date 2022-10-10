@@ -226,4 +226,5 @@ SUBNODE_ENTRIES = {
     "Store Named Attribute": store_named_attr,
     "Capture Attribute": capture_attr,
     "Map Range": map_range,
+    "Separate Geometry": sep_geo,
 }
