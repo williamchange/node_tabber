@@ -328,9 +328,13 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "MB":
                 node_active.operation = extra[1]
 
-                # Separate Geometry
+            # Separate Geometry
             if key == "SG":
                 node_active.domain = extra[1].replace("SPLINE", "CURVE")
+
+            # Duplicate Elements
+            if key == "DE":
+                node_active.domain = extra[1]
 
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
