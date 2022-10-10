@@ -185,6 +185,7 @@ geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
 merge_by_dist = gen_non_dtype_subnodes("MbD", "MERGE BY DIST", ["ALL", "CONNECTED"])
 mesh_boolean = gen_non_dtype_subnodes("MB", "MESH BOOLEAN", OPERATION)
+sep_geo = gen_non_dtype_subnodes("SG", "SEP GEO", DOMAIN[:3] + DOMAIN[-2:])
 
 named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
 
@@ -212,4 +213,5 @@ SUBNODE_ENTRIES = {
     "Store Named Attribute": store_named_attr,
     "Capture Attribute": capture_attr,
     "Map Range": map_range,
+    "Separate Geometry": sep_geo,
 }
