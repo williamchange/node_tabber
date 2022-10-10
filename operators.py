@@ -299,6 +299,11 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "CAP":
                 node_active.data_type = extra[1]
 
+            # Scale Elements
+            if key == "SE":
+                node_active.domain = extra[1]
+                node_active.scale_mode = extra[2]
+
             # Separate/Combine Color
             if key in ["SEP", "COM"]:
                 node_active.mode = extra[1]
