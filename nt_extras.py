@@ -11,6 +11,18 @@ INTERPOLATION = ["LINEAR", "STEPPED", "SMOOTHSTEP", "SMOOTHERSTEP"]
 OPERATION = ["INTERSECT", "UNION", "DIFFERENCE"]
 SCALE_EL_MODES = ["UNIFORM", "SINGLE_AXIS"]
 
+GN_CMP_VEC_MODES = ["ELEMENT", "LENGTH", "DOT_PRODUCT", "AVERAGE", "DIRECTION"]
+GN_CMP_OPS = [
+    "LESS_THAN",
+    "LESS_EQUAL",
+    "GREATER_THAN",
+    "GREATER_EQUAL",
+    "EQUAL",
+    "NOT_EQUAL",
+    "BRIGHTER",
+    "DARKER",
+]
+
 
 def replace_dtype_labels(string):
     return string.replace("FLOAT_", "").replace("INT", "integer")
@@ -52,6 +64,53 @@ def gen_non_dtype_subnodes(a, b, setting1):
         for d in setting1
     ]
 
+
+def gn_cmp_str_col(a, setting1, setting2):
+    return [
+        [
+            f" CMP {a} {d[1]}",
+            "{} {} (C{}) COMP".format(
+                str.title(d[0]),
+                str.title(d[1].replace("_", " ")),
+                d[0][0] + d[1][0],
+            ),
+        ]
+        for d in itertools.product(setting1, setting2)
+    ]
+
+
+def op_abbr(s):
+    return s[0] if "_" not in s else s.split("_")[0][0] + s.split("_")[1][0]
+
+
+gn_cmp_str = gn_cmp_str_col("STRING", ["STRING"], GN_CMP_OPS[4:-2])
+gn_cmp_col = gn_cmp_str_col("RGBA", ["COLOR"], GN_CMP_OPS[4:])
+
+gn_cmp_fl_it = [
+    [
+        f" CMP {d[0]} {d[1]}",
+        "{} {} (C{}{}) COMP".format(
+            str.title(replace_dtype_labels((d[0]))),
+            str.title(d[1]).replace("_", " "),
+            d[0][0],
+            op_abbr(d[1]),
+        ),
+    ]
+    for d in itertools.product(["FLOAT", "INT"], GN_CMP_OPS[:-2])
+]
+
+gn_cmp_vec = [
+    [
+        f" CMP VECTOR {d[0]} {d[1]}",
+        "V {} {} (CV{}{}) COMP".format(
+            str.title(d[0]).replace("_", " ").replace(" Product", ""),
+            str.title(d[1]).replace("_", " "),
+            d[0][0],
+            op_abbr(d[1]),
+        ),
+    ]
+    for d in itertools.product(GN_CMP_VEC_MODES, GN_CMP_OPS[:-2])
+]
 
 math = [
     [" M ADD", "Add (A) MATH"],
@@ -193,6 +252,13 @@ com_col = [
     [" COM HSL", "HSL (CL) COM HSL"],
 ]
 
+vec_rot = [
+    [" VR AXIS_ANGLE", "AXIS (VRA) VEC ROTATE AXIS"],
+    [" VR X_AXIS", "X (VRX) VEC ROTATE X"],
+    [" VR Y_AXIS", "Y (VRY) VEC ROTATE Y"],
+    [" VR Z_AXIS", "Z (VRZ) VEC ROTATE Z"],
+    [" VR EULER_XYZ", "EULER (VRE) VEC ROTATE EULER"],
+]
 
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
@@ -236,4 +302,6 @@ SUBNODE_ENTRIES = {
     "Duplicate Elements": dupe_el,
     "Field at Index": field_at_index,
     "Scale Elements": scale_el,
+    "Vector Rotate": vec_rot,
+    "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
 }
