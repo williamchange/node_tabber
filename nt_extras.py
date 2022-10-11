@@ -262,6 +262,10 @@ vec_rot = [
     [" VR Z_AXIS", "Z (VRZ) VEC ROTATE Z"],
     [" VR EULER_XYZ", "EULER (VRE) VEC ROTATE EULER"],
 ]
+uv_unwrap = [
+    [" UU ANGLE_BASED", "Angle Based (AB) UV UNWRAP"],
+    [" UU CONFORMAL", "Conformal (C) UV UNWRAP"],
+]
 
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
@@ -307,4 +311,5 @@ SUBNODE_ENTRIES = {
     "Scale Elements": scale_el,
     "Vector Rotate": vec_rot,
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
+    "UV Unwrap": uv_unwrap,
 }

@@ -265,6 +265,10 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
 
             key = extra[0]
 
+            # UV Unwrap
+            if key == "UU":
+                node_active.method = extra[1]
+
             # GN Compare
             if key == "CMP":
                 node_active.data_type = extra[1]
