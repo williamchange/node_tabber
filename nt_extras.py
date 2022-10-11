@@ -60,7 +60,10 @@ def gen_dtype_subnodes(a, b):
 
 def gen_non_dtype_subnodes(a, b, setting1):
     return [
-        [" {} {}".format(a, d), "{} ({}) {}".format(str.title(d), d[0], b)]
+        [
+            " {} {}".format(a, d),
+            "{} ({}) {}".format(str.title(d).replace("_", " "), d[0], b),
+        ]
         for d in setting1
     ]
 
