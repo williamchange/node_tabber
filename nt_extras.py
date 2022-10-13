@@ -23,6 +23,16 @@ GN_CMP_OPS = [
     "DARKER",
 ]
 
+FILTER_MODES = [
+    "SOFTEN",
+    "BOX",
+    "LAPLACE",
+    "SOBEL",
+    "PREWITT",
+    "KIRSCH",
+    "SHADOW",
+]
+
 
 def replace_dtype_labels(string):
     return string.replace("FLOAT_", "").replace("INT", "integer")
@@ -82,6 +92,17 @@ def gn_cmp_str_col(a, setting1, setting2):
 def op_abbr(s):
     return s[0] if "_" not in s else s.split("_")[0][0] + s.split("_")[1][0]
 
+
+c_filter = [
+    [
+        f" F {ft.replace('BOX','SHARPEN')}",
+        "{} ({}) FILTER".format(
+            str.title(ft.replace("BOX", "Box Sharpen")),
+            ft[0],
+        ),
+    ]
+    for ft in FILTER_MODES
+]
 
 gn_cmp_str = gn_cmp_str_col("STRING", ["STRING"], GN_CMP_OPS[4:-2])
 gn_cmp_col = gn_cmp_str_col("RGBA", ["COLOR"], GN_CMP_OPS[4:])
@@ -291,4 +312,5 @@ SUBNODE_ENTRIES = {
     "Separate Geometry": sep_geo,
     "Scale Elements": scale_el,
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
+    "Filter": c_filter,
 }
