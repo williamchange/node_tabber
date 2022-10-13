@@ -23,6 +23,17 @@ GN_CMP_OPS = [
     "DARKER",
 ]
 
+FILTER_MODES = [
+    "SOFTEN",
+    "BOX",
+    "DIAMOND",
+    "LAPLACE",
+    "SOBEL",
+    "PREWITT",
+    "KIRSCH",
+    "SHADOW",
+]
+
 
 def replace_dtype_labels(string):
     return string.replace("FLOAT_", "").replace("INT", "integer")
@@ -240,6 +251,19 @@ switch = [
     [" SW MATERIAL", "Material (M) SWITCH"],
 ]
 
+c_filter = [
+    [
+        f" F {ft.replace('DIAMOND', 'SHARPEN_DIAMOND').replace('BOX','SHARPEN')}",
+        "{} ({}) FILTER".format(
+            str.title(
+                ft.replace("DIAMOND", "Diamond Sharpen").replace("BOX", "Box Sharpen")
+            ),
+            ft[0],
+        ),
+    ]
+    for ft in FILTER_MODES
+]
+
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
@@ -281,4 +305,5 @@ SUBNODE_ENTRIES = {
     "Field at Index": field_at_index,
     "Scale Elements": scale_el,
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
+    "Filter": c_filter,
 }
