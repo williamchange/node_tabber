@@ -125,15 +125,17 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
         prefs = addon.preferences
 
         enum_items.clear()
-        category = context.space_data.tree_type[0]
 
-        if category == "S":
+        category = ""
+        space = context.space_data.tree_type
+
+        if space[0] == "S":
             category = "shader.json"
-        if category == "C":
+        if space[0] == "C":
             category = "compositor.json"
-        if category == "T":
+        if space[0] == "T":
             category = "texture.json"
-        if category == "G":
+        if space[0] == "G":
             category = "geometry.json"
 
         path = os.path.dirname(__file__) + "/" + category
@@ -177,7 +179,10 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             si = [item_index[i] for i in item_index]
             sn = [str.lower(k) for k in item_index]
             se = [nt_extras.SUBNODE_ENTRIES[e] for e in nt_extras.SUBNODE_ENTRIES]
-            for s in zip(si, sn, se):
+            nt = [t for t in nt_extras.SUBNODE_ENTRIES]
+            for s in zip(si, sn, se, nt):
+                if space[0] == "C" and s[3] == "Map Range":
+                    continue
                 enum_items, index_offset = sub_search(
                     enum_items, s[0], s[1], s[2], index_offset, content
                 )
