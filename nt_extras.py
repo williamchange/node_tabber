@@ -23,6 +23,17 @@ GN_CMP_OPS = [
     "DARKER",
 ]
 
+FILTER_MODES = [
+    "SOFTEN",
+    "BOX",
+    "DIAMOND",
+    "LAPLACE",
+    "SOBEL",
+    "PREWITT",
+    "KIRSCH",
+    "SHADOW",
+]
+
 
 def replace_dtype_labels(string):
     return string.replace("FLOAT_", "").replace("INT", "integer")
@@ -113,6 +124,19 @@ gn_cmp_vec = [
         ),
     ]
     for d in itertools.product(GN_CMP_VEC_MODES, GN_CMP_OPS[:-2])
+]
+
+c_filter = [
+    [
+        f" F {ft.replace('DIAMOND', 'SHARPEN_DIAMOND').replace('BOX','SHARPEN')}",
+        "{} ({}) FILTER".format(
+            str.title(
+                ft.replace("DIAMOND", "Diamond Sharpen").replace("BOX", "Box Sharpen")
+            ),
+            ft[0],
+        ),
+    ]
+    for ft in FILTER_MODES
 ]
 
 math = [
@@ -312,4 +336,5 @@ SUBNODE_ENTRIES = {
     "Vector Rotate": vec_rot,
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
     "UV Unwrap": uv_unwrap,
+    "Filter": c_filter,
 }
