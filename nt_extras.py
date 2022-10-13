@@ -10,6 +10,7 @@ TARGET_EL = ["POINTS", "EDGES", "FACES"]
 INTERPOLATION = ["LINEAR", "STEPPED", "SMOOTHSTEP", "SMOOTHERSTEP"]
 OPERATION = ["INTERSECT", "UNION", "DIFFERENCE"]
 SCALE_EL_MODES = ["UNIFORM", "SINGLE_AXIS"]
+ROUNDING_MODES = ["FLOOR", "CEILING", "ROUND", "TRUNCATE"]
 
 GN_CMP_VEC_MODES = ["ELEMENT", "LENGTH", "DOT_PRODUCT", "AVERAGE", "DIRECTION"]
 GN_CMP_OPS = [
@@ -271,6 +272,7 @@ merge_by_dist = gen_non_dtype_subnodes("MbD", "MERGE BY DIST", ["ALL", "CONNECTE
 mesh_boolean = gen_non_dtype_subnodes("MB", "MESH BOOLEAN", OPERATION)
 sep_geo = gen_non_dtype_subnodes("SG", "SEP GEO", DOMAIN[:3] + DOMAIN[-2:])
 dupe_el = gen_non_dtype_subnodes("DE", "DUPLICATE ELEM", DOMAIN[:3] + DOMAIN[-2:])
+float_to_int = gen_non_dtype_subnodes("FtI", "FLOAT TO INT", ROUNDING_MODES)
 
 named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
 
@@ -306,4 +308,5 @@ SUBNODE_ENTRIES = {
     "Scale Elements": scale_el,
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
     "Filter": c_filter,
+    "Float to Integer": float_to_int,
 }
