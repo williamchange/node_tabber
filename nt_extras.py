@@ -288,7 +288,7 @@ accum_field = gen_subnodes("AF", "ACCUM FIELD", DATA_TYPE[:3], DOMAIN)
 SUBNODE_ENTRIES = {
     "Math": math,
     "Vector Math": vec_math,
-    "Mix": color,
+    "MixRGB": color,
     "Boolean Math": bool_math,
     "Random Value": rand_val,
     "Switch": switch,
