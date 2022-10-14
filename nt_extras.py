@@ -283,7 +283,7 @@ capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
 field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
 scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
-accum_field = gen_subnodes("AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
+accum_field = gen_subnodes("AF", "ACCUM FIELD", DATA_TYPE[:3], DOMAIN)
 
 SUBNODE_ENTRIES = {
     "Math": math,
