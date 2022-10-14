@@ -92,7 +92,7 @@ def gn_cmp_str_col(a, setting1, setting2):
 
 
 def op_abbr(s):
-    return s[0] if "_" not in s else s.split("_")[0][0] + s.split("_")[1][0]
+    return "".join([c[0] for c in s.split("_")])
 
 
 gn_cmp_str = gn_cmp_str_col("STRING", ["STRING"], GN_CMP_OPS[4:-2])
