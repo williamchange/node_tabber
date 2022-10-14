@@ -295,7 +295,8 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
                 node_active.data_type = extra[1]
 
             # Attribute Statistic / Field at Index
-            if key in ["AST", "FaI"]:
+            # Accumulate Field
+            if key in ["AST", "FaI", "AF"]:
                 node_active.data_type = extra[1]
                 node_active.domain = extra[2].replace("SPLINE", "CURVE")
 
