@@ -317,7 +317,7 @@ accum_field = gen_subnodes(
 SUBNODE_ENTRIES = {
     "Math": math,
     "Vector Math": vec_math,
-    "Mix": color,
+    "MixRGB": color,
     "Boolean Math": bool_math,
     "Random Value": rand_val,
     "Switch": switch,
