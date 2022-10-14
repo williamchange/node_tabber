@@ -291,6 +291,7 @@ store_named_attr = gen_subnodes("STO", "STORE", DATA_TYPE, DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
 scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
+accum_field = gen_subnodes("AF", "ACCUM FIELD", DATA_TYPE[:3], DOMAIN)
 
 SUBNODE_ENTRIES = {
     "Math": math,
@@ -316,4 +317,5 @@ SUBNODE_ENTRIES = {
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
     "Filter": c_filter,
     "Float to Integer": float_to_int,
+    "Accumulate Field": accum_field
 }
