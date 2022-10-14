@@ -95,7 +95,7 @@ def gn_cmp_str_col(a, setting1, setting2):
 
 
 def op_abbr(s):
-    return s[0] if "_" not in s else s.split("_")[0][0] + s.split("_")[1][0]
+    return "".join([c[0] for c in s.split("_")])
 
 
 gn_cmp_str = gn_cmp_str_col("STRING", ["STRING"], GN_CMP_OPS[4:-2])
@@ -310,7 +310,9 @@ capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
 field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
 scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
-accum_field = gen_subnodes("AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
+accum_field = gen_subnodes(
+    "AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN
+)
 
 SUBNODE_ENTRIES = {
     "Math": math,
@@ -341,5 +343,5 @@ SUBNODE_ENTRIES = {
     "UV Unwrap": uv_unwrap,
     "Filter": c_filter,
     "Float to Integer": float_to_int,
-    "Accumulate Field": accum_field
+    "Accumulate Field": accum_field,
 }
