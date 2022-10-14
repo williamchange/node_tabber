@@ -286,6 +286,10 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key in ["M", "VM", "BM"]:
                 node_active.operation = extra[1]
 
+            # Vector Rotate
+            if key == "VR":
+                node_active.rotation_type = extra[1]
+
             # Mix Color
             if key == "C":
                 node_active.blend_type = extra[1]
