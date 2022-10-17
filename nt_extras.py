@@ -281,12 +281,13 @@ com_col = [
 ]
 
 vec_rot = [
-    [" VR AXIS_ANGLE", "AXIS (VRA) VEC ROTATE AXIS"],
-    [" VR X_AXIS", "X (VRX) VEC ROTATE X"],
-    [" VR Y_AXIS", "Y (VRY) VEC ROTATE Y"],
-    [" VR Z_AXIS", "Z (VRZ) VEC ROTATE Z"],
-    [" VR EULER_XYZ", "EULER (VRE) VEC ROTATE EULER"],
+    [" VR AXIS_ANGLE", "Axis (VRA) VECTOR ROTATE"],
+    [" VR X_AXIS", "X (VRX) VECTOR ROTATE"],
+    [" VR Y_AXIS", "Y (VRY) VECTOR ROTATE"],
+    [" VR Z_AXIS", "Z (VRZ) VECTOR ROTATE"],
+    [" VR EULER_XYZ", "Euler (VRE) VECTOR ROTATE"],
 ]
+
 uv_unwrap = [
     [" UU ANGLE_BASED", "Angle Based (AB) UV UNWRAP"],
     [" UU CONFORMAL", "Conformal (C) UV UNWRAP"],
@@ -310,9 +311,7 @@ capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
 field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
 scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
-accum_field = gen_subnodes(
-    "AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN
-)
+accum_field = gen_subnodes("AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
 
 SUBNODE_ENTRIES = {
     "Math": math,
