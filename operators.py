@@ -372,6 +372,10 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             if key == "FtI":
                 node_active.rounding_mode = extra[1]
 
+            # Fillet Curve
+            if key == "FC":
+                node_active.mode = extra[1]
+
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 

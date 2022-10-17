@@ -293,6 +293,11 @@ uv_unwrap = [
     [" UU CONFORMAL", "Conformal (C) UV UNWRAP"],
 ]
 
+fillet_curve = [
+    [" FC BEZIER", "Bezier (B) FILLET CURVE"],
+    [" FC POLY", "Poly (P) FILLET CURVE"]
+]
+
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
 set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
@@ -343,4 +348,5 @@ SUBNODE_ENTRIES = {
     "Filter": c_filter,
     "Float to Integer": float_to_int,
     "Accumulate Field": accum_field,
+    "Fillet Curve": fillet_curve
 }
