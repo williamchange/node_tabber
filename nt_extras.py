@@ -275,6 +275,13 @@ com_col = [
     [" COM HSL", "HSL (CL) COM HSL"],
 ]
 
+vec_rot = [
+    [" VR AXIS_ANGLE", "Axis (VRA) VECTOR ROTATE"],
+    [" VR X_AXIS", "X (VRX) VECTOR ROTATE"],
+    [" VR Y_AXIS", "Y (VRY) VECTOR ROTATE"],
+    [" VR Z_AXIS", "Z (VRZ) VECTOR ROTATE"],
+    [" VR EULER_XYZ", "Euler (VRE) VECTOR ROTATE"],
+]
 
 dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
@@ -317,5 +324,6 @@ SUBNODE_ENTRIES = {
     "Compare": gn_cmp_vec + gn_cmp_fl_it + gn_cmp_col + gn_cmp_str,
     "Filter": c_filter,
     "Float to Integer": float_to_int,
-    "Accumulate Field": accum_field
+    "Accumulate Field": accum_field,
+    "Vector Rotate": vec_rot
 }
