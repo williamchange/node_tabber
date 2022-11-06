@@ -1,101 +1,73 @@
 import bpy
 import json
-
-import time
-
-import nodeitems_utils
-import pprint
-from . import nt_extras
-
 import os
 import pathlib
+import time
 
-from bpy.types import (
-    Operator,
-    PropertyGroup,
-)
-from bpy.props import (
-    BoolProperty,
-    CollectionProperty,
-    EnumProperty,
-    IntProperty,
-    StringProperty,
-)
+from . import nt_extras
+
+import nodeitems_utils
+from bpy.types import Operator, PropertyGroup
+from bpy.props import EnumProperty, StringProperty
+
 
 ADD_ON_PATH = pathlib.PurePath(os.path.dirname(__file__)).name
 
-
 def nt_debug(msg):
-    addon = bpy.context.preferences.addons[ADD_ON_PATH]
-    prefs = addon.preferences
-
+    prefs = bpy.context.preferences.addons[ADD_ON_PATH].preferences
+    
     if prefs.nt_debug:
         print(str(msg))
 
     return
 
 
-def take_fifth(elem):
+def sort_by_tally(elem):
     return int(elem[2])
 
 
-def write_score(category, enum_items):
-    addon = bpy.context.preferences.addons[ADD_ON_PATH]
-    prefs = addon.preferences
-
-    if category == "S":
-        category = "shader.json"
-    if category == "C":
-        category = "compositor.json"
-    if category == "T":
-        category = "texture.json"
-    if category == "G":
-        category = "geometry.json"
+def write_score(enum_items):
+    tree_type = bpy.context.space_data.tree_type
+    category = f'{tree_type.removesuffix("NodeTree").lower()}.json'
+    prefs = bpy.context.preferences.addons[ADD_ON_PATH].preferences
 
     path = os.path.dirname(__file__) + "/" + category
     if not os.path.exists(path):
-        content = {}
-        content[enum_items] = {"tally": 1}
-
         with open(path, "w") as f:
-            json.dump(content, f)
+            json.dump({enum_items: {"tally": 1}}, f)
 
         print("Nodetabber created :" + path)
     else:
         with open(path, "r") as f:
-            content = json.load(f)
+            tally_dict = json.load(f)
 
-        if enum_items in content:
-            if content[enum_items]["tally"] < prefs.tally_weight:
-                content[enum_items]["tally"] += 1
-        else:
-            content[enum_items] = {"tally": 1}
+        old_tally = tally_dict.get(enum_items, {"tally":0})["tally"]
+        new_tally = min(old_tally + 1, prefs.tally_weight)
+        tally_dict[enum_items] = {"tally": new_tally}
 
         with open(path, "w") as f:
-            json.dump(content, f)
+            json.dump(tally_dict, f)
 
     return
 
 
 def sub_search(
-    enum_items, node_type_index, node_type, extras_ops, index_offset, content
+    enum_items, node_type_index, node_type, extras_ops, index_offset, tally_dict
 ):
-    if node_type_index > -1:
-        nt_debug(f"Adding ${node_type} nodes")
-        for index2, subname in enumerate(extras_ops):
-            tally = 0
-            if subname[1] in content:
-                tally = content[subname[1]]["tally"]
-            enum_items.append(
-                (
-                    str(node_type_index) + subname[0] + " " + subname[1],
-                    subname[1],
-                    str(tally),
-                    index_offset + 1 + index2,
-                )
+    nt_debug(f'Adding ${node_type} nodes')
+    for index2, subname in enumerate(extras_ops):
+        sn_name, sn_label = subname
+        tally = tally_dict.get(sn_label, {"tally":0})["tally"]
+        enum_items.append(
+            (
+                f'{node_type_index} {sn_name} {sn_label}',
+                sn_label,
+                str(tally),
+                index_offset + index2 + 1,
             )
-        index_offset += index2 + 1
-    return enum_items, index_offset
+        )
+    index_offset += index2 + 1
+    return index_offset
 
 
 class NodeTabSetting(PropertyGroup):
@@ -106,7 +78,7 @@ class NodeTabSetting(PropertyGroup):
     )
 
 
-class NODE_OT_add_tabber_search(bpy.types.Operator):
+class NODE_OT_add_tabber_search(Operator):
     """Add a node to the active tree using node tabber"""
 
     bl_idname = "node.add_tabber_search"
@@ -121,122 +93,90 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
         nt_debug("DEF: node_enum_items")
         enum_items = NODE_OT_add_tabber_search._enum_item_hack
 
-        addon = bpy.context.preferences.addons[ADD_ON_PATH]
-        prefs = addon.preferences
+        prefs = bpy.context.preferences.addons[ADD_ON_PATH].preferences
 
         enum_items.clear()
-        category = ""
         space = context.space_data.tree_type
 
-        if space[0] == "S":
-            category = "shader.json"
-        if space[0] == "C":
-            category = "compositor.json"
-        if space[0] == "T":
-            category = "texture.json"
-        if space[0] == "G":
-            category = "geometry.json"
+        category = f'{space.removesuffix("NodeTree").lower()}.json'
+        node_items = nodeitems_utils.node_items_iter(context)
 
         path = os.path.dirname(__file__) + "/" + category
         if not os.path.exists(path):
-            content = {}
+            tally_dict = {}
         else:
             with open(path, "r") as f:
-                content = json.load(f)
+                tally_dict = json.load(f)
 
-        index_offset = 0
+        index_offset = 0               
+        item_index = {key: -1 for key in nt_extras.SUBNODE_ENTRIES}
 
-        item_index = {}
-        for key in nt_extras.SUBNODE_ENTRIES:
-            item_index[key] = -1
-
-        for index, item in enumerate(nodeitems_utils.node_items_iter(context)):
+        for index, item in enumerate(node_items):
             if isinstance(item, nodeitems_utils.NodeItem):
-                short = ""
-                tally = 0
-                words = item.label.split()
-                for word in words:
-                    short += word[0]
-                match = item.label + " (" + short + ")"
-                if match in content:
-                    tally = content[match]["tally"]
+                abbr = "".join(word[0] for word in item.label.split())
+                match = f'{item.label} ({abbr})'
+                tally = tally_dict.get(match, {"tally":0})["tally"]
 
-                enum_items.append(
-                    (
-                        str(index) + " 0 0",
-                        item.label + " (" + short + ")",
-                        str(tally),
-                        index,
-                    )
-                )
+                enum_items.append((f'{index} 0 0', match, str(tally), index,))
                 index_offset = index
-
                 item_index[item.label] = index
-
+                
         # Add sub node searching if enabled
         if prefs.sub_search:
-            si = [item_index[i] for i in item_index]
-            sn = [str.lower(k) for k in item_index]
-            se = [nt_extras.SUBNODE_ENTRIES[e] for e in nt_extras.SUBNODE_ENTRIES]
-            nt = [t for t in nt_extras.SUBNODE_ENTRIES]
-            for s in zip(si, sn, se, nt):
-                if space[0] == "C" and s[3] == "Map Range":
+            sn_entries = nt_extras.SUBNODE_ENTRIES
+            sn_info = zip(sn_entries.keys(), item_index.values(), item_index.keys(), sn_entries.values())
+
+            for nodetype, index, *sn_data in sn_info:
+                if space == "CompositorNodeTree" and nodetype == "Map Range":
                     continue
-                enum_items, index_offset = sub_search(
-                    enum_items, s[0], s[1], s[2], index_offset, content
-                )
+                if index > -1:
+                    index_offset = sub_search(
+                        enum_items, index, *sn_data, index_offset, tally_dict
+                    )
 
         if prefs.tally:
-            tmp = enum_items
-            tmp = sorted(enum_items, key=take_fifth, reverse=True)
-        else:
-            tmp = enum_items
-        return tmp
-        # return enum_items
+            enum_items.sort(key=sort_by_tally, reverse=True)
+
+        return enum_items
 
     # Look up the item based on index
     def find_node_item(self, context):
         nt_debug("DEF: find_node_item")
-        tmp = int(self.node_item.split()[0])
-        nt_debug("FIND_NODE_ITEM: Tmp : " + str(self.node_item.split()))
+        nt_debug(f'FIND_NODE_ITEM: Tmp : {str(self.node_item.split())}')
 
-        node_item = tmp
-        extra = self.node_item.split()[1:]
-        nice_name = " ".join(self.node_item.split()[3:])
+        data = self.node_item.split()
+        node_index, extra, nice_name = int(data[0]), data[1:], " ".join(data[3:])
 
-        for index, item in enumerate(nodeitems_utils.node_items_iter(context)):
-            if index == node_item:
+  
+        node_items = nodeitems_utils.node_items_iter(context)
+
+        for index, item in enumerate(node_items):
+            if index == node_index:
                 return [item, extra, nice_name]
         return None
 
     def execute(self, context):
         nt_debug("DEF: execute")
         startTime = time.perf_counter()
-        addon = bpy.context.preferences.addons[ADD_ON_PATH]
-        prefs = addon.preferences
+        prefs = bpy.context.preferences.addons[ADD_ON_PATH].preferences
 
-        _find_node_item = self.find_node_item(context)
-        item = _find_node_item[0]
-        extra = _find_node_item[1]
-        nice_name = _find_node_item[2]
+        #Fetch node item info
+        item, extra, nice_name = self.find_node_item(context)
 
         # Add to tally
-        short = ""
-        words = item.label.split()
-        nt_debug("EXECUTE: Item label : " + str(item.label))
-        for word in words:
-            short += word[0]
-        match = item.label + " (" + short + ")"
+        nt_debug(f'EXECUTE: Item label : {str(item.label)}')
+        subnodes_id = self.node_item.split()[1]
+        nt_debug(f'Checking type : {str(subnodes_id)}')
 
-        type = self.node_item.split()[1]
-        nt_debug("Checking type : " + str(type))
+        if subnodes_id == "0":
+            abbr = "".join(word[0] for word in item.label.split())
+            match = f'{item.label} ({abbr})'
 
-        if type == "0":
             nt_debug("Writing normal node tally")
-            write_score(item.nodetype[0], match)
+            write_score(match)
         else:
             nt_debug("Writing sub node tally")
-            write_score(item.nodetype[0], nice_name)
+            write_score(nice_name)
 
         nt_debug("Hack")
 
@@ -247,25 +187,14 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
             node_tree_type = None
             if "node_tree" in item.settings:
                 node_tree_type = eval(item.settings["node_tree"])
-            try:
-                for setting in item.settings.items():
-                    if setting[0] != "node_tree":
-                        ops = self.settings.add()
-                        ops.name = setting[0]
-                        ops.value = setting[1]
-            except AttributeError:
-                print("An exception occurred")
-
             self.create_node(context, item.nodetype, node_tree_type)
 
             nt_debug(str(item.nodetype))
-            nt_debug("extra 0: " + str(extra[0]))
-            nt_debug("extra 1: " + str(extra[1]))
+            nt_debug(f'extra 0: {str(extra[0])}')
+            nt_debug(f'extra 1: {str(extra[1])}')
 
             space = context.space_data
-            node_tree = space.node_tree
             node_active = context.active_node
-            node_selected = context.selected_nodes
 
             key = extra[0]
 
@@ -412,16 +341,14 @@ class NODE_OT_add_tabber_search(bpy.types.Operator):
         context.window_manager.invoke_search_popup(self)
         return {"CANCELLED"}
 
-    populate = node_enum_items
-
     node_item: EnumProperty(
         name="Node Type",
         description="Node type",
-        items=populate,
+        items=node_enum_items,
     )
 
 
-class NODE_OT_reset_tally(bpy.types.Operator):
+class NODE_OT_reset_tally(Operator):
     """Reset the tally count"""
 
     bl_idname = "node.reset_tally"
@@ -437,23 +364,21 @@ class NODE_OT_reset_tally(bpy.types.Operator):
                 # delete file
                 os.remove(path)
 
-            if reset:
-                info = "Reset Tallies"
-                self.report({"INFO"}, info)
-            else:
-                info = "No tallies to reset."
-                self.report({"INFO"}, info)
+        if reset:
+            info = "Reset Tallies"
+        else:
+            info = "No tallies to reset."
+        self.report({"INFO"}, info)
 
         return {"FINISHED"}
 
 
+classes = (NodeTabSetting, NODE_OT_add_tabber_search, NODE_OT_reset_tally)
+
 def register():
-    bpy.utils.register_class(NodeTabSetting)
-    bpy.utils.register_class(NODE_OT_add_tabber_search)
-    bpy.utils.register_class(NODE_OT_reset_tally)
-
-
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    
 def unregister():
-    bpy.utils.unregister_class(NodeTabSetting)
-    bpy.utils.unregister_class(NODE_OT_add_tabber_search)
-    bpy.utils.unregister_class(NODE_OT_reset_tally)
+    for cls in classes:
+        bpy.utils.unregister_class(cls)

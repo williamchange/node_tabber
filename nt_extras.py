@@ -41,56 +41,44 @@ def replace_dtype_labels(string):
 
 
 def gen_subnodes(a, b, setting1, setting2):
-    return [
+    output = [
         [
-            " {} {} {}".format(a, d[0], d[1]),
-            "{} {} ({}{}) {}".format(
-                str.title(replace_dtype_labels(d[0])),
-                str.title(d[1]).replace("_", ""),
-                d[0].replace("FLOAT_", "")[0],
-                d[1][0],
-                b,
-            ),
-        ]
-        for d in itertools.product(setting1, setting2)
-    ]
+            f'{a} {d0} {d1}',
+            f'{str.title(replace_dtype_labels(d0))} {str.title(d1).replace("_", "")} ({d0.replace("FLOAT_", "")[0]}{d1[0]}) {b}'
+        ] 
+        for d0, d1 in itertools.product(setting1, setting2)]
+    return output
 
 
 def gen_dtype_subnodes(a, b):
-    return [
+    output = [
         [
-            " {} {}".format(a, d),
-            "{} ({}) {}".format(
-                str.title(replace_dtype_labels(d)),
-                d[0],
-                b,
-            ),
+            f'{a} {d}',
+            f'{str.title(replace_dtype_labels(d))} ({d[0]}) {b}'
         ]
         for d in DATA_TYPE
     ]
+    return output
 
 
 def gen_non_dtype_subnodes(a, b, setting1):
-    return [
+    output = [
         [
-            " {} {}".format(a, d),
-            "{} ({}) {}".format(str.title(d).replace("_", " "), d[0], b),
+            f'{a} {d}',
+            f'{str.title(d).replace("_", " ")} ({d[0]}) {b}',
         ]
         for d in setting1
     ]
+    return output
 
 
 def gn_cmp_str_col(a, setting1, setting2):
     return [
         [
-            f" CMP {a} {d[1]}",
-            "{} {} (C{}) COMP".format(
-                str.title(d[0]),
-                str.title(d[1].replace("_", " ")),
-                d[0][0] + d[1][0],
-            ),
+            f'CMP {a} {d1}',
+            f'{str.title(d0)} {str.title(d1.replace("_", " "))} (C{d0[0] + d1[0]}) COMP'
         ]
-        for d in itertools.product(setting1, setting2)
+        for d0, d1 in itertools.product(setting1, setting2)
     ]
 
 
@@ -322,6 +310,7 @@ SUBNODE_ENTRIES = {
     "Math": math,
     "Vector Math": vec_math,
     "MixRGB": color,
+    "Mix": color,
     "Boolean Math": bool_math,
     "Random Value": rand_val,
     "Switch": switch,
