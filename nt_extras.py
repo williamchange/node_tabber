@@ -375,7 +375,7 @@ attr_stat = gen_subnodes("AST", "ATTR STAT", ["FLOAT", "FLOAT_VECTOR"], DOMAIN)
 raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
 store_named_attr = gen_subnodes("SNA", "STORE NAMED ATTR", DATA_TYPE + ["2D_VECTOR"], DOMAIN)
 capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
-interpolate_dom = gen_subnodes("INTER", "INTERPOLATE DOM", DATA_TYPE, DOMAIN)
+interpolate_dom = gen_subnodes("INTER", "EVALUATE ON DOM", DATA_TYPE, DOMAIN)
 sample_index = gen_subnodes("SIN", "SAMPLE INDEX", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
 field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
@@ -402,7 +402,7 @@ SUBNODE_ENTRIES = {
     "Raycast": raycast,
     "Store Named Attribute": store_named_attr,
     "Capture Attribute": capture_attr,
-    "Interpolate Domain": interpolate_dom,
+    "Evaluate on Domain": interpolate_dom,
     "Sample Index": sample_index,
     "Map Range": map_range,
     "Set Spline Type": set_spline_type,
