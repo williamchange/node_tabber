@@ -41,7 +41,7 @@ def write_score(enum_items):
     path = Path(TALLY_PATH, category)
     if not path.exists():
         with open(path, "w") as f:
-            json.dump({enum_items: {"tally": 1}}, f)
+            json.dump({enum_items: {"tally": 1}}, f, indent=4)
 
         print(f"Nodetabber created : {path}")
     else:
@@ -53,7 +53,7 @@ def write_score(enum_items):
         tally_dict[enum_items] = {"tally": new_tally}
 
         with open(path, "w") as f:
-            json.dump(tally_dict, f)
+            json.dump(tally_dict, f, indent=4)
 
     return
 
