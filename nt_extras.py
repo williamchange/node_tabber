@@ -44,7 +44,7 @@ def gen_subnodes(a, b, setting1, setting2):
     output = [
         [
             f'{a} {d0} {d1}',
-            f'{str.title(replace_dtype_labels(d0))} {str.title(d1).replace("_", "")} ({d0.replace("FLOAT_", "")[0]}{d1[0]}) {b}'
+            f'{b}  ▸  {str.title(replace_dtype_labels(d0))} {str.title(d1).replace("_", "")} ({d0.replace("FLOAT_", "")[0]}{d1[0]})'
         ]
         for d0, d1 in itertools.product(setting1, setting2)]
     return output
@@ -54,7 +54,7 @@ def gen_dtype_subnodes(a, b):
     output = [
         [
             f'{a} {d}',
-            f'{str.title(replace_dtype_labels(d))} ({d[0]}) {b}'
+            f'{b}  ▸  {str.title(replace_dtype_labels(d))} ({str.title(replace_dtype_labels(d)[0])})'
         ]
         for d in DATA_TYPE
     ]
@@ -65,7 +65,7 @@ def gen_non_dtype_subnodes(a, b, setting1):
     output = [
         [
             f'{a} {d}',
-            f'{str.title(d).replace("_", " ")} ({d[0]}) {b}',
+            f'{b}  ▸  {str.title(d).replace("_", " ").replace("Pointcloud", "Point Cloud")} ({d[0]})',
         ]
         for d in setting1
     ]
@@ -76,7 +76,7 @@ def gn_cmp_str_col(a, setting1, setting2):
     return [
         [
             f'CMP {a} {d1}',
-            f'{str.title(d0)} {str.title(d1.replace("_", " "))} (C{d0[0] + d1[0]}) COMP'
+            f'Compare  ▸  {str.title(d0)}  ▸  {str.title(d1.replace("_", " "))} (C{d0[0] + d1[0]})'
         ]
         for d0, d1 in itertools.product(setting1, setting2)
     ]
@@ -92,7 +92,7 @@ gn_cmp_col = gn_cmp_str_col("RGBA", ["COLOR"], GN_CMP_OPS[4:])
 gn_cmp_fl_it = [
     [
         f'CMP {d0} {d1}',
-        f'{str.title(replace_dtype_labels((d0)))} {str.title(d1).replace("_", " ")} (C{d0[0] + op_abbr(d1)}) COMP'
+        f'Compare  ▸  {str.title(replace_dtype_labels((d0)))}  ▸  {str.title(d1).replace("_", " ")} (C{d0[0] + op_abbr(d1)})'
     ]
     for d0, d1 in itertools.product(["FLOAT", "INT"], GN_CMP_OPS[:-2])
 ]
@@ -100,7 +100,7 @@ gn_cmp_fl_it = [
 gn_cmp_vec = [
     [
         f'CMP VECTOR {d0} {d1}',
-        f'V {str.title(d0).replace("_", " ").replace(" Product", "")} {str.title(d1).replace("_", " ")} (CV{d0[0] + op_abbr(d1)}) COMP'
+        f'Compare  ▸  Vector  ▸  {str.title(d0).replace("_", " ").replace(" Product", "")} {str.title(d1).replace("_", " ")} (CV{d0[0] + op_abbr(d1)})'
     ]
     for d0, d1 in itertools.product(GN_CMP_VEC_MODES, GN_CMP_OPS[:-2])
 ]
@@ -109,279 +109,279 @@ gn_cmp_vec = [
 c_filter = [
     [
         f'F {ft.replace("DIAMOND", "SHARPEN_DIAMOND").replace("BOX","SHARPEN")}',
-        f'{str.title(ft.replace("DIAMOND", "Diamond Sharpen").replace("BOX", "Box Sharpen"))} ({ft[0]}) FILTER'
+        f'Filter  ▸  {str.title(ft.replace("DIAMOND", "Diamond Sharpen").replace("BOX", "Box Sharpen"))} ({ft[0]})'
     ]
     for ft in FILTER_MODES
 ]
 
 math = [
-    [" M ADD", "Add (A) MATH"],
-    [" M SUBTRACT", "Subtract (S) MATH"],
-    [" M MULTIPLY", "Multiply (M) MATH"],
-    [" M DIVIDE", "Divide (D) MATH"],
-    [" M MULTIPLY_ADD", "Multiply Add (MA) MATH"],
-    [" M POWER", "Power (P) MATH"],
-    [" M LOGARITHM", "Logarithm (L) MATH"],
-    [" M SQRT", "Square Root (SQ) MATH"],
-    [" M INVERSE_SQRT", "Inverse Square Root (ISQ) MATH"],
-    [" M ABSOLUTE", "Absolute (A) MATH"],
-    [" M EXPONENT", "Exponent (E) MATH"],
-    [" M MINIMUM", "Minimum (M) MATH"],
-    [" M MAXIMUM", "Maximum (M) MATH"],
-    [" M LESS_THAN", "Less Than (LT) MATH"],
-    [" M GREATER_THAN", "Greater Than (GT) MATH"],
-    [" M SIGN", "Sign (S) MATH"],
-    [" M COMPARE", "Compare (C) MATH"],
-    [" M SMOOTH_MIN", "Smooth Minimum (SM) MATH"],
-    [" M SMOOTH_MAX", "Smooth Maximum (SM) MATH"],
-    [" M ROUND", "Round (R) MATH"],
-    [" M FLOOR", "Floor (F) MATH"],
-    [" M CEIL", "Ceiling (C) MATH"],
-    [" M TRUNC", "Truncate (T) MATH"],
-    [" M FRACT", "Fraction (F) MATH"],
-    [" M MODULO", "Modulo (M) MATH"],
-    [" M WRAP", "Wrap (W) MATH"],
-    [" M SNAP", "Snap (S) MATH"],
-    [" M PINGPONG", "Ping-Pong (PP) MATH"],
-    [" M SINE", "Sine (S) MATH"],
-    [" M COSINE", "Cosine (C) MATH"],
-    [" M TANGENT", "Tangent (T) MATH"],
-    [" M ARCSINE", "Arcsine (AS) MATH"],
-    [" M ARCCOSINE", "Arccosine (AC) MATH"],
-    [" M ARCTANGENT", "Arctangent (AT) MATH"],
-    [" M ARCTAN2", "Arctan2 (AT) MATH"],
-    [" M SINH", "Hyperbolic Sine (HS) MATH"],
-    [" M COSH", "Hyperbolic Cosine (HC) MATH"],
-    [" M TANH", "Hyperbolic Tangent (HT) MATH"],
-    [" M RADIANS", "To Radians (TR) MATH"],
-    [" M DEGREES", "To Degrees (TD) MATH"],
+    [" M ADD", "Math  ▸  Add (A)"],
+    [" M SUBTRACT", "Math  ▸  Subtract (S)"],
+    [" M MULTIPLY", "Math  ▸  Multiply (M)"],
+    [" M DIVIDE", "Math  ▸  Divide (D)"],
+    [" M MULTIPLY_ADD", "Math  ▸  Multiply Add (MA)"],
+    [" M POWER", "Math  ▸  Power (P)"],
+    [" M LOGARITHM", "Math  ▸  Logarithm (L)"],
+    [" M SQRT", "Math  ▸  Square Root (SQ)"],
+    [" M INVERSE_SQRT", "Math  ▸  Inverse Square Root (ISQ)"],
+    [" M ABSOLUTE", "Math  ▸  Absolute (A)"],
+    [" M EXPONENT", "Math  ▸  Exponent (E)"],
+    [" M MINIMUM", "Math  ▸  Minimum (M)"],
+    [" M MAXIMUM", "Math  ▸  Maximum (M)"],
+    [" M LESS_THAN", "Math  ▸  Less Than (LT)"],
+    [" M GREATER_THAN", "Math  ▸  Greater Than (GT)"],
+    [" M SIGN", "Math  ▸  Sign (S)"],
+    [" M COMPARE", "Math  ▸  Compare (C)"],
+    [" M SMOOTH_MIN", "Math  ▸  Smooth Minimum (SM)"],
+    [" M SMOOTH_MAX", "Math  ▸  Smooth Maximum (SM)"],
+    [" M ROUND", "Math  ▸  Round (R)"],
+    [" M FLOOR", "Math  ▸  Floor (F)"],
+    [" M CEIL", "Math  ▸  Ceiling (C)"],
+    [" M TRUNC", "Math  ▸  Truncate (T)"],
+    [" M FRACT", "Math  ▸  Fraction (F)"],
+    [" M MODULO", "Math  ▸  Modulo (M)"],
+    [" M WRAP", "Math  ▸  Wrap (W)"],
+    [" M SNAP", "Math  ▸  Snap (S)"],
+    [" M PINGPONG", "Math  ▸  Ping-Pong (PP)"],
+    [" M SINE", "Math  ▸  Sine (S)"],
+    [" M COSINE", "Math  ▸  Cosine (C)"],
+    [" M TANGENT", "Math  ▸  Tangent (T)"],
+    [" M ARCSINE", "Math  ▸  Arcsine (AS)"],
+    [" M ARCCOSINE", "Math  ▸  Arccosine (AC)"],
+    [" M ARCTANGENT", "Math  ▸  Arctangent (AT)"],
+    [" M ARCTAN2", "Math  ▸  Arctan2 (AT)"],
+    [" M SINH", "Math  ▸  Hyperbolic Sine (HS)"],
+    [" M COSH", "Math  ▸  Hyperbolic Cosine (HC)"],
+    [" M TANH", "Math  ▸  Hyperbolic Tangent (HT)"],
+    [" M RADIANS", "Math  ▸  To Radians (TR)"],
+    [" M DEGREES", "Math  ▸  To Degrees (TD)"],
 ]
 
 math_symb = [
-    [" M ADD", "Add (+) MATH"],
-    [" M SUBTRACT", "Subtract (-) MATH"],
-    [" M MULTIPLY", "Multiply (*) MATH"],
-    [" M DIVIDE", "Divide (/) MATH"],
-    [" M MULTIPLY_ADD", "Multiply Add (*+) MATH"],
-    [" M POWER", "Power (^) MATH"],
-    [" M LOGARITHM", "Logarithm (L) MATH"],
-    [" M SQRT", "Square Root (SQ) MATH"],
-    [" M INVERSE_SQRT", "Inverse Square Root (ISQ) MATH"],
-    [" M ABSOLUTE", "Absolute (A) MATH"],
-    [" M EXPONENT", "Exponent (E) MATH"],
-    [" M MINIMUM", "Minimum (M) MATH"],
-    [" M MAXIMUM", "Maximum (M) MATH"],
-    [" M LESS_THAN", "Less Than (<) MATH"],
-    [" M GREATER_THAN", "Greater Than (>) MATH"],
-    [" M SIGN", "Sign (S) MATH"],
-    [" M COMPARE", "Compare (C) MATH"],
-    [" M SMOOTH_MIN", "Smooth Minimum (SM) MATH"],
-    [" M SMOOTH_MAX", "Smooth Maximum (SM) MATH"],
-    [" M ROUND", "Round (R) MATH"],
-    [" M FLOOR", "Floor (F) MATH"],
-    [" M CEIL", "Ceiling (C) MATH"],
-    [" M TRUNC", "Truncate (T) MATH"],
-    [" M FRACT", "Fraction (F) MATH"],
-    [" M MODULO", "Modulo (M) MATH"],
-    [" M WRAP", "Wrap (W) MATH"],
-    [" M SNAP", "Snap (S) MATH"],
-    [" M PINGPONG", "Ping-Pong (PP) MATH"],
-    [" M SINE", "Sine (S) MATH"],
-    [" M COSINE", "Cosine (C) MATH"],
-    [" M TANGENT", "Tangent (T) MATH"],
-    [" M ARCSINE", "Arcsine (AS) MATH"],
-    [" M ARCCOSINE", "Arccosine (AC) MATH"],
-    [" M ARCTANGENT", "Arctangent (AT) MATH"],
-    [" M ARCTAN2", "Arctan2 (AT) MATH"],
-    [" M SINH", "Hyperbolic Sine (HS) MATH"],
-    [" M COSH", "Hyperbolic Cosine (HC) MATH"],
-    [" M TANH", "Hyperbolic Tangent (HT) MATH"],
-    [" M RADIANS", "To Radians (TR) MATH"],
-    [" M DEGREES", "To Degrees (TD) MATH"],
+    [" M ADD", "Math  ▸  Add (+)"],
+    [" M SUBTRACT", "Math  ▸  Subtract (-)"],
+    [" M MULTIPLY", "Math  ▸  Multiply (*)"],
+    [" M DIVIDE", "Math  ▸  Divide (/)"],
+    [" M MULTIPLY_ADD", "Math  ▸  Multiply Add (*+)"],
+    [" M POWER", "Math  ▸  Power (^)"],
+    [" M LOGARITHM", "Math  ▸  Logarithm (L)"],
+    [" M SQRT", "Math  ▸  Square Root (SQ)"],
+    [" M INVERSE_SQRT", "Math  ▸  Inverse Square Root (ISQ)"],
+    [" M ABSOLUTE", "Math  ▸  Absolute (A)"],
+    [" M EXPONENT", "Math  ▸  Exponent (E)"],
+    [" M MINIMUM", "Math  ▸  Minimum (M)"],
+    [" M MAXIMUM", "Math  ▸  Maximum (M)"],
+    [" M LESS_THAN", "Math  ▸  Less Than (<)"],
+    [" M GREATER_THAN", "Math  ▸  Greater Than (>)"],
+    [" M SIGN", "Math  ▸  Sign (S)"],
+    [" M COMPARE", "Math  ▸  Compare (C)"],
+    [" M SMOOTH_MIN", "Math  ▸  Smooth Minimum (SM)"],
+    [" M SMOOTH_MAX", "Math  ▸  Smooth Maximum (SM)"],
+    [" M ROUND", "Math  ▸  Round (R)"],
+    [" M FLOOR", "Math  ▸  Floor (F)"],
+    [" M CEIL", "Math  ▸  Ceiling (C)"],
+    [" M TRUNC", "Math  ▸  Truncate (T)"],
+    [" M FRACT", "Math  ▸  Fraction (F)"],
+    [" M MODULO", "Math  ▸  Modulo (M)"],
+    [" M WRAP", "Math  ▸  Wrap (W)"],
+    [" M SNAP", "Math  ▸  Snap (S)"],
+    [" M PINGPONG", "Math  ▸  Ping-Pong (PP)"],
+    [" M SINE", "Math  ▸  Sine (S)"],
+    [" M COSINE", "Math  ▸  Cosine (C)"],
+    [" M TANGENT", "Math  ▸  Tangent (T)"],
+    [" M ARCSINE", "Math  ▸  Arcsine (AS)"],
+    [" M ARCCOSINE", "Math  ▸  Arccosine (AC)"],
+    [" M ARCTANGENT", "Math  ▸  Arctangent (AT)"],
+    [" M ARCTAN2", "Math  ▸  Arctan2 (AT)"],
+    [" M SINH", "Math  ▸  Hyperbolic Sine (HS)"],
+    [" M COSH", "Math  ▸  Hyperbolic Cosine (HC)"],
+    [" M TANH", "Math  ▸  Hyperbolic Tangent (HT)"],
+    [" M RADIANS", "Math  ▸  To Radians (TR)"],
+    [" M DEGREES", "Math  ▸  To Degrees (TD)"],
 ]
 
 vec_math = [
-    [" VM ADD", "Add (A) VEC MATH"],
-    [" VM SUBTRACT", "Subtract (S) VEC MATH"],
-    [" VM MULTIPLY", "Multiply (M) VEC MATH"],
-    [" VM DIVIDE", "Divide (D) VEC MATH"],
-    [" VM CROSS_PRODUCT", "Cross Product (CP) VEC MATH"],
-    [" VM PROJECT", "Project (P) VEC MATH"],
-    [" VM REFRACT", "Refract (R) VEC MATH"],
-    [" VM REFLECT", "Reflect (R) VEC MATH"],
-    [" VM DOT_PRODUCT", "Dot Product (DP) VEC MATH"],
-    [" VM DISTANCE", "Distance (D) VEC MATH"],
-    [" VM MULTIPLY_ADD", "Multiply Add (MA) VEC MATH"],
-    [" VM FACEFORWARD", "Faceforward (F) VEC MATH"],
-    [" VM LENGTH", "Length (L) VEC MATH"],
-    [" VM SCALE", "Scale (S) VEC MATH"],
-    [" VM NORMALIZE", "Normalize (N) VEC MATH"],
-    [" VM ABSOLUTE", "Absolute (A) VEC MATH"],
-    [" VM MINIMUM", "Minimum (M) VEC MATH"],
-    [" VM MAXIMUM", "Maximum (M) VEC MATH"],
-    [" VM FLOOR", "Floor (F) VEC MATH"],
-    [" VM CEIL", "Ceiling (C) VEC MATH"],
-    [" VM FRACTION", "Fraction (F) VEC MATH"],
-    [" VM MODULO", "Modulo (M) VEC MATH"],
-    [" VM WRAP", "Wrap (W) VEC MATH"],
-    [" VM SNAP", "Snap (S) VEC MATH"],
-    [" VM SINE", "Sine (S) VEC MATH"],
-    [" VM COSINE", "Cosine (C) VEC MATH"],
-    [" VM TANGENT", "Tangent (T) VEC MATH"],
+    [" VM ADD", "Vector Math  ▸  Add (A)"],
+    [" VM SUBTRACT", "Vector Math  ▸  Subtract (S)"],
+    [" VM MULTIPLY", "Vector Math  ▸  Multiply (M)"],
+    [" VM DIVIDE", "Vector Math  ▸  Divide (D)"],
+    [" VM CROSS_PRODUCT", "Vector Math  ▸  Cross Product (CP)"],
+    [" VM PROJECT", "Vector Math  ▸  Project (P)"],
+    [" VM REFRACT", "Vector Math  ▸  Refract (R)"],
+    [" VM REFLECT", "Vector Math  ▸  Reflect (R)"],
+    [" VM DOT_PRODUCT", "Vector Math  ▸  Dot Product (DP)"],
+    [" VM DISTANCE", "Vector Math  ▸  Distance (D)"],
+    [" VM MULTIPLY_ADD", "Vector Math  ▸  Multiply Add (MA)"],
+    [" VM FACEFORWARD", "Vector Math  ▸  Faceforward (F)"],
+    [" VM LENGTH", "Vector Math  ▸  Length (L)"],
+    [" VM SCALE", "Vector Math  ▸  Scale (S)"],
+    [" VM NORMALIZE", "Vector Math  ▸  Normalize (N)"],
+    [" VM ABSOLUTE", "Vector Math  ▸  Absolute (A)"],
+    [" VM MINIMUM", "Vector Math  ▸  Minimum (M)"],
+    [" VM MAXIMUM", "Vector Math  ▸  Maximum (M)"],
+    [" VM FLOOR", "Vector Math  ▸  Floor (F)"],
+    [" VM CEIL", "Vector Math  ▸  Ceiling (C)"],
+    [" VM FRACTION", "Vector Math  ▸  Fraction (F)"],
+    [" VM MODULO", "Vector Math  ▸  Modulo (M)"],
+    [" VM WRAP", "Vector Math  ▸  Wrap (W)"],
+    [" VM SNAP", "Vector Math  ▸  Snap (S)"],
+    [" VM SINE", "Vector Math  ▸  Sine (S)"],
+    [" VM COSINE", "Vector Math  ▸  Cosine (C)"],
+    [" VM TANGENT", "Vector Math  ▸  Tangent (T)"],
 ]
 
 vec_symb = [
-    [" VM ADD", "Add (+) VEC MATH"],
-    [" VM SUBTRACT", "Subtract (-) VEC MATH"],
-    [" VM MULTIPLY", "Multiply (*) VEC MATH"],
-    [" VM DIVIDE", "Divide (/) VEC MATH"],
-    [" VM CROSS_PRODUCT", "Cross Product (x) VEC MATH"],
-    [" VM PROJECT", "Project (P) VEC MATH"],
-    [" VM REFRACT", "Refract (R) VEC MATH"],
-    [" VM REFLECT", "Reflect (R) VEC MATH"],
-    [" VM DOT_PRODUCT", "Dot Product (DP) VEC MATH"],
-    [" VM DISTANCE", "Distance (D) VEC MATH"],
-    [" VM MULTIPLY_ADD", "Multiply Add (*+) VEC MATH"],
-    [" VM FACEFORWARD", "Faceforward (F) VEC MATH"],
-    [" VM LENGTH", "Length (L) VEC MATH"],
-    [" VM SCALE", "Scale (*) VEC MATH"],
-    [" VM NORMALIZE", "Normalize (N) VEC MATH"],
-    [" VM ABSOLUTE", "Absolute (A) VEC MATH"],
-    [" VM MINIMUM", "Minimum (M) VEC MATH"],
-    [" VM MAXIMUM", "Maximum (M) VEC MATH"],
-    [" VM FLOOR", "Floor (F) VEC MATH"],
-    [" VM CEIL", "Ceiling (C) VEC MATH"],
-    [" VM FRACTION", "Fraction (F) VEC MATH"],
-    [" VM MODULO", "Modulo (M) VEC MATH"],
-    [" VM WRAP", "Wrap (W) VEC MATH"],
-    [" VM SNAP", "Snap (S) VEC MATH"],
-    [" VM SINE", "Sine (S) VEC MATH"],
-    [" VM COSINE", "Cosine (C) VEC MATH"],
-    [" VM TANGENT", "Tangent (T) VEC MATH"],
+    [" VM ADD", "Vector Math  ▸  Add (+)"],
+    [" VM SUBTRACT", "Vector Math  ▸  Subtract (-)"],
+    [" VM MULTIPLY", "Vector Math  ▸  Multiply (*)"],
+    [" VM DIVIDE", "Vector Math  ▸  Divide (/)"],
+    [" VM CROSS_PRODUCT", "Vector Math  ▸  Cross Product (x)"],
+    [" VM PROJECT", "Vector Math  ▸  Project (P)"],
+    [" VM REFRACT", "Vector Math  ▸  Refract (R)"],
+    [" VM REFLECT", "Vector Math  ▸  Reflect (R)"],
+    [" VM DOT_PRODUCT", "Vector Math  ▸  Dot Product (DP)"],
+    [" VM DISTANCE", "Vector Math  ▸  Distance (D)"],
+    [" VM MULTIPLY_ADD", "Vector Math  ▸  Multiply Add (*+)"],
+    [" VM FACEFORWARD", "Vector Math  ▸  Faceforward (F)"],
+    [" VM LENGTH", "Vector Math  ▸  Length (L)"],
+    [" VM SCALE", "Vector Math  ▸  Scale (*)"],
+    [" VM NORMALIZE", "Vector Math  ▸  Normalize (N)"],
+    [" VM ABSOLUTE", "Vector Math  ▸  Absolute (A)"],
+    [" VM MINIMUM", "Vector Math  ▸  Minimum (M)"],
+    [" VM MAXIMUM", "Vector Math  ▸  Maximum (M)"],
+    [" VM FLOOR", "Vector Math  ▸  Floor (F)"],
+    [" VM CEIL", "Vector Math  ▸  Ceiling (C)"],
+    [" VM FRACTION", "Vector Math  ▸  Fraction (F)"],
+    [" VM MODULO", "Vector Math  ▸  Modulo (M)"],
+    [" VM WRAP", "Vector Math  ▸  Wrap (W)"],
+    [" VM SNAP", "Vector Math  ▸  Snap (S)"],
+    [" VM SINE", "Vector Math  ▸  Sine (S)"],
+    [" VM COSINE", "Vector Math  ▸  Cosine (C)"],
+    [" VM TANGENT", "Vector Math  ▸  Tangent (T)"],
 ]
 
 color = [
-    [" C VALUE", "Value (V) COLOR"],
-    [" C COLOR", "Color (C) COLOR"],
-    [" C SATURATION", "Saturation (S) COLOR"],
-    [" C HUE", "Hue (H) COLOR"],
-    [" C DIVIDE", "Divide (D) COLOR"],
-    [" C SUBTRACT", "Subtract (S) COLOR"],
-    [" C DIFFERENCE", "Difference (D) COLOR"],
-    [" C LINEAR_LIGHT", "Linear Light (LL) COLOR"],
-    [" C SOFT_LIGHT", "Soft Light (SL) COLOR"],
-    [" C OVERLAY", "Overlay (O) COLOR"],
-    [" C ADD", "Add (A) COLOR"],
-    [" C DODGE", "Dodge (D) COLOR"],
-    [" C SCREEN", "Screen (S) COLOR"],
-    [" C LIGHTEN", "Lighten (L) COLOR"],
-    [" C BURN", "Burn (B) COLOR"],
-    [" C MULTIPLY", "Multiply (M) COLOR"],
-    [" C DARKEN", "Darken (D) COLOR"],
-    [" C MIX", "Mix (M) COLOR"],
+    [" C VALUE", "Mix Color  ▸  Value (V)"],
+    [" C COLOR", "Mix Color  ▸  Color (C)"],
+    [" C SATURATION", "Mix Color  ▸  Saturation (S)"],
+    [" C HUE", "Mix Color  ▸  Hue (H)"],
+    [" C DIVIDE", "Mix Color  ▸  Divide (D)"],
+    [" C SUBTRACT", "Mix Color  ▸  Subtract (S)"],
+    [" C DIFFERENCE", "Mix Color  ▸  Difference (D)"],
+    [" C LINEAR_LIGHT", "Mix Color  ▸  Linear Light (LL)"],
+    [" C SOFT_LIGHT", "Mix Color  ▸  Soft Light (SL)"],
+    [" C OVERLAY", "Mix Color  ▸  Overlay (O)"],
+    [" C ADD", "Mix Color  ▸  Add (A)"],
+    [" C DODGE", "Mix Color  ▸  Dodge (D)"],
+    [" C SCREEN", "Mix Color  ▸  Screen (S)"],
+    [" C LIGHTEN", "Mix Color  ▸  Lighten (L)"],
+    [" C BURN", "Mix Color  ▸  Burn (B)"],
+    [" C MULTIPLY", "Mix Color  ▸  Multiply (M)"],
+    [" C DARKEN", "Mix Color  ▸  Darken (D)"],
+    [" C MIX", "Mix Color  ▸  Mix (M)"],
 ]
 
 bool_math = [
-    [" BM AND", "And (A) BOOL MATH"],
-    [" BM OR", "Or (O) BOOL MATH"],
-    [" BM NOT", "Not (N) BOOL MATH"],
-    [" BM NAND", "Not And (NA) BOOL MATH"],
-    [" BM NOR", "Nor (N) BOOL MATH"],
-    [" BM XNOR", "Equal (E) BOOL MATH"],
-    [" BM XOR", "Not Equal (NE) BOOL MATH"],
-    [" BM IMPLY", "Imply (I) BOOL MATH"],
-    [" BM NIMPLY", "Subtract (S) BOOL MATH"],
+    [" BM AND", "Boolean Math  ▸  And (A)"],
+    [" BM OR", "Boolean Math  ▸  Or (O)"],
+    [" BM NOT", "Boolean Math  ▸  Not (N)"],
+    [" BM NAND", "Boolean Math  ▸  Not And (NA)"],
+    [" BM NOR", "Boolean Math  ▸  Nor (N)"],
+    [" BM XNOR", "Boolean Math  ▸  Equal (E)"],
+    [" BM XOR", "Boolean Math  ▸  Not Equal (NE)"],
+    [" BM IMPLY", "Boolean Math  ▸  Imply (I)"],
+    [" BM NIMPLY", "Boolean Math  ▸  Subtract (S)"],
 ]
 
 bool_symb = [
-    [" BM AND", "And (^) BOOL MATH"],
-    [" BM OR", "Or (v) BOOL MATH"],
-    [" BM NOT", "Not (~) BOOL MATH"],
-    [" BM NAND", "Not And (~^) BOOL MATH"],
-    [" BM NOR", "Nor (~v) BOOL MATH"],
-    [" BM XNOR", "Equal (=) BOOL MATH"],
-    [" BM XOR", "Not Equal (~=) BOOL MATH"],
-    [" BM IMPLY", "Imply (->) BOOL MATH"],
-    [" BM NIMPLY", "Subtract (-) BOOL MATH"],
+    [" BM AND", "Boolean Math  ▸  And (^)"],
+    [" BM OR", "Boolean Math  ▸  Or (v)"],
+    [" BM NOT", "Boolean Math  ▸  Not (~)"],
+    [" BM NAND", "Boolean Math  ▸  Not And (~^)"],
+    [" BM NOR", "Boolean Math  ▸  Nor (~v)"],
+    [" BM XNOR", "Boolean Math  ▸  Equal (=)"],
+    [" BM XOR", "Boolean Math  ▸  Not Equal (~=)"],
+    [" BM IMPLY", "Boolean Math  ▸  Imply (->)"],
+    [" BM NIMPLY", "Boolean Math  ▸  Subtract (-)"],
 ]
 
 rand_val = [
-    [" RV FLOAT", "Float (F) RAND VAL"],
-    [" RV INT", "Integer (I) RAND VAL"],
-    [" RV FLOAT_VECTOR", "Vector (V) RAND VAL"],
-    [" RV BOOLEAN", "Boolean (B) RAND VAL"],
+    [" RV FLOAT", "Random Value  ▸  Float (F)"],
+    [" RV INT", "Random Value  ▸  Integer (I)"],
+    [" RV FLOAT_VECTOR", "Random Value  ▸  Vector (V)"],
+    [" RV BOOLEAN", "Random Value  ▸  Boolean (B)"],
 ]
 
 switch = [
-    [" SW FLOAT", "Float (F) SWITCH"],
-    [" SW INT", "Integer (I) SWITCH"],
-    [" SW BOOLEAN", "Boolean (B) SWITCH"],
-    [" SW VECTOR", "Vector (V) SWITCH"],
-    [" SW STRING", "String (S) SWITCH"],
-    [" SW RGBA", "Color (C) SWITCH"],
-    [" SW OBJECT", "Object (O) SWITCH"],
-    [" SW IMAGE", "Image (I) SWITCH"],
-    [" SW GEOMETRY", "Geometry (G) SWITCH"],
-    [" SW COLLECTION", "Collection (C) SWITCH"],
-    [" SW TEXTURE", "Texture (T) SWITCH"],
-    [" SW MATERIAL", "Material (M) SWITCH"],
+    [" SW FLOAT", "Switch  ▸  Float (F)"],
+    [" SW INT", "Switch  ▸  Integer (I)"],
+    [" SW BOOLEAN", "Switch  ▸  Boolean (B)"],
+    [" SW VECTOR", "Switch  ▸  Vector (V)"],
+    [" SW STRING", "Switch  ▸  String (S)"],
+    [" SW RGBA", "Switch  ▸  Color (C)"],
+    [" SW OBJECT", "Switch  ▸  Object (O)"],
+    [" SW IMAGE", "Switch  ▸  Image (I)"],
+    [" SW GEOMETRY", "Switch  ▸  Geometry (G)"],
+    [" SW COLLECTION", "Switch  ▸  Collection (C)"],
+    [" SW TEXTURE", "Switch  ▸  Texture (T)"],
+    [" SW MATERIAL", "Switch  ▸  Material (M)"],
 ]
 
 sep_col = [
-    [" SEP RGB", "RGB (SR) SEP RGB"],
-    [" SEP HSV", "HSV (SH) SEP HSV"],
-    [" SEP HSL", "HSL (SL) SEP HSL"],
+    [" SEP RGB", "Separate Color  ▸  RGB (SR)"],
+    [" SEP HSV", "Separate Color  ▸  HSV (SH)"],
+    [" SEP HSL", "Separate Color  ▸  HSL (SL)"],
 ]
 
 com_col = [
-    [" COM RGB", "RGB (CR) COM RGB"],
-    [" COM HSV", "HSV (CH) COM HSV"],
-    [" COM HSL", "HSL (CL) COM HSL"],
+    [" COM RGB", "Combine Color  ▸  RGB (CR)"],
+    [" COM HSV", "Combine Color  ▸  HSV (CH)"],
+    [" COM HSL", "Combine Color  ▸  HSL (CL)"],
 ]
 
 vec_rot = [
-    [" VR AXIS_ANGLE", "Axis (VRA) VECTOR ROTATE"],
-    [" VR X_AXIS", "X (VRX) VECTOR ROTATE"],
-    [" VR Y_AXIS", "Y (VRY) VECTOR ROTATE"],
-    [" VR Z_AXIS", "Z (VRZ) VECTOR ROTATE"],
-    [" VR EULER_XYZ", "Euler (VRE) VECTOR ROTATE"],
+    [" VR AXIS_ANGLE", "Vector Rotate  ▸  Axis Angle (VRA)"],
+    [" VR X_AXIS", "Vector Rotate  ▸  X Axis (VRX)"],
+    [" VR Y_AXIS", "Vector Rotate  ▸  Y Axis (VRY)"],
+    [" VR Z_AXIS", "Vector Rotate  ▸  Z Axis (VRZ)"],
+    [" VR EULER_XYZ", "Vector Rotate  ▸  Euler (VRE)"],
 ]
 
 uv_unwrap = [
-    [" UU ANGLE_BASED", "Angle Based (AB) UV UNWRAP"],
-    [" UU CONFORMAL", "Conformal (C) UV UNWRAP"],
+    [" UU ANGLE_BASED", "UV Unwrap  ▸  Angle Based (AB)"],
+    [" UU CONFORMAL", "UV Unwrap  ▸  Conformal (C)"],
 ]
 
 fillet_curve = [
-    [" FC BEZIER", "Bezier (B) FILLET CURVE"],
-    [" FC POLY", "Poly (P) FILLET CURVE"]
+    [" FC BEZIER", "Fillet Curve  ▸  Bezier (B)"],
+    [" FC POLY", "Fillet Curve  ▸  Poly (P)"]
 ]
 
-dom_size = gen_non_dtype_subnodes("DS", "DOMAIN SIZE", COMPONENT)
-geo_prox = gen_non_dtype_subnodes("GPX", "GEO PROX", TARGET_EL)
-sample_nearest = gen_non_dtype_subnodes("SN", "SAMPLE NEAREST", DOMAIN[:4])
-set_spline_type = gen_non_dtype_subnodes("SPT", "SET SPLINE TYPE", SPLINE_TYPE)
-merge_by_dist = gen_non_dtype_subnodes("MbD", "MERGE BY DIST", ["ALL", "CONNECTED"])
-mesh_boolean = gen_non_dtype_subnodes("MB", "MESH BOOLEAN", OPERATION)
-sep_geo = gen_non_dtype_subnodes("SG", "SEP GEO", DOMAIN[:3] + DOMAIN[-2:])
-dupe_el = gen_non_dtype_subnodes("DE", "DUPLICATE ELEM", DOMAIN[:3] + DOMAIN[-2:])
-float_to_int = gen_non_dtype_subnodes("FtI", "FLOAT TO INT", ROUNDING_MODES)
+dom_size = gen_non_dtype_subnodes("DS", "Domain Size", COMPONENT)
+geo_prox = gen_non_dtype_subnodes("GPX", "Geometry Proximity", TARGET_EL)
+sample_nearest = gen_non_dtype_subnodes("SN", "Sample Nearest", DOMAIN[:4])
+set_spline_type = gen_non_dtype_subnodes("SPT", "Set Spline Type", SPLINE_TYPE)
+merge_by_dist = gen_non_dtype_subnodes("MbD", "Merge by Distance", ["ALL", "CONNECTED"])
+mesh_boolean = gen_non_dtype_subnodes("MB", "Mesh Boolean", OPERATION)
+sep_geo = gen_non_dtype_subnodes("SG", "Separate Geometry", DOMAIN[:3] + DOMAIN[-2:])
+dupe_el = gen_non_dtype_subnodes("DE", "Duplicate Elements", DOMAIN[:3] + DOMAIN[-2:])
+float_to_int = gen_non_dtype_subnodes("FtI", "Float to Integer", ROUNDING_MODES)
+blur_attr = gen_non_dtype_subnodes("BA", "Blur Attribute", ["FLOAT", "INT", "VECTOR", "COLOR"])
 
-named_attr = gen_dtype_subnodes("NA", "NAMED ATTR")
-sample_uv_surf = gen_dtype_subnodes("SUS", "SAMPLE UV SURF")
-sample_nearest_surf = gen_dtype_subnodes("SNS", "SAMPLE NEAREST SURF")
+named_attr = gen_dtype_subnodes("NA", "Named Attribute")
+sample_uv_surf = gen_dtype_subnodes("SUS", "Sample UV Surface")
+sample_nearest_surf = gen_dtype_subnodes("SNS", "Sample Nearest Surface")
 
-attr_stat = gen_subnodes("AST", "ATTR STAT", ["FLOAT", "FLOAT_VECTOR"], DOMAIN)
-raycast = gen_subnodes("RAY", "RAYCAST", DATA_TYPE, MAPPING)
-store_named_attr = gen_subnodes("SNA", "STORE NAMED ATTR", DATA_TYPE + ["2D_VECTOR"], DOMAIN)
-capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
-interpolate_dom = gen_subnodes("INTER", "EVALUATE ON DOM", DATA_TYPE, DOMAIN)
-sample_index = gen_subnodes("SIN", "SAMPLE INDEX", DATA_TYPE, DOMAIN)
-map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
-field_at_index = gen_subnodes("FaI", "EVALUATE AT INDEX", DATA_TYPE, DOMAIN)
-scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
-accum_field = gen_subnodes("AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
-blur_attr = gen_non_dtype_subnodes("BA", "BLUR ATTR", ["FLOAT", "INT", "VECTOR", "COLOR"])
+attr_stat = gen_subnodes("AST", "Attribute Statistic", ["FLOAT", "FLOAT_VECTOR"], DOMAIN)
+raycast = gen_subnodes("RAY", "Raycast", DATA_TYPE, MAPPING)
+store_named_attr = gen_subnodes("SNA", "Store Named Attribute", DATA_TYPE + ["2D_VECTOR"], DOMAIN)
+capture_attr = gen_subnodes("CAP", "Capture Attribute", DATA_TYPE, DOMAIN)
+evaluate_on_dom = gen_subnodes("INTER", "Evaluate on Domain", DATA_TYPE, DOMAIN)
+sample_index = gen_subnodes("SIN", "Sample Index", DATA_TYPE, DOMAIN)
+map_range = gen_subnodes("MR", "Map Range", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
+evaluate_at_index = gen_subnodes("FaI", "Evaluate at Index", DATA_TYPE, DOMAIN)
+scale_el = gen_subnodes("SE", "Scale Elements", DOMAIN[1:-3], SCALE_EL_MODES)
+accum_field = gen_subnodes("AF", "Accumulate Field", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
 
 SUBNODE_ENTRIES = {
     "Math": math,
@@ -402,7 +402,7 @@ SUBNODE_ENTRIES = {
     "Raycast": raycast,
     "Store Named Attribute": store_named_attr,
     "Capture Attribute": capture_attr,
-    "Evaluate on Domain": interpolate_dom,
+    "Evaluate on Domain": evaluate_on_dom,
     "Sample Index": sample_index,
     "Map Range": map_range,
     "Set Spline Type": set_spline_type,
@@ -410,7 +410,7 @@ SUBNODE_ENTRIES = {
     "Merge by Distance": merge_by_dist,
     "Separate Geometry": sep_geo,
     "Duplicate Elements": dupe_el,
-    "Evaluate at Index": field_at_index,
+    "Evaluate at Index": evaluate_at_index,
     "Scale Elements": scale_el,
     "Named Attribute": named_attr,
     "Vector Rotate": vec_rot,
