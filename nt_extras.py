@@ -378,7 +378,7 @@ capture_attr = gen_subnodes("CAP", "CAP ATTR", DATA_TYPE, DOMAIN)
 interpolate_dom = gen_subnodes("INTER", "EVALUATE ON DOM", DATA_TYPE, DOMAIN)
 sample_index = gen_subnodes("SIN", "SAMPLE INDEX", DATA_TYPE, DOMAIN)
 map_range = gen_subnodes("MR", "MAP RANGE", ["FLOAT", "FLOAT_VECTOR"], INTERPOLATION)
-field_at_index = gen_subnodes("FaI", "FIELD AT INDEX", DATA_TYPE, DOMAIN)
+field_at_index = gen_subnodes("FaI", "EVALUATE AT INDEX", DATA_TYPE, DOMAIN)
 scale_el = gen_subnodes("SE", "SCALE ELEMENTS", DOMAIN[1:-3], SCALE_EL_MODES)
 accum_field = gen_subnodes("AF", "ACCUM FIELD", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
 blur_attr = gen_non_dtype_subnodes("BA", "BLUR ATTR", ["FLOAT", "INT", "VECTOR", "COLOR"])
@@ -410,7 +410,7 @@ SUBNODE_ENTRIES = {
     "Merge by Distance": merge_by_dist,
     "Separate Geometry": sep_geo,
     "Duplicate Elements": dupe_el,
-    "Field at Index": field_at_index,
+    "Evaluate at Index": field_at_index,
     "Scale Elements": scale_el,
     "Named Attribute": named_attr,
     "Vector Rotate": vec_rot,
