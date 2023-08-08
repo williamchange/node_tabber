@@ -15,13 +15,14 @@ ADDON_PATH = Path(__file__).parent
 TALLY_PATH = ADDON_PATH / "tally_cache"
 ADDON_NAME = ADDON_PATH.name
 
-#Create Folder for caching node tallies
+# Create Folder for caching node tallies
 if not TALLY_PATH.exists():
     TALLY_PATH.mkdir()
 
+
 def nt_debug(msg):
     prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
-    
+
     if prefs.nt_debug:
         print(str(msg))
 
@@ -47,7 +48,7 @@ def write_score(enum_items):
         with open(path, "r") as f:
             tally_dict = json.load(f)
 
-        old_tally = tally_dict.get(enum_items, {"tally":0})["tally"]
+        old_tally = tally_dict.get(enum_items, {"tally": 0})["tally"]
         new_tally = min(old_tally + 1, prefs.tally_weight)
         tally_dict[enum_items] = {"tally": new_tally}
 
@@ -63,7 +64,7 @@ def sub_search(
     # nt_debug(f'Adding ${node_type} nodes')
     for index2, subname in enumerate(extras_ops):
         sn_name, sn_label = subname
-        tally = tally_dict.get(sn_label, {"tally":0})["tally"]
+        tally = tally_dict.get(sn_label, {"tally": 0})["tally"]
         enum_items.append(
             (
                 f'{node_type_index} {sn_name} {sn_label}',
@@ -116,21 +117,22 @@ class NODE_OT_add_tabber_search(Operator):
             with open(path, "r") as f:
                 tally_dict = json.load(f)
 
-        index_offset = 0               
+        index_offset = 0
         item_index = {key: -1 for key in nt_extras.SUBNODE_ENTRIES}
 
         for index, item in enumerate(node_items):
             if isinstance(item, nodeitems_utils.NodeItem):
                 abbr = "".join(word[0] for word in item.label.split())
                 match = f'{item.label} ({abbr})'
-                tally = tally_dict.get(match, {"tally":0})["tally"]
+                tally = tally_dict.get(match, {"tally": 0})["tally"]
 
                 enum_items.append((f'{index} 0 0', match, str(tally), index,))
                 index_offset = index
                 item_index[item.label] = index
-        
+
         if space == "GeometryNodeTree":
-            enum_items.append((f'{index+1} 0 0', "Simulation Zone (SZ)", str(tally), index+1,))
+            enum_items.append(
+                (f'{index+1} 0 0', "Simulation Zone (SZ)", str(tally), index+1,))
             index_offset = index + 1
             item_index["Simulation Zone"] = index + 1
 
@@ -144,9 +146,10 @@ class NODE_OT_add_tabber_search(Operator):
             else:
                 sn_entries["Math"] = nt_extras.math
                 sn_entries["Vector Math"] = nt_extras.vec_math
-                sn_entries["Boolean Math"] = nt_extras.bool_math            
+                sn_entries["Boolean Math"] = nt_extras.bool_math
 
-            sn_info = zip(sn_entries.keys(), item_index.values(), item_index.keys(), sn_entries.values())
+            sn_info = zip(sn_entries.keys(), item_index.values(),
+                          item_index.keys(), sn_entries.values())
 
             for nodetype, index, *sn_data in sn_info:
                 if space == "CompositorNodeTree" and nodetype == "Map Range":
@@ -167,7 +170,8 @@ class NODE_OT_add_tabber_search(Operator):
         # nt_debug(f'FIND_NODE_ITEM: Tmp : {str(self.node_item.split())}')
 
         data = self.node_item.split()
-        node_index, extra, nice_name = int(data[0]), data[1:], " ".join(data[3:])
+        node_index, extra, nice_name = int(
+            data[0]), data[1:], " ".join(data[3:])
 
         if context.space_data.tree_type == "GeometryNodeTree":
             node_items = geonodes_node_items(context)
@@ -184,14 +188,13 @@ class NODE_OT_add_tabber_search(Operator):
         startTime = time.perf_counter()
         prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
 
-        #Fetch node item info
+        # Fetch node item info
         try:
             item, extra, nice_name = self.find_node_item(context)
         except TypeError:
             item = "GeometryNodeSimulationZone"
 
         # Add to tally
-        
         if item == "GeometryNodeSimulationZone":
             # nt_debug("Writing normal node tally")
             write_score("Simulation Zone (SZ)")
@@ -250,10 +253,11 @@ class NODE_OT_add_tabber_search(Operator):
             # UV Unwrap
             if key == "UU":
                 node_active.method = extra[1]
-            
+
             # Blur Attribute
             if key == "BA":
-                node_active.data_type = extra[1].replace("COLOR", "FLOAT_COLOR").replace("VECTOR", "FLOAT_VECTOR")
+                node_active.data_type = extra[1].replace(
+                    "COLOR", "FLOAT_COLOR").replace("VECTOR", "FLOAT_VECTOR")
 
             # Math / Vector Math / Boolean Math
             if key in ["M", "VM", "BM"]:
@@ -272,15 +276,16 @@ class NODE_OT_add_tabber_search(Operator):
             if key in ["NA", "RV", "SNS", "SUS"]:
                 node_active.data_type = extra[1]
 
-            # Attribute Statistic / Sample Index 
-            # Accumulate Field 
+            # Attribute Statistic / Sample Index
+            # Accumulate Field
             if key in ["AST", "SIN", "AF"]:
                 node_active.data_type = extra[1]
                 node_active.domain = extra[2].replace("SPLINE", "CURVE")
 
             # Store Named Attribute
             if key == "SNA":
-                node_active.data_type = extra[1].replace("FLOAT_COLOR", "BYTE_COLOR").replace("2D_VECTOR", "FLOAT2")
+                node_active.data_type = extra[1].replace(
+                    "FLOAT_COLOR", "BYTE_COLOR").replace("2D_VECTOR", "FLOAT2")
                 node_active.domain = extra[2].replace("SPLINE", "CURVE")
 
             # Scale Elements
@@ -404,23 +409,29 @@ class NODE_OT_reset_tally(Operator):
         tally_files = tuple(TALLY_PATH.glob("*.json"))
 
         if len(tally_files) <= 0:
-            self.report({"INFO"}, "No tallies to reset.")            
+            self.report({"INFO"}, "No tallies to reset.")
             return {"CANCELLED"}
 
         for tally_file in tally_files:
             tally_file.unlink()
 
-        self.report({"INFO"}, "Successfully reset tallies.") 
+        self.report({"INFO"}, "Successfully reset tallies.")
 
         return {"FINISHED"}
 
 
-classes = (NodeTabSetting, NODE_OT_add_tabber_search, NODE_OT_reset_tally)
+classes = (
+    NodeTabSetting, 
+    NODE_OT_add_tabber_search, 
+    NODE_OT_reset_tally
+    )
+
 
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
-    
+
+
 def unregister():
     for cls in classes:
         bpy.utils.unregister_class(cls)
