@@ -401,20 +401,16 @@ class NODE_OT_reset_tally(Operator):
     bl_label = "Reset node tally count"
 
     def execute(self, context):
-        files_to_reset = (Path(TALLY_PATH, cat) for cat in 
-            ("shader.json", "compositor.json", "texture.json", "geometry.json"))
+        tally_files = tuple(TALLY_PATH.glob("*.json"))
 
-        did_reset = False
-        for tally_path in files_to_reset:
-            if tally_path.exists():
-                tally_path.unlink() #deletes files
-                did_reset = True
+        if len(tally_files) <= 0:
+            self.report({"INFO"}, "No tallies to reset.")            
+            return {"CANCELLED"}
 
-        if did_reset:
-            info = "Reset Tallies"
-        else:
-            info = "No tallies to reset."
-        self.report({"INFO"}, info)
+        for tally_file in tally_files:
+            tally_file.unlink()
+
+        self.report({"INFO"}, "Successfully reset tallies.") 
 
         return {"FINISHED"}
 
