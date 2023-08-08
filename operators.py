@@ -55,7 +55,7 @@ def write_score(enum_items):
 def sub_search(
     enum_items, node_type_index, node_type, extras_ops, index_offset, tally_dict
 ):
-    nt_debug(f'Adding ${node_type} nodes')
+    # nt_debug(f'Adding ${node_type} nodes')
     for index2, subname in enumerate(extras_ops):
         sn_name, sn_label = subname
         tally = tally_dict.get(sn_label, {"tally":0})["tally"]
@@ -91,7 +91,7 @@ class NODE_OT_add_tabber_search(Operator):
 
     # Create an enum list from node items
     def node_enum_items(self, context):
-        nt_debug("DEF: node_enum_items")
+        # nt_debug("DEF: node_enum_items")
         enum_items = NODE_OT_add_tabber_search._enum_item_hack
 
         prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
@@ -158,8 +158,8 @@ class NODE_OT_add_tabber_search(Operator):
 
     # Look up the item based on index
     def find_node_item(self, context):
-        nt_debug("DEF: find_node_item")
-        nt_debug(f'FIND_NODE_ITEM: Tmp : {str(self.node_item.split())}')
+        # nt_debug("DEF: find_node_item")
+        # nt_debug(f'FIND_NODE_ITEM: Tmp : {str(self.node_item.split())}')
 
         data = self.node_item.split()
         node_index, extra, nice_name = int(data[0]), data[1:], " ".join(data[3:])
@@ -175,7 +175,7 @@ class NODE_OT_add_tabber_search(Operator):
         return None
 
     def execute(self, context):
-        nt_debug("DEF: execute")
+        # nt_debug("DEF: execute")
         startTime = time.perf_counter()
         prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
 
@@ -188,24 +188,24 @@ class NODE_OT_add_tabber_search(Operator):
         # Add to tally
         
         if item == "GeometryNodeSimulationZone":
-            nt_debug("Writing normal node tally")
+            # nt_debug("Writing normal node tally")
             write_score("Simulation Zone (SZ)")
         else:
-            nt_debug(f'EXECUTE: Item label : {str(item.label)}')
+            # nt_debug(f'EXECUTE: Item label : {str(item.label)}')
             subnodes_id = self.node_item.split()[1]
-            nt_debug(f'Checking type : {str(subnodes_id)}')
+            # nt_debug(f'Checking type : {str(subnodes_id)}')
 
             if subnodes_id == "0":
                 abbr = "".join(word[0] for word in item.label.split())
                 match = f'{item.label} ({abbr})'
 
-                nt_debug("Writing normal node tally")
+                # nt_debug("Writing normal node tally")
                 write_score(match)
             else:
-                nt_debug("Writing sub node tally")
+                # nt_debug("Writing sub node tally")
                 write_score(nice_name)
 
-            nt_debug("Hack")
+            # nt_debug("Hack")
 
         # no need to keep
         self._enum_item_hack.clear()
@@ -215,7 +215,7 @@ class NODE_OT_add_tabber_search(Operator):
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
-            nt_debug("Time taken: " + str(time.perf_counter() - startTime))
+            # nt_debug("Time taken: " + str(time.perf_counter() - startTime))
             return {"FINISHED"}
 
         if item:
@@ -224,9 +224,9 @@ class NODE_OT_add_tabber_search(Operator):
                 node_tree_type = eval(item.settings["node_tree"])
             self.create_node(context, item.nodetype, node_tree_type)
 
-            nt_debug(str(item.nodetype))
-            nt_debug(f'extra 0: {str(extra[0])}')
-            nt_debug(f'extra 1: {str(extra[1])}')
+            # nt_debug(str(item.nodetype))
+            # nt_debug(f'extra 0: {str(extra[0])}')
+            # nt_debug(f'extra 1: {str(extra[1])}')
 
             space = context.space_data
             node_active = context.active_node
@@ -349,13 +349,13 @@ class NODE_OT_add_tabber_search(Operator):
             if not prefs.quick_place:
                 bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
-            nt_debug("Time taken: " + str(time.perf_counter() - startTime))
+            # nt_debug("Time taken: " + str(time.perf_counter() - startTime))
             return {"FINISHED"}
         else:
             return {"CANCELLED"}
 
     def create_node(self, context, node_type=None, node_tree_type=None):
-        nt_debug("DEF: create_node")
+        # nt_debug("DEF: create_node")
         space = context.space_data
         tree = space.edit_tree
 
