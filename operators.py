@@ -12,7 +12,12 @@ from pathlib import Path
 
 
 ADDON_PATH = Path(__file__).parent
+TALLY_PATH = ADDON_PATH / "tally_cache"
 ADDON_NAME = ADDON_PATH.name
+
+#Create Folder for caching node tallies
+if not TALLY_PATH.exists():
+    TALLY_PATH.mkdir()
 
 def nt_debug(msg):
     prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
@@ -32,7 +37,7 @@ def write_score(enum_items):
     category = f'{tree_type.removesuffix("NodeTree").lower()}.json'
     prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
 
-    path = Path(ADDON_PATH, category)
+    path = Path(TALLY_PATH, category)
     if not path.exists():
         with open(path, "w") as f:
             json.dump({enum_items: {"tally": 1}}, f)
@@ -104,7 +109,7 @@ class NODE_OT_add_tabber_search(Operator):
         if space == "GeometryNodeTree":
             node_items = geonodes_node_items(context)
 
-        path = Path(ADDON_PATH, category)
+        path = Path(TALLY_PATH, category)
         if not path.exists():
             tally_dict = {}
         else:
@@ -396,7 +401,7 @@ class NODE_OT_reset_tally(Operator):
     bl_label = "Reset node tally count"
 
     def execute(self, context):
-        files_to_reset = (Path(ADDON_PATH, cat) for cat in 
+        files_to_reset = (Path(TALLY_PATH, cat) for cat in 
             ("shader.json", "compositor.json", "texture.json", "geometry.json"))
 
         did_reset = False
