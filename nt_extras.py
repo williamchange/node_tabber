@@ -45,7 +45,7 @@ def gen_subnodes(a, b, setting1, setting2):
         [
             f'{a} {d0} {d1}',
             f'{str.title(replace_dtype_labels(d0))} {str.title(d1).replace("_", "")} ({d0.replace("FLOAT_", "")[0]}{d1[0]}) {b}'
-        ] 
+        ]
         for d0, d1 in itertools.product(setting1, setting2)]
     return output
 
@@ -84,7 +84,6 @@ def gn_cmp_str_col(a, setting1, setting2):
 
 def op_abbr(s):
     return "".join([c[0] for c in s.split("_")])
-    
 
 
 gn_cmp_str = gn_cmp_str_col("STRING", ["STRING"], GN_CMP_OPS[4:-2])

@@ -183,7 +183,7 @@ def geonodes_node_items(context):
         NodeItem("FunctionNodeFloatToInt"),
         NodeItem("FunctionNodeRandomValue"),
         NodeItem("FunctionNodeRotateEuler"),
-        NodeItem("FunctionNodeCompare"),   
+        NodeItem("FunctionNodeCompare"),
         NodeItem("FunctionNodeReplaceString"),
         NodeItem("FunctionNodeSliceString"),
         NodeItem("FunctionNodeStringLength"),
