@@ -84,11 +84,50 @@ class NodeTabSetting(PropertyGroup):
         default="",
     )
 
+enum_callback_cache = []
 
 class NODE_OT_add_tabber_search(Operator):
+    '''Add a node to the active tree'''
+    bl_idname = "node.add_tabber_search"
+    bl_label = "Search and Add Node"
+    bl_options = {'REGISTER', 'UNDO'}
+    bl_property = "my_enum"
+
+    #@cache_enum_results
+    def define_items(self, context):
+        # EnumProperties that are generarted dynamically tend to misbehave as Python tends to clean up memory
+        # Caching the results forces Python to keep track of the data while the operator is in use
+        global enum_callback_cache
+        enum_callback_cache.clear()
+
+        #items = [(node.name, node.name, "") for node in context.selected_nodes]
+        items = [(
+            f'{node.label}',
+            f'{node.label} ({"".join(word[0] for word in node.label.split())})',
+            "",
+            index,
+        ) for index, node in enumerate(geonodes_node_items(context))]
+
+        enum_callback_cache = items
+        return items
+
+    my_enum: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
+
+    def execute(self, context):
+        self.report({'INFO'}, f"Selected: {self.my_enum}")
+        return {'FINISHED'}
+
+    def invoke(self, context, event):
+        wm = context.window_manager
+        wm.invoke_search_popup(self)
+        return {'CANCELLED'}
+
+
+
+class oldNODE_OT_add_tabber_search(Operator):
     """Add a node to the active tree using node tabber"""
 
-    bl_idname = "node.add_tabber_search"
+    bl_idname = "node.add_tabber_search_old"
     bl_label = "Search and Add Node"
     bl_options = {"REGISTER", "UNDO"}
     bl_property = "node_item"
@@ -98,7 +137,7 @@ class NODE_OT_add_tabber_search(Operator):
     # Create an enum list from node items
     def node_enum_items(self, context):
         # nt_debug("DEF: node_enum_items")
-        enum_items = NODE_OT_add_tabber_search._enum_item_hack
+        enum_items = oldNODE_OT_add_tabber_search._enum_item_hack
 
         prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
 
@@ -421,8 +460,9 @@ class NODE_OT_reset_tally(Operator):
 
 
 classes = (
-    NodeTabSetting, 
-    NODE_OT_add_tabber_search, 
+    NodeTabSetting,
+    NODE_OT_add_tabber_search,
+    oldNODE_OT_add_tabber_search, 
     NODE_OT_reset_tally
     )
 
