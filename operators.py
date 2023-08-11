@@ -118,8 +118,7 @@ class NODE_OT_add_tabber_search(Operator):
         return {'FINISHED'}
 
     def invoke(self, context, event):
-        wm = context.window_manager
-        wm.invoke_search_popup(self)
+        context.window_manager.invoke_search_popup(self)
         return {'CANCELLED'}
 
 
