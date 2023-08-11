@@ -113,10 +113,6 @@ def subnode_enum(items):
     for node, *_ in items:
         subtypes = sn_entries.get(node, None)
 
-        #Filter Out Map Range
-        if editor_type == "CompositorNodeTree" and node == "Map Range":
-            continue
-
         if subtypes is not None:
             for item in subtypes:
                 subitems.append((*item, ""))

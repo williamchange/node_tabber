@@ -392,7 +392,7 @@ def subnode_entries(use_symbols, editor_type):
     SUBNODE_ENTRIES = {
         "Math": math_symb if use_symbols else math,
         "Vector Math": vec_symb if use_symbols else vec_math,
-        "Mix": mix_nodes + color if (editor_type in ("GeometryNodeTree")) else color,
+        "Mix": mix_nodes + color if (editor_type == "GeometryNodeTree") else color,
         "Boolean Math": bool_symb if use_symbols else bool_math,
         "Random Value": rand_val,
         "Switch": switch,
@@ -410,7 +410,7 @@ def subnode_entries(use_symbols, editor_type):
         "Capture Attribute": capture_attr,
         "Evaluate on Domain": evaluate_on_dom,
         "Sample Index": sample_index,
-        "Map Range": map_range,
+        "Map Range": map_range if (editor_type != "CompositorNodeTree") else None,
         "Set Spline Type": set_spline_type,
         "Mesh Boolean": mesh_boolean,
         "Merge by Distance": merge_by_dist,
