@@ -357,6 +357,11 @@ fillet_curve = [
     [" FC POLY", "Fillet Curve  ▸  Poly (P)"]
 ]
 
+mix_nodes = [
+    [" Mix Vector", "Mix Vector (MV)"]
+]
+
+
 dom_size = gen_non_dtype_subnodes("DS", "Domain Size", COMPONENT)
 geo_prox = gen_non_dtype_subnodes("GPX", "Geometry Proximity", TARGET_EL)
 sample_nearest = gen_non_dtype_subnodes("SN", "Sample Nearest", DOMAIN[:4])
@@ -383,11 +388,11 @@ evaluate_at_index = gen_subnodes("FaI", "Evaluate at Index", DATA_TYPE, DOMAIN)
 scale_el = gen_subnodes("SE", "Scale Elements", DOMAIN[1:-3], SCALE_EL_MODES)
 accum_field = gen_subnodes("AF", "Accumulate Field", ["FLOAT", "INT", "FLOAT_VECTOR"], DOMAIN)
 
-def subnode_entries(use_symbols):
+def subnode_entries(use_symbols, editor_type):
     SUBNODE_ENTRIES = {
         "Math": math_symb if use_symbols else math,
         "Vector Math": vec_symb if use_symbols else vec_math,
-        "Mix": color,
+        "Mix": mix_nodes + color if (editor_type in ("GeometryNodeTree")) else color,
         "Boolean Math": bool_symb if use_symbols else bool_math,
         "Random Value": rand_val,
         "Switch": switch,

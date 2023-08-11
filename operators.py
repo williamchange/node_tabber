@@ -105,9 +105,9 @@ def other_editors_enum(context):
 
 def subnode_enum(items):
     from . import nt_extras
-    prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
-    sn_entries = nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols)
     editor_type = bpy.context.space_data.tree_type
+    prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
+    sn_entries = nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols, editor_type=editor_type)
 
     subitems = []
     for node, *_ in items:
