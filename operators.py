@@ -3,7 +3,6 @@ import json
 import time
 
 from .gn_items import geonodes_node_items, geonodes_enum
-from . import nt_extras
 
 import nodeitems_utils
 from bpy.types import Operator, PropertyGroup
@@ -95,6 +94,28 @@ def other_editors_enum(context):
 
     return items    
 
+
+def subnode_enum(items):
+    from . import nt_extras
+    prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
+    sn_entries = nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols)
+    editor_type = bpy.context.space_data.tree_type
+
+    subitems = []
+    for node, *_ in items:
+        subtypes = sn_entries.get(node, None)
+
+        #Filter Out Map Range
+        if editor_type == "CompositorNodeTree" and node == "Map Range":
+            continue
+
+        if subtypes is not None:
+            for item in subtypes:
+                subitems.append((*item, ""))
+    
+    return subitems
+
+
 class NODE_OT_add_tabber_search(Operator):
     '''Add a node to the active tree'''
     bl_idname = "node.add_tabber_search"
@@ -110,13 +131,17 @@ class NODE_OT_add_tabber_search(Operator):
         enum_callback_cache.clear()
 
         #items = [(node.name, node.name, "") for node in context.selected_nodes]
-        
         if context.space_data.tree_type == "GeometryNodeTree":
             items = geonodes_enum(context)
         else:
             items = other_editors_enum(context)
 
         enum_callback_cache = items
+
+        prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
+        if prefs.sub_search:
+            items += subnode_enum(items)
+
         return items
 
     my_enum: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
