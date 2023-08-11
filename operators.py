@@ -2,7 +2,7 @@ import bpy
 import json
 import time
 
-from .gn_items import geonodes_node_items
+from .gn_items import geonodes_node_items, geonodes_enum
 from . import nt_extras
 
 import nodeitems_utils
@@ -85,6 +85,15 @@ class NodeTabSetting(PropertyGroup):
     )
 
 enum_callback_cache = []
+def other_editors_enum(context):
+    items = [(
+        f'{node.label}',
+        f'{node.label} ({"".join(word[0] for word in node.label.split())})',
+        "",
+    ) 
+    for node in nodeitems_utils.node_items_iter(context) if isinstance(node, nodeitems_utils.NodeItem)]
+
+    return items    
 
 class NODE_OT_add_tabber_search(Operator):
     '''Add a node to the active tree'''
@@ -101,12 +110,11 @@ class NODE_OT_add_tabber_search(Operator):
         enum_callback_cache.clear()
 
         #items = [(node.name, node.name, "") for node in context.selected_nodes]
-        items = [(
-            f'{node.label}',
-            f'{node.label} ({"".join(word[0] for word in node.label.split())})',
-            "",
-            index,
-        ) for index, node in enumerate(geonodes_node_items(context))]
+        
+        if context.space_data.tree_type == "GeometryNodeTree":
+            items = geonodes_enum(context)
+        else:
+            items = other_editors_enum(context)
 
         enum_callback_cache = items
         return items
