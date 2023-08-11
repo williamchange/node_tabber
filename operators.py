@@ -142,8 +142,7 @@ class NODE_OT_add_tabber_search(Operator):
 
         enum_callback_cache = items
 
-        prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
-        if prefs.sub_search:
+        if fetch_user_preferences("sub_search"):
             items += subnode_enum(items)
 
         return items
