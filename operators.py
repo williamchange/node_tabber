@@ -2,7 +2,7 @@ import bpy
 import json
 import time
 
-from .gn_items import geonodes_node_items, geonodes_enum
+from .gn_items import geonodes_node_items
 
 import nodeitems_utils
 from bpy.types import Operator, PropertyGroup
@@ -102,6 +102,17 @@ def other_editors_enum(context):
 
     return items    
 
+def geonodes_enum(context):
+    items = [(
+        f'{node.label}',
+        f'{node.label} ({"".join(word[0] for word in node.label.split())})',
+        ""
+    ) for node in geonodes_node_items(context)]
+
+    items.append(("Simulation Zone", "Simulation Zone (SZ)", ""))
+    items.append(("Repeat Zone", "Repeat Zone (RZ)", ""))
+
+    return items
 
 def subnode_enum(items):
     from . import nt_extras
