@@ -3,6 +3,7 @@ import json
 import time
 
 from .gn_items import geonodes_node_items
+from . import nt_extras
 
 import nodeitems_utils
 from bpy.types import Operator, PropertyGroup
@@ -89,32 +90,25 @@ def fetch_user_prefs(attr_id=None):
         return prefs
     else:
         return getattr(prefs, attr_id)
-    
 
-enum_callback_cache = []
-def other_editors_enum(context):
-    items = [(
-        f'{node.label}',
-        f'{node.label} ({"".join(word[0] for word in node.label.split())})',
-        "",
-    ) 
-    for node in nodeitems_utils.node_items_iter(context) if isinstance(node, nodeitems_utils.NodeItem)]
 
-    return items    
+def fetch_node_entries(nodes):
+    items = []
+    nodeitem_class = nodeitems_utils.NodeItem
 
-def geonodes_enum(context):
-    items = [(
-        f'{node.label}',
-        f'{node.label} ({"".join(word[0] for word in node.label.split())})',
-        ""
-    ) for node in geonodes_node_items(context)]
+    for node in nodes:
+        if not isinstance(node, nodeitem_class):
+            continue
 
-    items.append(("Simulation Zone", "Simulation Zone (SZ)", ""))
-    items.append(("Repeat Zone", "Repeat Zone (RZ)", ""))
-
+        items.append((
+            f'{node.label}',
+            f'{node.label} ({"".join(word[0] for word in node.label.split())})',
+            "",
+            ))
+            
     return items
 
-def subnode_enum(items):
+def append_subtypes(items):
     from . import nt_extras
     editor_type = bpy.context.space_data.tree_type
     prefs = fetch_user_prefs()
@@ -131,6 +125,7 @@ def subnode_enum(items):
     return subitems
 
 
+enum_callback_cache = []
 class NODE_OT_add_tabber_search(Operator):
     '''Add a node to the active tree'''
     bl_idname = "node.add_tabber_search"
@@ -145,16 +140,17 @@ class NODE_OT_add_tabber_search(Operator):
         global enum_callback_cache
         enum_callback_cache.clear()
 
-        #items = [(node.name, node.name, "") for node in context.selected_nodes]
         if context.space_data.tree_type == "GeometryNodeTree":
-            items = geonodes_enum(context)
+            items = fetch_node_entries(nodes=geonodes_node_items(context))
+            items.append(("Simulation Zone", "Simulation Zone (SZ)", ""))
+            items.append(("Repeat Zone", "Repeat Zone (RZ)", ""))
         else:
-            items = other_editors_enum(context)
+            items = fetch_node_entries(nodes=nodeitems_utils.node_items_iter(context))
 
         enum_callback_cache = items
 
         if fetch_user_prefs("sub_search"):
-            items += subnode_enum(items)
+            items += append_subtypes(items)
 
         return items
 
