@@ -135,7 +135,7 @@ class NODE_OT_add_tabber_search(Operator):
 
     #@cache_enum_results
     def define_items(self, context):
-        # EnumProperties that are generarted dynamically tend to misbehave as Python tends to clean up memory
+        # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
         # Caching the results forces Python to keep track of the data while the operator is in use
         global enum_callback_cache
         enum_callback_cache.clear()
