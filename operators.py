@@ -199,7 +199,7 @@ class oldNODE_OT_add_tabber_search(Operator):
                 tally_dict = json.load(f)
 
         index_offset = 0
-        item_index = {key: -1 for key in nt_extras.SUBNODE_ENTRIES}
+        item_index = {key: -1 for key in nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols, editor_type=space)}
 
         for index, item in enumerate(node_items):
             if isinstance(item, nodeitems_utils.NodeItem):
@@ -219,7 +219,7 @@ class oldNODE_OT_add_tabber_search(Operator):
 
         # Add sub node searching if enabled
         if prefs.sub_search:
-            sn_entries = nt_extras.SUBNODE_ENTRIES
+            sn_entries = nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols, editor_type=space)
             if prefs.use_op_symbols:
                 sn_entries["Math"] = nt_extras.math_symb
                 sn_entries["Vector Math"] = nt_extras.vec_symb
