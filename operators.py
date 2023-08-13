@@ -83,7 +83,7 @@ class NodeTabSetting(PropertyGroup):
         default="",
     )
 
-def fetch_user_preferences(attr_id=None):
+def fetch_user_prefs(attr_id=None):
     prefs = bpy.context.preferences.addons[__package__].preferences
     if attr_id is None:
         return prefs
@@ -117,7 +117,7 @@ def geonodes_enum(context):
 def subnode_enum(items):
     from . import nt_extras
     editor_type = bpy.context.space_data.tree_type
-    prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
+    prefs = fetch_user_prefs()
     sn_entries = nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols, editor_type=editor_type)
 
     subitems = []
@@ -153,7 +153,7 @@ class NODE_OT_add_tabber_search(Operator):
 
         enum_callback_cache = items
 
-        if fetch_user_preferences("sub_search"):
+        if fetch_user_prefs("sub_search"):
             items += subnode_enum(items)
 
         return items
