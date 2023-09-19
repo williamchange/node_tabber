@@ -74,6 +74,15 @@ def append_subtypes(items):
 
 
 enum_callback_cache = []
+def cache_enum_results(function):
+    def wrapped_func(self, context):
+        enum_callback_cache.clear()
+        output = function(self, context)
+        enum_callback_cache.extend(output)
+        return output
+            
+    return wrapped_func
+
 class NODE_OT_add_tabber_search(Operator):
     '''Add a node to the active tree'''
     bl_idname = "node.add_tabber_search"
@@ -85,21 +94,17 @@ class NODE_OT_add_tabber_search(Operator):
     #@classmethod
     #def poll(self, context):
 
-    #@cache_enum_results
+    # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
+    # Caching the results forces Python to keep track of the data while the operator is in use
+    # TODO - Verify if this caching is still necessary to prevent enum_callback bug
+    @cache_enum_results
     def define_items(self, context):
-        # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
-        # Caching the results forces Python to keep track of the data while the operator is in use
-        global enum_callback_cache
-        enum_callback_cache.clear()
-
         tree_type = context.space_data.tree_type
 
         if tree_type is not None:
             items = nodelists.generate_entries(context, editor_type=tree_type)
         else:
             items = []
-
-        enum_callback_cache.append(items)
 
         #if fetch_user_prefs("sub_search"):
         #    items += append_subtypes(items)
