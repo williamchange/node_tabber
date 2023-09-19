@@ -1,14 +1,15 @@
 
 #TODO - Add functionality for supporting zone types and calling their respective functions
 zones = [
-    ("Simulation Zone", {"label":'iface_("Simulation Zone")', "function":"add_simulation_zone"}),
-    ("Repeat Zone", {"label":'iface_("Repeat Zone")', "function":"add_repeat_zone"})
+    ("Simulation Zone", {"label": "Simulation Zone", "function":"add_simulation_zone"}),
+    ("Repeat Zone", {"label": "Repeat Zone", "function":"add_repeat_zone"})
 ]
 
-#TODO - Add functionality for supporting iface_ and settings
+#TODO - Add functionality for settings
+#Note - Structure -> (idname, {properties})
 specific_types = [
-    ("ShaderNodeMix", {"label":'iface_("Mix Vector")', "settings":{"data_type": "VECTOR"}}),
-    ("ShaderNodeMix", {"label":'iface_("Mix Color")', "settings":{"data_type": "RGBA"}})
+    ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}}),
+    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}})
 ]
 
 def is_tool(context):
@@ -234,6 +235,8 @@ tool_nodes = [
 
 all_items = [
     (items, None, None),
+    (zones, None, None),
+    (specific_types, None, None),
     (tool_nodes, is_tool, None),
     (experimental_volumes, use_experimental_volume_nodes, None),
 ]

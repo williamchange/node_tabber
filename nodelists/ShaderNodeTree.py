@@ -1,8 +1,9 @@
 
-#TODO - Add functionality for supporting iface_ and settings
+#TODO - Add functionality for settings
+#Note - Structure -> (idname, {properties})
 specific_types = [
-    ("ShaderNodeMix", {"label":'iface_("Mix Vector")', "settings":{"data_type": "VECTOR"}}),
-    ("ShaderNodeMix", {"label":'iface_("Mix Color")', "settings":{"data_type": "RGBA"}})
+    ("ShaderNodeMix", {"label": "Mix Vector", "settings": {"data_type": "VECTOR"}}),
+    ("ShaderNodeMix", {"label": "Mix Color", "settings": {"data_type": "RGBA"}})
 ]
 
 def engine_and_shader_type_poll(context, engines=None, shader_types=None):
@@ -147,6 +148,7 @@ object_cycles_eevee_shader_nodes = [
 
 all_items = [
     (items, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
+    (specific_types, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
     (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
     (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
     (cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"engines": ('CYCLES', 'BLENDER_EEVEE')}),
