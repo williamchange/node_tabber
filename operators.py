@@ -73,6 +73,8 @@ def append_subtypes(items):
     return subitems
 
 
+# EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
+# Caching the results forces Python to keep track of the data while the operator is in use
 enum_callback_cache = []
 def cache_enum_results(function):
     def wrapped_func(self, context):
@@ -94,8 +96,6 @@ class NODE_OT_add_tabber_search(Operator):
     #@classmethod
     #def poll(self, context):
 
-    # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
-    # Caching the results forces Python to keep track of the data while the operator is in use
     # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
     def define_items(self, context):
