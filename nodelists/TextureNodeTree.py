@@ -33,3 +33,7 @@ items = [
     "TextureNodeTexVoronoi",
     "TextureNodeTexWood",
 ]
+
+all_items = [
+    *items
+]

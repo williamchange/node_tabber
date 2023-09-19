@@ -123,3 +123,7 @@ eevee_cycles_shader_nodes = [
     "ShaderNodeVolumeAbsorption",
     "ShaderNodeVolumeScatter",
     ]
+
+all_items = [
+    *items
+]

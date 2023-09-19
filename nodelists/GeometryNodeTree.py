@@ -224,3 +224,7 @@ items = [
     "GeometryNodeVolumeCube",
     "GeometryNodeVolumeToMesh",
 ]
+
+all_items = [
+    *items
+]

@@ -96,3 +96,7 @@ items = [
     "CompositorNodeNormal",
     "CompositorNodeCurveVec",
 ]
+
+all_items = [
+    *items
+]

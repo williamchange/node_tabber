@@ -4,6 +4,7 @@ import time
 
 from .gn_items import geonodes_node_items
 from . import nt_extras
+from . import nodelists
 
 import nodeitems_utils
 from bpy.types import Operator, PropertyGroup
@@ -19,6 +20,12 @@ ADDON_NAME = ADDON_PATH.name
 if not TALLY_PATH.exists():
     TALLY_PATH.mkdir()
 
+editor_type = {
+    "CompositorNodeTree" : "compositor",
+    "GeometryNodeTree" : "geometry",
+    "TextureNodeTree" : "texture",
+    "ShaderNodeTree" : "shader",
+}
 
 def nt_debug(msg):
     prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
@@ -140,17 +147,16 @@ class NODE_OT_add_tabber_search(Operator):
         global enum_callback_cache
         enum_callback_cache.clear()
 
-        if context.space_data.tree_type == "GeometryNodeTree":
-            items = fetch_node_entries(nodes=geonodes_node_items(context))
-            items.append(("Simulation Zone", "Simulation Zone (SZ)", ""))
-            items.append(("Repeat Zone", "Repeat Zone (RZ)", ""))
+        editor_id = editor_type.get(context.space_data.tree_type)
+        if editor_id is not None:
+            items = getattr(nodelists, f"{editor_id}_items")
         else:
-            items = fetch_node_entries(nodes=nodeitems_utils.node_items_iter(context))
+            items = []
 
-        enum_callback_cache = items
+        enum_callback_cache.append(items)
 
-        if fetch_user_prefs("sub_search"):
-            items += append_subtypes(items)
+        #if fetch_user_prefs("sub_search"):
+        #    items += append_subtypes(items)
 
         return items
 
