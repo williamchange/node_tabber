@@ -11,25 +11,11 @@ specific_types = [
     ("ShaderNodeMix", {"label":'iface_("Mix Color")', "settings":{"data_type": "RGBA"}})
 ]
 
-#TODO - Add poll for -> context.space_data.geometry_nodes_type == 'TOOL':
-tools = [
-    "GeometryNodeToolFaceSet",
-    "GeometryNodeToolSetFaceSet",
-    "GeometryNodeTool3DCursor",
-    "GeometryNodeToolSetSelection",
-    "GeometryNodeToolSelection",
-]
+def is_tool(context):
+    return context.space_data.geometry_nodes_type == 'TOOL'
 
-#TODO - Add poll for -> context.preferences.experimental.use_new_volume_nodes:
-experimental_volumes = [
-    "GeometryNodeMeanFilterSDFVolume",
-    "GeometryNodeOffsetSDFVolume",
-    "GeometryNodeSampleVolume",
-    "GeometryNodeSDFVolumeSphere",
-    "GeometryNodeInputSignedDistance",
-    "GeometryNodePointsToSDFVolume",
-    "GeometryNodeMeshToSDFVolume",
-]
+def use_experimental_volume_nodes(context):
+    return context.preferences.experimental.use_new_volume_nodes
 
 items = [
     "GeometryNodeAttributeStatistic",
@@ -225,6 +211,29 @@ items = [
     "GeometryNodeVolumeToMesh",
 ]
 
+#Note - Included when context.preferences.experimental.use_new_volume_nodes is True:
+experimental_volumes = [
+    "GeometryNodeMeanFilterSDFVolume",
+    "GeometryNodeOffsetSDFVolume",
+    "GeometryNodeSampleVolume",
+    "GeometryNodeSDFVolumeSphere",
+    "GeometryNodeInputSignedDistance",
+    "GeometryNodePointsToSDFVolume",
+    "GeometryNodeMeshToSDFVolume",
+]
+
+#Note - Included when context.space_data.geometry_nodes_type == 'TOOL':
+tool_nodes = [
+    "GeometryNodeToolFaceSet",
+    "GeometryNodeToolSetFaceSet",
+    "GeometryNodeTool3DCursor",
+    "GeometryNodeToolSetSelection",
+    "GeometryNodeToolSelection",
+]
+
+
 all_items = [
-    (items, None, None)
+    (items, None, None),
+    (tool_nodes, is_tool, None),
+    (experimental_volumes, use_experimental_volume_nodes, None),
 ]

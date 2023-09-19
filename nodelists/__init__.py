@@ -35,6 +35,8 @@ def generate_entries(context, editor_type):
         if poll is None:
             poll_passed = True
         else:
+            if poll_args is None:
+                poll_args = {}
             poll_passed = poll(context, **poll_args)
 
         if poll_passed:
