@@ -54,6 +54,6 @@ def generate_entries(context, editor_type):
             poll_passed = poll(context, **poll_args)
 
         if poll_passed:
-            entries += [generate_entry_item(item) for item in item_list]
+            entries.extend([generate_entry_item(item) for item in item_list])
      
     return entries

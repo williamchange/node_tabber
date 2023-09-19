@@ -107,7 +107,7 @@ class NODE_OT_add_tabber_search(Operator):
             items = []
 
         #if fetch_user_prefs("sub_search"):
-        #    items += append_subtypes(items)
+        #    items.extend(append_subtypes(items))
 
         return items
 
