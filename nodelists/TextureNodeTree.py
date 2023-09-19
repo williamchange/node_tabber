@@ -35,5 +35,5 @@ items = [
 ]
 
 all_items = [
-    *items
+    (items, None, None)
 ]

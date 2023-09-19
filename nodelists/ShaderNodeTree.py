@@ -5,6 +5,27 @@ specific_types = [
     ("ShaderNodeMix", {"label":'iface_("Mix Color")', "settings":{"data_type": "RGBA"}})
 ]
 
+def engine_and_shader_type_poll(context, engines=None, shader_types=None):
+    current_engine = context.engine
+    current_shader_type = context.space_data.shader_type
+
+    if engines is None:
+        engine_poll = True
+    elif isinstance(engines, str):
+        engine_poll = (current_engine == engines)
+    else:
+        engine_poll = current_engine in engines
+
+    if shader_types is None:
+        shader_type_poll = True
+    elif isinstance(shader_types, str):
+        shader_type_poll = (current_shader_type == shader_types)
+    else:
+        shader_type_poll = current_shader_type in shader_types
+
+    return (engine_poll and shader_type_poll)
+
+
 items = [
     "ShaderNodeAmbientOcclusion",
     "ShaderNodeAttribute",
@@ -74,8 +95,44 @@ items = [
     "ShaderNodeScript",
 ]
 
-#TODO - Add poll for -> context.space_data.shader_type == 'OBJECT' and context.engine in ('CYCLES', 'BLENDER_EEVEE'):
-object_eevee_cycles_shader_nodes = [
+#Note - Included when context.space_data.shader_type == 'WORLD':
+world_shader_nodes = [
+    "ShaderNodeOutputWorld",
+    "ShaderNodeBackground",
+    ]
+
+#Note - Included when context.space_data.shader_type == 'LINESTYLE':
+line_style_shader_nodes = [
+    "ShaderNodeUVAlongStroke",
+    "ShaderNodeOutputLineStyle",
+    ]
+
+#Note - Included when context.engine in ('CYCLES', 'BLENDER_EEVEE'):
+cycles_eevee_shader_nodes = [
+    "ShaderNodeAddShader",
+    "ShaderNodeEmission",
+    "ShaderNodeMixShader",
+    "ShaderNodeVolumeAbsorption",
+    "ShaderNodeVolumeScatter",
+    ]
+
+#Note - Included when context.space_data.shader_type == 'OBJECT' and context.engine == 'BLENDER_EEVEE':
+object_eevee_shader_nodes = [
+    "ShaderNodeShaderToRGB",
+    "ShaderNodeEeveeSpecular",
+    ]
+
+#Note - Included when context.space_data.shader_type == 'OBJECT' and context.engine == 'CYCLES':
+object_cycles_shader_nodes = [
+    "ShaderNodeOutputLight",
+    "ShaderNodeBsdfHair",
+    "ShaderNodeBsdfHairPrincipled",
+    "ShaderNodeBsdfSheen",
+    "ShaderNodeBsdfToon",
+    ]
+
+#Note - Included when context.space_data.shader_type == 'OBJECT' and context.engine in ('CYCLES', 'BLENDER_EEVEE'):
+object_cycles_eevee_shader_nodes = [
     "ShaderNodeOutputMaterial",
     "ShaderNodeBsdfDiffuse",
     "ShaderNodeBsdfGlass",
@@ -88,42 +145,12 @@ object_eevee_cycles_shader_nodes = [
     "ShaderNodeBsdfTransparent",
     ]
 
-#TODO - Add poll for -> context.space_data.shader_type == 'OBJECT' and context.engine == 'BLENDER_EEVEE':
-object_eevee_shader_nodes = [
-    "ShaderNodeShaderToRGB",
-    "ShaderNodeEeveeSpecular",
-    ]
-
-#TODO - Add poll for -> context.space_data.shader_type == 'OBJECT' and context.engine == 'CYCLES':
-object_cycles_shader_nodes = [
-    "ShaderNodeOutputLight",
-    "ShaderNodeBsdfHair",
-    "ShaderNodeBsdfHairPrincipled",
-    "ShaderNodeBsdfSheen",
-    "ShaderNodeBsdfToon",
-    ]
-
-#TODO - Add poll for -> context.space_data.shader_type == 'LINESTYLE':
-line_style_shader_nodes = [
-    "ShaderNodeUVAlongStroke",
-    "ShaderNodeOutputLineStyle",
-    ]
-
-#TODO - Add poll for -> context.space_data.shader_type == 'WORLD':
-world_shader_nodes = [
-    "ShaderNodeOutputWorld",
-    "ShaderNodeBackground",
-    ]
-
-#TODO - Add poll for -> context.engine in ('CYCLES', 'BLENDER_EEVEE'):
-eevee_cycles_shader_nodes = [
-    "ShaderNodeAddShader",
-    "ShaderNodeEmission",
-    "ShaderNodeMixShader",
-    "ShaderNodeVolumeAbsorption",
-    "ShaderNodeVolumeScatter",
-    ]
-
 all_items = [
-    *items
+    (items, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
+    (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
+    (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
+    (cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"engines": ('CYCLES', 'BLENDER_EEVEE')}),
+    (object_cycles_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": 'CYCLES'}),
+    (object_eevee_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": 'BLENDER_EEVEE'}),
+    (object_cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": ('CYCLES', 'BLENDER_EEVEE')}),
 ]

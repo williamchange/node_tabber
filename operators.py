@@ -122,6 +122,10 @@ class NODE_OT_add_tabber_search(Operator):
     bl_options = {'REGISTER', 'UNDO'}
     bl_property = "my_enum"
 
+    # TODO - Add poll function to only execute operator when current space type is NODE_EDITOR
+    #@classmethod
+    #def poll(self, context):
+
     #@cache_enum_results
     def define_items(self, context):
         # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
@@ -129,9 +133,10 @@ class NODE_OT_add_tabber_search(Operator):
         global enum_callback_cache
         enum_callback_cache.clear()
 
-        editor_id = editor_type.get(context.space_data.tree_type)
-        if editor_id is not None:
-            items = getattr(nodelists, f"{editor_id}_items")
+        tree_type = context.space_data.tree_type
+
+        if tree_type is not None:
+            items = nodelists.generate_entries(context, editor_type=tree_type)
         else:
             items = []
 
