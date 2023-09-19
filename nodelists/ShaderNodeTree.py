@@ -136,7 +136,7 @@ object_cycles_eevee_shader_nodes = [
     "ShaderNodeOutputMaterial",
     "ShaderNodeBsdfDiffuse",
     "ShaderNodeBsdfGlass",
-    "ShaderNodeBsdfGlossy",
+    "ShaderNodeBsdfAnisotropic",
     "ShaderNodeHoldout",
     "ShaderNodeBsdfPrincipled",
     "ShaderNodeBsdfRefraction",
