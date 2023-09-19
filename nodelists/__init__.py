@@ -1,5 +1,10 @@
 from . import CompositorNodeTree, GeometryNodeTree, ShaderNodeTree, TextureNodeTree
 from bpy.types import Node
+from bpy.app.translations import (
+    pgettext_iface as iface_,
+    contexts as i18n_contexts,
+)
+
 
 data_list = {
     "CompositorNodeTree" : CompositorNodeTree,
@@ -8,20 +13,29 @@ data_list = {
     "TextureNodeTree" : TextureNodeTree,
 }
 
+def add_abbreviation(label):
+    abbr = "".join(word[0] for word in label.replace("/", " ").split())
+    return f"{label} ({abbr})"
+
 def generate_label(idname):
     bl_rna = Node.bl_rna_get_subclass(idname)
-
     if bl_rna is not None:
-        return idname #Note - Temporary for easier debugging, should change back to label
-        bl_label = bl_rna.name
-        # Split abbreviation based on spaces and backslash
-        abbr = "".join(word[0] for word in bl_label.replace("/", " ").split())
-        return f"{bl_label} ({abbr})"
+        #return idname #Note - Temporary for easier debugging, should change back to label
+        return add_abbreviation(bl_rna.name)
 
     else:
         return "Unknown"
         #TODO - Catch errors when node type isn't valid, right now just ignore them
         #raise ValueError(f"'{idname}' is not a valid node type.")
+
+def generate_entry_item(item):
+    if isinstance(item, tuple):
+        item, properties, *_ = item
+        label = properties.get("label")
+        return (item, add_abbreviation(label), "")
+    else:
+        return (item, generate_label(item), "")
+
 
 def generate_entries(context, editor_type):
     entries = []
@@ -40,6 +54,6 @@ def generate_entries(context, editor_type):
             poll_passed = poll(context, **poll_args)
 
         if poll_passed:
-            entries += [(item, generate_label(item), "") for item in item_list]
+            entries += [generate_entry_item(item) for item in item_list]
      
     return entries

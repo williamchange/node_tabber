@@ -1,8 +1,7 @@
-
-#TODO - Add functionality for supporting iface_ and settings
+#Note - Structure -> (idname, {properties})
 specific_types = [
-    ("CompositorNodeMixRGB", {"label":'iface_("Mix Color")'}),
-    ("CompositorNodeSwitchView", {"label":'iface_("Switch Stereo View")'})
+    ("CompositorNodeMixRGB", {"label": "Mix Color"}),
+    ("CompositorNodeSwitchView", {"label": "Switch Stereo View"})
 ]
 
 items = [
@@ -98,5 +97,6 @@ items = [
 ]
 
 all_items = [
-    (items, None, None)
+    (items, None, None),
+    (specific_types, None, None)
 ]
