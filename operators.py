@@ -2,7 +2,6 @@ import bpy
 import json
 import time
 
-from .gn_items import geonodes_node_items
 from . import nt_extras
 from . import nodelists
 
@@ -97,23 +96,6 @@ def fetch_user_prefs(attr_id=None):
         return prefs
     else:
         return getattr(prefs, attr_id)
-
-
-def fetch_node_entries(nodes):
-    items = []
-    nodeitem_class = nodeitems_utils.NodeItem
-
-    for node in nodes:
-        if not isinstance(node, nodeitem_class):
-            continue
-
-        items.append((
-            f'{node.label}',
-            f'{node.label} ({"".join(word[0] for word in node.label.split())})',
-            "",
-            ))
-            
-    return items
 
 def append_subtypes(items):
     from . import nt_extras
@@ -510,7 +492,6 @@ class NODE_OT_reset_tally(Operator):
 classes = (
     NodeTabSetting,
     NODE_OT_add_tabber_search,
-    oldNODE_OT_add_tabber_search, 
     NODE_OT_reset_tally
     )
 
