@@ -1,11 +1,9 @@
 
-#TODO - Add functionality for supporting zone types and calling their respective functions
 zones = [
     ("Simulation Zone", {"label": "Simulation Zone", "function":"create_zone", "settings":{"input": "GeometryNodeSimulationInput", "output": "GeometryNodeSimulationOutput"}}),
     ("Repeat Zone", {"label": "Repeat Zone", "function":"create_zone", "settings":{"input": "GeometryNodeRepeatInput", "output": "GeometryNodeRepeatOutput"}})
 ]
 
-#TODO - Add functionality for settings
 #Note - Structure -> (idname, {properties})
 specific_types = [
     ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}}),

@@ -1,5 +1,4 @@
 
-#TODO - Add functionality for settings
 #Note - Structure -> (idname, {properties})
 specific_types = [
     ("ShaderNodeMix", {"label": "Mix Vector", "settings": {"data_type": "VECTOR"}}),
