@@ -1,8 +1,8 @@
 
 #TODO - Add functionality for supporting zone types and calling their respective functions
 zones = [
-    ("Simulation Zone", {"label": "Simulation Zone", "function":"add_simulation_zone"}),
-    ("Repeat Zone", {"label": "Repeat Zone", "function":"add_repeat_zone"})
+    ("Simulation Zone", {"label": "Simulation Zone", "function":"create_zone", "settings":{"input": "GeometryNodeSimulationInput", "output": "GeometryNodeSimulationOutput"}}),
+    ("Repeat Zone", {"label": "Repeat Zone", "function":"create_zone", "settings":{"input": "GeometryNodeRepeatInput", "output": "GeometryNodeRepeatOutput"}})
 ]
 
 #TODO - Add functionality for settings

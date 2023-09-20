@@ -38,7 +38,10 @@ def generate_nodegroup_entries(context):
     # Note - Function for converting strings like 'ShaderNodeTree' to 'ShaderNodeGroup'
     nodegroup_id = lambda group : group.bl_idname.removesuffix("Tree").__add__("Group")
     group_entries = [
-        generate_entry_item((nodegroup_id(group), {"label":group.name, "settings":{"node_tree": group.name}})) 
+        generate_entry_item((nodegroup_id(group), {
+                "label":group.name, 
+                "settings":{"node_tree": group.name}
+            }))
         for group in valid_groups
         ]
 
@@ -71,12 +74,14 @@ def generate_entry_item(item):
         label = properties.get("label")
         enum_label = generate_label(label=label)
         settings = properties.get("settings")
+        function = properties.get("function", "create_node")
     else:
         enum_label = generate_label(idname=item)
         settings = None
+        function = "create_node"
 
     identifier = str((item, enum_label))
-    settings_dict[identifier] = (item, settings)
+    settings_dict[identifier] = (item, function, settings)
     return (identifier, enum_label, "")
 
 

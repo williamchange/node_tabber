@@ -95,15 +95,48 @@ def create_node(context, node_type=None, settings=None):
             setattr(node, key, value)
 
     node.location = context.space_data.cursor_location
-    return node
+    return (node,)
 
-def make_selection(context, node):
+
+def create_zone(context, zone_type, settings=None):
+    input_node_type = settings['input']
+    output_node_type = settings['output']
+    offset = settings.get('offset', (150, 0))
+
+    tree = fetch_active_nodetree(context)
+    input_node = tree.nodes.new(type=input_node_type)
+    output_node = tree.nodes.new(type=output_node_type)
+
+    # Simulation input must be paired with the output.
+    input_node.pair_with_output(output_node)
+
+    for node in (input_node, output_node):
+        node.location = context.space_data.cursor_location
+
+    x_offset, y_offset = offset
+    input_node.location.x -= x_offset
+    input_node.location.y -= y_offset
+    output_node.location.x += x_offset
+    output_node.location.y += y_offset
+
+    # Connect geometry sockets by default.
+    # Get the sockets by their types, because the name is not guaranteed due to i18n.
+    from_socket = next(s for s in input_node.outputs if s.type == 'GEOMETRY')
+    to_socket = next(s for s in output_node.inputs if s.type == 'GEOMETRY')
+    tree.links.new(to_socket, from_socket)
+    return (input_node, output_node)
+    
+
+def make_selection(context, nodes):
     tree = fetch_active_nodetree(context)
     # select only the new node
     for n in tree.nodes:
         n.select = False
-    node.select = True
-    tree.nodes.active = node
+    
+    for n in nodes:
+        n.select = True
+
+    tree.nodes.active = nodes[-1]
 
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
@@ -116,6 +149,12 @@ def cache_enum_results(function):
         return output
             
     return wrapped_func
+
+# TODO - Make this more extensible instead of having to define stuff in a dictionary
+functions = {
+    "create_node" : create_node,
+    "create_zone" : create_zone,
+}
 
 class NODE_OT_add_tabber_search(Operator):
     '''Add a node to the active tree'''
@@ -147,12 +186,13 @@ class NODE_OT_add_tabber_search(Operator):
 
     def execute(self, context):
         prefs = fetch_user_prefs()
-        node_type, settings = nodelists.settings_dict.get(self.my_enum)
+        node_type, function_name, settings = nodelists.settings_dict.get(self.my_enum)
     
-        self.report({'INFO'}, f"Selected: {self.my_enum} - {settings}")
+        self.report({'INFO'}, f"Selected: {self.my_enum} - {function_name}:{settings}")
+        function = functions.get(function_name)
 
-        node = create_node(context, node_type, settings)
-        make_selection(context, node)
+        nodes = function(context, node_type, settings)
+        make_selection(context, nodes)
 
         # Note - Disabled for easy debugging, will enable later
         #if not prefs.quick_place:
