@@ -82,30 +82,25 @@ def append_subtypes(items):
     return subitems
 
 
-def create_node(context, node_type=None, settings=None):
+def create_node(context, node_type=None, *_, node_tree=None, **settings):
     tree = fetch_active_nodetree(context)
     node = tree.nodes.new(type=node_type)
 
     if settings is not None:
         for key, value in settings.items():
-            #Note - if setting name is "node_tree", fetch nodegroup from blend data
-            if key == 'node_tree': 
-                value = context.blend_data.node_groups.get(value)
-
             setattr(node, key, value)
+
+    if node_tree is not None:
+        node.node_tree = context.blend_data.node_groups.get(node_tree)        
 
     node.location = context.space_data.cursor_location
     return (node,)
 
 
-def create_zone(context, zone_type, settings=None):
-    input_node_type = settings['input']
-    output_node_type = settings['output']
-    offset = settings.get('offset', (150, 0))
-
+def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0), **settings,):
     tree = fetch_active_nodetree(context)
-    input_node = tree.nodes.new(type=input_node_type)
-    output_node = tree.nodes.new(type=output_node_type)
+    input_node = tree.nodes.new(type=input_type)
+    output_node = tree.nodes.new(type=output_type)
 
     # Simulation input must be paired with the output.
     input_node.pair_with_output(output_node)
@@ -125,7 +120,7 @@ def create_zone(context, zone_type, settings=None):
     to_socket = next(s for s in output_node.inputs if s.type == 'GEOMETRY')
     tree.links.new(to_socket, from_socket)
     return (input_node, output_node)
-    
+
 
 def make_selection(context, nodes):
     tree = fetch_active_nodetree(context)
@@ -187,11 +182,13 @@ class NODE_OT_add_tabber_search(Operator):
     def execute(self, context):
         prefs = fetch_user_prefs()
         node_type, function_name, settings = nodelists.settings_dict.get(self.my_enum)
-    
+        if settings is None:
+            settings = {}
+
         self.report({'INFO'}, f"Selected: {self.my_enum} - {function_name}:{settings}")
         function = functions.get(function_name)
+        nodes = function(context, node_type, **settings)
 
-        nodes = function(context, node_type, settings)
         make_selection(context, nodes)
 
         # Note - Disabled for easy debugging, will enable later

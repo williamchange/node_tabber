@@ -1,7 +1,7 @@
 
 zones = [
-    ("Simulation Zone", {"label": "Simulation Zone", "function":"create_zone", "settings":{"input": "GeometryNodeSimulationInput", "output": "GeometryNodeSimulationOutput"}}),
-    ("Repeat Zone", {"label": "Repeat Zone", "function":"create_zone", "settings":{"input": "GeometryNodeRepeatInput", "output": "GeometryNodeRepeatOutput"}})
+    ("Simulation Zone", {"label": "Simulation Zone", "function":"create_zone", "settings":{"input_type": "GeometryNodeSimulationInput", "output_type": "GeometryNodeSimulationOutput"}}),
+    ("Repeat Zone", {"label": "Repeat Zone", "function":"create_zone", "settings":{"input_type": "GeometryNodeRepeatInput", "output_type": "GeometryNodeRepeatOutput"}})
 ]
 
 #Note - Structure -> (idname, {properties})
