@@ -17,24 +17,27 @@ def add_abbreviation(label):
     abbr = "".join(word[0] for word in label.replace("/", " ").split())
     return f"{label} ({abbr})"
 
-def generate_label(idname):
-    bl_rna = Node.bl_rna_get_subclass(idname)
-    if bl_rna is not None:
-        #return idname #Note - Temporary for easier debugging, should change back to label
-        return add_abbreviation(bl_rna.name)
+def generate_label(*, idname=None, label=None):
+    if (label is None) and (idname is None):
+        raise ValueError("Both idname and label inputs are None.")
 
-    else:
-        return "Unknown"
-        #TODO - Catch errors when node type isn't valid, right now just ignore them
-        #raise ValueError(f"'{idname}' is not a valid node type.")
+    if label is None:
+        bl_rna = Node.bl_rna_get_subclass(idname)
+        if bl_rna is not None:
+            label = bl_rna.name
+            #label = idname #Note - Temporary for easier debugging, should change back to label
+        else:
+            raise ValueError(f"'{idname}' is not a valid node type.")
+            
+    return add_abbreviation(iface_(label))
 
 def generate_entry_item(item):
     if isinstance(item, tuple):
         item, properties, *_ = item
         label = properties.get("label")
-        return (item, add_abbreviation(label), "")
+        return (item, generate_label(label=label), "")
     else:
-        return (item, generate_label(item), "")
+        return (item, generate_label(idname=item), "")
 
 
 def generate_entries(context, editor_type):
