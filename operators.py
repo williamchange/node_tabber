@@ -88,6 +88,10 @@ def create_node(context, node_type=None, settings=None):
 
     if settings is not None:
         for key, value in settings.items():
+            #Note - if setting name is "node_tree", fetch nodegroup from blend data
+            if key == 'node_tree': 
+                value = context.blend_data.node_groups.get(value)
+
             setattr(node, key, value)
 
     node.location = context.space_data.cursor_location
@@ -143,14 +147,16 @@ class NODE_OT_add_tabber_search(Operator):
 
     def execute(self, context):
         prefs = fetch_user_prefs()
+        node_type, settings = nodelists.settings_dict.get(self.my_enum)
     
-        self.report({'INFO'}, f"Selected: {self.my_enum}")
-        node = create_node(context, self.my_enum)
+        self.report({'INFO'}, f"Selected: {self.my_enum} - {settings}")
 
+        node = create_node(context, node_type, settings)
         make_selection(context, node)
 
-        if not prefs.quick_place:
-            bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
+        # Note - Disabled for easy debugging, will enable later
+        #if not prefs.quick_place:
+        #    bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
         return {'FINISHED'}
 
