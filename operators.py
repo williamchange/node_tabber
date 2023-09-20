@@ -23,6 +23,15 @@ editor_type = {
     "ShaderNodeTree" : "shader",
 }
 
+def fetch_active_nodetree(context):
+    edit_tree = context.space_data.edit_tree
+    node_tree = context.space_data.node_tree
+
+    if edit_tree is not None:
+        return edit_tree
+    else:
+        return node_tree
+
 def write_score(enum_items):
     tree_type = bpy.context.space_data.tree_type
     category = f'{tree_type.removesuffix("NodeTree").lower()}.json'
@@ -73,6 +82,25 @@ def append_subtypes(items):
     return subitems
 
 
+def create_node(context, node_type=None, settings=None):
+    tree = fetch_active_nodetree(context)
+    node = tree.nodes.new(type=node_type)
+
+    if settings is not None:
+        for key, value in settings.items():
+            setattr(node, key, value)
+
+    node.location = context.space_data.cursor_location
+    return node
+
+def make_selection(context, node):
+    tree = fetch_active_nodetree(context)
+    # select only the new node
+    for n in tree.nodes:
+        n.select = False
+    node.select = True
+    tree.nodes.active = node
+
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
 enum_callback_cache = []
@@ -114,7 +142,16 @@ class NODE_OT_add_tabber_search(Operator):
     my_enum: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
 
     def execute(self, context):
+        prefs = fetch_user_prefs()
+    
         self.report({'INFO'}, f"Selected: {self.my_enum}")
+        node = create_node(context, self.my_enum)
+
+        make_selection(context, node)
+
+        if not prefs.quick_place:
+            bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
+
         return {'FINISHED'}
 
     def invoke(self, context, event):
