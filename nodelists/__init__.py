@@ -43,7 +43,7 @@ def generate_nodegroup_entries(context):
     return group_entries
 
 
-def add_abbreviation(label):
+def abbreviation(label):
     #Note - Remove symbols like "-" "_" "()" "[]"
     stripped_label = label
     for char in ("/", "\\", "-", "_"):
@@ -54,7 +54,7 @@ def add_abbreviation(label):
             stripped_label = stripped_label.replace(char, "")
 
     abbr = "".join(word[0] for word in stripped_label.split())
-    return f"{label} ({abbr})"
+    return f"({abbr})"
 
 
 def generate_label(idname=None, label=None, subtype_labels=None):
@@ -69,14 +69,14 @@ def generate_label(idname=None, label=None, subtype_labels=None):
         else:
             raise ValueError(f"'{idname}' is not a valid node type.")
     
-    with_abbr = add_abbreviation(iface_(label))
-
+    label = iface_(label)
     if subtype_labels is not None:
         subtype_string = " ".join(subtype_labels) + " > "
     else:
         subtype_string = ""
 
-    return f"{subtype_string}{with_abbr}"
+    return f"{subtype_string}{label} {abbreviation(label)}"
+
 
 def fetch_subtypes_from_bl_rna(node_id, name, only_include=None):
     enum_list = Node.bl_rna_get_subclass(node_id).properties[name].enum_items.values()
