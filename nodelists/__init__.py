@@ -77,8 +77,12 @@ def generate_label(idname=None, label=None, subtype_labels=None):
 
     return f"{subtype_string}{with_abbr}"
 
-def fetch_subtypes_from_bl_rna(node_id, subtype_id):
-    return Node.bl_rna_get_subclass(node_id).properties[subtype_id].enum_items.values()
+def fetch_subtypes_from_bl_rna(node_id, name, only_include=None):
+    enum_list = Node.bl_rna_get_subclass(node_id).properties[name].enum_items.values()
+    if only_include is not None:
+        enum_list = (item for item in enum_list if (item.name in only_include))
+
+    return enum_list
 
 def merge_settings(settings, subtype_settings):
     all_settings = {}
@@ -131,11 +135,18 @@ def generate_entries(context, editor_type):
                 # TODO - Move most of this code to its own function once functionality is finalized
                 if subtypes is not None:
                     for subtype in subtypes:
-                        for subtype_value in fetch_subtypes_from_bl_rna(idname, subtype):
+                        if isinstance(subtype, dict):
+                            subtype_enum = fetch_subtypes_from_bl_rna(idname, **subtype) 
+                            subtype_name = subtype.get("name")                   
+                        else:
+                            subtype_enum = fetch_subtypes_from_bl_rna(idname, subtype)
+                            subtype_name = subtype
+
+                        for subtype_value in  subtype_enum:
                             value_id = subtype_value.identifier
                             value_label = subtype_value.name
                             subtype_labels = [value_label]
-                            subtype_settings = {subtype : value_id}
+                            subtype_settings = {subtype_name : value_id}
                             entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
 
     entries.extend(generate_nodegroup_entries(context))
