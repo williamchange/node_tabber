@@ -29,11 +29,13 @@ def generate_nodegroup_entries(context):
 
     # Note - Function for converting strings like 'ShaderNodeTree' to 'ShaderNodeGroup'
     nodegroup_id = lambda group : group.bl_idname.removesuffix("Tree").__add__("Group")
-    group_entries = [
-        generate_entry_item((nodegroup_id(group), {
+    
+
+    group_entries = [generate_entry_item(nodegroup_id(group), 
+            **{
                 "label":group.name, 
                 "settings":{"node_tree": group.name}
-            }))
+            })
         for group in valid_groups
         ]
 
@@ -45,7 +47,7 @@ def add_abbreviation(label):
     return f"{label} ({abbr})"
 
 
-def generate_label(*, idname=None, label=None):
+def generate_label(idname=None, label=None):
     if (label is None) and (idname is None):
         raise ValueError("Both idname and label inputs are None.")
 
@@ -60,20 +62,11 @@ def generate_label(*, idname=None, label=None):
     return add_abbreviation(iface_(label))
 
 
-def generate_entry_item(item):
-    if isinstance(item, tuple):
-        item, properties, *_ = item
-        label = properties.get("label")
-        enum_label = generate_label(label=label)
-        settings = properties.get("settings")
-        function = properties.get("function", "create_node")
-    else:
-        enum_label = generate_label(idname=item)
-        settings = None
-        function = "create_node"
+def generate_entry_item(idname, label=None, function="create_node", settings=None, **kwargs):
+    enum_label = generate_label(idname, label)
+    identifier = str((idname, enum_label))
 
-    identifier = str((item, enum_label))
-    settings_dict[identifier] = (item, function, settings)
+    settings_dict[identifier] = (idname, function, settings)
     return (identifier, enum_label, "")
 
 
@@ -95,7 +88,13 @@ def generate_entries(context, editor_type):
             poll_passed = poll(context, **poll_args)
 
         if poll_passed:
-            entries.extend([generate_entry_item(item) for item in item_list])
+            for item in item_list:
+                if isinstance(item, tuple):
+                    idname, properties, *_ = item   
+                else:
+                    idname, properties = item, {}
+
+                entries.append(generate_entry_item(idname, **properties))
      
     entries.extend(generate_nodegroup_entries(context))
     return entries
