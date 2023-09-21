@@ -43,7 +43,16 @@ def generate_nodegroup_entries(context):
 
 
 def add_abbreviation(label):
-    abbr = "".join(word[0] for word in label.replace("/", " ").split())
+    #Note - Remove symbols like "-" "_" "()" "[]"
+    stripped_label = label
+    for char in ("/", "\\", "-", "_"):
+        stripped_label = stripped_label.replace(char, " ")
+
+    for parens in ("()", "[]", "{}"):
+        for char in parens:
+            stripped_label = stripped_label.replace(char, "")
+
+    abbr = "".join(word[0] for word in stripped_label.split())
     return f"{label} ({abbr})"
 
 
