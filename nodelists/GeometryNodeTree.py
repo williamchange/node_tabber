@@ -12,8 +12,8 @@ specific_types = [
     ("ShaderNodeMix", {"label": "Mix Rotation", "settings":{"data_type": "ROTATION"}}),
 
     "GeometryNodeRaycast", #Note - Include as default entry
-    ("GeometryNodeRaycast", {"label": "Raycast Nearest", "settings":{"mapping": "NEAREST"}, "subtypes":("data_type",)}),
-    ("GeometryNodeRaycast", {"label": "Raycast Interpolated", "settings":{"mapping": "INTERPOLATED"}, "subtypes":("data_type",)}),
+    ("GeometryNodeRaycast", {"label": "Raycast Nearest", "settings":{"mapping": "NEAREST"}, "subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeRaycast", {"label": "Raycast Interpolated", "settings":{"mapping": "INTERPOLATED"}, "subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
 
     ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
     ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
@@ -192,7 +192,7 @@ items = [
     "GeometryNodeVolumeToMesh",
 ]
 
-has_subtypes = [
+basic_subtypes = [
     ("ShaderNodeClamp", {"subtypes":("clamp_type",)}),
     ("GeometryNodeSwitch", {"subtypes":("input_type",)}),
     ("GeometryNodeFilletCurve", {"subtypes":("mode",)}),
@@ -215,20 +215,23 @@ has_subtypes = [
     ("FunctionNodeFloatToInt", {"subtypes":("rounding_mode",)}),
     ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
     ("GeometryNodeScaleElements", {"subtypes":("domain",)}), #TODO - Add scale_mode subtype as well
+]
 
-    #TODO - Add filtering for excluding subtypes as these nodes seem to have a filter that's inaccessible to the API
-    ("FunctionNodeRandomValue", {"subtypes":("data_type",)}),
-    ("GeometryNodeSampleNearestSurface", {"subtypes":("data_type",)}),
-    ("GeometryNodeSampleUVSurface", {"subtypes":("data_type",)}),
-    ("GeometryNodeBlurAttribute", {"subtypes":("data_type",)}),
-    ("GeometryNodeInputNamedAttribute", {"subtypes":("data_type",)}),
-    ("GeometryNodeAttributeStatistic", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
-    ("GeometryNodeStoreNamedAttribute", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
-    ("GeometryNodeCaptureAttribute", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
-    ("GeometryNodeFieldOnDomain", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
-    ("GeometryNodeSampleIndex", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
-    ("GeometryNodeFieldAtIndex", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
-    ("GeometryNodeAccumulateField", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+filtered_subtypes = [
+    ("FunctionNodeRandomValue", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Boolean")},)}),
+    ("GeometryNodeBlurAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color")},)}),
+    ("GeometryNodeSampleNearestSurface", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeSampleUVSurface", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeInputNamedAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    
+    #TODO - Add domain subtype
+    ("GeometryNodeAttributeStatistic", {"subtypes":({"name":"data_type", "only_include":("Float", "Vector")},)}),
+    ("GeometryNodeAccumulateField", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector")},)}),
+    ("GeometryNodeSampleIndex", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeFieldAtIndex", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeFieldOnDomain", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeCaptureAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
+    ("GeometryNodeStoreNamedAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Byte Color", "Boolean", "2D Vector", "Quaternion")},)}),
 ]
 
 #Note - Included when context.preferences.experimental.use_new_volume_nodes is True:
@@ -255,7 +258,8 @@ tool_nodes = [
 all_items = [
     (items, None, None),
     (zones, None, None),
-    (has_subtypes, None, None),
+    (basic_subtypes, None, None),
+    (filtered_subtypes, None, None),
     (specific_types, None, None),
     (tool_nodes, is_tool, None),
     (experimental_volumes, use_experimental_volume_nodes, None),
