@@ -182,7 +182,6 @@ items = [
     "ShaderNodeTexWave",
     "ShaderNodeTexWhiteNoise",
     "FunctionNodeRandomValue",
-    "GeometryNodeSwitch",
     "GeometryNodeAccumulateField",
     "FunctionNodeAlignEulerToVector",
     "FunctionNodeAxisAngleToRotation",
@@ -210,6 +209,10 @@ items = [
     "GeometryNodeVolumeToMesh",
 ]
 
+has_subtypes = [
+    ("GeometryNodeSwitch", {"subtypes":("input_type",)}),
+]
+
 #Note - Included when context.preferences.experimental.use_new_volume_nodes is True:
 experimental_volumes = [
     "GeometryNodeMeanFilterSDFVolume",
@@ -234,6 +237,7 @@ tool_nodes = [
 all_items = [
     (items, None, None),
     (zones, None, None),
+    (has_subtypes, None, None),
     (specific_types, None, None),
     (tool_nodes, is_tool, None),
     (experimental_volumes, use_experimental_volume_nodes, None),
