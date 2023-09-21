@@ -6,8 +6,20 @@ zones = [
 
 #Note - Structure -> (idname, {properties})
 specific_types = [
-    ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}}),
-    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}})
+    "ShaderNodeMix", #Note - Include as default entry
+    ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}, "subtypes":("factor_mode",) }),
+    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
+    ("ShaderNodeMix", {"label": "Mix Rotation", "settings":{"data_type": "ROTATION"}}),
+
+    "GeometryNodeRaycast", #Note - Include as default entry
+    ("GeometryNodeRaycast", {"label": "Raycast Nearest", "settings":{"mapping": "NEAREST"}, "subtypes":("data_type",)}),
+    ("GeometryNodeRaycast", {"label": "Raycast Interpolated", "settings":{"mapping": "INTERPOLATED"}, "subtypes":("data_type",)}),
+
+    ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
+    ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
+ 
+    #TODO - Add function node subtypes
+    "FunctionNodeCompare", #Note - Include as default entry
 ]
 
 def is_tool(context):
@@ -17,22 +29,14 @@ def use_experimental_volume_nodes(context):
     return context.preferences.experimental.use_new_volume_nodes
 
 items = [
-    "GeometryNodeAttributeStatistic",
-    "GeometryNodeAttributeDomainSize",
-    "GeometryNodeBlurAttribute",
-    "GeometryNodeCaptureAttribute",
     "GeometryNodeRemoveAttribute",
-    "GeometryNodeStoreNamedAttribute",
     "ShaderNodeValToRGB",
     "ShaderNodeRGBCurve",
-    "FunctionNodeCombineColor",
-    "FunctionNodeSeparateColor",
     "GeometryNodeInputCurveHandlePositions",
     "GeometryNodeCurveLength",
     "GeometryNodeInputTangent",
     "GeometryNodeInputCurveTilt",
     "GeometryNodeCurveEndpointSelection",
-    "GeometryNodeCurveHandleTypeSelection",
     "GeometryNodeSplineLength",
     "GeometryNodeSplineParameter",
     "GeometryNodeInputSplineResolution",
@@ -41,14 +45,11 @@ items = [
     "GeometryNodeSetCurveRadius",
     "GeometryNodeSetCurveTilt",
     "GeometryNodeSetCurveHandlePositions",
-    "GeometryNodeCurveSetHandles",
     "GeometryNodeSetSplineResolution",
-    "GeometryNodeCurveSplineType",
     "GeometryNodeCurveToMesh",
     "GeometryNodeCurveToPoints",        
     "GeometryNodeDeformCurvesOnSurface",
     "GeometryNodeFillCurve",
-    "GeometryNodeFilletCurve",
     "GeometryNodeInterpolateCurves",
     "GeometryNodeResampleCurve",
     "GeometryNodeReverseCurve",
@@ -68,7 +69,6 @@ items = [
     "GeometryNodeJoinGeometry",
     "GeometryNodeInputID",
     "GeometryNodeInputIndex",
-    "GeometryNodeInputNamedAttribute",
     "GeometryNodeInputNormal",
     "GeometryNodeInputPosition",
     "GeometryNodeInputRadius",
@@ -77,16 +77,9 @@ items = [
     "GeometryNodeBoundBox",
     "GeometryNodeConvexHull",
     "GeometryNodeDeleteGeometry",
-    "GeometryNodeDuplicateElements",
-    "GeometryNodeMergeByDistance",
     "GeometryNodeTransform",
     "GeometryNodeSeparateComponents",
-    "GeometryNodeSeparateGeometry",
-    "GeometryNodeProximity",
     "GeometryNodeIndexOfNearest",
-    "GeometryNodeRaycast",
-    "GeometryNodeSampleIndex",
-    "GeometryNodeSampleNearest",
     "FunctionNodeInputBool",
     "FunctionNodeInputColor",
     "GeometryNodeInputImage",
@@ -128,18 +121,14 @@ items = [
     "GeometryNodeInputMeshIsland",
     "GeometryNodeInputShortestEdgePaths",
     "GeometryNodeInputMeshVertexNeighbors",
-    "GeometryNodeSampleNearestSurface",
-    "GeometryNodeSampleUVSurface",
     "GeometryNodeSetShadeSmooth",
     "GeometryNodeDualMesh",
     "GeometryNodeEdgePathsToCurves",
     "GeometryNodeEdgePathsToSelection",
     "GeometryNodeExtrudeMesh",
-    "GeometryNodeMeshBoolean",
     "GeometryNodeMeshToCurve",
     "GeometryNodeMeshToPoints",
     "GeometryNodeMeshToVolume",
-    "GeometryNodeScaleElements",
     "GeometryNodeSplitEdges",
     "GeometryNodeSubdivideMesh",
     "GeometryNodeSubdivisionSurface",
@@ -184,8 +173,6 @@ items = [
     "ShaderNodeTexVoronoi",
     "ShaderNodeTexWave",
     "ShaderNodeTexWhiteNoise",
-    "FunctionNodeRandomValue",
-    "GeometryNodeAccumulateField",
     "FunctionNodeAlignEulerToVector",
     "FunctionNodeAxisAngleToRotation",
     "FunctionNodeEulerToRotation",
@@ -196,16 +183,9 @@ items = [
     "FunctionNodeRotationToEuler",
     "FunctionNodeRotationToQuaternion",
     "FunctionNodeQuaternionToRotation",
-    "FunctionNodeBooleanMath",
-    "FunctionNodeCompare",
-    "ShaderNodeMapRange",
-    "ShaderNodeMath",
-    "ShaderNodeMix",
+    "ShaderNodeFloatCurve",
     "GeometryNodeUVPackIslands",
-    "GeometryNodeUVUnwrap",
     "ShaderNodeVectorCurve",
-    "ShaderNodeVectorMath",
-    "ShaderNodeVectorRotate",
     "ShaderNodeCombineXYZ",
     "ShaderNodeSeparateXYZ",
     "GeometryNodeVolumeCube",
@@ -213,7 +193,42 @@ items = [
 ]
 
 has_subtypes = [
+    ("ShaderNodeClamp", {"subtypes":("clamp_type",)}),
     ("GeometryNodeSwitch", {"subtypes":("input_type",)}),
+    ("GeometryNodeFilletCurve", {"subtypes":("mode",)}),
+    ("GeometryNodeUVUnwrap", {"subtypes":("method",)}),
+    ("ShaderNodeMath", {"subtypes":("operation",)}),
+    ("ShaderNodeVectorMath", {"subtypes":("operation",)}),
+    ("FunctionNodeBooleanMath", {"subtypes":("operation",)}),
+    ("GeometryNodeAttributeDomainSize", {"subtypes":("component",)}),
+    ("GeometryNodeProximity", {"subtypes":("target_element",)}),
+    ("GeometryNodeSampleNearest", {"subtypes":("domain",)}),
+    ("GeometryNodeCurveSplineType", {"subtypes":("spline_type",)}),
+    ("GeometryNodeCurveSetHandles", {"subtypes":("handle_type",)}),
+    ("GeometryNodeCurveHandleTypeSelection", {"subtypes":("handle_type",)}),
+    ("GeometryNodeMeshBoolean", {"subtypes":("operation",)}),
+    ("FunctionNodeCombineColor", {"subtypes":("mode",)}),
+    ("FunctionNodeSeparateColor", {"subtypes":("mode",)}),
+    ("GeometryNodeMergeByDistance", {"subtypes":("mode",)}),
+    ("GeometryNodeSeparateGeometry", {"subtypes":("domain",)}),
+    ("GeometryNodeDuplicateElements", {"subtypes":("domain",)}),
+    ("FunctionNodeFloatToInt", {"subtypes":("rounding_mode",)}),
+    ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
+    ("GeometryNodeScaleElements", {"subtypes":("domain",)}), #TODO - Add scale_mode subtype as well
+
+    #TODO - Add filtering for excluding subtypes as these nodes seem to have a filter that's inaccessible to the API
+    ("FunctionNodeRandomValue", {"subtypes":("data_type",)}),
+    ("GeometryNodeSampleNearestSurface", {"subtypes":("data_type",)}),
+    ("GeometryNodeSampleUVSurface", {"subtypes":("data_type",)}),
+    ("GeometryNodeBlurAttribute", {"subtypes":("data_type",)}),
+    ("GeometryNodeInputNamedAttribute", {"subtypes":("data_type",)}),
+    ("GeometryNodeAttributeStatistic", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+    ("GeometryNodeStoreNamedAttribute", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+    ("GeometryNodeCaptureAttribute", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+    ("GeometryNodeFieldOnDomain", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+    ("GeometryNodeSampleIndex", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+    ("GeometryNodeFieldAtIndex", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
+    ("GeometryNodeAccumulateField", {"subtypes":("data_type",)}),    #TODO - Add domain subtype as well
 ]
 
 #Note - Included when context.preferences.experimental.use_new_volume_nodes is True:
