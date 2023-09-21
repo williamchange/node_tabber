@@ -1,5 +1,6 @@
 from . import CompositorNodeTree, GeometryNodeTree, ShaderNodeTree, TextureNodeTree
 from .. import utils
+from itertools import product as itertools_product
 
 from bpy.types import Node
 from bpy.app.translations import (
@@ -131,23 +132,28 @@ def generate_entries(context, editor_type):
 
                 entries.append(generate_entry_item(idname, **properties))
 
-                # TODO - Make this support multiple subtype products, not just single subtypes
                 # TODO - Move most of this code to its own function once functionality is finalized
                 if subtypes is not None:
-                    for subtype in subtypes:
+                    enum_list = []
+                    name_list = []
+
+                    #TODO - Simplify this, lmao
+                    for subtype in subtypes: 
                         if isinstance(subtype, dict):
-                            subtype_enum = fetch_subtypes_from_bl_rna(idname, **subtype) 
+                            subtype_enum = fetch_subtypes_from_bl_rna(idname, **subtype)
+                            enum_list.append(subtype_enum)
                             subtype_name = subtype.get("name")                   
+                            name_list.append(subtype_name)
                         else:
                             subtype_enum = fetch_subtypes_from_bl_rna(idname, subtype)
+                            enum_list.append(subtype_enum)
                             subtype_name = subtype
+                            name_list.append(subtype_name)
 
-                        for subtype_value in  subtype_enum:
-                            value_id = subtype_value.identifier
-                            value_label = subtype_value.name
-                            subtype_labels = [value_label]
-                            subtype_settings = {subtype_name : value_id}
-                            entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
+                    for props in itertools_product(*enum_list):
+                        subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
+                        subtype_labels = [prop.name for prop in props]
+                        entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
 
     entries.extend(generate_nodegroup_entries(context))
     return entries
