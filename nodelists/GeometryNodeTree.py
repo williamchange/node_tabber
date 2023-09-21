@@ -18,8 +18,13 @@ specific_types = [
     ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
     ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
  
-    #TODO - Add function node subtypes
-    "FunctionNodeCompare", #Note - Include as default entry
+    #Note - 'data_type' subtypes are explicitly defined in order to have different abbreviations for each
+    #Note - Another reason is that it offers a "Compare Vector (CV)" default option. -for example, for when you don't want to define other paraameters like operation/mode
+    ("FunctionNodeCompare", {"label": "Compare", "settings":{"data_type": "FLOAT"}, "subtypes":({"name":"operation", "only_include":("Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal")},)}),
+    ("FunctionNodeCompare", {"label": "Compare Integer", "settings":{"data_type": "INT"}, "subtypes":({"name":"operation", "only_include":("Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal")},)}),
+    ("FunctionNodeCompare", {"label": "Compare Vector", "settings":{"data_type": "VECTOR"}, "subtypes":({"name":"operation", "only_include":("Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal")}, "mode",)}),
+    ("FunctionNodeCompare", {"label": "Compare String", "settings":{"data_type": "STRING"}, "subtypes":({"name":"operation", "only_include":("Equal", "Not Equal")},)}),
+    ("FunctionNodeCompare", {"label": "Compare Color", "settings":{"data_type": "RGBA"}, "subtypes":({"name":"operation", "only_include":("Equal", "Not Equal", "Brighter", "Darker")},)}),    
 ]
 
 def is_tool(context):
