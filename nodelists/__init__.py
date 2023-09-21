@@ -71,7 +71,7 @@ def generate_label(idname=None, label=None, subtype_labels=None):
     with_abbr = add_abbreviation(iface_(label))
 
     if subtype_labels is not None:
-        subtype_string = " ".join(subtype_label.title() for subtype_label in subtype_labels) + " > "
+        subtype_string = " ".join(subtype_label for subtype_label in subtype_labels) + " > "
     else:
         subtype_string = ""
 
