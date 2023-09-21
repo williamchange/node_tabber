@@ -214,7 +214,7 @@ basic_subtypes = [
     ("GeometryNodeDuplicateElements", {"subtypes":("domain",)}),
     ("FunctionNodeFloatToInt", {"subtypes":("rounding_mode",)}),
     ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
-    ("GeometryNodeScaleElements", {"subtypes":("domain",)}), #TODO - Add scale_mode subtype as well
+    ("GeometryNodeScaleElements", {"subtypes":("domain", "scale_mode")}),
 ]
 
 filtered_subtypes = [
@@ -223,15 +223,16 @@ filtered_subtypes = [
     ("GeometryNodeSampleNearestSurface", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
     ("GeometryNodeSampleUVSurface", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
     ("GeometryNodeInputNamedAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
-    
-    #TODO - Add domain subtype
-    ("GeometryNodeAttributeStatistic", {"subtypes":({"name":"data_type", "only_include":("Float", "Vector")},)}),
-    ("GeometryNodeAccumulateField", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector")},)}),
-    ("GeometryNodeSampleIndex", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
-    ("GeometryNodeFieldAtIndex", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
-    ("GeometryNodeFieldOnDomain", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
-    ("GeometryNodeCaptureAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
-    ("GeometryNodeStoreNamedAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Byte Color", "Boolean", "2D Vector", "Quaternion")},)}),
+]
+
+data_type_domain_nodes = [
+    ("GeometryNodeAttributeStatistic", {"subtypes":({"name":"data_type", "only_include":("Float", "Vector")}, "domain")}),
+    ("GeometryNodeAccumulateField", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector")}, "domain")}),
+    ("GeometryNodeSampleIndex", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")}, "domain")}),
+    ("GeometryNodeFieldAtIndex", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")}, "domain")}),
+    ("GeometryNodeFieldOnDomain", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")}, "domain")}),
+    ("GeometryNodeCaptureAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")}, "domain")}),
+    ("GeometryNodeStoreNamedAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Byte Color", "Boolean", "2D Vector", "Quaternion")}, "domain")}),
 ]
 
 #Note - Included when context.preferences.experimental.use_new_volume_nodes is True:
@@ -260,6 +261,7 @@ all_items = [
     (zones, None, None),
     (basic_subtypes, None, None),
     (filtered_subtypes, None, None),
+    (data_type_domain_nodes, None, None),
     (specific_types, None, None),
     (tool_nodes, is_tool, None),
     (experimental_volumes, use_experimental_volume_nodes, None),
