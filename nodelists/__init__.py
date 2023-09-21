@@ -1,4 +1,6 @@
 from . import CompositorNodeTree, GeometryNodeTree, ShaderNodeTree, TextureNodeTree
+from .. import utils
+
 from bpy.types import Node
 from bpy.app.translations import (
     pgettext_iface as iface_,
@@ -14,18 +16,8 @@ data_list = {
 
 settings_dict = {}
 
-def fetch_active_nodetree(context):
-    edit_tree = context.space_data.edit_tree
-    node_tree = context.space_data.node_tree
-
-    if edit_tree is not None:
-        return edit_tree
-    else:
-        return node_tree
-
-
 def generate_nodegroup_entries(context):
-    active_tree = fetch_active_nodetree(context)
+    active_tree = utils.fetch_active_nodetree(context)
     node_groups = context.blend_data.node_groups
 
     valid_groups = (group for group in node_groups

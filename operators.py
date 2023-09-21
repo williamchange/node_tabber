@@ -2,8 +2,7 @@ import bpy
 import json
 import time
 
-from . import nt_extras
-from . import nodelists
+from . import nt_extras, nodelists, utils
 
 from bpy.types import Operator
 from pathlib import Path
@@ -22,15 +21,6 @@ editor_type = {
     "TextureNodeTree" : "texture",
     "ShaderNodeTree" : "shader",
 }
-
-def fetch_active_nodetree(context):
-    edit_tree = context.space_data.edit_tree
-    node_tree = context.space_data.node_tree
-
-    if edit_tree is not None:
-        return edit_tree
-    else:
-        return node_tree
 
 def write_score(enum_items):
     tree_type = bpy.context.space_data.tree_type
@@ -55,7 +45,7 @@ def write_score(enum_items):
             json.dump(tally_dict, f, indent=4)
 
     return
-
+    
 
 def fetch_user_prefs(attr_id=None):
     prefs = bpy.context.preferences.addons[__package__].preferences
@@ -64,74 +54,6 @@ def fetch_user_prefs(attr_id=None):
     else:
         return getattr(prefs, attr_id)
 
-
-def append_subtypes(items):
-    from . import nt_extras
-    editor_type = bpy.context.space_data.tree_type
-    prefs = fetch_user_prefs()
-    sn_entries = nt_extras.subnode_entries(use_symbols=prefs.use_op_symbols, editor_type=editor_type)
-
-    subitems = []
-    for node, *_ in items:
-        subtypes = sn_entries.get(node, None)
-
-        if subtypes is not None:
-            for item in subtypes:
-                subitems.append((*item, ""))
-    
-    return subitems
-
-
-def create_node(context, node_type=None, *_, node_tree=None, **settings):
-    tree = fetch_active_nodetree(context)
-    node = tree.nodes.new(type=node_type)
-
-    if settings is not None:
-        for key, value in settings.items():
-            setattr(node, key, value)
-
-    if node_tree is not None:
-        node.node_tree = context.blend_data.node_groups.get(node_tree)        
-
-    node.location = context.space_data.cursor_location
-    return (node,)
-
-
-def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0), **settings,):
-    tree = fetch_active_nodetree(context)
-    input_node = tree.nodes.new(type=input_type)
-    output_node = tree.nodes.new(type=output_type)
-
-    # Simulation input must be paired with the output.
-    input_node.pair_with_output(output_node)
-
-    for node in (input_node, output_node):
-        node.location = context.space_data.cursor_location
-
-    x_offset, y_offset = offset
-    input_node.location.x -= x_offset
-    input_node.location.y -= y_offset
-    output_node.location.x += x_offset
-    output_node.location.y += y_offset
-
-    # Connect geometry sockets by default.
-    # Get the sockets by their types, because the name is not guaranteed due to i18n.
-    from_socket = next(s for s in input_node.outputs if s.type == 'GEOMETRY')
-    to_socket = next(s for s in output_node.inputs if s.type == 'GEOMETRY')
-    tree.links.new(to_socket, from_socket)
-    return (input_node, output_node)
-
-
-def make_selection(context, nodes):
-    tree = fetch_active_nodetree(context)
-    # select only the new node
-    for n in tree.nodes:
-        n.select = False
-    
-    for n in nodes:
-        n.select = True
-
-    tree.nodes.active = nodes[-1]
 
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
@@ -145,11 +67,6 @@ def cache_enum_results(function):
             
     return wrapped_func
 
-# TODO - Make this more extensible instead of having to define stuff in a dictionary
-functions = {
-    "create_node" : create_node,
-    "create_zone" : create_zone,
-}
 
 class NODE_OT_add_tabber_search(Operator):
     '''Add a node to the active tree'''
@@ -186,10 +103,8 @@ class NODE_OT_add_tabber_search(Operator):
             settings = {}
 
         self.report({'INFO'}, f"Selected: {self.my_enum} - {function_name}:{settings}")
-        function = functions.get(function_name)
+        function = getattr(utils, function_name)
         nodes = function(context, node_type, **settings)
-
-        make_selection(context, nodes)
 
         # Note - Disabled for easy debugging, will enable later
         #if not prefs.quick_place:
