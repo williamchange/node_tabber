@@ -5,6 +5,12 @@ group_nodes = [
     "NodeGroupOutput",
 ]
 
+basic_subtypes = [
+    ("TextureNodeMath", {"subtypes":("operation",)}),
+    ("TextureNodeCombineColor", {"subtypes":("mode",)}),
+    ("TextureNodeSeparateColor", {"subtypes":("mode",)}),
+]
+
 items = [
     "TextureNodeCoordinates",
     "TextureNodeCurveTime",
@@ -16,11 +22,8 @@ items = [
     "TextureNodeInvert",
     "TextureNodeMixRGB",
     "TextureNodeCurveRGB",
-    "TextureNodeCombineColor",
-    "TextureNodeSeparateColor",
     "TextureNodeValToRGB",
     "TextureNodeDistance",
-    "TextureNodeMath",
     "TextureNodeRGBToBW",
     "TextureNodeValToNor",
     "TextureNodeAt",
@@ -43,5 +46,6 @@ items = [
 
 all_items = [
     (items, None, None),
+    (basic_subtypes, None, None),
     (group_nodes, in_nodegroup, None),
 ]
