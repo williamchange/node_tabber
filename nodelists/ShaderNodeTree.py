@@ -2,9 +2,14 @@ from ..utils import in_nodegroup
 
 #Note - Structure -> (idname, {properties})
 specific_types = [
-    ("ShaderNodeMix", {"label": "Mix Vector", "settings": {"data_type": "VECTOR"}}),
-    ("ShaderNodeMix", {"label": "Mix Color", "settings": {"data_type": "RGBA"}})
-]
+    "ShaderNodeMix", #Note - Include as default entry
+    ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}, "subtypes":("factor_mode",) }),
+    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
+
+    ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
+    ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
+ ]
+
 
 def engine_and_shader_type_poll(context, engines=None, shader_types=None):
     current_engine = context.engine
@@ -61,18 +66,11 @@ items = [
     "ShaderNodeLightFalloff",
     "ShaderNodeRGBCurve",
     "ShaderNodeBlackbody",
-    "ShaderNodeClamp",
     "ShaderNodeValToRGB",
-    "ShaderNodeCombineColor",
     "ShaderNodeCombineXYZ",
     "ShaderNodeFloatCurve",
-    "ShaderNodeMapRange",
-    "ShaderNodeMath",
-    "ShaderNodeMix",
     "ShaderNodeRGBToBW",
-    "ShaderNodeSeparateColor",
     "ShaderNodeSeparateXYZ",
-    "ShaderNodeVectorMath",
     "ShaderNodeWavelength",
     "ShaderNodeTexBrick",
     "ShaderNodeTexChecker",
@@ -95,9 +93,17 @@ items = [
     "ShaderNodeNormalMap",
     "ShaderNodeVectorCurve",
     "ShaderNodeVectorDisplacement",
-    "ShaderNodeVectorRotate",
     "ShaderNodeVectorTransform",
     "ShaderNodeScript",
+]
+
+basic_subtypes = [
+    ("ShaderNodeClamp", {"subtypes":("clamp_type",)}),
+    ("ShaderNodeMath", {"subtypes":("operation",)}),
+    ("ShaderNodeVectorMath", {"subtypes":("operation",)}),
+    ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
+    ("ShaderNodeCombineColor", {"subtypes":("mode",)}),
+    ("ShaderNodeSeparateColor", {"subtypes":("mode",)}),
 ]
 
 #Note - Included when context.space_data.shader_type == 'WORLD':
@@ -153,6 +159,7 @@ object_cycles_eevee_shader_nodes = [
 all_items = [
     (items, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
     (specific_types, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
+    (basic_subtypes, None, None),
     (group_nodes, in_nodegroup, None),
     (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
     (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
