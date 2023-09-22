@@ -11,6 +11,13 @@ specific_types = [
     ("CompositorNodeSwitchView", {"label": "Switch Stereo View"})
 ]
 
+basic_subtypes = [
+    ("CompositorNodeMath", {"subtypes":("operation",)}),
+    ("CompositorNodeCombineColor", {"subtypes":("mode",)}),
+    ("CompositorNodeSeparateColor", {"subtypes":("mode",)}),
+    ("CompositorNodeFilter", {"subtypes":("filter_type",)}),
+]
+
 items = [
     "CompositorNodeBokehImage",
     "CompositorNodeImage",
@@ -42,15 +49,12 @@ items = [
     "CompositorNodeCurveRGB",
     "CompositorNodeTonemap",
     "CompositorNodeAlphaOver",
-    "CompositorNodeCombineColor",
-    "CompositorNodeSeparateColor",
     "CompositorNodeZcombine",
     "CompositorNodeAntiAliasing",
     "CompositorNodeDenoise",
     "CompositorNodeDespeckle",
     "CompositorNodeDilateErode",
     "CompositorNodeInpaint",
-    "CompositorNodeFilter",
     "CompositorNodeGlare",
     "CompositorNodeKuwahara",
     "CompositorNodePixelate",
@@ -93,7 +97,6 @@ items = [
     "CompositorNodeMovieDistortion",
     "CompositorNodeMapRange",
     "CompositorNodeMapValue",
-    "CompositorNodeMath",
     "CompositorNodeLevels",
     "CompositorNodeNormalize",
     "CompositorNodeSwitch",
@@ -106,5 +109,6 @@ items = [
 all_items = [
     (items, None, None),
     (specific_types, None, None),
+    (basic_subtypes, None, None),
     (group_nodes, in_nodegroup, None),
 ]
