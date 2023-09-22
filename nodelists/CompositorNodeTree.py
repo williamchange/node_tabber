@@ -1,3 +1,10 @@
+from ..utils import in_nodegroup
+
+group_nodes = [
+    "NodeGroupInput",
+    "NodeGroupOutput",
+]
+
 #Note - Structure -> (idname, {properties})
 specific_types = [
     ("CompositorNodeMixRGB", {"label": "Mix Color"}),
@@ -98,5 +105,6 @@ items = [
 
 all_items = [
     (items, None, None),
-    (specific_types, None, None)
+    (specific_types, None, None),
+    (group_nodes, in_nodegroup, None),
 ]

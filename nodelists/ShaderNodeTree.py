@@ -1,3 +1,4 @@
+from ..utils import in_nodegroup
 
 #Note - Structure -> (idname, {properties})
 specific_types = [
@@ -25,6 +26,10 @@ def engine_and_shader_type_poll(context, engines=None, shader_types=None):
 
     return (engine_poll and shader_type_poll)
 
+group_nodes = [
+    "NodeGroupInput",
+    "NodeGroupOutput",
+]
 
 items = [
     "ShaderNodeAmbientOcclusion",
@@ -148,6 +153,7 @@ object_cycles_eevee_shader_nodes = [
 all_items = [
     (items, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
     (specific_types, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
+    (group_nodes, in_nodegroup, None),
     (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
     (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
     (cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"engines": ('CYCLES', 'BLENDER_EEVEE')}),

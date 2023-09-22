@@ -1,3 +1,10 @@
+def in_nodegroup(context):
+    current_tree = context.space_data.edit_tree
+    node_groups = context.blend_data.node_groups
+
+    return current_tree in node_groups.values()
+    
+
 def fetch_active_nodetree(context):
     edit_tree = context.space_data.edit_tree
     node_tree = context.space_data.node_tree

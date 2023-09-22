@@ -33,6 +33,11 @@ def is_tool(context):
 def use_experimental_volume_nodes(context):
     return context.preferences.experimental.use_new_volume_nodes
 
+group_nodes = [
+    "NodeGroupInput",
+    "NodeGroupOutput",
+]
+
 items = [
     "GeometryNodeRemoveAttribute",
     "ShaderNodeValToRGB",
@@ -93,7 +98,6 @@ items = [
     "FunctionNodeInputString",
     "ShaderNodeValue",
     "FunctionNodeInputVector",
-    "NodeGroupInput",
     "GeometryNodeCollectionInfo",
     "GeometryNodeImageInfo",
     "GeometryNodeIsViewport",
@@ -152,7 +156,6 @@ items = [
     "GeometryNodeEdgesOfVertex",
     "GeometryNodeOffsetCornerInFace",
     "GeometryNodeVertexOfCorner",
-    "NodeGroupOutput",
     "GeometryNodeViewer",
     "GeometryNodeDistributePointsInVolume",
     "GeometryNodeDistributePointsOnFaces",
@@ -264,6 +267,7 @@ tool_nodes = [
 all_items = [
     (items, None, None),
     (zones, None, None),
+    (group_nodes, None, None),
     (basic_subtypes, None, None),
     (filtered_subtypes, None, None),
     (data_type_domain_nodes, None, None),

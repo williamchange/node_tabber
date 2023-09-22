@@ -1,3 +1,10 @@
+from ..utils import in_nodegroup
+
+group_nodes = [
+    "NodeGroupInput",
+    "NodeGroupOutput",
+]
+
 items = [
     "TextureNodeCoordinates",
     "TextureNodeCurveTime",
@@ -35,5 +42,6 @@ items = [
 ]
 
 all_items = [
-    (items, None, None)
+    (items, None, None),
+    (group_nodes, in_nodegroup, None),
 ]
