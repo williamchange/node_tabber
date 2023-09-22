@@ -9,6 +9,7 @@ basic_subtypes = [
     ("TextureNodeMath", {"subtypes":("operation",)}),
     ("TextureNodeCombineColor", {"subtypes":("mode",)}),
     ("TextureNodeSeparateColor", {"subtypes":("mode",)}),
+    ("TextureNodeMixRGB", {"subtypes":("blend_type",)}),
 ]
 
 items = [
@@ -20,7 +21,6 @@ items = [
     "TextureNodeViewer",
     "TextureNodeHueSaturation",
     "TextureNodeInvert",
-    "TextureNodeMixRGB",
     "TextureNodeCurveRGB",
     "TextureNodeValToRGB",
     "TextureNodeDistance",

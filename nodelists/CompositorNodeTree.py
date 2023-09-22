@@ -7,7 +7,7 @@ group_nodes = [
 
 #Note - Structure -> (idname, {properties})
 specific_types = [
-    ("CompositorNodeMixRGB", {"label": "Mix Color"}),
+    ("CompositorNodeMixRGB", {"label": "Mix Color", "subtypes":("blend_type",)}),
     ("CompositorNodeSwitchView", {"label": "Switch Stereo View"})
 ]
 
