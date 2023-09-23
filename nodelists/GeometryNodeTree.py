@@ -157,8 +157,6 @@ items = [
     "GeometryNodeOffsetCornerInFace",
     "GeometryNodeVertexOfCorner",
     "GeometryNodeViewer",
-    "GeometryNodeDistributePointsInVolume",
-    "GeometryNodeDistributePointsOnFaces",
     "GeometryNodePoints",
     "GeometryNodePointsToCurves",
     "GeometryNodePointsToVertices",
@@ -222,6 +220,8 @@ basic_subtypes = [
     ("GeometryNodeDuplicateElements", {"subtypes":("domain",)}),
     ("FunctionNodeFloatToInt", {"subtypes":("rounding_mode",)}),
     ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
+    ("GeometryNodeDistributePointsInVolume", {"subtypes":("mode",)}),
+    ("GeometryNodeDistributePointsOnFaces", {"subtypes":("distribute_method",)}),
     ("GeometryNodeScaleElements", {"subtypes":("domain", "scale_mode")}),
 ]
 
