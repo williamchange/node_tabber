@@ -171,14 +171,8 @@ items = [
     "FunctionNodeInputSpecialCharacters",
     "ShaderNodeTexBrick",
     "ShaderNodeTexChecker",
-    "ShaderNodeTexGradient",
     "GeometryNodeImageTexture",
     "ShaderNodeTexMagic",
-    "ShaderNodeTexMusgrave",
-    "ShaderNodeTexNoise",
-    "ShaderNodeTexVoronoi",
-    "ShaderNodeTexWave",
-    "ShaderNodeTexWhiteNoise",
     "FunctionNodeAlignEulerToVector",
     "FunctionNodeAxisAngleToRotation",
     "FunctionNodeEulerToRotation",
@@ -225,6 +219,22 @@ basic_subtypes = [
     ("GeometryNodeScaleElements", {"subtypes":("domain", "scale_mode")}),
 ]
 
+texture_subtypes = [
+    ("ShaderNodeTexGradient", {"subtypes":("gradient_type",)}),
+    ("ShaderNodeTexMusgrave", {"subtypes":("musgrave_type", "musgrave_dimensions",)}),
+
+    "ShaderNodeTexVoronoi",
+    ("ShaderNodeTexVoronoi", {"only_subtypes":True, "subtypes":({"name":"voronoi_dimensions", "only_include":("1D",)},)}),
+    ("ShaderNodeTexVoronoi", {"only_subtypes":True, "subtypes":("distance", {"name":"voronoi_dimensions", "only_include":("2D", "3D", "4D")},)}),
+
+    ("ShaderNodeTexNoise", {"subtypes":("noise_dimensions",)}),
+    ("ShaderNodeTexWhiteNoise", {"subtypes":("noise_dimensions",)}),
+
+    "ShaderNodeTexWave",
+    ("ShaderNodeTexWave", {"only_subtypes":True, "subtypes":({"name":"bands_direction", "only_include":("X", "Y", "Z", "Diagonal")}, "wave_profile", {"name":"wave_type", "only_include":("Bands")},)}),    
+    ("ShaderNodeTexWave", {"only_subtypes":True, "subtypes":({"name":"rings_direction", "only_include":("X", "Y", "Z", "Spherical")}, "wave_profile", {"name":"wave_type", "only_include":("Rings")},)}),    
+]
+
 filtered_subtypes = [
     ("FunctionNodeRandomValue", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Boolean")},)}),
     ("GeometryNodeBlurAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color")},)}),
@@ -269,6 +279,7 @@ all_items = [
     (zones, None, None),
     (group_nodes, None, None),
     (basic_subtypes, None, None),
+    (texture_subtypes, None, None),
     (filtered_subtypes, None, None),
     (data_type_domain_nodes, None, None),
     (specific_types, None, None),

@@ -75,15 +75,9 @@ items = [
     "ShaderNodeTexBrick",
     "ShaderNodeTexChecker",
     "ShaderNodeTexEnvironment",
-    "ShaderNodeTexGradient",
     "ShaderNodeTexImage",
     "ShaderNodeTexMagic",
-    "ShaderNodeTexMusgrave",
-    "ShaderNodeTexNoise",
     "ShaderNodeTexPointDensity",
-    "ShaderNodeTexVoronoi",
-    "ShaderNodeTexWave",
-    "ShaderNodeTexWhiteNoise",
     "ShaderNodeBump",
     "ShaderNodeNormal",
     "ShaderNodeVectorCurve",
@@ -97,13 +91,29 @@ basic_subtypes = [
     ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
     ("ShaderNodeCombineColor", {"subtypes":("mode",)}),
     ("ShaderNodeSeparateColor", {"subtypes":("mode",)}),
-    ("ShaderNodeTexSky", {"subtypes":("sky_type",)}),
     ("ShaderNodeNormalMap", {"subtypes":("space",)}),
     ("ShaderNodeDisplacement", {"subtypes":("space",)}),
     ("ShaderNodeVectorDisplacement", {"subtypes":("space",)}),
-    ("ShaderNodeTexIES", {"subtypes":("mode",)}),
     ("ShaderNodeScript", {"subtypes":("mode",)}),
     ("ShaderNodeMapping", {"subtypes":("vector_type",)}),
+]
+
+texture_subtypes = [
+    ("ShaderNodeTexSky", {"subtypes":("sky_type",)}),
+    ("ShaderNodeTexIES", {"subtypes":("mode",)}),
+    ("ShaderNodeTexGradient", {"subtypes":("gradient_type",)}),
+    ("ShaderNodeTexMusgrave", {"subtypes":("musgrave_type", "musgrave_dimensions",)}),
+
+    "ShaderNodeTexVoronoi",
+    ("ShaderNodeTexVoronoi", {"only_subtypes":True, "subtypes":({"name":"voronoi_dimensions", "only_include":("1D",)},)}),
+    ("ShaderNodeTexVoronoi", {"only_subtypes":True, "subtypes":("distance", {"name":"voronoi_dimensions", "only_include":("2D", "3D", "4D")},)}),
+
+    ("ShaderNodeTexNoise", {"subtypes":("noise_dimensions",)}),
+    ("ShaderNodeTexWhiteNoise", {"subtypes":("noise_dimensions",)}),
+
+    "ShaderNodeTexWave",
+    ("ShaderNodeTexWave", {"only_subtypes":True, "subtypes":({"name":"bands_direction", "only_include":("X", "Y", "Z", "Diagonal")}, "wave_profile", {"name":"wave_type", "only_include":("Bands")},)}),    
+    ("ShaderNodeTexWave", {"only_subtypes":True, "subtypes":({"name":"rings_direction", "only_include":("X", "Y", "Z", "Spherical")}, "wave_profile", {"name":"wave_type", "only_include":("Rings")},)}),    
 ]
 
 #Note - Included when context.space_data.shader_type == 'WORLD':
@@ -160,6 +170,7 @@ all_items = [
     (items, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
     (specific_types, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
     (basic_subtypes, None, None),
+    (texture_subtypes, None, None),
     (group_nodes, in_nodegroup, None),
     (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
     (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
