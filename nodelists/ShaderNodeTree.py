@@ -76,25 +76,18 @@ items = [
     "ShaderNodeTexChecker",
     "ShaderNodeTexEnvironment",
     "ShaderNodeTexGradient",
-    "ShaderNodeTexIES",
     "ShaderNodeTexImage",
     "ShaderNodeTexMagic",
     "ShaderNodeTexMusgrave",
     "ShaderNodeTexNoise",
     "ShaderNodeTexPointDensity",
-    "ShaderNodeTexSky",
     "ShaderNodeTexVoronoi",
     "ShaderNodeTexWave",
     "ShaderNodeTexWhiteNoise",
     "ShaderNodeBump",
-    "ShaderNodeDisplacement",
-    "ShaderNodeMapping",
     "ShaderNodeNormal",
-    "ShaderNodeNormalMap",
     "ShaderNodeVectorCurve",
-    "ShaderNodeVectorDisplacement",
     "ShaderNodeVectorTransform",
-    "ShaderNodeScript",
 ]
 
 basic_subtypes = [
@@ -104,6 +97,13 @@ basic_subtypes = [
     ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
     ("ShaderNodeCombineColor", {"subtypes":("mode",)}),
     ("ShaderNodeSeparateColor", {"subtypes":("mode",)}),
+    ("ShaderNodeTexSky", {"subtypes":("sky_type",)}),
+    ("ShaderNodeNormalMap", {"subtypes":("space",)}),
+    ("ShaderNodeDisplacement", {"subtypes":("space",)}),
+    ("ShaderNodeVectorDisplacement", {"subtypes":("space",)}),
+    ("ShaderNodeTexIES", {"subtypes":("mode",)}),
+    ("ShaderNodeScript", {"subtypes":("mode",)}),
+    ("ShaderNodeMapping", {"subtypes":("vector_type",)}),
 ]
 
 #Note - Included when context.space_data.shader_type == 'WORLD':
