@@ -73,7 +73,7 @@ class NODE_OT_add_tabber_search(Operator):
     bl_idname = "node.add_tabber_search"
     bl_label = "Search and Add Node"
     bl_options = {'REGISTER', 'UNDO'}
-    bl_property = "my_enum"
+    bl_property = "search_entry"
 
     # TODO - Add poll function to only execute operator when current space type is NODE_EDITOR
     #@classmethod
@@ -94,15 +94,15 @@ class NODE_OT_add_tabber_search(Operator):
 
         return items
 
-    my_enum: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
+    search_entry: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
 
     def execute(self, context):
         prefs = fetch_user_prefs()
-        node_type, function_name, settings = nodelists.settings_dict.get(self.my_enum)
+        node_type, function_name, settings = nodelists.settings_dict.get(self.search_entry)
         if settings is None:
             settings = {}
 
-        self.report({'INFO'}, f"Selected: {self.my_enum} - {function_name}:{settings}")
+        self.report({'INFO'}, f"Selected: {self.search_entry} - {function_name}:{settings}")
         function = getattr(utils, function_name)
         nodes = function(context, node_type, **settings)
 
