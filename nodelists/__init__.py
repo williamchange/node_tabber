@@ -130,7 +130,8 @@ def generate_entries(context, editor_type):
                     idname, properties = item, {}
                     subtypes = None
 
-                entries.append(generate_entry_item(idname, **properties))
+                if not properties.get("only_subtypes", False):
+                    entries.append(generate_entry_item(idname, **properties))
 
                 # TODO - Move most of this code to its own function once functionality is finalized
                 if subtypes is not None:
