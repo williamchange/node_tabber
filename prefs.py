@@ -6,9 +6,6 @@ import rna_keymap_ui
 addon_keymaps = []
 
 class NodeTabberPreferences(AddonPreferences):
-    # This must match the addon name, use '__package__'
-    # when defining this in a submodule of a python package.
-
     bl_idname = __package__
 
     sort_by_tally: BoolProperty(
@@ -16,21 +13,19 @@ class NodeTabberPreferences(AddonPreferences):
         default=True,
         description="Enables Node Tabber to keep a tally of most used nodes, and populate popup accordingly.",
     )
+    
     tally_weight: IntProperty(
         name="Tally Weight",
         default=35,
         description='Maximum number of tallies for each node selected. Affects the "weighting" of the order of tallied results in the node list.',
     )
+
     quick_place: BoolProperty(
         name='Enable "Quick Place"',
         default=False,
         description="Allows immediate placement of selected node.",
     )
-    nt_debug: BoolProperty(
-        name="Debug Output",
-        default=False,
-        description="Prints Node Tabber debug to console.",
-    )
+
     sub_search: BoolProperty(
         name="Enable Sub Searching",
         default=True,
@@ -45,8 +40,6 @@ class NodeTabberPreferences(AddonPreferences):
 
     def draw(self, context):
         layout = self.layout
-
-        # Prefs
         box = layout.box()
         row1 = box.row()
         row2 = box.row()
@@ -58,12 +51,9 @@ class NodeTabberPreferences(AddonPreferences):
         row2.prop(self, "sort_by_tally")
         row2.operator("node.reset_tally", text="Reset Tally")
         row2.prop(self, "tally_weight")
-        # row2.prop(self, "nt_debug")
         # row4.label(text="NOTE: CTRL + TAB : Performs \"Edit Group\" functionality.")
 
         # Keymaps
-
-        # box = layout.box()
         col = box.column()
         col.label(text="Keymap List:", icon="KEYINGSET")
 
