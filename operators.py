@@ -1,47 +1,7 @@
 import bpy
-import json
-import time
 
-from . import nt_extras, nodelists, utils
-
+from . import nodelists, utils
 from bpy.types import Operator
-from pathlib import Path
-
-ADDON_PATH = Path(__file__).parent
-TALLY_PATH = ADDON_PATH / "tally_cache"
-ADDON_NAME = ADDON_PATH.name
-
-# Create Folder for caching node tallies
-if not TALLY_PATH.exists():
-    TALLY_PATH.mkdir()
-
-editor_type = {
-    "CompositorNodeTree" : "compositor",
-    "GeometryNodeTree" : "geometry",
-    "TextureNodeTree" : "texture",
-    "ShaderNodeTree" : "shader",
-}
-    
-
-def fetch_tally_path(tree_type):
-    return Path(TALLY_PATH, f'{tree_type}.json')    
-
-
-def fetch_user_prefs(attr_id=None):
-    prefs = bpy.context.preferences.addons[__package__].preferences
-    if attr_id is None:
-        return prefs
-    else:
-        return getattr(prefs, attr_id)
-
-
-def sort_enum_items(tree_type, items):
-    path = fetch_tally_path(tree_type)
-    if path.exists():
-        with open(path, "r") as f:
-            tally_dict = json.load(f)
-
-        items.sort(key=lambda x : tally_dict.get(x[0], 0), reverse=True)
 
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
@@ -70,37 +30,20 @@ class NODE_OT_add_tabber_search(Operator):
     # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
     def define_items(self, context):
-        prefs = fetch_user_prefs()
+        prefs = utils.fetch_user_prefs()
         tree_type = context.space_data.tree_type
 
         items = nodelists.generate_entries(context, editor_type=tree_type)
 
         if prefs.sort_by_tally:
-            sort_enum_items(tree_type, items)
+            utils.sort_enum_items(tree_type, items)
 
         return items
 
     search_entry: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
 
-    @staticmethod
-    def update_tally(context, entry):
-        prefs = fetch_user_prefs() 
-        tree_type = context.space_data.tree_type
-
-        path = fetch_tally_path(tree_type)
-        if path.exists():
-            with open(path, "r") as f:
-                tally_dict = json.load(f)
-        else:
-            tally_dict = {}
-
-        tally_dict[entry] = min(tally_dict.get(entry, 0) + 1, prefs.tally_weight)
-
-        with open(path, "w") as f:
-            json.dump(tally_dict, f, indent=4)
-
     def execute(self, context):
-        prefs = fetch_user_prefs()
+        prefs = utils.fetch_user_prefs()
         node_type, function_name, settings = nodelists.settings_dict.get(self.search_entry)
         if settings is None:
             settings = {}
@@ -113,7 +56,7 @@ class NODE_OT_add_tabber_search(Operator):
         #if not prefs.quick_place:
         #    bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
-        self.update_tally(context, entry=self.search_entry)
+        utils.update_tally(context, entry=self.search_entry)
         return {'FINISHED'}
 
     def invoke(self, context, event):
@@ -128,7 +71,8 @@ class NODE_OT_reset_tally(Operator):
     bl_label = "Reset node tally count"
 
     def execute(self, context):
-        tally_files = tuple(TALLY_PATH.glob("*.json"))
+        tally_path = utils.TALLY_FOLDER
+        tally_files = tuple(tally_path.glob("*.json"))
 
         if len(tally_files) <= 0:
             self.report({"INFO"}, "No tallies to reset.")
