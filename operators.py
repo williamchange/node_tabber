@@ -2,6 +2,7 @@ import bpy
 
 from . import nodelists, utils
 from bpy.types import Operator
+from bpy.props import EnumProperty
 
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
@@ -40,7 +41,7 @@ class NODE_OT_add_tabber_search(Operator):
 
         return items
 
-    search_entry: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
+    search_entry: EnumProperty(items = define_items, name='New Name', default=None)
 
     def execute(self, context):
         prefs = utils.fetch_user_prefs()
