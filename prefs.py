@@ -11,7 +11,7 @@ class NodeTabberPreferences(AddonPreferences):
 
     bl_idname = __package__
 
-    tally: BoolProperty(
+    sort_by_tally: BoolProperty(
         name="Enable tally count",
         default=True,
         description="Enables Node Tabber to keep a tally of most used nodes, and populate popup accordingly.",
@@ -55,7 +55,7 @@ class NodeTabberPreferences(AddonPreferences):
         row1.prop(self, "sub_search")
         row1.prop(self, "quick_place")
         row1.prop(self, "use_op_symbols")
-        row2.prop(self, "tally")
+        row2.prop(self, "sort_by_tally")
         row2.operator("node.reset_tally", text="Reset Tally")
         row2.prop(self, "tally_weight")
         # row2.prop(self, "nt_debug")

@@ -22,7 +22,12 @@ editor_type = {
     "ShaderNodeTree" : "shader",
 }
     
-    
+
+def fetch_tally_path(tree_type):
+    category_name = f'{tree_type.removesuffix("NodeTree").lower()}.json'
+    return Path(TALLY_PATH, category_name)    
+
+
 def fetch_user_prefs(attr_id=None):
     prefs = bpy.context.preferences.addons[__package__].preferences
     if attr_id is None:
@@ -30,6 +35,14 @@ def fetch_user_prefs(attr_id=None):
     else:
         return getattr(prefs, attr_id)
 
+
+def sort_enum_items(tree_type, items):
+    path = fetch_tally_path(tree_type)
+    if path.exists():
+        with open(path, "r") as f:
+            tally_dict = json.load(f)
+
+        items.sort(key=lambda x : tally_dict.get(x[0], 0), reverse=True)
 
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
@@ -59,9 +72,8 @@ class NODE_OT_add_tabber_search(Operator):
     def update_tally(context, entry):
         prefs = fetch_user_prefs() 
         tree_type = context.space_data.tree_type
-        category_name = f'{tree_type.removesuffix("NodeTree").lower()}.json'
 
-        path = Path(TALLY_PATH, category_name)
+        path = fetch_tally_path(tree_type)
         if path.exists():
             with open(path, "r") as f:
                 tally_dict = json.load(f)
@@ -73,17 +85,20 @@ class NODE_OT_add_tabber_search(Operator):
         with open(path, "w") as f:
             json.dump(tally_dict, f, indent=4)
 
-
     # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
     def define_items(self, context):
+        prefs = fetch_user_prefs()
         tree_type = context.space_data.tree_type
 
         if tree_type is not None:
             items = nodelists.generate_entries(context, editor_type=tree_type)
         else:
             items = []
-            
+
+        if prefs.sort_by_tally:
+            sort_enum_items(tree_type, items)
+
         return items
 
     search_entry: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
