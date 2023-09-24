@@ -110,6 +110,7 @@ def generate_entries(context, editor_type):
 
     entries = []
     settings_dict.clear()
+    prefs = utils.fetch_user_prefs()
     data = data_list.get(editor_type)
 
     if data is None:
@@ -137,7 +138,7 @@ def generate_entries(context, editor_type):
                     entries.append(generate_entry_item(idname, **properties))
 
                 # TODO - Move most of this code to its own function once functionality is finalized
-                if subtypes is not None:
+                if prefs.sub_search and subtypes is not None:
                     enum_list = []
                     name_list = []
 
