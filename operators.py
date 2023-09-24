@@ -73,10 +73,7 @@ class NODE_OT_add_tabber_search(Operator):
         prefs = fetch_user_prefs()
         tree_type = context.space_data.tree_type
 
-        if tree_type is not None:
-            items = nodelists.generate_entries(context, editor_type=tree_type)
-        else:
-            items = []
+        items = nodelists.generate_entries(context, editor_type=tree_type)
 
         if prefs.sort_by_tally:
             sort_enum_items(tree_type, items)

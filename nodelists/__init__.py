@@ -105,6 +105,9 @@ def generate_entry_item(idname, label=None, function="create_node", settings=Non
 
 
 def generate_entries(context, editor_type):
+    if editor_type is None:
+        return []
+
     entries = []
     settings_dict.clear()
     data = data_list.get(editor_type)
