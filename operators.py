@@ -21,32 +21,8 @@ editor_type = {
     "TextureNodeTree" : "texture",
     "ShaderNodeTree" : "shader",
 }
-
-def write_score(enum_items):
-    tree_type = bpy.context.space_data.tree_type
-    category = f'{tree_type.removesuffix("NodeTree").lower()}.json'
-    prefs = bpy.context.preferences.addons[ADDON_NAME].preferences
-
-    path = Path(TALLY_PATH, category)
-    if not path.exists():
-        with open(path, "w") as f:
-            json.dump({enum_items: {"tally": 1}}, f, indent=4)
-
-        print(f"Nodetabber created : {path}")
-    else:
-        with open(path, "r") as f:
-            tally_dict = json.load(f)
-
-        old_tally = tally_dict.get(enum_items, {"tally": 0})["tally"]
-        new_tally = min(old_tally + 1, prefs.tally_weight)
-        tally_dict[enum_items] = {"tally": new_tally}
-
-        with open(path, "w") as f:
-            json.dump(tally_dict, f, indent=4)
-
-    return
     
-
+    
 def fetch_user_prefs(attr_id=None):
     prefs = bpy.context.preferences.addons[__package__].preferences
     if attr_id is None:
@@ -79,6 +55,25 @@ class NODE_OT_add_tabber_search(Operator):
     #@classmethod
     #def poll(self, context):
 
+    @staticmethod
+    def update_tally(context, entry):
+        prefs = fetch_user_prefs() 
+        tree_type = context.space_data.tree_type
+        category_name = f'{tree_type.removesuffix("NodeTree").lower()}.json'
+
+        path = Path(TALLY_PATH, category_name)
+        if path.exists():
+            with open(path, "r") as f:
+                tally_dict = json.load(f)
+        else:
+            tally_dict = {}
+
+        tally_dict[entry] = min(tally_dict.get(entry, 0) + 1, prefs.tally_weight)
+
+        with open(path, "w") as f:
+            json.dump(tally_dict, f, indent=4)
+
+
     # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
     def define_items(self, context):
@@ -110,6 +105,7 @@ class NODE_OT_add_tabber_search(Operator):
         #if not prefs.quick_place:
         #    bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
+        self.update_tally(context, entry=self.search_entry)
         return {'FINISHED'}
 
     def invoke(self, context, event):
