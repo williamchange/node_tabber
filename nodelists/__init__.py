@@ -29,16 +29,10 @@ def generate_nodegroup_entries(context):
     )
 
     # Note - Function for converting strings like 'ShaderNodeTree' to 'ShaderNodeGroup'
-    nodegroup_id = lambda group : group.bl_idname.removesuffix("Tree").__add__("Group")
-    
+    nodegroup_id = lambda group : group.bl_idname.removesuffix("Tree").__add__("Group")   
 
-    group_entries = [generate_entry_item(nodegroup_id(group), 
-            **{
-                "label":group.name, 
-                "settings":{"node_tree": group.name}
-            })
-        for group in valid_groups
-        ]
+    group_entries = [generate_entry_item(nodegroup_id(group), label=group.name, settings={"node_tree": group.name})
+        for group in valid_groups]
 
     return group_entries
 
