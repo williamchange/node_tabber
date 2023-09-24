@@ -24,8 +24,7 @@ editor_type = {
     
 
 def fetch_tally_path(tree_type):
-    category_name = f'{tree_type.removesuffix("NodeTree").lower()}.json'
-    return Path(TALLY_PATH, category_name)    
+    return Path(TALLY_PATH, f'{tree_type}.json')    
 
 
 def fetch_user_prefs(attr_id=None):
