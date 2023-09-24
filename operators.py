@@ -68,23 +68,6 @@ class NODE_OT_add_tabber_search(Operator):
     #@classmethod
     #def poll(self, context):
 
-    @staticmethod
-    def update_tally(context, entry):
-        prefs = fetch_user_prefs() 
-        tree_type = context.space_data.tree_type
-
-        path = fetch_tally_path(tree_type)
-        if path.exists():
-            with open(path, "r") as f:
-                tally_dict = json.load(f)
-        else:
-            tally_dict = {}
-
-        tally_dict[entry] = min(tally_dict.get(entry, 0) + 1, prefs.tally_weight)
-
-        with open(path, "w") as f:
-            json.dump(tally_dict, f, indent=4)
-
     # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
     def define_items(self, context):
@@ -102,6 +85,23 @@ class NODE_OT_add_tabber_search(Operator):
         return items
 
     search_entry: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
+
+    @staticmethod
+    def update_tally(context, entry):
+        prefs = fetch_user_prefs() 
+        tree_type = context.space_data.tree_type
+
+        path = fetch_tally_path(tree_type)
+        if path.exists():
+            with open(path, "r") as f:
+                tally_dict = json.load(f)
+        else:
+            tally_dict = {}
+
+        tally_dict[entry] = min(tally_dict.get(entry, 0) + 1, prefs.tally_weight)
+
+        with open(path, "w") as f:
+            json.dump(tally_dict, f, indent=4)
 
     def execute(self, context):
         prefs = fetch_user_prefs()
