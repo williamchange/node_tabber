@@ -83,10 +83,7 @@ class NODE_OT_add_tabber_search(Operator):
             items = nodelists.generate_entries(context, editor_type=tree_type)
         else:
             items = []
-
-        #if fetch_user_prefs("sub_search"):
-        #    items.extend(append_subtypes(items))
-
+            
         return items
 
     search_entry: bpy.props.EnumProperty(items = define_items, name='New Name', default=None)
