@@ -1,6 +1,7 @@
+import itertools
+
 from . import CompositorNodeTree, GeometryNodeTree, ShaderNodeTree, TextureNodeTree
 from .. import utils
-from itertools import product as itertools_product
 
 from bpy.types import Node
 from bpy.app.translations import (
@@ -106,16 +107,12 @@ def filter_by_poll(context, entries):
             item_list, poll, poll_args = entry
             if poll_args is None:
                 poll_args = {}
-            poll_passed = poll(context, **poll_args)
-            
-            if poll_passed:
+                
+            if poll(context, **poll_args):
                 yield item_list
 
 
 def generate_entries(context, editor_type):
-    if editor_type is None:
-        return []
-
     entries = []
     settings_dict.clear()
     prefs = utils.fetch_user_prefs()
@@ -124,34 +121,33 @@ def generate_entries(context, editor_type):
     if data is None:
         raise ValueError(f"Node Tabber does not support editor type '{editor_type}'")
     
-    for item_list in filter_by_poll(context, data.all_items):
-        for item in item_list:
-            if isinstance(item, tuple):
-                idname, properties, *_ = item   
-            else:
-                idname, properties = item, {}
+    for item in itertools.chain(*filter_by_poll(context, data.all_items)):
+        if isinstance(item, tuple):
+            idname, properties, *_ = item   
+        else:
+            idname, properties = item, {}
 
-            subtypes = properties.get("subtypes", None)
-            only_subtypes = properties.get("only_subtypes", False)
+        subtypes = properties.get("subtypes", None)
+        only_subtypes = properties.get("only_subtypes", False)
 
-            if not only_subtypes:
-                entries.append(generate_entry_item(idname, **properties))
+        if not only_subtypes:
+            entries.append(generate_entry_item(idname, **properties))
 
-            # TODO - Move most of this code to its own function once functionality is finalized
-            if prefs.sub_search and subtypes is not None:
-                enum_list, name_list = [], []
-                for subtype in subtypes:
-                    if isinstance(subtype, dict):
-                        enum_list.append(fetch_subtypes_from_bl_rna(idname, **subtype))
-                        name_list.append(subtype.get("name"))
-                    else:
-                        enum_list.append(fetch_subtypes_from_bl_rna(idname, subtype))
-                        name_list.append(subtype)
+        # TODO - Move most of this code to its own function once functionality is finalized
+        if prefs.sub_search and subtypes is not None:
+            enum_list, name_list = [], []
+            for subtype in subtypes:
+                if isinstance(subtype, dict):
+                    enum_list.append(fetch_subtypes_from_bl_rna(idname, **subtype))
+                    name_list.append(subtype.get("name"))
+                else:
+                    enum_list.append(fetch_subtypes_from_bl_rna(idname, subtype))
+                    name_list.append(subtype)
 
-                for props in itertools_product(*enum_list):
-                    subtype_labels = [prop.name for prop in props]
-                    subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
-                    entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
+            for props in itertools.product(*enum_list):
+                subtype_labels = [prop.name for prop in props]
+                subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
+                entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
 
     entries.extend(generate_nodegroup_entries(context))
     return entries
