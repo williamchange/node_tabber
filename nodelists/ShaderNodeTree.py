@@ -167,10 +167,10 @@ object_cycles_eevee_shader_nodes = [
     ]
 
 all_items = [
-    (items, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
-    (specific_types, None, None), # Note - Structure goes like -> (items, poll_function, arguments)
-    (basic_subtypes, None, None),
-    (texture_subtypes, None, None),
+    items,
+    specific_types,
+    basic_subtypes,
+    texture_subtypes,
     (group_nodes, in_nodegroup, None),
     (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
     (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),

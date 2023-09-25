@@ -98,6 +98,20 @@ def generate_entry_item(idname, label=None, function="create_node", settings=Non
     return (identifier, enum_label, "")
 
 
+def filter_by_poll(context, entries):
+    for entry in entries:
+        if not isinstance(entry, tuple):
+            yield entry
+        else:
+            item_list, poll, poll_args = entry
+            if poll_args is None:
+                poll_args = {}
+            poll_passed = poll(context, **poll_args)
+            
+            if poll_passed:
+                yield item_list
+
+
 def generate_entries(context, editor_type):
     if editor_type is None:
         return []
@@ -109,50 +123,41 @@ def generate_entries(context, editor_type):
 
     if data is None:
         raise ValueError(f"Node Tabber does not support editor type '{editor_type}'")
+    
+    for item_list in filter_by_poll(context, data.all_items):
+        for item in item_list:
+            if isinstance(item, tuple):
+                idname, properties, *_ = item   
+                subtypes = properties.get("subtypes")
+            else:
+                idname, properties = item, {}
+                subtypes = None
 
-    for item_list, poll, poll_args in data.all_items:
-        # Note - Move the poll checking inside function call so that it updates according to context
-        if poll is None:
-            poll_passed = True
-        else:
-            if poll_args is None:
-                poll_args = {}
-            poll_passed = poll(context, **poll_args)
+            if not properties.get("only_subtypes", False):
+                entries.append(generate_entry_item(idname, **properties))
 
-        if poll_passed:
-            for item in item_list:
-                if isinstance(item, tuple):
-                    idname, properties, *_ = item   
-                    subtypes = properties.get("subtypes")
-                else:
-                    idname, properties = item, {}
-                    subtypes = None
+            # TODO - Move most of this code to its own function once functionality is finalized
+            if prefs.sub_search and subtypes is not None:
+                enum_list = []
+                name_list = []
 
-                if not properties.get("only_subtypes", False):
-                    entries.append(generate_entry_item(idname, **properties))
+                #TODO - Simplify this, lmao
+                for subtype in subtypes: 
+                    if isinstance(subtype, dict):
+                        subtype_enum = fetch_subtypes_from_bl_rna(idname, **subtype)
+                        enum_list.append(subtype_enum)
+                        subtype_name = subtype.get("name")                   
+                        name_list.append(subtype_name)
+                    else:
+                        subtype_enum = fetch_subtypes_from_bl_rna(idname, subtype)
+                        enum_list.append(subtype_enum)
+                        subtype_name = subtype
+                        name_list.append(subtype_name)
 
-                # TODO - Move most of this code to its own function once functionality is finalized
-                if prefs.sub_search and subtypes is not None:
-                    enum_list = []
-                    name_list = []
-
-                    #TODO - Simplify this, lmao
-                    for subtype in subtypes: 
-                        if isinstance(subtype, dict):
-                            subtype_enum = fetch_subtypes_from_bl_rna(idname, **subtype)
-                            enum_list.append(subtype_enum)
-                            subtype_name = subtype.get("name")                   
-                            name_list.append(subtype_name)
-                        else:
-                            subtype_enum = fetch_subtypes_from_bl_rna(idname, subtype)
-                            enum_list.append(subtype_enum)
-                            subtype_name = subtype
-                            name_list.append(subtype_name)
-
-                    for props in itertools_product(*enum_list):
-                        subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
-                        subtype_labels = [prop.name for prop in props]
-                        entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
+                for props in itertools_product(*enum_list):
+                    subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
+                    subtype_labels = [prop.name for prop in props]
+                    entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
 
     entries.extend(generate_nodegroup_entries(context))
     return entries

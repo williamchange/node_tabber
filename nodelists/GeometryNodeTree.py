@@ -275,14 +275,14 @@ tool_nodes = [
 
 
 all_items = [
-    (items, None, None),
-    (zones, None, None),
-    (group_nodes, None, None),
-    (basic_subtypes, None, None),
-    (texture_subtypes, None, None),
-    (filtered_subtypes, None, None),
-    (data_type_domain_nodes, None, None),
-    (specific_types, None, None),
+    items,
+    zones,
+    group_nodes,
+    basic_subtypes,
+    texture_subtypes,
+    filtered_subtypes,
+    data_type_domain_nodes,
+    specific_types,
     (tool_nodes, is_tool, None),
     (experimental_volumes, use_experimental_volume_nodes, None),
 ]

@@ -107,8 +107,8 @@ items = [
 ]
 
 all_items = [
-    (items, None, None),
-    (specific_types, None, None),
-    (basic_subtypes, None, None),
+    items,
+    specific_types,
+    basic_subtypes,
     (group_nodes, in_nodegroup, None),
 ]

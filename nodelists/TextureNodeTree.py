@@ -45,7 +45,7 @@ items = [
 ]
 
 all_items = [
-    (items, None, None),
-    (basic_subtypes, None, None),
+    items,
+    basic_subtypes,
     (group_nodes, in_nodegroup, None),
 ]
