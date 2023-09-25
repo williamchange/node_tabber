@@ -128,35 +128,29 @@ def generate_entries(context, editor_type):
         for item in item_list:
             if isinstance(item, tuple):
                 idname, properties, *_ = item   
-                subtypes = properties.get("subtypes")
             else:
                 idname, properties = item, {}
-                subtypes = None
 
-            if not properties.get("only_subtypes", False):
+            subtypes = properties.get("subtypes", None)
+            only_subtypes = properties.get("only_subtypes", False)
+
+            if not only_subtypes:
                 entries.append(generate_entry_item(idname, **properties))
 
             # TODO - Move most of this code to its own function once functionality is finalized
             if prefs.sub_search and subtypes is not None:
-                enum_list = []
-                name_list = []
-
-                #TODO - Simplify this, lmao
-                for subtype in subtypes: 
+                enum_list, name_list = [], []
+                for subtype in subtypes:
                     if isinstance(subtype, dict):
-                        subtype_enum = fetch_subtypes_from_bl_rna(idname, **subtype)
-                        enum_list.append(subtype_enum)
-                        subtype_name = subtype.get("name")                   
-                        name_list.append(subtype_name)
+                        enum_list.append(fetch_subtypes_from_bl_rna(idname, **subtype))
+                        name_list.append(subtype.get("name"))
                     else:
-                        subtype_enum = fetch_subtypes_from_bl_rna(idname, subtype)
-                        enum_list.append(subtype_enum)
-                        subtype_name = subtype
-                        name_list.append(subtype_name)
+                        enum_list.append(fetch_subtypes_from_bl_rna(idname, subtype))
+                        name_list.append(subtype)
 
                 for props in itertools_product(*enum_list):
-                    subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
                     subtype_labels = [prop.name for prop in props]
+                    subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
                     entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
 
     entries.extend(generate_nodegroup_entries(context))
