@@ -70,9 +70,8 @@ class NODE_OT_add_tabber_search(Operator):
 
 class NODE_OT_reset_tally(Operator):
     """Reset the tally count"""
-
     bl_idname = "node.reset_tally"
-    bl_label = "Reset node tally count"
+    bl_label = "Reset Tally"
 
     def execute(self, context):
         tally_path = utils.TALLY_FOLDER
