@@ -112,6 +112,9 @@ def filter_by_poll(context, entries):
                 yield item_list
 
 
+def is_entry_valid(entry, properties):
+    return Node.bl_rna_get_subclass(entry) is None and (properties.get("function") != "create_zone")
+
 def generate_entries(context, editor_type):
     entries = []
     settings_dict.clear()
@@ -126,6 +129,11 @@ def generate_entries(context, editor_type):
             idname, properties, *_ = item   
         else:
             idname, properties = item, {}
+
+        # Add check for skipping invalid entries to prevent the function from short-circuiting
+        if is_entry_valid(idname, properties):
+            print(f"Node Tabber: {idname} is not a valid node type, entry not included in search.")
+            continue
 
         subtypes = properties.get("subtypes", None)
         only_subtypes = properties.get("only_subtypes", False)
