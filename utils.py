@@ -43,7 +43,7 @@ def update_tally(context, entry):
     else:
         tally_dict = {}
 
-    tally_dict[entry] = min(tally_dict.get(entry, 0) + 1, prefs.tally_weight)
+    tally_dict[entry] = min(tally_dict.get(entry, 0) + 1, prefs.tally_max)
 
     with open(path, "w") as f:
         json.dump(tally_dict, f, indent=4)

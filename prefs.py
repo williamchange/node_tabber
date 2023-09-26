@@ -8,42 +8,56 @@ addon_keymaps = []
 class NodeTabberPreferences(AddonPreferences):
     bl_idname = __package__
 
-    sort_by_tally: BoolProperty(
-        name="Enable tally count",
+    include_subtypes: BoolProperty(
+        name="Include Subtypes",
         default=True,
-        description="Enables Node Tabber to keep a tally of most used nodes, and populate popup accordingly.",
-    )
-    
-    tally_weight: IntProperty(
-        name="Tally Weight",
-        default=35,
-        description='Maximum number of tallies for each node selected. Affects the "weighting" of the order of tallied results in the node list.',
+        description='Include node subtypes in search entries. Ex: Math node will include operations such as Add, Subtract, etc',
     )
 
     quick_place: BoolProperty(
         name='Enable "Quick Place"',
         default=False,
-        description="Allows immediate placement of selected node.",
-    )
-
-    sub_search: BoolProperty(
-        name="Enable Sub Searching",
-        default=True,
-        description="Allows searching within node operations. Eg. PP could return Ping-Pong in the Math node.",
+        description="Once a node entry is selected, immediately place it on the nodetree",
     )
 
     use_op_symbols: BoolProperty(
         name="Use Operation Symbols",
         default=False,
-        description='Replaces math op abbreviations with their symbols. Eg. "ADD (A) MATH" becomes "ADD (+) MATH".',
+        description='Add a symbol for specific math operations. Ex: "Add > Math (M)" becomes "Add (+) > Math (M)"',
+    )
+
+    sort_by_tally: BoolProperty(
+        name="Enable Sort By Tally",
+        default=True,
+        description='When enabled, more frequently used entries get place higher on search results',
+    )
+    
+    tally_max: IntProperty(
+        name="Tally Max",
+        default=35,
+        description='Sets the maximum cap for tallies, which affects their ranking when "Sort By Tally" is enabled',
+        min=0,
+        soft_max=9999,
     )
 
     def draw(self, context):
         layout = self.layout
+        row = layout.row()
+        col1 = row.column(align=True)
+        col1.label(text="Search Options:")
+        col1.prop(self, "include_subtypes")
+        col1.prop(self, "quick_place")
+        col1.prop(self, "use_op_symbols")
+
+        col2 = row.column()
+        col2.label(text="Tally Options:")
+        subrow = col2.row(align=True)
+        subrow.prop(self, "sort_by_tally")
+        subrow.prop(self, "tally_max")
         col2.operator("node.reset_tallies")
-        # row4.label(text="NOTE: CTRL + TAB : Performs \"Edit Group\" functionality.")
 
         # Keymaps
+        box = layout.box()
         col = box.column()
         col.label(text="Keymap List:", icon="KEYINGSET")
 
