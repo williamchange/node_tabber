@@ -15,6 +15,7 @@ specific_types = [
     ("GeometryNodeRaycast", {"label": "Raycast Nearest", "settings":{"mapping": "NEAREST"}, "subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
     ("GeometryNodeRaycast", {"label": "Raycast Interpolated", "settings":{"mapping": "INTERPOLATED"}, "subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Boolean", "Quaternion")},)}),
 
+    "ShaderNodeMapRange",
     ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
     ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
  

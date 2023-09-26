@@ -6,6 +6,7 @@ specific_types = [
     ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}, "subtypes":("factor_mode",) }),
     ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
 
+    "ShaderNodeMapRange",
     ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
     ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
  ]
