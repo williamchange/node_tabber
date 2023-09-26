@@ -40,17 +40,7 @@ class NodeTabberPreferences(AddonPreferences):
 
     def draw(self, context):
         layout = self.layout
-        box = layout.box()
-        row1 = box.row()
-        row2 = box.row()
-        row3 = box.row()
-        row4 = box.row()
-        row1.prop(self, "sub_search")
-        row1.prop(self, "quick_place")
-        row1.prop(self, "use_op_symbols")
-        row2.prop(self, "sort_by_tally")
-        row2.operator("node.reset_tally", text="Reset Tally")
-        row2.prop(self, "tally_weight")
+        col2.operator("node.reset_tallies")
         # row4.label(text="NOTE: CTRL + TAB : Performs \"Edit Group\" functionality.")
 
         # Keymaps

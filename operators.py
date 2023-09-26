@@ -68,10 +68,10 @@ class NODE_OT_add_tabber_search(Operator):
         return {'CANCELLED'}
 
 
-class NODE_OT_reset_tally(Operator):
+class NODE_OT_reset_tallies(Operator):
     """Reset the tally count"""
-    bl_idname = "node.reset_tally"
-    bl_label = "Reset Tally"
+    bl_idname = "node.reset_tallies"
+    bl_label = "Reset Tallies"
 
     def execute(self, context):
         tally_path = utils.TALLY_FOLDER
@@ -91,7 +91,7 @@ class NODE_OT_reset_tally(Operator):
 
 classes = (
     NODE_OT_add_tabber_search,
-    NODE_OT_reset_tally
+    NODE_OT_reset_tallies
     )
 
 
