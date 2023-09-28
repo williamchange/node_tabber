@@ -5,6 +5,11 @@ group_nodes = [
     "NodeGroupOutput",
 ]
 
+frame_and_reroute = [
+    "NodeFrame",
+    "NodeReroute",
+]
+
 #Note - Structure -> (idname, {properties})
 specific_types = [
     ("CompositorNodeMixRGB", {"label": "Mix Color", "subtypes":("blend_type",)}),
@@ -111,4 +116,5 @@ all_items = [
     specific_types,
     basic_subtypes,
     (group_nodes, in_nodegroup, None),
+    frame_and_reroute,
 ]

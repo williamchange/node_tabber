@@ -39,6 +39,11 @@ group_nodes = [
     "NodeGroupOutput",
 ]
 
+frame_and_reroute = [
+    "NodeFrame",
+    "NodeReroute",
+]
+
 items = [
     "GeometryNodeRemoveAttribute",
     "ShaderNodeValToRGB",
@@ -48,6 +53,7 @@ items = [
     "GeometryNodeInputTangent",
     "GeometryNodeInputCurveTilt",
     "GeometryNodeCurveEndpointSelection",
+    "GeometryNodeInputSplineCyclic",
     "GeometryNodeSplineLength",
     "GeometryNodeSplineParameter",
     "GeometryNodeInputSplineResolution",
@@ -56,6 +62,7 @@ items = [
     "GeometryNodeSetCurveRadius",
     "GeometryNodeSetCurveTilt",
     "GeometryNodeSetCurveHandlePositions",
+    "GeometryNodeSetSplineCyclic",
     "GeometryNodeSetSplineResolution",
     "GeometryNodeCurveToMesh",
     "GeometryNodeCurveToPoints",        
@@ -67,6 +74,7 @@ items = [
     "GeometryNodeSubdivideCurve",
     "GeometryNodeTrimCurve",
     "GeometryNodeCurveArc",
+    "GeometryNodeCurvePrimitiveCircle",
     "GeometryNodeCurvePrimitiveBezierSegment",
     "GeometryNodeCurvePrimitiveLine",
     "GeometryNodeCurveSpiral",
@@ -136,6 +144,7 @@ items = [
     "GeometryNodeEdgePathsToCurves",
     "GeometryNodeEdgePathsToSelection",
     "GeometryNodeExtrudeMesh",
+    "GeometryNodeFlipFaces",
     "GeometryNodeMeshToCurve",
     "GeometryNodeMeshToPoints",
     "GeometryNodeMeshToVolume",
@@ -148,6 +157,7 @@ items = [
     "GeometryNodeMeshCylinder",
     "GeometryNodeMeshGrid",
     "GeometryNodeMeshIcoSphere",
+    "GeometryNodeMeshCircle",
     "GeometryNodeMeshLine",
     "GeometryNodeMeshUVSphere",
     "GeometryNodeCornersOfEdge",
@@ -155,6 +165,7 @@ items = [
     "GeometryNodeCornersOfVertex",
     "GeometryNodeEdgesOfCorner",
     "GeometryNodeEdgesOfVertex",
+    "GeometryNodeFaceOfCorner",
     "GeometryNodeOffsetCornerInFace",
     "GeometryNodeVertexOfCorner",
     "GeometryNodeViewer",
@@ -286,4 +297,5 @@ all_items = [
     specific_types,
     (tool_nodes, is_tool, None),
     (experimental_volumes, use_experimental_volume_nodes, None),
+    frame_and_reroute,
 ]

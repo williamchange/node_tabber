@@ -37,6 +37,11 @@ group_nodes = [
     "NodeGroupOutput",
 ]
 
+frame_and_reroute = [
+    "NodeFrame",
+    "NodeReroute",
+]
+
 items = [
     "ShaderNodeAmbientOcclusion",
     "ShaderNodeAttribute",
@@ -179,4 +184,5 @@ all_items = [
     (object_cycles_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": 'CYCLES'}),
     (object_eevee_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": 'BLENDER_EEVEE'}),
     (object_cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": ('CYCLES', 'BLENDER_EEVEE')}),
+    frame_and_reroute,
 ]

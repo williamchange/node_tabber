@@ -5,6 +5,11 @@ group_nodes = [
     "NodeGroupOutput",
 ]
 
+frame_and_reroute = [
+    "NodeFrame",
+    "NodeReroute",
+]
+
 basic_subtypes = [
     ("TextureNodeMath", {"subtypes":("operation",)}),
     ("TextureNodeCombineColor", {"subtypes":("mode",)}),
@@ -48,4 +53,5 @@ all_items = [
     items,
     basic_subtypes,
     (group_nodes, in_nodegroup, None),
+    frame_and_reroute,
 ]
