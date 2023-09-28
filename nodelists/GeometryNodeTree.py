@@ -29,10 +29,10 @@ specific_types = [
 ]
 
 def is_tool(context):
-    return context.space_data.geometry_nodes_type == 'TOOL'
+    return getattr(context.space_data, "geometry_nodes_type", None) == 'TOOL'
 
 def use_experimental_volume_nodes(context):
-    return context.preferences.experimental.use_new_volume_nodes
+    return getattr(context.preferences.experimental, "use_new_volume_nodes", False)
 
 group_nodes = [
     "NodeGroupInput",
