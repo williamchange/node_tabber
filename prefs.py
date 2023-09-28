@@ -31,6 +31,12 @@ class NodeTabberPreferences(AddonPreferences):
         default=True,
         description='When enabled, more frequently used entries get place higher on search results',
     )
+
+    hide_group_selector: BoolProperty(
+        name="Hide Group Selector",
+        default=True,
+        description='When enabled, more frequently used entries get place higher on search results',
+    )
     
     tally_max: IntProperty(
         name="Tally Max",
@@ -48,6 +54,7 @@ class NodeTabberPreferences(AddonPreferences):
         col1.prop(self, "include_subtypes")
         col1.prop(self, "quick_place")
         col1.prop(self, "use_op_symbols")
+        col1.prop(self, "hide_group_selector")
 
         col2 = row.column()
         col2.label(text="Tally Options:")

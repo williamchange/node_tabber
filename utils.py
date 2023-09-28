@@ -69,6 +69,7 @@ def fetch_active_nodetree(context):
 def create_node(context, node_type=None, *_, node_tree=None, **settings):
     tree = fetch_active_nodetree(context)
     node = tree.nodes.new(type=node_type)
+    prefs = fetch_user_prefs()
 
     try:
         if settings is not None:
@@ -76,7 +77,8 @@ def create_node(context, node_type=None, *_, node_tree=None, **settings):
                 setattr(node, key, value)
 
         if node_tree is not None:
-            node.node_tree = context.blend_data.node_groups.get(node_tree)        
+            node.node_tree = context.blend_data.node_groups.get(node_tree)   
+            node.show_options = not prefs.hide_group_selector
 
         node.location = context.space_data.cursor_location
         return make_selection(context, nodes=(node,))
