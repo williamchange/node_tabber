@@ -22,7 +22,7 @@ class NodeTabberPreferences(AddonPreferences):
 
     use_op_symbols: BoolProperty(
         name="Use Operation Symbols",
-        default=False,
+        default=True,
         description='Add a symbol for specific math operations. Ex: "Add > Math (M)" becomes "Add (+) > Math (M)"',
     )
 
