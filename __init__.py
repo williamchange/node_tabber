@@ -21,7 +21,7 @@ bl_info = {
     "name": "Node Tabber",
     "author": "Richard Lyons <info@rixiefx.com>",
     "version": (0, 1, 4),
-    "blender": (3, 4, 0),
+    "blender": (4, 0, 0),
     "description": "Allows quick smart searching of node types.",
     "category": "Node",
 }
