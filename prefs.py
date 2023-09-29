@@ -1,9 +1,7 @@
 import bpy
 from bpy.types import AddonPreferences
 from bpy.props import BoolProperty, IntProperty
-import rna_keymap_ui
-
-addon_keymaps = []
+from . import keymap_ui
 
 class NodeTabberPreferences(AddonPreferences):
     bl_idname = __package__
@@ -67,58 +65,20 @@ class NodeTabberPreferences(AddonPreferences):
         subrow.prop(self, "tally_max")
         col2.operator("node.reset_tallies")
 
-        # Keymaps
-        box = layout.box()
-        col = box.column()
-        col.label(text="Keymap List:", icon="KEYINGSET")
-
-        wm = bpy.context.window_manager
-        kc = wm.keyconfigs.user
-        old_km_name = ""
-        get_kmi_l = []
-        for km_add, kmi_add in addon_keymaps:
-            for km_con in kc.keymaps:
-                if km_add.name == km_con.name:
-                    km = km_con
-                    break
-
-            for kmi_con in km.keymap_items:
-                if kmi_add.idname == kmi_con.idname:
-                    if kmi_add.name == kmi_con.name:
-                        get_kmi_l.append((km, kmi_con))
-
-        get_kmi_l = sorted(set(get_kmi_l), key=get_kmi_l.index)
-
-        for km, kmi in get_kmi_l:
-            if not km.name == old_km_name:
-                col.label(text=str(km.name), icon="DOT")
-            col.context_pointer_set("keymap", km)
-            rna_keymap_ui.draw_kmi([], kc, km, kmi, col, 0)
-            col.separator()
-            old_km_name = km.name
-
+        keymap_ui.draw_keyboard_shorcuts(self, layout, context, 
+            toggle_idname="node_tabber_show_keymaps", starting_indent_level=0)
 
 
 def register():
-    bpy.utils.register_class(NodeTabberPreferences)
+    bpy.types.WindowManager.node_tabber_show_keymaps = BoolProperty(
+        name="Show Keymaps",
+        default=False,
+        description="When enabled, displays keymap list"
+    )
 
-    wm = bpy.context.window_manager
-    kc = wm.keyconfigs.addon
-    if kc:
-        km = wm.keyconfigs.addon.keymaps.new(
-            name="Node Editor", space_type="NODE_EDITOR"
-        )
-        kmi = km.keymap_items.new("node.add_tabber_search", type="TAB", value="PRESS")
-        addon_keymaps.append((km, kmi))
-        kmi = km.keymap_items.new(
-            "node.group_edit", type="TAB", value="PRESS", ctrl=True
-        )
-        addon_keymaps.append((km, kmi))
+    bpy.utils.register_class(NodeTabberPreferences)
 
 
 def unregister():
-    for km, kmi in addon_keymaps:
-        km.keymap_items.remove(kmi)
-    addon_keymaps.clear()
-
     bpy.utils.unregister_class(NodeTabberPreferences)
+    del bpy.types.WindowManager.node_tabber_show_keymaps

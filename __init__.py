@@ -26,13 +26,19 @@ bl_info = {
     "category": "Node",
 }
 
-from . import operators, prefs
+from . import operators, keymaps, prefs
+modules = (operators, keymaps, prefs)
+
 
 def register():
-    operators.register()
-    prefs.register()
+    for module in modules:
+        module.register()
 
 
 def unregister():
-    operators.unregister()
-    prefs.unregister()
+    for module in modules:
+        module.unregister()
+
+
+if __name__ == "__main__":
+    register()
