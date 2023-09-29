@@ -132,7 +132,7 @@ def draw_keyboard_shorcuts(pref_data, layout, context, toggle_idname, keymap_spa
         return
 
     kc = wm.keyconfigs.user
-    # TIP - The list(dic.fromkeys is for removing duplicate keymaps
+    # TIP - The list(dict.fromkeys is for removing duplicate keymaps
     get_kmi_l = list(dict.fromkeys(find_matching_keymaps(keyconfig=kc)))
 
     for km, kmi in get_kmi_l:
