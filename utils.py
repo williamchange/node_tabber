@@ -9,6 +9,47 @@ TALLY_FOLDER = ADDON_FOLDER / "tally_cache"
 # Create Folder for caching node tallies
 if not TALLY_FOLDER.exists():
     TALLY_FOLDER.mkdir()
+    
+
+nodes_with_op_symbols = [
+    "ShaderNodeMath",
+    "CompositorNodeMath",
+    "TextureNodeMath",
+    "ShaderNodeVectorMath",
+    "FunctionNodeBooleanMath",
+    "FunctionNodeCompare",
+]
+
+op_symbol_dict = {
+    "Add" : "+",
+    "Subtract" : "-",
+    "Multiply" : "*",
+    "Divide" : "/",
+    "Multiply Add" : "*+",
+    "Power" : "^",
+    "Exponent" : "e^",
+    "Less Than" : "<",
+    "Less Than or Equal" : "<=",
+    "Greater Than" : ">",
+    "Greater Than or Equal" : ">=",
+    "Scale" : "*",
+    "Cross Product" : "x",
+    "And" : "^",
+    "Or" : "v",
+    "Not" : "!",
+    "Not And" : "!^",
+    "Nor" : "!v",
+    "Equal" : "=",
+    "Not Equal" : "!=",
+    "Imply" : "->",
+}
+
+def add_op_symbols(operation):
+    op_symbol = op_symbol_dict.get(operation)
+    if op_symbol is not None:
+        return f"{operation} ({op_symbol})"
+
+    return operation
 
 
 def fetch_tally_path(tree_type):

@@ -53,6 +53,8 @@ def abbreviation(label):
 
 
 def generate_label(idname=None, label=None, subtype_labels=None):
+    prefs = utils.fetch_user_prefs()
+
     if (label is None) and (idname is None):
         raise ValueError("Both idname and label inputs are None.")
 
@@ -63,7 +65,10 @@ def generate_label(idname=None, label=None, subtype_labels=None):
             #label = idname #Note - Temporary for easier debugging, should change back to label
         else:
             raise ValueError(f"'{idname}' is not a valid node type.")
-    
+
+    if prefs.use_op_symbols and (subtype_labels is not None) and (idname in utils.nodes_with_op_symbols):
+        subtype_labels = (utils.add_op_symbols(label) for label in subtype_labels)
+
     label = iface_(label)
     if subtype_labels is not None:
         subtype_string = " ".join(subtype_labels) + " > "
