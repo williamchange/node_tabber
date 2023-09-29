@@ -48,7 +48,7 @@ class NODE_OT_add_tabber_search(Operator):
 
         return items
 
-    search_entry: EnumProperty(items = define_items, name='New Name', default=None)
+    search_entry: EnumProperty(items = define_items, name='Search Entry', default=None)
 
     def execute(self, context):
         prefs = utils.fetch_user_prefs()
