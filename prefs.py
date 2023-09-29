@@ -50,11 +50,15 @@ class NodeTabberPreferences(AddonPreferences):
         layout = self.layout
         row = layout.row()
         col1 = row.column(align=True)
+        col1.label(text="Node Options:")
+        col1.prop(self, "quick_place")
+        col1.prop(self, "hide_group_selector")
+
+        col1.separator()
         col1.label(text="Search Options:")
         col1.prop(self, "include_subtypes")
-        col1.prop(self, "quick_place")
-        col1.prop(self, "use_op_symbols")
-        col1.prop(self, "hide_group_selector")
+        if self.include_subtypes:
+            col1.prop(self, "use_op_symbols")
 
         col2 = row.column()
         col2.label(text="Tally Options:")
