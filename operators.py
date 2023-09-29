@@ -26,10 +26,14 @@ class NODE_OT_add_tabber_search(Operator):
 
     @classmethod
     def poll(self, context):
-        space = context.space_data
-        has_tree = space.node_tree is not None
-        is_node_editor = space.type == 'NODE_EDITOR'
-        return has_tree and is_node_editor
+        if hasattr(context, "space_data"):
+            space = context.space_data
+            has_tree = space.node_tree is not None
+            is_node_editor = space.type == 'NODE_EDITOR'
+            return has_tree and is_node_editor
+        else:
+            return False
+            
 
     # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
