@@ -146,7 +146,6 @@ def generate_entries(context, editor_type):
         if not only_subtypes:
             entries.append(generate_entry_item(idname, **properties))
 
-        # TODO - Move most of this code to its own function once functionality is finalized
         if prefs.include_subtypes and subtypes is not None:
             enum_list, name_list = [], []
             for subtype in subtypes:

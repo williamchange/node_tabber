@@ -35,7 +35,6 @@ class NODE_OT_add_tabber_search(Operator):
             return False
             
 
-    # TODO - Verify if this caching is still necessary to prevent enum_callback bug
     @cache_enum_results
     def define_items(self, context):
         prefs = utils.fetch_user_prefs()
