@@ -59,9 +59,8 @@ class NODE_OT_add_tabber_search(Operator):
         function = getattr(utils, function_name)
         nodes = function(context, node_type, **settings)
 
-        # Note - Disabled for easy debugging, will enable later
-        #if not prefs.quick_place:
-        #    bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
+        if not prefs.quick_place:
+            bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
         utils.update_tally(context, entry=self.search_entry)
         return {'FINISHED'}
