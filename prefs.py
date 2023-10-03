@@ -46,7 +46,7 @@ class NodeTabberPreferences(AddonPreferences):
 
     def draw(self, context):
         layout = self.layout
-        row = layout.row()
+        row = layout.split(factor=0.3)
         col1 = row.column(align=True)
         col1.label(text="Node Options:")
         col1.prop(self, "quick_place")
@@ -60,10 +60,17 @@ class NodeTabberPreferences(AddonPreferences):
 
         col2 = row.column()
         col2.label(text="Tally Options:")
-        subrow = col2.row(align=True)
-        subrow.prop(self, "sort_by_tally")
-        subrow.prop(self, "tally_max")
-        col2.operator("node.reset_tallies")
+        if context.preferences.use_recent_searches:
+            box = col2.box().column(align=True)
+            box.label(icon="ERROR", text="'Sort by Most Recent' is enabled.")
+            box.separator(factor=1)
+            box.label(text="To enable Node Tabber's own sorting, please turn")
+            box.label(text="this setting off under Preferences > Interface > Display.")
+        else:
+            subrow = col2.row(align=True)
+            subrow.prop(self, "sort_by_tally")
+            subrow.prop(self, "tally_max")
+            col2.operator("node.reset_tallies")
 
         keymap_ui.draw_keyboard_shorcuts(self, layout, context, 
             toggle_idname="node_tabber_show_keymaps", starting_indent_level=0)
