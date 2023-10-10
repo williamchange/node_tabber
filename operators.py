@@ -42,7 +42,7 @@ class NODE_OT_add_tabber_search(Operator):
 
         items = nodelists.generate_entries(context, editor_type=tree_type)
 
-        if prefs.sort_by_tally:
+        if prefs.sort_by_tally and (not context.preferences.use_recent_searches):
             utils.sort_enum_items(tree_type, items)
 
         return items
