@@ -64,8 +64,8 @@ class NodeTabberPreferences(AddonPreferences):
             box = col2.box().column(align=True)
             box.label(icon="ERROR", text="'Sort by Most Recent' is enabled.")
             box.separator(factor=1)
-            box.label(text="To enable Node Tabber's own sorting, please turn")
-            box.label(text="this setting off under Preferences > Interface > Display.")
+            box.label(text="To enable Node Tabber's own sorting, please turn the")
+            box.label(text="aforementioned setting off under Preferences > Interface > Display.")
         else:
             subrow = col2.row(align=True)
             subrow.prop(self, "sort_by_tally")
