@@ -95,7 +95,6 @@ items = [
     "GeometryNodeSetPosition",
     "GeometryNodeBoundBox",
     "GeometryNodeConvexHull",
-    "GeometryNodeDeleteGeometry",
     "GeometryNodeTransform",
     "GeometryNodeSeparateComponents",
     "GeometryNodeIndexOfNearest",
@@ -228,6 +227,7 @@ basic_subtypes = [
     ("ShaderNodeVectorRotate", {"subtypes":("rotation_type",)}),
     ("GeometryNodeDistributePointsInVolume", {"subtypes":("mode",)}),
     ("GeometryNodeDistributePointsOnFaces", {"subtypes":("distribute_method",)}),
+    ("GeometryNodeDeleteGeometry", {"subtypes":("domain",)}),
     ("GeometryNodeScaleElements", {"subtypes":("domain", "scale_mode")}),
 ]
 
