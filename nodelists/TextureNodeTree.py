@@ -55,10 +55,10 @@ items = [
 ]
 
 all_items = [
-    items,
-    basic_subtypes,
-    (mix_color, "check_mix_color_alias", {"valid_options": ('MIX_COLOR', 'BOTH')}),
-    (mix_rgb, "check_mix_color_alias", {"valid_options": ('DEFAULT', 'MIX_RGB', 'BOTH')}),
-    (group_nodes, "in_nodegroup", None),
-    frame_and_reroute,
+    {"entries" : items},
+    {"entries" : basic_subtypes},
+    {"entries" : mix_color, "poll" : "check_mix_color_alias", "poll_args" : {"valid_options": ('MIX_COLOR', 'BOTH')}},
+    {"entries" : mix_rgb, "poll" : "check_mix_color_alias", "poll_args" : {"valid_options": ('DEFAULT', 'MIX_RGB', 'BOTH')}},
+    {"entries" : group_nodes, "poll" : "in_nodegroup"},
+    {"entries" : frame_and_reroute},
 ]

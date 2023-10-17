@@ -105,23 +105,27 @@ def generate_entry_item(idname, label=None, function="create_node", settings=Non
     return (identifier, enum_label, "")
 
 
+def process_entries(context, entries, *, poll=None, poll_args=None):
+    if poll is None:
+        return entries, True
+    else:
+        if poll_args is None:
+            poll_args = {}
+        
+        poll = getattr(poll_funcs, poll)
+        return entries, poll(context, **poll_args)        
+
+
 def filter_by_poll(context, entries):
     for entry in entries:
-        if not isinstance(entry, tuple):
-            yield entry
-        else:
-            item_list, poll_name, poll_args = entry
-            poll = getattr(poll_funcs, poll_name)
-    
-            if poll_args is None:
-                poll_args = {}
-                
-            if poll(context, **poll_args):
-                yield item_list
+        entries, include = process_entries(context, **entry)
+        if include:
+            yield entries
 
 
 def is_entry_valid(entry, properties):
     return Node.bl_rna_get_subclass(entry) is None and (properties.get("function") != "create_zone")
+
 
 def generate_entries(context, editor_type):
     entries = []

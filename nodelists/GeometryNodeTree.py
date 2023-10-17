@@ -265,7 +265,6 @@ data_type_domain_nodes = [
     ("GeometryNodeStoreNamedAttribute", {"subtypes":({"name":"data_type", "only_include":("Float", "Integer", "Vector", "Color", "Byte Color", "Boolean", "2D Vector", "Quaternion")}, "domain")}),
 ]
 
-#Note - Included when context.preferences.experimental.use_new_volume_nodes is True:
 experimental_volumes = [
     "GeometryNodeMeanFilterSDFVolume",
     "GeometryNodeOffsetSDFVolume",
@@ -276,7 +275,6 @@ experimental_volumes = [
     "GeometryNodeMeshToSDFVolume",
 ]
 
-#Note - Included when context.space_data.geometry_nodes_type == 'TOOL':
 tool_nodes = [
     "GeometryNodeToolFaceSet",
     "GeometryNodeToolSetFaceSet",
@@ -287,17 +285,17 @@ tool_nodes = [
 
 
 all_items = [
-    items,
-    zones,
-    group_nodes,
-    basic_subtypes,
-    texture_subtypes,
-    filtered_subtypes,
-    data_type_domain_nodes,
-    specific_types,
-    (tool_nodes, "is_tool", None),
-    (mix_color, "check_mix_color_alias", {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
-    (mix_rgb, "check_mix_color_alias", {"valid_options": ('MIX_RGB', 'BOTH')}),
-    (experimental_volumes, "use_experimental_volume_nodes", None),
-    frame_and_reroute,
+    {"entries" : items},
+    {"entries" : zones},
+    {"entries" : group_nodes},
+    {"entries" : basic_subtypes},
+    {"entries" : texture_subtypes},
+    {"entries" : filtered_subtypes},
+    {"entries" : data_type_domain_nodes},
+    {"entries" : specific_types},
+    {"entries" : tool_nodes, "poll" : "is_tool", "poll_args": None},
+    {"entries" : mix_color, "poll" : "check_mix_color_alias", "poll_args": {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}},
+    {"entries" : mix_rgb, "poll" : "check_mix_color_alias", "poll_args": {"valid_options": ('MIX_RGB', 'BOTH')}},
+    {"entries" : experimental_volumes, "poll" : "use_experimental_volume_nodes", "poll_args": None},
+    {"entries" : frame_and_reroute},
 ]
