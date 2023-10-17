@@ -1,3 +1,4 @@
+from ..utils import check_mix_color_alias
 
 zones = [
     ("Simulation Zone", {"label": "Simulation Zone", "function":"create_zone", "settings":{"input_type": "GeometryNodeSimulationInput", "output_type": "GeometryNodeSimulationOutput"}}),
@@ -8,7 +9,6 @@ zones = [
 specific_types = [
     "ShaderNodeMix", #Note - Include as default entry
     ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}, "subtypes":("factor_mode",) }),
-    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
     ("ShaderNodeMix", {"label": "Mix Rotation", "settings":{"data_type": "ROTATION"}}),
 
     "GeometryNodeRaycast", #Note - Include as default entry
@@ -26,6 +26,14 @@ specific_types = [
     ("FunctionNodeCompare", {"label": "Compare Vector", "settings":{"data_type": "VECTOR"}, "subtypes":({"name":"operation", "only_include":("Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal")}, "mode",)}),
     ("FunctionNodeCompare", {"label": "Compare String", "settings":{"data_type": "STRING"}, "subtypes":({"name":"operation", "only_include":("Equal", "Not Equal")},)}),
     ("FunctionNodeCompare", {"label": "Compare Color", "settings":{"data_type": "RGBA"}, "subtypes":({"name":"operation", "only_include":("Equal", "Not Equal", "Brighter", "Darker")},)}),    
+]
+
+mix_color = [
+    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
+]
+
+mix_rgb = [
+    ("ShaderNodeMix", {"label": "Mix RGB", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
 ]
 
 def is_tool(context):
@@ -296,6 +304,8 @@ all_items = [
     data_type_domain_nodes,
     specific_types,
     (tool_nodes, is_tool, None),
+    (mix_color, check_mix_color_alias, {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
+    (mix_rgb, check_mix_color_alias, {"valid_options": ('MIX_RGB', 'BOTH')}),
     (experimental_volumes, use_experimental_volume_nodes, None),
     frame_and_reroute,
 ]

@@ -1,4 +1,4 @@
-from ..utils import in_nodegroup
+from ..utils import check_mix_color_alias, in_nodegroup
 
 group_nodes = [
     "NodeGroupInput",
@@ -14,6 +14,13 @@ basic_subtypes = [
     ("TextureNodeMath", {"subtypes":("operation",)}),
     ("TextureNodeCombineColor", {"subtypes":("mode",)}),
     ("TextureNodeSeparateColor", {"subtypes":("mode",)}),
+]
+
+mix_color = [
+    ("TextureNodeMixRGB", {"label":"Mix Color", "subtypes":("blend_type",)}),
+]
+
+mix_rgb = [
     ("TextureNodeMixRGB", {"subtypes":("blend_type",)}),
 ]
 
@@ -52,6 +59,8 @@ items = [
 all_items = [
     items,
     basic_subtypes,
+    (mix_color, check_mix_color_alias, {"valid_options": ('MIX_COLOR', 'BOTH')}),
+    (mix_rgb, check_mix_color_alias, {"valid_options": ('DEFAULT', 'MIX_RGB', 'BOTH')}),
     (group_nodes, in_nodegroup, None),
     frame_and_reroute,
 ]

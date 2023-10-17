@@ -44,6 +44,7 @@ op_symbol_dict = {
     "Imply" : "->",
 }
 
+
 def add_op_symbols(operation):
     op_symbol = op_symbol_dict.get(operation)
     if op_symbol is not None:
@@ -88,6 +89,11 @@ def update_tally(context, entry):
 
     with open(path, "w") as f:
         json.dump(tally_dict, f, indent=4)
+
+
+def check_mix_color_alias(_context, valid_options):
+    current_pref = fetch_user_prefs("mix_color_alias")
+    return current_pref in valid_options
 
 
 def in_nodegroup(context):

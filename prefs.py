@@ -1,6 +1,6 @@
 import bpy
 from bpy.types import AddonPreferences
-from bpy.props import BoolProperty, IntProperty
+from bpy.props import BoolProperty, IntProperty, EnumProperty
 from . import keymap_ui
 
 class NodeTabberPreferences(AddonPreferences):
@@ -44,6 +44,19 @@ class NodeTabberPreferences(AddonPreferences):
         soft_max=9999,
     )
 
+    mix_color_alias: EnumProperty(
+        name="Mix Color Alias",
+        items=(
+            ("DEFAULT", "Use Default Names", "Keep the node names as-is. \n('Mix Color' for shaders, geometry, and compositor. 'Mix RGB for texture node editor')"),
+            ("MIX_COLOR", "Use 'Mix Color'", "Use the label 'Mix Color' for both Mix Color and Mix RGB nodes"),
+            ("MIX_RGB", "Use 'Mix RGB'", "Use the label 'Mix RGB' for both Mix Color and Mix RGB nodes"),
+            ("BOTH", "Use Both Aliases", "Use both 'Mix Color' and 'Mix RGB' as valid search entries"),
+        ),
+        default='DEFAULT',
+        description="Specifies how the Mix Color/Mix RGB nodes would be called across editors"
+        )
+
+
     def draw(self, context):
         layout = self.layout
         row = layout.split(factor=0.3)
@@ -71,6 +84,11 @@ class NodeTabberPreferences(AddonPreferences):
             subrow.prop(self, "sort_by_tally")
             subrow.prop(self, "tally_max")
             col2.operator("node.reset_tallies")
+
+            col2.separator()
+            subcol = col2.column(align=True)
+            subcol.label(text="Other Options:")
+            subcol.prop(self, "mix_color_alias")
 
         keymap_ui.draw_keyboard_shorcuts(self, layout, context, 
             toggle_idname="node_tabber_show_keymaps", starting_indent_level=0)

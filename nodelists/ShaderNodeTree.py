@@ -1,15 +1,22 @@
-from ..utils import in_nodegroup
+from ..utils import check_mix_color_alias, in_nodegroup
 
 #Note - Structure -> (idname, {properties})
 specific_types = [
     "ShaderNodeMix", #Note - Include as default entry
     ("ShaderNodeMix", {"label": "Mix Vector", "settings":{"data_type": "VECTOR"}, "subtypes":("factor_mode",) }),
-    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
 
     "ShaderNodeMapRange",
     ("ShaderNodeMapRange", {"label": "Map Range - Float", "settings":{"data_type": "FLOAT"}, "subtypes":("interpolation_type",)}),
     ("ShaderNodeMapRange", {"label": "Map Range - Vector", "settings":{"data_type": "FLOAT_VECTOR"}, "subtypes":("interpolation_type",)}),
  ]
+
+mix_color = [
+    ("ShaderNodeMix", {"label": "Mix Color", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
+]
+
+mix_rgb = [
+    ("ShaderNodeMix", {"label": "Mix RGB", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
+]
 
 
 def engine_and_shader_type_poll(context, engines=None, shader_types=None):
@@ -178,6 +185,8 @@ all_items = [
     basic_subtypes,
     texture_subtypes,
     (group_nodes, in_nodegroup, None),
+    (mix_color, check_mix_color_alias, {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
+    (mix_rgb, check_mix_color_alias, {"valid_options": ('MIX_RGB', 'BOTH')}),
     (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
     (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
     (cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"engines": ('CYCLES', 'BLENDER_EEVEE')}),
