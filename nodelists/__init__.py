@@ -157,7 +157,7 @@ def generate_entries(context, editor_type):
                     name_list.append(subtype)
 
             for props in itertools.product(*enum_list):
-                subtype_labels = [prop.name for prop in props]
+                subtype_labels = [iface_(prop.name) for prop in props]
                 subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
                 entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
 
