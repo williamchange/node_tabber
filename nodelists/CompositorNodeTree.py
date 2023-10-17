@@ -1,5 +1,3 @@
-from ..utils import check_mix_color_alias, in_nodegroup
-
 group_nodes = [
     "NodeGroupInput",
     "NodeGroupOutput",
@@ -122,8 +120,8 @@ all_items = [
     items,
     specific_types,
     basic_subtypes,
-    (mix_color, check_mix_color_alias, {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
-    (mix_rgb, check_mix_color_alias, {"valid_options": ('MIX_RGB', 'BOTH')}),
-    (group_nodes, in_nodegroup, None),
+    (mix_color, "check_mix_color_alias", {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
+    (mix_rgb, "check_mix_color_alias", {"valid_options": ('MIX_RGB', 'BOTH')}),
+    (group_nodes, "in_nodegroup", None),
     frame_and_reroute,
 ]

@@ -1,6 +1,7 @@
 import itertools
 
 from . import CompositorNodeTree, GeometryNodeTree, ShaderNodeTree, TextureNodeTree
+from . import __poll_functions__ as poll_funcs
 from .. import utils
 
 from bpy.types import Node
@@ -109,7 +110,9 @@ def filter_by_poll(context, entries):
         if not isinstance(entry, tuple):
             yield entry
         else:
-            item_list, poll, poll_args = entry
+            item_list, poll_name, poll_args = entry
+            poll = getattr(poll_funcs, poll_name)
+    
             if poll_args is None:
                 poll_args = {}
                 

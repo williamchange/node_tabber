@@ -1,5 +1,3 @@
-from ..utils import check_mix_color_alias
-
 zones = [
     ("Simulation Zone", {"label": "Simulation Zone", "function":"create_zone", "settings":{"input_type": "GeometryNodeSimulationInput", "output_type": "GeometryNodeSimulationOutput"}}),
     ("Repeat Zone", {"label": "Repeat Zone", "function":"create_zone", "settings":{"input_type": "GeometryNodeRepeatInput", "output_type": "GeometryNodeRepeatOutput"}})
@@ -35,12 +33,6 @@ mix_color = [
 mix_rgb = [
     ("ShaderNodeMix", {"label": "Mix RGB", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
 ]
-
-def is_tool(context):
-    return getattr(context.space_data, "geometry_nodes_type", None) == 'TOOL'
-
-def use_experimental_volume_nodes(context):
-    return getattr(context.preferences.experimental, "use_new_volume_nodes", False)
 
 group_nodes = [
     "NodeGroupInput",
@@ -303,9 +295,9 @@ all_items = [
     filtered_subtypes,
     data_type_domain_nodes,
     specific_types,
-    (tool_nodes, is_tool, None),
-    (mix_color, check_mix_color_alias, {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
-    (mix_rgb, check_mix_color_alias, {"valid_options": ('MIX_RGB', 'BOTH')}),
-    (experimental_volumes, use_experimental_volume_nodes, None),
+    (tool_nodes, "is_tool", None),
+    (mix_color, "check_mix_color_alias", {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
+    (mix_rgb, "check_mix_color_alias", {"valid_options": ('MIX_RGB', 'BOTH')}),
+    (experimental_volumes, "use_experimental_volume_nodes", None),
     frame_and_reroute,
 ]

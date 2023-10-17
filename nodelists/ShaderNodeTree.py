@@ -1,5 +1,3 @@
-from ..utils import check_mix_color_alias, in_nodegroup
-
 #Note - Structure -> (idname, {properties})
 specific_types = [
     "ShaderNodeMix", #Note - Include as default entry
@@ -17,27 +15,6 @@ mix_color = [
 mix_rgb = [
     ("ShaderNodeMix", {"label": "Mix RGB", "settings":{"data_type": "RGBA"}, "subtypes":("blend_type",)}),
 ]
-
-
-def engine_and_shader_type_poll(context, engines=None, shader_types=None):
-    current_engine = context.engine
-    current_shader_type = context.space_data.shader_type
-
-    if engines is None:
-        engine_poll = True
-    elif isinstance(engines, str):
-        engine_poll = (current_engine == engines)
-    else:
-        engine_poll = current_engine in engines
-
-    if shader_types is None:
-        shader_type_poll = True
-    elif isinstance(shader_types, str):
-        shader_type_poll = (current_shader_type == shader_types)
-    else:
-        shader_type_poll = current_shader_type in shader_types
-
-    return (engine_poll and shader_type_poll)
 
 group_nodes = [
     "NodeGroupInput",
@@ -184,14 +161,14 @@ all_items = [
     specific_types,
     basic_subtypes,
     texture_subtypes,
-    (group_nodes, in_nodegroup, None),
-    (mix_color, check_mix_color_alias, {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
-    (mix_rgb, check_mix_color_alias, {"valid_options": ('MIX_RGB', 'BOTH')}),
-    (world_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'WORLD'}),
-    (line_style_shader_nodes, engine_and_shader_type_poll, {"shader_types": 'LINESTYLE'}),
-    (cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"engines": ('CYCLES', 'BLENDER_EEVEE')}),
-    (object_cycles_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": 'CYCLES'}),
-    (object_eevee_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": 'BLENDER_EEVEE'}),
-    (object_cycles_eevee_shader_nodes, engine_and_shader_type_poll, {"shader_types": "OBJECT", "engines": ('CYCLES', 'BLENDER_EEVEE')}),
+    (group_nodes, "in_nodegroup", None),
+    (mix_color, "check_mix_color_alias", {"valid_options": ('DEFAULT', 'MIX_COLOR', 'BOTH')}),
+    (mix_rgb, "check_mix_color_alias", {"valid_options": ('MIX_RGB', 'BOTH')}),
+    (world_shader_nodes, "engine_and_shader_type_poll", {"shader_types": 'WORLD'}),
+    (line_style_shader_nodes, "engine_and_shader_type_poll", {"shader_types": 'LINESTYLE'}),
+    (cycles_eevee_shader_nodes, "engine_and_shader_type_poll", {"engines": ('CYCLES', 'BLENDER_EEVEE')}),
+    (object_cycles_shader_nodes, "engine_and_shader_type_poll", {"shader_types": "OBJECT", "engines": 'CYCLES'}),
+    (object_eevee_shader_nodes, "engine_and_shader_type_poll", {"shader_types": "OBJECT", "engines": 'BLENDER_EEVEE'}),
+    (object_cycles_eevee_shader_nodes, "engine_and_shader_type_poll", {"shader_types": "OBJECT", "engines": ('CYCLES', 'BLENDER_EEVEE')}),
     frame_and_reroute,
 ]
