@@ -126,7 +126,7 @@ def get_data_from_filepath(editor_type):
     filepath = NODELIST_PATH / version_number / f"{editor_type}.json"
 
     if not filepath.exists():
-        raise ValueError(f"Node Tabber does not support editor type '{editor_type}'")
+        raise FileNotFoundError(f"Node Tabber does not support editor type '{editor_type}' for Blender {version_number}'")
 
     with open(filepath, "r") as f:
         json_data = json.load(f)
