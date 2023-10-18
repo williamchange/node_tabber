@@ -118,8 +118,33 @@ def filter_by_poll(context, entries):
         if include:
             yield entries
 
-def is_entry_valid(entry, properties):
-    return Node.bl_rna_get_subclass(entry) is None and (properties.get("function") != "create_zone")
+def is_entry_invalid(entry, properties):
+    if properties.get("function") != "create_zone":
+        node_data = Node.bl_rna_get_subclass(entry) 
+        
+        if node_data is not None:
+            settings = properties.get("settings")
+            if settings is not None:
+                invalid = False
+                for prop_name, value in settings.items():
+                    props = (prop.identifier for prop in fetch_subtypes_from_bl_rna(entry, prop_name))
+                    if value not in props:
+                        invalid = True
+                
+                if invalid:
+                    print(f"Node Tabber: {entry} - {properties} is not a valid node type, entry not included in search.")
+                    return True
+        else:
+            print(f"Node Tabber: {entry} is not a valid node type, entry not included in search.")
+            return True
+    else:
+        settings = properties["settings"]
+        input_node_exists = Node.bl_rna_get_subclass(settings["input_type"]) is None 
+        output_node_exists = Node.bl_rna_get_subclass(settings["output_type"]) is None
+        
+        if input_node_exists and output_node_exists:
+            print(f"Node Tabber: {entry} is not a valid node type, entry not included in search.")
+            return True 
 
 def get_data_from_filepath(editor_type):
     version_number = ".".join(map(str, app_version[:2]))
@@ -147,8 +172,7 @@ def generate_entries(context, editor_type):
             idname, properties = item, {}
 
         # Add check for skipping invalid entries to prevent the function from short-circuiting
-        if is_entry_valid(idname, properties):
-            print(f"Node Tabber: {idname} is not a valid node type, entry not included in search.")
+        if is_entry_invalid(idname, properties):
             continue
 
         subtypes = properties.get("subtypes", None)
