@@ -1,6 +1,5 @@
 import itertools
 
-from . import CompositorNodeTree, GeometryNodeTree, ShaderNodeTree, TextureNodeTree
 from . import __poll_functions__ as poll_funcs
 from .. import utils
 
@@ -10,12 +9,11 @@ from bpy.app.translations import (
     contexts as i18n_contexts,
 )
 
-data_list = {
-    "CompositorNodeTree" : CompositorNodeTree,
-    "GeometryNodeTree" : GeometryNodeTree,
-    "ShaderNodeTree" : ShaderNodeTree,
-    "TextureNodeTree" : TextureNodeTree,
-}
+from bpy.app import version as app_version
+
+import json
+from pathlib import Path
+NODELIST_PATH = Path("nodelists").absolute()
 
 settings_dict = {}
 
@@ -104,7 +102,6 @@ def generate_entry_item(idname, label=None, function="create_node", settings=Non
     settings_dict[identifier] = (idname, function, all_settings)
     return (identifier, enum_label, "")
 
-
 def process_entries(context, entries, *, poll=None, poll_args=None):
     if poll is None:
         return entries, True
@@ -115,29 +112,31 @@ def process_entries(context, entries, *, poll=None, poll_args=None):
         poll = getattr(poll_funcs, poll)
         return entries, poll(context, **poll_args)        
 
-
 def filter_by_poll(context, entries):
     for entry in entries:
         entries, include = process_entries(context, **entry)
         if include:
             yield entries
 
-
 def is_entry_valid(entry, properties):
     return Node.bl_rna_get_subclass(entry) is None and (properties.get("function") != "create_zone")
-
 
 def generate_entries(context, editor_type):
     entries = []
     settings_dict.clear()
     prefs = utils.fetch_user_prefs()
-    data = data_list.get(editor_type)
 
-    if data is None:
+    version_number = ".".join(map(str, app_version[:2]))
+    filepath = NODELIST_PATH / version_number / f"{editor_type}.json"
+
+    if not filepath.exists():
         raise ValueError(f"Node Tabber does not support editor type '{editor_type}'")
-    
-    for item in itertools.chain(*filter_by_poll(context, data.all_items)):
-        if isinstance(item, tuple):
+
+    with open(filepath, "r") as f:
+        json_data = json.load(f)
+
+    for item in itertools.chain(*filter_by_poll(context, json_data.values())):
+        if isinstance(item, (tuple, list)):
             idname, properties, *_ = item   
         else:
             idname, properties = item, {}
