@@ -13,7 +13,7 @@ from bpy.app import version as app_version
 
 import json
 from pathlib import Path
-NODELIST_PATH = Path("nodelists").absolute()
+NODELIST_PATH = Path(__file__).parent
 
 settings_dict = {}
 
