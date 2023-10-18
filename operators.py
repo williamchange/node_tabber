@@ -41,8 +41,9 @@ class NODE_OT_add_tabber_search(Operator):
         tree_type = context.space_data.tree_type
 
         items = nodelists.generate_entries(context, editor_type=tree_type)
+        use_recent_searches = getattr(context.preferences, "use_recent_searches", False)
 
-        if prefs.sort_by_tally and (not context.preferences.use_recent_searches):
+        if prefs.sort_by_tally and (not use_recent_searches):
             utils.sort_enum_items(tree_type, items)
 
         return items
