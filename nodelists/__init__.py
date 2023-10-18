@@ -121,11 +121,7 @@ def filter_by_poll(context, entries):
 def is_entry_valid(entry, properties):
     return Node.bl_rna_get_subclass(entry) is None and (properties.get("function") != "create_zone")
 
-def generate_entries(context, editor_type):
-    entries = []
-    settings_dict.clear()
-    prefs = utils.fetch_user_prefs()
-
+def get_data_from_filepath(editor_type):
     version_number = ".".join(map(str, app_version[:2]))
     filepath = NODELIST_PATH / version_number / f"{editor_type}.json"
 
@@ -134,6 +130,15 @@ def generate_entries(context, editor_type):
 
     with open(filepath, "r") as f:
         json_data = json.load(f)
+    
+    return json_data
+
+def generate_entries(context, editor_type):
+    entries = []
+    settings_dict.clear()
+    prefs = utils.fetch_user_prefs()
+
+    json_data = get_data_from_filepath(editor_type)
 
     for item in itertools.chain(*filter_by_poll(context, json_data.values())):
         if isinstance(item, (tuple, list)):
