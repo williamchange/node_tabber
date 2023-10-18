@@ -17,6 +17,30 @@ NODELIST_PATH = Path(__file__).parent
 
 settings_dict = {}
 
+def contains_group_legacy(parent, group):
+    node_tree_group_type = {
+        'CompositorNodeTree': 'CompositorNodeGroup',
+        'ShaderNodeTree': 'ShaderNodeGroup',
+        'TextureNodeTree': 'TextureNodeGroup',
+        'GeometryNodeTree': 'GeometryNodeGroup',
+    }
+
+    if parent == group:
+        return True
+    for node in parent.nodes:
+        if node.bl_idname in node_tree_group_type.values() and node.node_tree is not None:
+            if contains_group_legacy(node.node_tree, group):
+                return True
+    return False
+
+
+def contains_group(parent, group):
+    if app_version[:2] > (3, 4):
+        return parent.contains_tree(group)
+    else:
+        return contains_group_legacy(parent, group)
+        
+
 def generate_nodegroup_entries(context):
     active_tree = utils.fetch_active_nodetree(context)
     node_groups = context.blend_data.node_groups
@@ -24,9 +48,9 @@ def generate_nodegroup_entries(context):
     valid_groups = (group for group in node_groups
         if (group.bl_idname == active_tree.bl_idname and
             group.name != active_tree.name and
-            not group.contains_tree(active_tree) and
+            not contains_group(parent=group, group=active_tree) and
             not group.name.startswith('.'))
-    )
+        )
 
     # Note - Function for converting strings like 'ShaderNodeTree' to 'ShaderNodeGroup'
     nodegroup_id = lambda group : group.bl_idname.removesuffix("Tree").__add__("Group")   
