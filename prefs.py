@@ -73,7 +73,9 @@ class NodeTabberPreferences(AddonPreferences):
 
         col2 = row.column()
         col2.label(text="Tally Options:")
-        if context.preferences.use_recent_searches:
+
+        use_recent_searches = getattr(context.preferences, "use_recent_searches", False)
+        if use_recent_searches:
             box = col2.box().column(align=True)
             box.label(icon="ERROR", text="'Sort by Most Recent' is enabled.")
             box.separator(factor=1)
