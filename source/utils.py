@@ -57,9 +57,8 @@ def fetch_tally_path(tree_type):
     return Path(TALLY_FOLDER, f'{tree_type}.json')    
 
 
-prefs_id = "Node Tabber"
 def fetch_user_prefs(attr_id=None):
-    prefs = context.preferences.addons[prefs_id].preferences
+    prefs = context.preferences.addons["Node Tabber"].preferences
     if attr_id is None:
         return prefs
     else:

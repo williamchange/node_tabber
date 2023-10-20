@@ -54,19 +54,23 @@ def generate_bl_info_text(bl_info):
     return "\n".join(lines)
 
 
+def replace_text(path, pattern, replacement):
+    with open(path, "r") as f:
+        text = f.read()
+    
+    text = text.replace(pattern, replacement)
+
+    with open(path, "w") as f:
+        f.write(text)
+
+
 def write_bl_info(init_path, version):
     bl_info = BL_INFO_BASE.copy()
     if version is not None:
         bl_info["name"] = bl_info["name"] + f" (v{version})"
         bl_info["blender"] = tuple(map(int, version.split(".") + ["0"]))
 
-    with open(init_path, "r") as f:
-        init_code = f.read()
-    
-    init_code = init_code.replace(BL_INFO_PATTERN, generate_bl_info_text(bl_info))
-
-    with open(init_path, "w") as f:
-        f.write(init_code)
+    replace_text(init_path, BL_INFO_PATTERN, generate_bl_info_text(bl_info))
 
 
 def build_package(archive_name, version=None):
@@ -83,6 +87,12 @@ def build_package(archive_name, version=None):
 
         init_path = dest_folder/"__init__.py"
         write_bl_info(init_path, version)
+
+        replace_text(dest_folder/"prefs.py", 
+            pattern='bl_idname = "Node Tabber"', replacement='bl_idname = __package__')
+        replace_text(dest_folder/"utils.py", 
+            pattern='prefs = context.preferences.addons["Node Tabber"].preferences', 
+            replacement='prefs = context.preferences.addons[__package__].preferences')
 
         shutil.make_archive(RELEASE_FOLDER/archive_name, 'zip', temp_dir)
     
