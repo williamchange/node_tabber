@@ -71,7 +71,8 @@ def write_bl_info(init_path, version):
 
 def build_package(archive_name, version=None):
     with TemporaryDirectory(dir=RELEASE_FOLDER) as temp_dir:
-        dest_folder = Path(temp_dir, "Node Tabber")
+        addon_folder = "Node Tabber" if version is None else archive_name.replace(".", "_")
+        dest_folder = Path(temp_dir, addon_folder)
         shutil.copytree(SOURCE_FOLDER, dest_folder, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '*.pyo'))
         make_empty(dest_folder/"tally_cache")
 
