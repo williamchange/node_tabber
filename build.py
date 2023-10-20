@@ -102,7 +102,7 @@ def run():
     for version in versions:
         build_package(archive_name=f"Node Tabber (v{version})", version=version)
     
-    build_package(archive_name="Node Tabber (multi_version)")
+    build_package(archive_name="Node Tabber")
     return
 
 
