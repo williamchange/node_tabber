@@ -16,15 +16,7 @@
 #
 # ##### END GPL LICENSE BLOCK #####
 
-
-bl_info = {
-    "name": "Node Tabber",
-    "author": "Richard Lyons, williamchange, Quackers",
-    "version": (0, 1, 4),
-    "blender": "*(insert blender version number here)*",
-    "description": "Allows quick smart searching of node types.",
-    "category": "Node",
-}
+### INSERT BL_INFO BLOCK HERE ###
 
 from . import operators, keymaps, prefs
 modules = (operators, keymaps, prefs)
