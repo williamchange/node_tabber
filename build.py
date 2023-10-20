@@ -1,5 +1,6 @@
 import shutil
 from pathlib import Path 
+from tempfile import TemporaryDirectory
 
 versions = ["3.4", "3.5", "3.6", "4.0"]
 root = Path(__file__).parent
@@ -68,28 +69,30 @@ def write_bl_info(init_path, version):
         f.write(init_code)
 
 
-def copy_to_release(folder_name, version=None):
-    IGNORE = []
-    dest_folder = RELEASE_FOLDER/folder_name
-    shutil.copytree(SOURCE_FOLDER, dest_folder, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '*.pyo'))
-    make_empty(dest_folder/"tally_cache")
+def build_package(archive_name, version=None):
+    with TemporaryDirectory(dir=RELEASE_FOLDER) as temp_dir:
+        dest_folder = Path(temp_dir, "Node Tabber")
+        shutil.copytree(SOURCE_FOLDER, dest_folder, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '*.pyo'))
+        make_empty(dest_folder/"tally_cache")
 
-    if version is not None:
-        versions_to_delete = (v for v in versions if v != version)
-        for v in versions_to_delete:
-            shutil.rmtree(dest_folder/"nodelists"/v)
+        if version is not None:
+            versions_to_delete = (v for v in versions if v != version)
+            for v in versions_to_delete:
+                shutil.rmtree(dest_folder/"nodelists"/v)
 
-    init_path = dest_folder/"__init__.py"
-    write_bl_info(init_path, version)
+        init_path = dest_folder/"__init__.py"
+        write_bl_info(init_path, version)
+
+        shutil.make_archive(RELEASE_FOLDER/archive_name, 'zip', temp_dir)
     
 
 def run():
     initialize(RELEASE_FOLDER)
 
     for version in versions:
-        copy_to_release(folder_name=f"Node Tabber (v{version})", version=version)
+        build_package(archive_name=f"Node Tabber (v{version})", version=version)
     
-    copy_to_release(folder_name="Node Tabber (multi_version)")
+    build_package(archive_name="Node Tabber (multi_version)")
     return
 
 
