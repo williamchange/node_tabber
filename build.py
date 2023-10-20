@@ -10,7 +10,7 @@ SOURCE_FOLDER = Path("source")
 # NOTE - This isn't synced with the bl_info in the __init__.py used in the dev version
 # Be sure to update both when updating one of them
 BL_INFO_BASE = {   
-    "name": "Node Tabber (Development)",
+    "name": "Node Tabber",
     "author": "Richard Lyons, williamchange, Quackers",
     "version": (0, 1, 4),
     "blender": (3, 4, 0),
@@ -44,6 +44,7 @@ def generate_bl_info_text(bl_info):
 def write_bl_info(init_path, version):
     bl_info = BL_INFO_BASE.copy()
     if version is not None:
+        bl_info["name"] = bl_info["name"] + f" (v{version})"
         bl_info["blender"] = tuple(map(int, version.split(".") + ["0"]))
 
     with open(init_path, "r") as f:
