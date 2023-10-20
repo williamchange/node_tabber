@@ -3,5 +3,4 @@
 .vscode
 **/__pycache__/
 *.json
-/release/**
 !/source/nodelists/**/*.json
