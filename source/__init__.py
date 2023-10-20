@@ -18,15 +18,27 @@
 
 
 bl_info = {
-    "name": "Node Tabber (Development)",
+    "name": "Node Tabber",
     "author": "Richard Lyons, williamchange, Quackers",
     "version": (0, 1, 4),
-    "blender": (3, 4, 0),
+    "blender": "*(insert blender version number here)*",
     "description": "Allows quick smart searching of node types.",
     "category": "Node",
 }
 
-from .source import register, unregister
+from . import operators, keymaps, prefs
+modules = (operators, keymaps, prefs)
+
+
+def register():
+    for module in modules:
+        module.register()
+
+
+def unregister():
+    for module in modules:
+        module.unregister()
+
 
 if __name__ == "__main__":
     register()

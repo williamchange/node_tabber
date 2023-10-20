@@ -2,9 +2,10 @@ import bpy
 from bpy.types import AddonPreferences
 from bpy.props import BoolProperty, IntProperty, EnumProperty
 from . import keymap_ui
+from .utils import prefs_id
 
 class NodeTabberPreferences(AddonPreferences):
-    bl_idname = __package__
+    bl_idname = prefs_id
 
     include_subtypes: BoolProperty(
         name="Include Subtypes",
