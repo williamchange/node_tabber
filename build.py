@@ -26,6 +26,18 @@ def make_empty(path):
     path.mkdir()
 
 
+def initialize(path):
+    if not path.exists():
+        path.mkdir()
+        return 
+
+    for item in path.iterdir():
+        if item.is_dir():
+            shutil.rmtree(item)
+        elif not str(item).endswith(".gitignore"):
+            item.unlink()
+
+
 def generate_bl_info_text(bl_info):
     lines = ["bl_info = {"]
 
@@ -72,7 +84,7 @@ def copy_to_release(folder_name, version=None):
     
 
 def run():
-    make_empty(RELEASE_FOLDER)
+    initialize(RELEASE_FOLDER)
 
     for version in versions:
         copy_to_release(folder_name=f"Node Tabber (v{version})", version=version)
