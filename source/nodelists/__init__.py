@@ -10,6 +10,7 @@ from bpy.app.translations import (
 )
 
 from bpy.app import version as app_version
+from nodeitems_utils import node_items_iter, NodeItemCustom
 
 import json
 from pathlib import Path
@@ -17,6 +18,7 @@ from pathlib import Path
 NODELIST_PATH = Path(__file__).parent
 
 settings_dict = {}
+vanilla_nodelist = []
 
 
 def contains_group_legacy(parent, group):
@@ -66,6 +68,17 @@ def generate_nodegroup_entries(context):
     ]
 
     return group_entries
+
+
+def generate_custom_node_entries(context):
+    builtin_nodes = set(vanilla_nodelist)
+    
+    custom_node_entries = [
+        generate_entry_item(item.nodetype, label=item.label, settings=item.settings, is_custom_node=True) 
+        for item in node_items_iter(context) if not (isinstance(item, NodeItemCustom) or item.nodetype in builtin_nodes)
+    ]
+
+    return custom_node_entries
 
 
 def abbreviation(label):
@@ -126,7 +139,7 @@ def merge_settings(settings, subtype_settings):
 
 
 def generate_entry_item(
-    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, **kwargs
+    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, is_custom_node=False, **kwargs
 ):
     enum_label = generate_label(idname, label, subtype_labels)
     identifier = str((idname, enum_label))
@@ -134,6 +147,9 @@ def generate_entry_item(
     all_settings = merge_settings(settings, subtype_settings)
 
     settings_dict[identifier] = (idname, function, all_settings)
+    if not is_custom_node:
+        vanilla_nodelist.append(idname)
+
     return (identifier, enum_label, "")
 
 
@@ -214,6 +230,7 @@ def get_data_from_filepath(editor_type):
 def generate_entries(context, editor_type):
     entries = []
     settings_dict.clear()
+    vanilla_nodelist.clear()
     prefs = utils.fetch_user_prefs()
 
     json_data = get_data_from_filepath(editor_type)
@@ -254,4 +271,5 @@ def generate_entries(context, editor_type):
                 )
 
     entries.extend(generate_nodegroup_entries(context))
+    entries.extend(generate_custom_node_entries(context))
     return entries
