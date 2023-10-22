@@ -63,6 +63,12 @@ class NodeTabberPreferences(AddonPreferences):
         description="Include custom nodes by created by other addons in search entries. \n(Note: Only includes custom nodes that are registered as NodeItems)",
     )
 
+    denote_name_collisions: BoolProperty(
+        name="Denote Name Collisions",
+        default=True,
+        description="Prepend a hash symbol (#) to custom external nodes that share the same name as a built-in node",
+    )
+
     def draw(self, context):
         layout = self.layout
         row = layout.split(factor=0.3)
@@ -79,6 +85,8 @@ class NodeTabberPreferences(AddonPreferences):
         
         col1.separator()
         col1.prop(self, "include_external_nodes")
+        if self.include_external_nodes:
+            col1.prop(self, "denote_name_collisions")
 
         col2 = row.column()
         col2.label(text="Tally Options:")

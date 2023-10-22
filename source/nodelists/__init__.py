@@ -19,6 +19,7 @@ NODELIST_PATH = Path(__file__).parent
 
 settings_dict = {}
 vanilla_nodelist = []
+vanilla_labels = set()
 
 
 def contains_group_legacy(parent, group):
@@ -87,6 +88,9 @@ def abbreviation(label):
     for char in ("/", "\\", "-", "_"):
         stripped_label = stripped_label.replace(char, " ")
 
+    for char in ("*", "#"):
+        stripped_label = stripped_label.replace(char, "")
+
     for parens in ("()", "[]", "{}"):
         for char in parens:
             stripped_label = stripped_label.replace(char, "")
@@ -95,7 +99,7 @@ def abbreviation(label):
     return f"({abbr})"
 
 
-def generate_label(idname=None, label=None, subtype_labels=None):
+def generate_label(idname=None, label=None, subtype_labels=None, is_custom_node=False):
     prefs = utils.fetch_user_prefs()
 
     if (label is None) and (idname is None):
@@ -117,6 +121,12 @@ def generate_label(idname=None, label=None, subtype_labels=None):
         subtype_string = " ".join(subtype_labels) + " > "
     else:
         subtype_string = ""
+    
+    if is_custom_node:
+        if label in vanilla_labels and prefs.denote_name_collisions:
+            label = f"#{label}"
+    else:
+        vanilla_labels.add(label)
 
     return f"{subtype_string}{label} {abbreviation(label)}"
 
@@ -141,7 +151,7 @@ def merge_settings(settings, subtype_settings):
 def generate_entry_item(
     idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, is_custom_node=False, **kwargs
 ):
-    enum_label = generate_label(idname, label, subtype_labels)
+    enum_label = generate_label(idname, label, subtype_labels, is_custom_node)
     identifier = str((idname, enum_label))
 
     all_settings = merge_settings(settings, subtype_settings)
@@ -231,6 +241,7 @@ def generate_entries(context, editor_type):
     entries = []
     settings_dict.clear()
     vanilla_nodelist.clear()
+    vanilla_labels.clear()
     prefs = utils.fetch_user_prefs()
 
     json_data = get_data_from_filepath(editor_type)
@@ -274,5 +285,5 @@ def generate_entries(context, editor_type):
 
     if prefs.include_external_nodes:
         entries.extend(generate_custom_node_entries(context))
-        
+
     return entries
