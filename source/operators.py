@@ -58,7 +58,7 @@ class NODE_OT_add_tabber_search(Operator):
         if settings is None:
             settings = {}
 
-        self.report({"INFO"}, f"Selected: {self.search_entry} - {function_name}:{settings}")
+        self.report({"INFO"}, f"Selected: {self.search_entry} - {settings}")
         function = getattr(utils, function_name)
         nodes = function(context, node_type, **settings)
 
