@@ -1,5 +1,5 @@
 import shutil
-from pathlib import Path 
+from pathlib import Path
 from tempfile import TemporaryDirectory
 
 versions = ["3.4", "3.5", "3.6", "4.0"]
@@ -10,7 +10,7 @@ SOURCE_FOLDER = Path("source")
 
 # NOTE - This isn't synced with the bl_info in the __init__.py used in the dev version
 # Be sure to update both when updating one of them
-BL_INFO_BASE = {   
+BL_INFO_BASE = {
     "name": "Node Tabber",
     "author": "Richard Lyons, williamchange, Quackers",
     "version": (0, 2, 0),
@@ -30,7 +30,7 @@ def make_empty(path):
 def initialize(path):
     if not path.exists():
         path.mkdir()
-        return 
+        return
 
     for item in path.iterdir():
         if item.is_dir():
@@ -57,7 +57,7 @@ def generate_bl_info_text(bl_info):
 def replace_text(path, pattern, replacement):
     with open(path, "r") as f:
         text = f.read()
-    
+
     text = text.replace(pattern, replacement)
 
     with open(path, "w") as f:
@@ -76,32 +76,35 @@ def write_bl_info(init_path, version):
 def build_package(archive_name, version=None):
     with TemporaryDirectory(dir=RELEASE_FOLDER) as temp_dir:
         dest_folder = Path(temp_dir, "Node Tabber")
-        shutil.copytree(SOURCE_FOLDER, dest_folder, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '*.pyo'))
-        make_empty(dest_folder/"tally_cache")
+        shutil.copytree(SOURCE_FOLDER, dest_folder, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo"))
+        make_empty(dest_folder / "tally_cache")
 
         if version is not None:
             versions_to_delete = (v for v in versions if v != version)
             for v in versions_to_delete:
-                shutil.rmtree(dest_folder/"nodelists"/v)
+                shutil.rmtree(dest_folder / "nodelists" / v)
 
-        init_path = dest_folder/"__init__.py"
+        init_path = dest_folder / "__init__.py"
         write_bl_info(init_path, version)
 
-        replace_text(dest_folder/"prefs.py", 
-            pattern='bl_idname = "Node Tabber"', replacement='bl_idname = __package__')
-        replace_text(dest_folder/"utils.py", 
-            pattern='prefs = context.preferences.addons["Node Tabber"].preferences', 
-            replacement='prefs = context.preferences.addons[__package__].preferences')
+        replace_text(
+            dest_folder / "prefs.py", pattern='bl_idname = "Node Tabber"', replacement="bl_idname = __package__"
+        )
+        replace_text(
+            dest_folder / "utils.py",
+            pattern='prefs = context.preferences.addons["Node Tabber"].preferences',
+            replacement="prefs = context.preferences.addons[__package__].preferences",
+        )
 
-        shutil.make_archive(RELEASE_FOLDER/archive_name, 'zip', temp_dir)
-    
+        shutil.make_archive(RELEASE_FOLDER / archive_name, "zip", temp_dir)
+
 
 def run():
     initialize(RELEASE_FOLDER)
 
     for version in versions:
         build_package(archive_name=f"Node Tabber (v{version})", version=version)
-    
+
     build_package(archive_name="Node Tabber (multi-version)")
     return
 

@@ -7,21 +7,24 @@ from bpy.props import EnumProperty
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
 enum_callback_cache = []
+
+
 def cache_enum_results(function):
     def wrapped_func(self, context):
         enum_callback_cache.clear()
         output = function(self, context)
         enum_callback_cache.extend(output)
         return output
-            
+
     return wrapped_func
 
 
 class NODE_OT_add_tabber_search(Operator):
-    '''Add a node to the active tree'''
+    """Add a node to the active tree"""
+
     bl_idname = "node.add_tabber_search"
     bl_label = "Search and Add Node"
-    bl_options = {'REGISTER', 'UNDO'}
+    bl_options = {"REGISTER", "UNDO"}
     bl_property = "search_entry"
 
     @classmethod
@@ -29,11 +32,10 @@ class NODE_OT_add_tabber_search(Operator):
         if hasattr(context, "space_data"):
             space = context.space_data
             has_tree = space.node_tree is not None
-            is_node_editor = space.type == 'NODE_EDITOR'
+            is_node_editor = (space.type == "NODE_EDITOR")
             return has_tree and is_node_editor
         else:
             return False
-            
 
     @cache_enum_results
     def define_items(self, context):
@@ -48,7 +50,7 @@ class NODE_OT_add_tabber_search(Operator):
 
         return items
 
-    search_entry: EnumProperty(items = define_items, name='Search Entry', default=None)
+    search_entry: EnumProperty(items=define_items, name="Search Entry", default=None)
 
     def execute(self, context):
         prefs = utils.fetch_user_prefs()
@@ -56,7 +58,7 @@ class NODE_OT_add_tabber_search(Operator):
         if settings is None:
             settings = {}
 
-        self.report({'INFO'}, f"Selected: {self.search_entry} - {function_name}:{settings}")
+        self.report({"INFO"}, f"Selected: {self.search_entry} - {function_name}:{settings}")
         function = getattr(utils, function_name)
         nodes = function(context, node_type, **settings)
 
@@ -64,15 +66,16 @@ class NODE_OT_add_tabber_search(Operator):
             bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
         utils.update_tally(context, entry=self.search_entry)
-        return {'FINISHED'}
+        return {"FINISHED"}
 
     def invoke(self, context, event):
         context.window_manager.invoke_search_popup(self)
-        return {'CANCELLED'}
+        return {"CANCELLED"}
 
 
 class NODE_OT_reset_tallies(Operator):
     """Reset the tally count"""
+
     bl_idname = "node.reset_tallies"
     bl_label = "Reset Tallies"
 

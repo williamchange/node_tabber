@@ -13,16 +13,18 @@ from bpy.app import version as app_version
 
 import json
 from pathlib import Path
+
 NODELIST_PATH = Path(__file__).parent
 
 settings_dict = {}
 
+
 def contains_group_legacy(parent, group):
     node_tree_group_type = {
-        'CompositorNodeTree': 'CompositorNodeGroup',
-        'ShaderNodeTree': 'ShaderNodeGroup',
-        'TextureNodeTree': 'TextureNodeGroup',
-        'GeometryNodeTree': 'GeometryNodeGroup',
+        "CompositorNodeTree": "CompositorNodeGroup",
+        "ShaderNodeTree": "ShaderNodeGroup",
+        "TextureNodeTree": "TextureNodeGroup",
+        "GeometryNodeTree": "GeometryNodeGroup",
     }
 
     if parent == group:
@@ -39,30 +41,35 @@ def contains_group(parent, group):
         return parent.contains_tree(group)
     else:
         return contains_group_legacy(parent, group)
-        
+
 
 def generate_nodegroup_entries(context):
     active_tree = utils.fetch_active_nodetree(context)
     node_groups = context.blend_data.node_groups
 
-    valid_groups = (group for group in node_groups
-        if (group.bl_idname == active_tree.bl_idname and
-            group.name != active_tree.name and
-            not contains_group(parent=group, group=active_tree) and
-            not group.name.startswith('.'))
+    valid_groups = (
+        group for group in node_groups
+        if (
+            group.bl_idname == active_tree.bl_idname
+            and group.name != active_tree.name
+            and not contains_group(parent=group, group=active_tree)
+            and not group.name.startswith(".")
         )
+    )
 
     # Note - Function for converting strings like 'ShaderNodeTree' to 'ShaderNodeGroup'
-    nodegroup_id = lambda group : group.bl_idname.removesuffix("Tree").__add__("Group")   
+    nodegroup_id = lambda group: group.bl_idname.removesuffix("Tree").__add__("Group")
 
-    group_entries = [generate_entry_item(nodegroup_id(group), label=group.name, settings={"node_tree": group.name})
-        for group in valid_groups]
+    group_entries = [
+        generate_entry_item(nodegroup_id(group), label=group.name, settings={"node_tree": group.name})
+        for group in valid_groups
+    ]
 
     return group_entries
 
 
 def abbreviation(label):
-    #Note - Remove symbols like "-" "_" "()" "[]"
+    # Note - Remove symbols like "-" "_" "()" "[]"
     stripped_label = label
     for char in ("/", "\\", "-", "_"):
         stripped_label = stripped_label.replace(char, " ")
@@ -85,7 +92,7 @@ def generate_label(idname=None, label=None, subtype_labels=None):
         bl_rna = Node.bl_rna_get_subclass(idname)
         if bl_rna is not None:
             label = bl_rna.name
-            #label = idname #Note - Temporary for easier debugging, should change back to label
+            # label = idname #Note - Temporary for easier debugging, should change back to label
         else:
             raise ValueError(f"'{idname}' is not a valid node type.")
 
@@ -108,16 +115,19 @@ def fetch_subtypes_from_bl_rna(node_id, name, only_include=None):
 
     return enum_list
 
+
 def merge_settings(settings, subtype_settings):
     all_settings = {}
     for i in (settings, subtype_settings):
         if i is not None:
             all_settings.update(i)
-    
+
     return all_settings
 
 
-def generate_entry_item(idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, **kwargs):
+def generate_entry_item(
+    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, **kwargs
+):
     enum_label = generate_label(idname, label, subtype_labels)
     identifier = str((idname, enum_label))
 
@@ -126,15 +136,17 @@ def generate_entry_item(idname, label=None, function="create_node", settings=Non
     settings_dict[identifier] = (idname, function, all_settings)
     return (identifier, enum_label, "")
 
+
 def process_entries(context, entries, *, poll=None, poll_args=None):
     if poll is None:
         return entries, True
     else:
         if poll_args is None:
             poll_args = {}
-        
+
         poll = getattr(poll_funcs, poll)
-        return entries, poll(context, **poll_args)        
+        return entries, poll(context, **poll_args)
+
 
 def filter_by_poll(context, entries):
     for entry in entries:
@@ -142,10 +154,11 @@ def filter_by_poll(context, entries):
         if include:
             yield entries
 
+
 def is_entry_invalid(entry, properties):
     if properties.get("function") != "create_zone":
-        node_data = Node.bl_rna_get_subclass(entry) 
-        
+        node_data = Node.bl_rna_get_subclass(entry)
+
         if node_data is not None:
             settings = properties.get("settings")
             if settings is not None:
@@ -154,7 +167,7 @@ def is_entry_invalid(entry, properties):
                     props = (prop.identifier for prop in fetch_subtypes_from_bl_rna(entry, prop_name))
                     if value not in props:
                         invalid = True
-                
+
                 if invalid:
                     print(f"Node Tabber: {entry} - {properties} is not a valid node type, entry not included in search.")
                     return True
@@ -163,19 +176,24 @@ def is_entry_invalid(entry, properties):
             return True
     else:
         settings = properties["settings"]
-        input_node_exists = Node.bl_rna_get_subclass(settings["input_type"]) is None 
+        input_node_exists = Node.bl_rna_get_subclass(settings["input_type"]) is None
         output_node_exists = Node.bl_rna_get_subclass(settings["output_type"]) is None
-        
+
         if input_node_exists and output_node_exists:
             print(f"Node Tabber: {entry} is not a valid node type, entry not included in search.")
-            return True 
+            return True
+
 
 def get_data_from_filepath(editor_type):
     version_number = ".".join(map(str, app_version[:2]))
     filepath = NODELIST_PATH / version_number / f"{editor_type}.json"
 
     if not filepath.exists():
-        versions = [tuple(map(int, f.name.split("."))) for f in NODELIST_PATH.iterdir() if f.is_dir() and f.name != "__pycache__"]
+        versions = [
+            tuple(map(int, f.name.split(".")))
+            for f in NODELIST_PATH.iterdir()
+            if f.is_dir() and f.name != "__pycache__"
+        ]
         fallback_version = min(max(min(versions), app_version), max(versions))
         fallback_version = ".".join(map(str, fallback_version[:2]))
 
@@ -189,8 +207,9 @@ def get_data_from_filepath(editor_type):
 
     with open(filepath, "r") as f:
         json_data = json.load(f)
-    
+
     return json_data
+
 
 def generate_entries(context, editor_type):
     entries = []
@@ -201,7 +220,7 @@ def generate_entries(context, editor_type):
 
     for item in itertools.chain(*filter_by_poll(context, json_data.values())):
         if isinstance(item, (tuple, list)):
-            idname, properties, *_ = item   
+            idname, properties, *_ = item
         else:
             idname, properties = item, {}
 
@@ -227,8 +246,12 @@ def generate_entries(context, editor_type):
 
             for props in itertools.product(*enum_list):
                 subtype_labels = [iface_(prop.name) for prop in props]
-                subtype_settings = {name:prop.identifier for (name, prop) in zip(name_list, props)}
-                entries.append(generate_entry_item(idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties))
+                subtype_settings = {name: prop.identifier for (name, prop) in zip(name_list, props)}
+                entries.append(
+                    generate_entry_item(
+                        idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties
+                    )
+                )
 
     entries.extend(generate_nodegroup_entries(context))
     return entries

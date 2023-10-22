@@ -12,6 +12,7 @@ def in_nodegroup(context):
 
     return current_tree in node_groups.values()
 
+
 ## === SHADER NODES ===
 def engine_and_shader_type_poll(context, engines=None, shader_types=None):
     current_engine = context.engine
@@ -36,7 +37,8 @@ def engine_and_shader_type_poll(context, engines=None, shader_types=None):
 
 ## === GEOMETRY NODES ===
 def is_tool(context):
-    return getattr(context.space_data, "geometry_nodes_type", None) == 'TOOL'
+    return getattr(context.space_data, "geometry_nodes_type", None) == "TOOL"
+
 
 def use_experimental_volume_nodes(context):
     return getattr(context.preferences.experimental, "use_new_volume_nodes", False)

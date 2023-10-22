@@ -3,13 +3,14 @@ from bpy.types import AddonPreferences
 from bpy.props import BoolProperty, IntProperty, EnumProperty
 from . import keymap_ui
 
+
 class NodeTabberPreferences(AddonPreferences):
     bl_idname = "Node Tabber"
 
     include_subtypes: BoolProperty(
         name="Include Subtypes",
         default=True,
-        description='Include node subtypes in search entries. Ex: Math node will include operations such as Add, Subtract, etc',
+        description="Include node subtypes in search entries. Ex: Math node will include operations such as Add, Subtract, etc.",
     )
 
     quick_place: BoolProperty(
@@ -27,15 +28,15 @@ class NodeTabberPreferences(AddonPreferences):
     sort_by_tally: BoolProperty(
         name="Enable Sort By Tally",
         default=True,
-        description='When enabled, more frequently used entries get place higher on search results',
+        description="When enabled, more frequently used entries get place higher on search results",
     )
 
     hide_group_selector: BoolProperty(
         name="Hide Group Selector",
         default=True,
-        description='When enabled, more frequently used entries get place higher on search results',
+        description="When enabled, more frequently used entries get place higher on search results",
     )
-    
+
     tally_max: IntProperty(
         name="Tally Max",
         default=35,
@@ -47,15 +48,14 @@ class NodeTabberPreferences(AddonPreferences):
     mix_color_alias: EnumProperty(
         name="Mix Color Alias",
         items=(
-            ("DEFAULT", "Use Default Names", "Keep the node names as-is. \n('Mix Color' for shaders, geometry, and compositor. 'Mix RGB for texture node editor')"),
+            ("DEFAULT","Use Default Names","Keep the node names as-is. \n('Mix Color' for shaders, geometry, and compositor. 'Mix RGB for texture node editor')",),
             ("MIX_COLOR", "Use 'Mix Color'", "Use the label 'Mix Color' for both Mix Color and Mix RGB nodes"),
             ("MIX_RGB", "Use 'Mix RGB'", "Use the label 'Mix RGB' for both Mix Color and Mix RGB nodes"),
             ("BOTH", "Use Both Aliases", "Use both 'Mix Color' and 'Mix RGB' as valid search entries"),
         ),
-        default='DEFAULT',
-        description="Specifies how the Mix Color/Mix RGB nodes would be called across editors"
-        )
-
+        default="DEFAULT",
+        description="Specifies how the Mix Color/Mix RGB nodes would be called across editors",
+    )
 
     def draw(self, context):
         layout = self.layout
@@ -92,14 +92,15 @@ class NodeTabberPreferences(AddonPreferences):
             subcol.label(text="Other Options:")
             subcol.prop(self, "mix_color_alias")
 
-        keymap_ui.draw_keyboard_shorcuts(self, layout, context, 
-            toggle_idname="node_tabber_show_keymaps", starting_indent_level=0)
+        keymap_ui.draw_keyboard_shorcuts(
+            self, layout, context, toggle_idname="node_tabber_show_keymaps", starting_indent_level=0
+        )
 
 
 def register():
     bpy.types.WindowManager.node_tabber_show_keymaps = BoolProperty(
-        name="Show Keymaps",
-        default=False,
+        name="Show Keymaps", 
+        default=False, 
         description="When enabled, displays keymap list"
     )
 

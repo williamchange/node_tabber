@@ -9,7 +9,7 @@ TALLY_FOLDER = ADDON_FOLDER / "tally_cache"
 # Create Folder for caching node tallies
 if not TALLY_FOLDER.exists():
     TALLY_FOLDER.mkdir()
-    
+
 
 nodes_with_op_symbols = [
     "ShaderNodeMath",
@@ -21,27 +21,27 @@ nodes_with_op_symbols = [
 ]
 
 op_symbol_dict = {
-    "Add" : "+",
-    "Subtract" : "-",
-    "Multiply" : "*",
-    "Divide" : "/",
-    "Multiply Add" : "*+",
-    "Power" : "^",
-    "Exponent" : "e^",
-    "Less Than" : "<",
-    "Less Than or Equal" : "<=",
-    "Greater Than" : ">",
-    "Greater Than or Equal" : ">=",
-    "Scale" : "*",
-    "Cross Product" : "x",
-    "And" : "^",
-    "Or" : "v",
-    "Not" : "!",
-    "Not And" : "!^",
-    "Nor" : "!v",
-    "Equal" : "=",
-    "Not Equal" : "!=",
-    "Imply" : "->",
+    "Add": "+",
+    "Subtract": "-",
+    "Multiply": "*",
+    "Divide": "/",
+    "Multiply Add": "*+",
+    "Power": "^",
+    "Exponent": "e^",
+    "Less Than": "<",
+    "Less Than or Equal": "<=",
+    "Greater Than": ">",
+    "Greater Than or Equal": ">=",
+    "Scale": "*",
+    "Cross Product": "x",
+    "And": "^",
+    "Or": "v",
+    "Not": "!",
+    "Not And": "!^",
+    "Nor": "!v",
+    "Equal": "=",
+    "Not Equal": "!=",
+    "Imply": "->",
 }
 
 
@@ -54,7 +54,7 @@ def add_op_symbols(operation):
 
 
 def fetch_tally_path(tree_type):
-    return Path(TALLY_FOLDER, f'{tree_type}.json')    
+    return Path(TALLY_FOLDER, f"{tree_type}.json")
 
 
 def fetch_user_prefs(attr_id=None):
@@ -71,11 +71,11 @@ def sort_enum_items(tree_type, items):
         with open(path, "r") as f:
             tally_dict = json.load(f)
 
-        items.sort(key=lambda x : tally_dict.get(x[0], 0), reverse=True)
+        items.sort(key=lambda x: tally_dict.get(x[0], 0), reverse=True)
 
 
 def update_tally(context, entry):
-    prefs = fetch_user_prefs() 
+    prefs = fetch_user_prefs()
     tree_type = context.space_data.tree_type
 
     path = fetch_tally_path(tree_type)
@@ -112,12 +112,12 @@ def create_node(context, node_type=None, *_, node_tree=None, **settings):
                 setattr(node, key, value)
 
         if node_tree is not None:
-            node.node_tree = context.blend_data.node_groups.get(node_tree)   
+            node.node_tree = context.blend_data.node_groups.get(node_tree)
             node.show_options = not prefs.hide_group_selector
 
         node.location = context.space_data.cursor_location
         return make_selection(context, nodes=(node,))
-    
+
     except Exception as error:
         tree.nodes.remove(node)
         raise error
@@ -143,12 +143,12 @@ def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0),
 
         # Connect geometry sockets by default.
         # Get the sockets by their types, because the name is not guaranteed due to i18n.
-        from_socket = next(s for s in input_node.outputs if s.type == 'GEOMETRY')
-        to_socket = next(s for s in output_node.inputs if s.type == 'GEOMETRY')
+        from_socket = next(s for s in input_node.outputs if s.type == "GEOMETRY")
+        to_socket = next(s for s in output_node.inputs if s.type == "GEOMETRY")
         tree.links.new(to_socket, from_socket)
 
         return make_selection(context, nodes=(input_node, output_node))
-    
+
     except Exception as error:
         tree.nodes.remove(input_node)
         tree.nodes.remove(output_node)
@@ -160,7 +160,7 @@ def make_selection(context, nodes):
     # select only the new node
     for n in tree.nodes:
         n.select = False
-    
+
     for n in nodes:
         n.select = True
 
