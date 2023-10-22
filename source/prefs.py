@@ -71,7 +71,7 @@ class NodeTabberPreferences(AddonPreferences):
 
     def draw(self, context):
         layout = self.layout
-        row = layout.split(factor=0.3)
+        row = layout.split(factor=0.31)
         col1 = row.column(align=True)
         col1.label(text="Node Options:")
         col1.prop(self, "quick_place")
