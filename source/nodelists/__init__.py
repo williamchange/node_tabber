@@ -175,7 +175,17 @@ def get_data_from_filepath(editor_type):
     filepath = NODELIST_PATH / version_number / f"{editor_type}.json"
 
     if not filepath.exists():
-        raise FileNotFoundError(f"Node Tabber does not support editor type '{editor_type}' for Blender {version_number}'")
+        versions = [tuple(map(int, f.name.split("."))) for f in NODELIST_PATH.iterdir() if f.is_dir() and f.name != "__pycache__"]
+        fallback_version = min(max(min(versions), app_version), max(versions))
+        fallback_version = ".".join(map(str, fallback_version[:2]))
+
+        filepath = NODELIST_PATH / fallback_version / f"{editor_type}.json"
+
+        if not filepath.exists():
+            raise FileNotFoundError(f"This instance of Node Tabber does not support Blender version {version_number}")
+        else:
+            print(f"WARNING : Node Tabber does not support editor type '{editor_type}' for Blender {version_number}'")
+            print(f"WARNING : Using entries for version {fallback_version} instead.")
 
     with open(filepath, "r") as f:
         json_data = json.load(f)
