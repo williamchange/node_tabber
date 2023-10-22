@@ -103,9 +103,9 @@ def run():
     initialize(RELEASE_FOLDER)
 
     for version in versions:
-        build_package(archive_name=f"Node Tabber (v{version})", version=version)
+        build_package(archive_name=f"Node-Tabber_Blender-v{version}", version=version)
 
-    build_package(archive_name="Node Tabber (multi-version)")
+    build_package(archive_name="Node-Tabber_multi-version")
     return
 
 
