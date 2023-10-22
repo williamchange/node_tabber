@@ -57,6 +57,12 @@ class NodeTabberPreferences(AddonPreferences):
         description="Specifies how the Mix Color/Mix RGB nodes would be called across editors",
     )
 
+    include_external_nodes: BoolProperty(
+        name="Include External Nodes",
+        default=True,
+        description="Include custom nodes by created by other addons in search entries. \n(Note: Only includes custom nodes that are registered as NodeItems)",
+    )
+
     def draw(self, context):
         layout = self.layout
         row = layout.split(factor=0.3)
@@ -70,6 +76,9 @@ class NodeTabberPreferences(AddonPreferences):
         col1.prop(self, "include_subtypes")
         if self.include_subtypes:
             col1.prop(self, "use_op_symbols")
+        
+        col1.separator()
+        col1.prop(self, "include_external_nodes")
 
         col2 = row.column()
         col2.label(text="Tally Options:")

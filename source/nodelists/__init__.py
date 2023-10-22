@@ -271,5 +271,8 @@ def generate_entries(context, editor_type):
                 )
 
     entries.extend(generate_nodegroup_entries(context))
-    entries.extend(generate_custom_node_entries(context))
+
+    if prefs.include_external_nodes:
+        entries.extend(generate_custom_node_entries(context))
+        
     return entries
