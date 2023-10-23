@@ -2,5 +2,6 @@
 /scripts
 .vscode
 **/__pycache__/
+**.prof
 *.json
 !/source/nodelists/**/*.json

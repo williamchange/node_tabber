@@ -2,6 +2,7 @@ import json
 
 from bpy import context
 from pathlib import Path
+from ..debug import profile_code
 
 ADDON_FOLDER = Path(__file__).parent
 TALLY_FOLDER = ADDON_FOLDER / "tally_cache"

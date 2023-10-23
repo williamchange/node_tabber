@@ -3,6 +3,7 @@ import bpy
 from . import nodelists, utils
 from bpy.types import Operator
 from bpy.props import EnumProperty
+from ..debug import profile_code
 
 # EnumProperties that are generated dynamically tend to misbehave as Python tends to clean up memory
 # Caching the results forces Python to keep track of the data while the operator is in use
