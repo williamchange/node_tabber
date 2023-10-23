@@ -87,6 +87,9 @@ def build_package(archive_name, version=None):
         init_path = dest_folder / "__init__.py"
         write_bl_info(init_path, version)
 
+        for f in dest_folder.glob("*.py"):
+            replace_text(f, pattern="from ..debug import profile_code\n", replacement="")
+
         replace_text(
             dest_folder / "prefs.py", pattern='bl_idname = "Node Tabber"', replacement="bl_idname = __package__"
         )
