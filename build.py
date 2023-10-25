@@ -13,7 +13,7 @@ SOURCE_FOLDER = Path("source")
 BL_INFO_BASE = {
     "name": "Node Tabber",
     "author": "Richard Lyons, williamchange, Quackers",
-    "version": (0, 2, 0),
+    "version": (0, 2, 1),
     "blender": (3, 4, 0),
     "description": "Allows quick smart searching of node types.",
     "category": "Node",
