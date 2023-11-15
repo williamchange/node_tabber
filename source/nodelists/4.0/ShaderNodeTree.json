@@ -1,6 +1,9 @@
 {
     "items": {
         "entries": [
+            "ShaderNodeAddShader",
+            "ShaderNodeEmission",
+            "ShaderNodeMixShader",
             "ShaderNodeAmbientOcclusion",
             "ShaderNodeAttribute",
             "ShaderNodeBevel",
@@ -45,7 +48,9 @@
             "ShaderNodeBump",
             "ShaderNodeNormal",
             "ShaderNodeVectorCurve",
-            "ShaderNodeVectorTransform"
+            "ShaderNodeVectorTransform",
+            "ShaderNodeVolumeAbsorption",
+            "ShaderNodeVolumeScatter"
         ]
     },
     "specific_types": {
@@ -386,27 +391,11 @@
             "ShaderNodeOutputLineStyle"
         ]
     },
-    "cycles_eevee_shader_nodes": {
-        "poll": "engine_and_shader_type_poll",
-        "poll_args": {
-            "engines": [
-                "CYCLES",
-                "BLENDER_EEVEE"
-            ]
-        },
-        "entries": [
-            "ShaderNodeAddShader",
-            "ShaderNodeEmission",
-            "ShaderNodeMixShader",
-            "ShaderNodeVolumeAbsorption",
-            "ShaderNodeVolumeScatter"
-        ]
-    },
-    "object_cycles_shader_nodes": {
+    "object_not_eevee_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
         "poll_args": {
             "shader_types": "OBJECT",
-            "engines": "CYCLES"
+            "exclude_engines": "BLENDER_EEVEE"
         },
         "entries": [
             "ShaderNodeOutputLight",
@@ -427,14 +416,10 @@
             "ShaderNodeEeveeSpecular"
         ]
     },
-    "object_cycles_eevee_shader_nodes": {
+    "object_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
         "poll_args": {
-            "shader_types": "OBJECT",
-            "engines": [
-                "CYCLES",
-                "BLENDER_EEVEE"
-            ]
+            "shader_types": "OBJECT"
         },
         "entries": [
             "ShaderNodeOutputMaterial",

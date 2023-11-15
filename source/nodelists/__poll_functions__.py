@@ -14,7 +14,7 @@ def in_nodegroup(context):
 
 
 ## === SHADER NODES ===
-def engine_and_shader_type_poll(context, engines=None, shader_types=None):
+def engine_and_shader_type_poll(context, engines=None, exclude_engines=None, shader_types=None):
     current_engine = context.engine
     current_shader_type = context.space_data.shader_type
 
@@ -24,6 +24,14 @@ def engine_and_shader_type_poll(context, engines=None, shader_types=None):
         engine_poll = (current_engine == engines)
     else:
         engine_poll = current_engine in engines
+
+    if exclude_engines is not None:
+        if isinstance(exclude_engines, str):
+            not_engine_poll = (current_engine != exclude_engines)
+        else:
+            not_engine_poll = (current_engine not in exclude_engines)
+            
+        engine_poll = engine_poll and not_engine_poll
 
     if shader_types is None:
         shader_type_poll = True
