@@ -338,6 +338,14 @@
                 }
             ],
             [
+                "GeometryNodeSplitToInstances",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
                 "GeometryNodeDuplicateElements",
                 {
                     "subtypes": [
