@@ -12,7 +12,6 @@
             "CompositorNodeSceneTime",
             "CompositorNodeTime",
             "CompositorNodeComposite",
-            "CompositorNodeSplitViewer",
             "CompositorNodeViewer",
             "CompositorNodeOutputFile",
             "CompositorNodeValToRGB",
@@ -20,14 +19,12 @@
             "CompositorNodeInvert",
             "CompositorNodeRGBToBW",
             "CompositorNodeBrightContrast",
-            "CompositorNodeColorBalance",
             "CompositorNodeColorCorrection",
             "CompositorNodeExposure",
             "CompositorNodeGamma",
             "CompositorNodeHueCorrect",
             "CompositorNodeHueSat",
             "CompositorNodeCurveRGB",
-            "CompositorNodeTonemap",
             "CompositorNodeAlphaOver",
             "CompositorNodeZcombine",
             "CompositorNodeAntiAliasing",
@@ -45,11 +42,9 @@
             "CompositorNodeColorMatte",
             "CompositorNodeColorSpill",
             "CompositorNodeDiffMatte",
-            "CompositorNodeDistanceMatte",
             "CompositorNodeKeying",
             "CompositorNodeKeyingScreen",
             "CompositorNodeLumaMatte",
-            "CompositorNodeCryptomatteV2",
             "CompositorNodeCryptomatte",
             "CompositorNodeBoxMask",
             "CompositorNodeEllipseMask",
@@ -63,7 +58,6 @@
             "CompositorNodeDisplace",
             "CompositorNodeMapUV",
             "CompositorNodeLensdist",
-            "CompositorNodeMovieDistortion",
             "CompositorNodeMapRange",
             "CompositorNodeMapValue",
             "CompositorNodeNormalize",
@@ -72,6 +66,56 @@
             "CompositorNodeSeparateXYZ",
             "CompositorNodeNormal",
             "CompositorNodeCurveVec"
+        ]
+    },    
+    "combine_and_separate_color": {
+        "entries": [
+            [
+                "CompositorNodeCombineColor",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeCombineColor",
+                {
+                    "only_subtypes" : true, 
+                    "subtypes": [
+                        {
+                            "name": "mode",
+                            "only_include": [
+                                "YCbCr"
+                            ]
+                        },
+                        "ycc_mode"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeSeparateColor",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeSeparateColor",
+                {
+                    "only_subtypes" : true, 
+                    "subtypes": [
+                        {
+                            "name": "mode",
+                            "only_include": [
+                                "YCbCr"
+                            ]
+                        },
+                        "ycc_mode"
+                    ]
+                }
+            ]
         ]
     },
     "specific_types": {
@@ -91,6 +135,38 @@
                 {
                     "subtypes": [
                         "mapping"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeColorBalance",
+                {
+                    "subtypes": [
+                        "correction_method"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeCryptomatteV2",
+                {
+                    "subtypes": [
+                        "source"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeDistanceMatte",
+                {
+                    "subtypes": [
+                        "channel"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeMovieDistortion",
+                {
+                    "subtypes": [
+                        "distortion_type"
                     ]
                 }
             ],
@@ -127,6 +203,21 @@
                 }
             ],
             [
+                "CompositorNodeDilateErode",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        {
+                            "name": "mode",
+                            "only_include": [
+                                "Feather"
+                            ]
+                        },
+                        "falloff"
+                    ]
+                }
+            ],
+            [
                 "CompositorNodeGlare",
                 {
                     "subtypes": [
@@ -147,6 +238,21 @@
                 {
                     "subtypes": [
                         "space"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeScale",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        {
+                            "name": "space",
+                            "only_include": [
+                                "Render Size"
+                            ]
+                        },
+                        "frame_method"
                     ]
                 }
             ],
@@ -207,26 +313,26 @@
                 }
             ],
             [
-                "CompositorNodeCombineColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeSeparateColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
                 "CompositorNodeFilter",
                 {
                     "subtypes": [
                         "filter_type"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeSplitViewer",
+                {
+                    "subtypes": [
+                        "axis"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeTonemap",
+                {
+                    "subtypes": [
+                        "tonemap_type"
                     ]
                 }
             ]
