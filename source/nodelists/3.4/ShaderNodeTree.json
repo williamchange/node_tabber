@@ -412,7 +412,14 @@
             "ShaderNodeOutputLight",
             "ShaderNodeBsdfHair",
             "ShaderNodeBsdfHairPrincipled",
-            "ShaderNodeBsdfToon"
+            [
+                "ShaderNodeBsdfToon",
+                {
+                    "subtypes": [
+                        "component"
+                    ]
+                }
+            ]
         ]
     },
     "object_eevee_shader_nodes": {
@@ -438,13 +445,48 @@
         "entries": [
             "ShaderNodeOutputMaterial",
             "ShaderNodeBsdfDiffuse",
-            "ShaderNodeBsdfGlass",
-            "ShaderNodeBsdfAnisotropic",
-            "ShaderNodeBsdfGlossy",
+            [
+                "ShaderNodeBsdfGlass",
+                {
+                    "subtypes": [
+                        "distribution"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeBsdfAnisotropic",
+                {
+                    "subtypes": [
+                        "distribution"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeBsdfGlossy",
+                {
+                    "subtypes": [
+                        "distribution"
+                    ]
+                }
+            ],
             "ShaderNodeHoldout",
             "ShaderNodeBsdfPrincipled",
-            "ShaderNodeBsdfRefraction",
-            "ShaderNodeSubsurfaceScattering",
+            [
+                "ShaderNodeBsdfRefraction",
+                {
+                    "subtypes": [
+                        "distribution"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeSubsurfaceScattering",
+                {
+                    "subtypes": [
+                        "falloff"
+                    ]
+                }
+            ],
             "ShaderNodeBsdfTranslucent",
             "ShaderNodeBsdfTransparent"
         ]
