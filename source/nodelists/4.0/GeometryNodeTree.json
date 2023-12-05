@@ -403,14 +403,6 @@
                 }
             ],
             [
-                "FunctionNodeRotateEuler",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
                 "GeometryNodeResampleCurve",
                 {
                     "subtypes": [
