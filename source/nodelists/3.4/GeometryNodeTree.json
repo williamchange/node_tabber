@@ -13,21 +13,14 @@
             "GeometryNodeSplineLength",
             "GeometryNodeSplineParameter",
             "GeometryNodeInputSplineResolution",
-            "GeometryNodeSampleCurve",
-            "GeometryNodeSetCurveNormal",
             "GeometryNodeSetCurveRadius",
             "GeometryNodeSetCurveTilt",
-            "GeometryNodeSetCurveHandlePositions",
             "GeometryNodeSetSplineCyclic",
             "GeometryNodeSetSplineResolution",
             "GeometryNodeCurveToMesh",
-            "GeometryNodeCurveToPoints",
             "GeometryNodeDeformCurvesOnSurface",
-            "GeometryNodeFillCurve",
-            "GeometryNodeResampleCurve",
             "GeometryNodeReverseCurve",
             "GeometryNodeSubdivideCurve",
-            "GeometryNodeTrimCurve",
             "GeometryNodeCurveArc",
             "GeometryNodeCurvePrimitiveCircle",
             "GeometryNodeCurvePrimitiveBezierSegment",
@@ -92,15 +85,11 @@
             "GeometryNodeDualMesh",
             "GeometryNodeEdgePathsToCurves",
             "GeometryNodeEdgePathsToSelection",
-            "GeometryNodeExtrudeMesh",
             "GeometryNodeFlipFaces",
             "GeometryNodeMeshToCurve",
-            "GeometryNodeMeshToPoints",
-            "GeometryNodeMeshToVolume",
             "GeometryNodeSplitEdges",
             "GeometryNodeSubdivideMesh",
             "GeometryNodeSubdivisionSurface",
-            "GeometryNodeTriangulate",
             "GeometryNodeMeshCone",
             "GeometryNodeMeshCube",
             "GeometryNodeMeshCylinder",
@@ -119,7 +108,6 @@
             "GeometryNodeViewer",
             "GeometryNodePoints",
             "GeometryNodePointsToVertices",
-            "GeometryNodePointsToVolume",
             "GeometryNodeSetPointRadius",
             "GeometryNodeStringJoin",
             "FunctionNodeReplaceString",
@@ -132,15 +120,12 @@
             "ShaderNodeTexChecker",
             "GeometryNodeImageTexture",
             "ShaderNodeTexMagic",
-            "FunctionNodeAlignEulerToVector",
-            "FunctionNodeRotateEuler",
             "ShaderNodeFloatCurve",
             "GeometryNodeUVPackIslands",
             "ShaderNodeVectorCurve",
             "ShaderNodeCombineXYZ",
             "ShaderNodeSeparateXYZ",
-            "GeometryNodeVolumeCube",
-            "GeometryNodeVolumeToMesh"
+            "GeometryNodeVolumeCube"
         ]
     },
     "group_nodes": {
@@ -349,6 +334,118 @@
                     "subtypes": [
                         "domain",
                         "scale_mode"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeAlignEulerToVector",
+                {
+                    "subtypes": [
+                        "axis"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeRotateEuler",
+                {
+                    "subtypes": [
+                        "space"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeExtrudeMesh",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeResampleCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeCurveToPoints",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFillCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMeshToPoints",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeTrimCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodePointsToVolume",
+                {
+                    "subtypes": [
+                        "resolution_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMeshToVolume",
+                {
+                    "subtypes": [
+                        "resolution_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeVolumeToMesh",
+                {
+                    "subtypes": [
+                        "resolution_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetCurveHandlePositions",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetCurveNormal",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeTriangulate",
+                {
+                    "subtypes": [
+                        "quad_method"
                     ]
                 }
             ]
@@ -859,6 +956,51 @@
                                 "Not Equal",
                                 "Brighter",
                                 "Darker"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "GeometryNodeSampleCurve",
+            [
+                "GeometryNodeSampleCurve",
+                {
+                    "label": "Sample Curve - Factor",
+                    "settings": {
+                        "mode": "FACTOR"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleCurve",
+                {
+                    "label": "Sample Curve - Length",
+                    "settings": {
+                        "mode": "LENGTH"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion"
                             ]
                         }
                     ]
