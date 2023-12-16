@@ -213,15 +213,6 @@
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexMusgrave",
-                {
-                    "subtypes": [
-                        "musgrave_type",
-                        "musgrave_dimensions"
-                    ]
-                }
-            ],
             "ShaderNodeTexVoronoi",
             [
                 "ShaderNodeTexVoronoi",
@@ -259,6 +250,16 @@
                 {
                     "subtypes": [
                         "noise_dimensions"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexNoise",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        "noise_dimensions",
+                        "type"
                     ]
                 }
             ],
