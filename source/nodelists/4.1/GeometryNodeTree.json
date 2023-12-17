@@ -55,6 +55,7 @@
             "FunctionNodeInputString",
             "ShaderNodeValue",
             "FunctionNodeInputVector",
+            "GeometryNodeInputActiveCamera",
             "GeometryNodeCollectionInfo",
             "GeometryNodeImageInfo",
             "GeometryNodeIsViewport",
