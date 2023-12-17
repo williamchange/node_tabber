@@ -321,7 +321,7 @@
                 }
             ],
             [
-                "CompositorNodeSplitViewer",
+                "CompositorNodeSplit",
                 {
                     "subtypes": [
                         "axis"
