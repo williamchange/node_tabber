@@ -140,6 +140,7 @@
             "ShaderNodeVectorCurve",
             "ShaderNodeCombineXYZ",
             "ShaderNodeSeparateXYZ",
+            "ShaderNodeBlackbody",
             "GeometryNodeVolumeCube"
         ]
     },
