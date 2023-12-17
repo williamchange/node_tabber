@@ -712,6 +712,30 @@
                         }
                     ]
                 }
+            ],
+            [
+                "GeometryNodeIndexSwitch",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Boolean",
+                                "Vector",
+                                "Rotation",
+                                "String",
+                                "Color",
+                                "Object",
+                                "Image",
+                                "Geometry",
+                                "Collection",
+                                "Material"
+                            ]
+                        }
+                    ]
+                }
             ]
         ]
     },
