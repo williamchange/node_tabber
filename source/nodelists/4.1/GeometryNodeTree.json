@@ -142,7 +142,8 @@
             "ShaderNodeCombineXYZ",
             "ShaderNodeSeparateXYZ",
             "ShaderNodeBlackbody",
-            "GeometryNodeVolumeCube"
+            "GeometryNodeVolumeCube",
+            "GeometryNodeBake"
         ]
     },
     "zones": {
