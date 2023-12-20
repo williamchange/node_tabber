@@ -566,7 +566,7 @@
                     "only_subtypes": true,
                     "subtypes": [
                         "noise_dimensions",
-                        "type"
+                        "noise_type"
                     ]
                 }
             ],
