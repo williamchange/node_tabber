@@ -1,11 +1,19 @@
 import bpy
 from bpy.types import AddonPreferences
 from bpy.props import BoolProperty, IntProperty, EnumProperty
+
 from . import keymap_ui
+from .utils import fetch_user_prefs
 
 
 class NodeTabberPreferences(AddonPreferences):
     bl_idname = "Node Tabber"
+
+    show_keymaps : BoolProperty(
+        name="Show Keymaps", 
+        default=False, 
+        description="When enabled, displays keymap list"
+    )
 
     include_subtypes: BoolProperty(
         name="Include Subtypes",
@@ -110,20 +118,16 @@ class NodeTabberPreferences(AddonPreferences):
             subcol.prop(self, "mix_color_alias")
 
         keymap_ui.draw_keyboard_shorcuts(
-            self, layout, context, toggle_idname="node_tabber_show_keymaps", starting_indent_level=0
-        )
+            self, layout, context, starting_indent_level=0
+            )
 
 
 def register():
-    bpy.types.WindowManager.node_tabber_show_keymaps = BoolProperty(
-        name="Show Keymaps", 
-        default=False, 
-        description="When enabled, displays keymap list"
-    )
-
     bpy.utils.register_class(NodeTabberPreferences)
+
+    prefs = fetch_user_prefs()
+    prefs.property_unset("show_keymaps")
 
 
 def unregister():
     bpy.utils.unregister_class(NodeTabberPreferences)
-    del bpy.types.WindowManager.node_tabber_show_keymaps

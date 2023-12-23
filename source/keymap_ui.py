@@ -116,16 +116,16 @@ def find_matching_keymaps(keyconfig):
                 yield (km, kmi_con)
 
 
-def draw_keyboard_shorcuts(pref_data, layout, context, toggle_idname, keymap_spacing=0.15, starting_indent_level=1):
+def draw_keyboard_shorcuts(pref_data, layout, context, keymap_spacing=0.15, starting_indent_level=1):
     col = layout.box().column()
     row = col.row(align=True)
     wm = context.window_manager
-    show_keymaps = getattr(wm, toggle_idname, False)
+    show_keymaps = pref_data.show_keymaps
 
     if show_keymaps:
-        row.prop(wm, toggle_idname, text="", icon="DISCLOSURE_TRI_DOWN", emboss=False)
+        row.prop(pref_data, "show_keymaps", text="", icon="DISCLOSURE_TRI_DOWN", emboss=False)
     else:
-        row.prop(wm, toggle_idname, text="", icon="DISCLOSURE_TRI_RIGHT", emboss=False)
+        row.prop(pref_data, "show_keymaps", text="", icon="DISCLOSURE_TRI_RIGHT", emboss=False)
     row.label(text="Keymap List:", icon="KEYINGSET")
 
     if not show_keymaps:
