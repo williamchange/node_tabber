@@ -1185,6 +1185,34 @@
     "experimental_volumes": {
         "poll": "use_experimental_volume_nodes",
         "entries": [
+            [
+                "GeometryNodeGetNamedGrid",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeStoreNamedGrid",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
+            ]
         ]
     },    
     "grease_pencil_v3": {
