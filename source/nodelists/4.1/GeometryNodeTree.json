@@ -508,6 +508,14 @@
                         "quad_method"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeSortElements",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
             ]
         ]
     },
@@ -1214,7 +1222,7 @@
                 }
             ]
         ]
-    },    
+    },
     "grease_pencil_v3": {
         "poll": "use_experimental_grease_pencil_v3",
         "entries": [
