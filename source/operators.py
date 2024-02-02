@@ -30,12 +30,13 @@ class NODE_OT_add_tabber_search(Operator):
 
     @classmethod
     def poll(self, context):
-        if hasattr(context, "space_data"):
+        try:
             space = context.space_data
             has_tree = space.node_tree is not None
             is_node_editor = (space.type == "NODE_EDITOR")
             return has_tree and is_node_editor
-        else:
+            
+        except AttributeError:
             return False
 
     @cache_enum_results
