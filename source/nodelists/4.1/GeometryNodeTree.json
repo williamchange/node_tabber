@@ -131,6 +131,7 @@
             "FunctionNodeAxisAngleToRotation",
             "FunctionNodeEulerToRotation",
             "FunctionNodeInvertRotation",
+            "FunctionNodeRotateRotation",
             "FunctionNodeRotateVector",
             "FunctionNodeRotationToAxisAngle",
             "FunctionNodeRotationToEuler",
