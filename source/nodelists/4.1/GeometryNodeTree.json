@@ -399,14 +399,6 @@
                 }
             ],
             [
-                "FunctionNodeRotateEuler",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
                 "GeometryNodeExtrudeMesh",
                 {
                     "subtypes": [
