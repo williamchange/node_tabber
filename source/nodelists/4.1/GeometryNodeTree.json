@@ -398,14 +398,6 @@
                 }
             ],
             [
-                "FunctionNodeRotateEuler",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
                 "FunctionNodeRotateRotation",
                 {
                     "subtypes": [
@@ -1266,6 +1258,18 @@
         "entries": [
             "NodeFrame",
             "NodeReroute"
+        ]
+    },
+    "deprecated": {
+        "entries": [
+            [
+                "FunctionNodeRotateEuler",
+                {
+                    "subtypes": [
+                        "space"
+                    ]
+                }
+            ]
         ]
     }
 }
