@@ -131,7 +131,6 @@
             "FunctionNodeAxisAngleToRotation",
             "FunctionNodeEulerToRotation",
             "FunctionNodeInvertRotation",
-            "FunctionNodeRotateRotation",
             "FunctionNodeRotateVector",
             "FunctionNodeRotationToAxisAngle",
             "FunctionNodeRotationToEuler",
@@ -403,6 +402,14 @@
                 {
                     "subtypes": [
                         "space"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeRotateRotation",
+                {
+                    "subtypes": [
+                        "rotation_space"
                     ]
                 }
             ],
