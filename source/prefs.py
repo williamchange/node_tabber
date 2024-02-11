@@ -2,8 +2,7 @@ import bpy
 from bpy.types import AddonPreferences
 from bpy.props import BoolProperty, IntProperty, EnumProperty
 
-from . import keymap_ui
-from .utils import fetch_user_prefs
+from .keymaps import keymap_layout
 
 
 class NodeTabberPreferences(AddonPreferences):
@@ -117,16 +116,14 @@ class NodeTabberPreferences(AddonPreferences):
             subcol.label(text="Other Options:")
             subcol.prop(self, "mix_color_alias")
 
-        keymap_ui.draw_keyboard_shorcuts(
-            self, layout, context, starting_indent_level=0
-            )
+        keymap_layout.draw_keyboard_shorcuts(self, layout, context)
+
+
+keymap_layout.register_properties(preferences=NodeTabberPreferences)
 
 
 def register():
     bpy.utils.register_class(NodeTabberPreferences)
-
-    prefs = fetch_user_prefs()
-    prefs.property_unset("show_keymaps")
 
 
 def unregister():
