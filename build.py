@@ -105,10 +105,13 @@ def build_package(archive_name, version=None):
 def run():
     initialize(RELEASE_FOLDER)
 
-    for version in versions:
-        build_package(archive_name=f"Node-Tabber_Blender-v{version}", version=version)
+    version = BL_INFO_BASE['version']
+    addon_version = f"{version[0]}.{version[1]}.{version[2]}"
 
-    build_package(archive_name="Node-Tabber_multi-version")
+    for version in versions:
+        build_package(archive_name=f"Node-Tabber_v{addon_version}_(Blender-v{version})", version=version)
+
+    build_package(archive_name=f"Node-Tabber_v{addon_version}_(multi-version)")
     return
 
 
