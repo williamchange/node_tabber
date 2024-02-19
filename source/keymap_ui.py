@@ -333,19 +333,25 @@ def find_matching_keymaps(keyconfig, keymap_item_defs):
                             yield (km_con, kmi_con)
 
 
+if bpy.app.version >= (4, 1):
+    OPEN_ICON = "DOWNARROW_HLT"
+    CLOSE_ICON = "RIGHTARROW"
+else:
+    OPEN_ICON = "DISCLOSURE_TRI_DOWN"
+    CLOSE_ICON = "DISCLOSURE_TRI_RIGHT"
+
+
 def collapsible_row(layout, data, property_name, text, icon='NONE', *, show_dots=False) -> bool:
     row = layout.row(align=True)
     toggle_state = getattr(data, property_name)
 
     if toggle_state:
-        row.prop(data, property_name, text="", icon="DISCLOSURE_TRI_DOWN", emboss=False)
+        row.prop(data, property_name, text="", icon=OPEN_ICON, emboss=False)
     else:
-        row.prop(data, property_name, text="", icon="DISCLOSURE_TRI_RIGHT", emboss=False)       
+        row.prop(data, property_name, text="", icon=CLOSE_ICON, emboss=False)       
     
     row.label(text=text, icon=icon)
     if show_dots and not toggle_state:
         row.prop(data, property_name, text="", icon="THREE_DOTS", emboss=False)
 
     return toggle_state
-
-
