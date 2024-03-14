@@ -320,7 +320,12 @@
                 "GeometryNodeSeparateGeometry",
                 {
                     "subtypes": [
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -328,7 +333,12 @@
                 "GeometryNodeSplitToInstances",
                 {
                     "subtypes": [
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -376,7 +386,12 @@
                 "GeometryNodeDeleteGeometry",
                 {
                     "subtypes": [
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -786,7 +801,12 @@
                                 "Vector"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -802,7 +822,12 @@
                                 "Vector"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -821,7 +846,12 @@
                                 "Quaternion"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -840,7 +870,12 @@
                                 "Quaternion"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -859,7 +894,12 @@
                                 "Quaternion"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -878,7 +918,12 @@
                                 "Quaternion"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -899,7 +944,12 @@
                                 "Quaternion"
                             ]
                         },
-                        "domain"
+                        {
+                            "name": "domain",
+                            "exclude": [
+                                "Layer"
+                            ]
+                        }
                     ]
                 }
             ]
