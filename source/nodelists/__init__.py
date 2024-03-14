@@ -64,7 +64,7 @@ def generate_nodegroup_entries(context):
     nodegroup_id = lambda group: group.bl_idname.removesuffix("Tree").__add__("Group")
 
     group_entries = [
-        generate_entry_item(nodegroup_id(group), label=group.name, settings={"node_tree": group.name})
+        generate_entry_item(nodegroup_id(group), label=group.name, settings={"node_tree": group.name}, can_cause_name_collision=True)
         for group in valid_groups
     ]
 
@@ -75,7 +75,7 @@ def generate_custom_node_entries(context):
     builtin_nodes = set(vanilla_nodelist)
     
     custom_node_entries = [
-        generate_entry_item(item.nodetype, label=item.label, settings=item.settings, is_custom_node=True) 
+        generate_entry_item(item.nodetype, label=item.label, settings=item.settings, can_cause_name_collision=True) 
         for item in node_items_iter(context) if not (isinstance(item, NodeItemCustom) or item.nodetype in builtin_nodes)
     ]
 
@@ -99,7 +99,7 @@ def abbreviation(label):
     return f"({abbr})"
 
 
-def generate_label(idname=None, label=None, subtype_labels=None, is_custom_node=False):
+def generate_label(idname=None, label=None, subtype_labels=None, can_cause_name_collision=False):
     prefs = utils.fetch_user_prefs()
 
     if (label is None) and (idname is None):
@@ -122,7 +122,7 @@ def generate_label(idname=None, label=None, subtype_labels=None, is_custom_node=
     else:
         subtype_string = ""
     
-    if is_custom_node:
+    if can_cause_name_collision:
         if label in vanilla_labels and prefs.denote_name_collisions:
             label = f"#{label}"
     else:
@@ -149,15 +149,15 @@ def merge_settings(settings, subtype_settings):
 
 
 def generate_entry_item(
-    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, is_custom_node=False, **kwargs
+    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, can_cause_name_collision=False, **kwargs
 ):
-    enum_label = generate_label(idname, label, subtype_labels, is_custom_node)
+    enum_label = generate_label(idname, label, subtype_labels, can_cause_name_collision)
     identifier = str((idname, enum_label))
 
     all_settings = merge_settings(settings, subtype_settings)
 
     settings_dict[identifier] = (idname, function, all_settings)
-    if not is_custom_node:
+    if not can_cause_name_collision:
         vanilla_nodelist.append(idname)
 
     return (identifier, enum_label, "")
