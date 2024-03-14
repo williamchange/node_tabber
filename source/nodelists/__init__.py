@@ -131,10 +131,13 @@ def generate_label(idname=None, label=None, subtype_labels=None, can_cause_name_
     return f"{subtype_string}{label} {abbreviation(label)}"
 
 
-def fetch_subtypes_from_bl_rna(node_id, name, only_include=None):
+def fetch_subtypes_from_bl_rna(node_id, name, only_include=None, exclude=None):
     enum_list = Node.bl_rna_get_subclass(node_id).properties[name].enum_items.values()
     if only_include is not None:
         enum_list = (item for item in enum_list if (item.name in only_include))
+
+    if exclude is not None:
+        enum_list = (item for item in enum_list if (item.name not in exclude))
 
     return enum_list
 
