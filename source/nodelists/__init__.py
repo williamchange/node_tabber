@@ -99,7 +99,7 @@ def abbreviation(label):
     return f"({abbr})"
 
 
-def generate_label(idname=None, label=None, subtype_labels=None, can_cause_name_collision=False):
+def generate_label(idname=None, label=None, subtype_labels=None, can_cause_name_collision=False, is_deprecated=False):
     prefs = utils.fetch_user_prefs()
 
     if (label is None) and (idname is None):
@@ -128,7 +128,10 @@ def generate_label(idname=None, label=None, subtype_labels=None, can_cause_name_
     else:
         vanilla_labels.add(label)
 
-    return f"{subtype_string}{label} {abbreviation(label)}"
+    if is_deprecated:
+        return f"[Deprecated] {subtype_string}{label} {abbreviation(label)}"
+    else:
+        return f"{subtype_string}{label} {abbreviation(label)}"
 
 
 def fetch_subtypes_from_bl_rna(node_id, name, only_include=None, exclude=None):
@@ -152,11 +155,10 @@ def merge_settings(settings, subtype_settings):
 
 
 def generate_entry_item(
-    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, can_cause_name_collision=False, **kwargs
+    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, can_cause_name_collision=False, is_deprecated=False, **kwargs
 ):
-    enum_label = generate_label(idname, label, subtype_labels, can_cause_name_collision)
+    enum_label = generate_label(idname, label, subtype_labels, can_cause_name_collision, is_deprecated)
     identifier = str((idname, enum_label))
-
     all_settings = merge_settings(settings, subtype_settings)
 
     settings_dict[identifier] = (idname, function, all_settings)
