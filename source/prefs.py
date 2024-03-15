@@ -134,7 +134,9 @@ class NodeTabberPreferences(AddonPreferences):
             subcol = col2.column()
             subcol.label(text="Other Options:")
             self.display_enum_prop(subcol, "mix_color_alias")
-            self.display_enum_prop(subcol, "show_deprecated")
+
+            if bpy.app.version >= (4, 1):
+                self.display_enum_prop(subcol, "show_deprecated")
 
         keymap_layout.draw_keyboard_shorcuts(self, layout, context)
 

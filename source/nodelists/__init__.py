@@ -12,6 +12,7 @@ from bpy.app.translations import (
 from bpy.app import version as app_version
 from nodeitems_utils import node_items_iter, NodeItemCustom
 
+import bpy
 import json
 from pathlib import Path
 
@@ -257,7 +258,7 @@ def generate_entries(context, editor_type):
         else:
             idname, properties = item, {}
 
-        is_deprecated = properties.get("is_deprecated", False)
+        is_deprecated = properties.get("is_deprecated", False) and bpy.app.version >= (4, 1)
 
         # Add check for skipping invalid entries to prevent the function from short-circuiting
         if is_entry_invalid(idname, properties) or (is_deprecated and prefs.show_deprecated == 'HIDE'):
@@ -265,6 +266,7 @@ def generate_entries(context, editor_type):
 
         subtypes = properties.get("subtypes", None)
         only_subtypes = properties.get("only_subtypes", False)
+        properties["is_deprecated"] = is_deprecated
 
         if not only_subtypes:
             entries.append(generate_entry_item(idname, **properties))
