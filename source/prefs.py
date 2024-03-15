@@ -87,6 +87,14 @@ class NodeTabberPreferences(AddonPreferences):
         description="Prepend a hash symbol (#) to custom external nodes that share the same name as a built-in node",
     )
 
+    def display_enum_prop(self, layout, prop_name):
+        split = layout.split(factor=0.4)
+        split.label(text=f"{self.get_prop_name(prop_name)}:")
+        split.prop(self, prop_name, text="")
+
+    def get_prop_name(self, prop_name):
+        return self.__annotations__[prop_name].keywords["name"] 
+
     def draw(self, context):
         layout = self.layout
         row = layout.split(factor=0.31)
@@ -125,8 +133,8 @@ class NodeTabberPreferences(AddonPreferences):
             col2.separator()
             subcol = col2.column()
             subcol.label(text="Other Options:")
-            subcol.prop(self, "mix_color_alias")
-            subcol.prop(self, "show_deprecated")
+            self.display_enum_prop(subcol, "mix_color_alias")
+            self.display_enum_prop(subcol, "show_deprecated")
 
         keymap_layout.draw_keyboard_shorcuts(self, layout, context)
 
