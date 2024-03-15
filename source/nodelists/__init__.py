@@ -128,7 +128,7 @@ def generate_label(idname=None, label=None, subtype_labels=None, can_cause_name_
     else:
         vanilla_labels.add(label)
 
-    if is_deprecated:
+    if is_deprecated and prefs.show_deprecated == 'SHOW_AND_INDICATE':
         return f"[Deprecated] {subtype_string}{label} {abbreviation(label)}"
     else:
         return f"{subtype_string}{label} {abbreviation(label)}"
@@ -257,8 +257,10 @@ def generate_entries(context, editor_type):
         else:
             idname, properties = item, {}
 
+        is_deprecated = properties.get("is_deprecated", False)
+
         # Add check for skipping invalid entries to prevent the function from short-circuiting
-        if is_entry_invalid(idname, properties):
+        if is_entry_invalid(idname, properties) or (is_deprecated and prefs.show_deprecated == 'HIDE'):
             continue
 
         subtypes = properties.get("subtypes", None)

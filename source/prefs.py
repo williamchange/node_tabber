@@ -64,6 +64,17 @@ class NodeTabberPreferences(AddonPreferences):
         description="Specifies how the Mix Color/Mix RGB nodes would be called across editors",
     )
 
+    show_deprecated: EnumProperty(
+        name="Display Deprecated Nodes",
+        items=(
+            ("SHOW_AND_INDICATE", "Show and Indicate", "Show deprecated nodes, but add a mark indicating they're deprecated",),
+            ("SHOW_ONLY", "Show Only", "Show deprecated nodes as-is, without extra indication"),
+            ("HIDE", "Hide", "Don't display nodes if they're marked as deprecated"),
+        ),
+        default="SHOW_AND_INDICATE",
+        description="Specifies how nodes that are marked as deprecated will be handled",
+    )
+
     include_external_nodes: BoolProperty(
         name="Include External Nodes",
         default=True,
@@ -112,9 +123,10 @@ class NodeTabberPreferences(AddonPreferences):
             col2.operator("node.reset_tallies")
 
             col2.separator()
-            subcol = col2.column(align=True)
+            subcol = col2.column()
             subcol.label(text="Other Options:")
             subcol.prop(self, "mix_color_alias")
+            subcol.prop(self, "show_deprecated")
 
         keymap_layout.draw_keyboard_shorcuts(self, layout, context)
 
