@@ -702,7 +702,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
@@ -720,7 +721,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
@@ -738,7 +740,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
@@ -763,7 +766,8 @@
                                 "Image",
                                 "Geometry",
                                 "Collection",
-                                "Material"
+                                "Material",
+                                "Matrix"
                             ]
                         }
                     ]
@@ -850,7 +854,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         },
                         {
@@ -874,7 +879,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         },
                         {
@@ -898,7 +904,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         },
                         {
@@ -922,7 +929,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         },
                         {
@@ -948,7 +956,8 @@
                                 "Byte Color",
                                 "Boolean",
                                 "2D Vector",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         },
                         {
@@ -1003,7 +1012,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
@@ -1025,7 +1035,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
@@ -1178,7 +1189,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
@@ -1200,7 +1212,8 @@
                                 "Vector",
                                 "Color",
                                 "Boolean",
-                                "Quaternion"
+                                "Quaternion",
+                                "4x4 Matrix"
                             ]
                         }
                     ]
