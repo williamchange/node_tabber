@@ -143,7 +143,14 @@
             "ShaderNodeSeparateXYZ",
             "ShaderNodeBlackbody",
             "GeometryNodeVolumeCube",
-            "GeometryNodeBake"
+            "GeometryNodeBake",
+            "FunctionNodeCombineTransform",
+            "FunctionNodeSeparateTransform",
+            "FunctionNodeMatrixMultiply",
+            "FunctionNodeTransformDirection",
+            "FunctionNodeTransformPoint",
+            "FunctionNodeInvertMatrix",
+            "FunctionNodeTransposeMatrix"
         ]
     },
     "zones": {
