@@ -1327,6 +1327,23 @@
                         "mode"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeSampleGrid",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Value",
+                                "Integer",
+                                "Boolean",
+                                "Vector"
+                            ]
+                        },
+                        "interpolation_mode"
+                    ]
+                }
             ]
         ]
     },
