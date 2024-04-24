@@ -1344,6 +1344,14 @@
                         "interpolation_mode"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeSDFGridBoolean",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
             ]
         ]
     },
