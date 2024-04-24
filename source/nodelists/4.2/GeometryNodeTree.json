@@ -1318,7 +1318,16 @@
             ],
             "GeometryNodePointsToSDFGrid",
             "GeometryNodeMeshToSDFGrid",
-            "GeometryNodeMeshToDensityGrid"
+            "GeometryNodeMeshToDensityGrid",
+            "GeometryNodeGridToMesh",
+            [
+                "GeometryNodeDistributePointsInGrid",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ]
         ]
     },
     "grease_pencil_v3": {
