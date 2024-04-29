@@ -957,6 +957,7 @@
                                 "Byte Color",
                                 "Boolean",
                                 "2D Vector",
+                                "8-Bit Integer",
                                 "Quaternion",
                                 "4x4 Matrix"
                             ]
