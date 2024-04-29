@@ -147,6 +147,7 @@
             "FunctionNodeCombineTransform",
             "FunctionNodeSeparateTransform",
             "FunctionNodeMatrixMultiply",
+            "FunctionNodeProjectPoint",
             "FunctionNodeTransformDirection",
             "FunctionNodeTransformPoint",
             "FunctionNodeInvertMatrix",
