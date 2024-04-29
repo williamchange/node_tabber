@@ -296,7 +296,8 @@
                 "GeometryNodeMeshBoolean",
                 {
                     "subtypes": [
-                        "operation"
+                        "operation",
+                        "solver"
                     ]
                 }
             ],
