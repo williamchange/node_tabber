@@ -1235,7 +1235,9 @@
                     ]
                 }
             ],
-            "GeometryNodeToolSelection"
+            "GeometryNodeToolSelection",
+            "GeometryNodeViewportTransform",
+            "GeometryNodeToolMousePosition"
         ]
     },
     "mix_color": {
