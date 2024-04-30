@@ -417,7 +417,8 @@
                         "component"
                     ]
                 }
-            ]
+            ],
+            "ShaderNodeBsdfRayPortal"
         ]
     },
     "object_eevee_shader_nodes": {
@@ -447,7 +448,6 @@
                     ]
                 }
             ],
-
             [
                 "ShaderNodeBsdfAnisotropic",
                 {
