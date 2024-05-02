@@ -151,7 +151,9 @@
             "FunctionNodeTransformDirection",
             "FunctionNodeTransformPoint",
             "FunctionNodeInvertMatrix",
-            "FunctionNodeTransposeMatrix"
+            "FunctionNodeTransposeMatrix",
+            "FunctionNodeCombineMatrix",
+            "FunctionNodeSeparateMatrix"
         ]
     },
     "zones": {
