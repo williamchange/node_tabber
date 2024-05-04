@@ -1385,6 +1385,15 @@
                         "space"
                     ]
                 }
+            ],
+            [
+                "FunctionNodeAlignEulerToVector",
+                {
+                    "is_deprecated": true,
+                    "subtypes": [
+                        "axis"
+                    ]
+                }
             ]
         ]
     }
