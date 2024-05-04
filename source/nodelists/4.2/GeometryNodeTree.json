@@ -1,7 +1,6 @@
 {
     "items": {
         "entries": [
-            "GeometryNodeRemoveAttribute",
             "ShaderNodeValToRGB",
             "ShaderNodeRGBCurve",
             "GeometryNodeInputCurveHandlePositions",
@@ -540,6 +539,14 @@
                 {
                     "subtypes": [
                         "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeRemoveAttribute",
+                {
+                    "subtypes": [
+                        "pattern_mode"
                     ]
                 }
             ]
