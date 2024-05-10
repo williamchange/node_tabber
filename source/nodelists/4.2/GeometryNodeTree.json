@@ -43,7 +43,6 @@
             "GeometryNodeSetPosition",
             "GeometryNodeBoundBox",
             "GeometryNodeConvexHull",
-            "GeometryNodeTransform",
             "GeometryNodeSeparateComponents",
             "GeometryNodeIndexOfNearest",
             "FunctionNodeInputBool",
@@ -399,6 +398,14 @@
                 {
                     "subtypes": [
                         "distribute_method"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeTransform",
+                {
+                    "subtypes": [
+                        "mode"
                     ]
                 }
             ],
