@@ -1362,6 +1362,22 @@
                 }
             ],
             [
+                "GeometryNodeSampleGridIndex",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Boolean",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
                 "GeometryNodeSDFGridBoolean",
                 {
                     "subtypes": [
