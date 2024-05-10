@@ -152,7 +152,8 @@
             "FunctionNodeInvertMatrix",
             "FunctionNodeTransposeMatrix",
             "FunctionNodeCombineMatrix",
-            "FunctionNodeSeparateMatrix"
+            "FunctionNodeSeparateMatrix",
+            "FunctionNodeInputRotation"
         ]
     },
     "zones": {
