@@ -328,6 +328,15 @@
                 }
             ],
             [
+                "FunctionNodeAxesToRotation",
+                {
+                    "subtypes": [
+                        "primary_axis",
+                        "secondary_axis"
+                    ]
+                }
+            ],
+            [
                 "GeometryNodeSeparateGeometry",
                 {
                     "subtypes": [
