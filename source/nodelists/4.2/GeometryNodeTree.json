@@ -1351,7 +1351,7 @@
                         {
                             "name": "data_type",
                             "only_include": [
-                                "Value",
+                                "Float",
                                 "Integer",
                                 "Boolean",
                                 "Vector"
