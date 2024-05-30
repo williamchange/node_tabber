@@ -1267,7 +1267,15 @@
             ],
             "GeometryNodeToolSelection",
             "GeometryNodeViewportTransform",
-            "GeometryNodeToolMousePosition"
+            "GeometryNodeToolMousePosition",
+            [
+                "GeometryNodeToolActiveElement",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ]
         ]
     },
     "mix_color": {
