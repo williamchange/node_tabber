@@ -952,18 +952,6 @@
                 {
                     "subtypes": [
                         {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion",
-                                "4x4 Matrix"
-                            ]
-                        },
-                        {
                             "name": "domain",
                             "exclude": [
                                 "Layer"
