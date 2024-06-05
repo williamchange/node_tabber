@@ -856,15 +856,7 @@
                 "GeometryNodeAccumulateField",
                 {
                     "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Transform"
-                            ]
-                        },
+                        "data_type",
                         {
                             "name": "domain",
                             "exclude": [
