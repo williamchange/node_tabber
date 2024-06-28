@@ -13,7 +13,7 @@ SOURCE_FOLDER = Path("source")
 BL_INFO_BASE = {
     "name": "Node Tabber",
     "author": "Richard Lyons, williamchange, Quackers",
-    "version": (0, 3, 1),
+    "version": (0, 3, 2),
     "blender": (3, 4, 0),
     "description": "Allows quick smart searching of node types.",
     "category": "Node",
@@ -100,6 +100,7 @@ def build_package(archive_name, version=None):
         )
 
         shutil.make_archive(RELEASE_FOLDER / archive_name, "zip", temp_dir)
+        print(f"Successfully created archive at '{archive_name}'")
 
 
 def run():
