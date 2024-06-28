@@ -203,7 +203,12 @@
                 "GeometryNodeSwitch",
                 {
                     "subtypes": [
-                        "input_type"
+                        {
+                            "name": "input_type",
+                            "exclude": [
+                                "Texture"
+                            ]
+                        }
                     ]
                 }
             ],
