@@ -1400,6 +1400,13 @@
             ]
         ]
     },
+    "import_nodes": {
+        "poll": "use_new_file_import_nodes",
+        "entries": [
+            "GeometryNodeImportSTL",
+            "GeometryNodeImportOBJ"
+        ]
+    },
     "frame_and_reroute": {
         "entries": [
             "NodeFrame",

@@ -51,3 +51,7 @@ def is_tool(context):
 def use_experimental_volume_nodes(context):
     return getattr(context.preferences.experimental, "use_new_volume_nodes", False)
 
+
+def use_new_file_import_nodes(context):
+    return getattr(context.preferences.experimental, "use_new_file_import_nodes", False)
+
