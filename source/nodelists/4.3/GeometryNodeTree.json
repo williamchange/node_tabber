@@ -154,7 +154,8 @@
             "FunctionNodeSeparateMatrix",
             "FunctionNodeInputRotation",
             "GeometryNodeSetInstanceTransform",
-            "GeometryNodeInstanceTransform"
+            "GeometryNodeInstanceTransform",
+            "GeometryNodeInputNamedLayerSelection"
         ]
     },
     "zones": {
@@ -1397,12 +1398,6 @@
                     ]
                 }
             ]
-        ]
-    },
-    "grease_pencil_v3": {
-        "poll": "use_experimental_grease_pencil_v3",
-        "entries": [
-            "GeometryNodeInputNamedLayerSelection"
         ]
     },
     "frame_and_reroute": {

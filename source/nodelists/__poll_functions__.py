@@ -51,5 +51,3 @@ def is_tool(context):
 def use_experimental_volume_nodes(context):
     return getattr(context.preferences.experimental, "use_new_volume_nodes", False)
 
-def use_experimental_grease_pencil_v3(context):
-    return getattr(context.preferences.experimental, "use_grease_pencil_version3", False)
