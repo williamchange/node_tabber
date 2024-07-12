@@ -577,6 +577,28 @@
             ]
         ]
     },
+    "gizmo_nodes": {
+        "entries": [
+            "GeometryNodeGizmoTransform",
+            [
+                "GeometryNodeGizmoDial",
+                {
+                    "subtypes": [
+                        "color_id"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeGizmoLinear",
+                {
+                    "subtypes": [
+                        "color_id",
+                        "draw_style"
+                    ]
+                }
+            ]
+        ]
+    },
     "texture_subtypes": {
         "entries": [
             [
