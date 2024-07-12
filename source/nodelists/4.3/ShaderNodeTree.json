@@ -315,6 +315,14 @@
                         }
                     ]
                 }
+            ],
+            [
+                "ShaderNodeTexGabor",
+                {
+                    "subtypes": [
+                        "gabor_type"
+                    ]
+                }
             ]
         ]
     },
