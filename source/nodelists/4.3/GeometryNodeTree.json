@@ -347,12 +347,7 @@
                 "GeometryNodeSeparateGeometry",
                 {
                     "subtypes": [
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -360,12 +355,7 @@
                 "GeometryNodeSplitToInstances",
                 {
                     "subtypes": [
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -421,12 +411,7 @@
                 "GeometryNodeDeleteGeometry",
                 {
                     "subtypes": [
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -871,12 +856,7 @@
                                 "Vector"
                             ]
                         },
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -885,12 +865,7 @@
                 {
                     "subtypes": [
                         "data_type",
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -910,12 +885,7 @@
                                 "4x4 Matrix"
                             ]
                         },
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -935,12 +905,7 @@
                                 "4x4 Matrix"
                             ]
                         },
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -960,12 +925,7 @@
                                 "4x4 Matrix"
                             ]
                         },
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -973,12 +933,7 @@
                 "GeometryNodeCaptureAttribute",
                 {
                     "subtypes": [
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ],
@@ -1001,12 +956,7 @@
                                 "4x4 Matrix"
                             ]
                         },
-                        {
-                            "name": "domain",
-                            "exclude": [
-                                "Layer"
-                            ]
-                        }
+                        "domain"
                     ]
                 }
             ]
