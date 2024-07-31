@@ -52,7 +52,10 @@ class NODE_OT_add_tabber_search(Operator):
 
         return items
 
-    search_entry: EnumProperty(items=define_items, name="Search Entry", default=None)
+    def enum(self, context):
+        return enum_callback_cache
+
+    search_entry: EnumProperty(items=enum, name="Search Entry", default=None)
 
     def execute(self, context):
         prefs = utils.fetch_user_prefs()
@@ -71,6 +74,7 @@ class NODE_OT_add_tabber_search(Operator):
         return {"FINISHED"}
 
     def invoke(self, context, event):
+        self.define_items(context)
         context.window_manager.invoke_search_popup(self)
         return {"CANCELLED"}
 
