@@ -156,7 +156,9 @@
             "GeometryNodeSetInstanceTransform",
             "GeometryNodeInstanceTransform",
             "GeometryNodeInputNamedLayerSelection",
-            "GeometryNodeSetGeometryName"
+            "GeometryNodeSetGeometryName",
+            "GeometryNodeGreasePencilToCurves",
+            "GeometryNodeCurvesToGreasePencil"
         ]
     },
     "zones": {
