@@ -155,7 +155,8 @@
             "FunctionNodeInputRotation",
             "GeometryNodeSetInstanceTransform",
             "GeometryNodeInstanceTransform",
-            "GeometryNodeInputNamedLayerSelection"
+            "GeometryNodeInputNamedLayerSelection",
+            "GeometryNodeSetGeometryName"
         ]
     },
     "zones": {
