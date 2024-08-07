@@ -1376,7 +1376,8 @@
         "poll": "use_new_file_import_nodes",
         "entries": [
             "GeometryNodeImportSTL",
-            "GeometryNodeImportOBJ"
+            "GeometryNodeImportOBJ",
+            "GeometryNodeImportPLY"
         ]
     },
     "frame_and_reroute": {
