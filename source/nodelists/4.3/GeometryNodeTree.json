@@ -562,6 +562,14 @@
                         "pattern_mode"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeWarning",
+                {
+                    "subtypes": [
+                        "warning_type"
+                    ]
+                }
             ]
         ]
     },
