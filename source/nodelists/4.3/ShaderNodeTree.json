@@ -483,7 +483,16 @@
                 }
             ],
             "ShaderNodeBsdfTranslucent",
-            "ShaderNodeBsdfTransparent"
+            "ShaderNodeBsdfTransparent",
+            [
+                "ShaderNodeBsdfMetallic",
+                {
+                    "subtypes": [
+                        "distribution",
+                        "fresnel_type"
+                    ]
+                }
+            ]
         ]
     },
     "frame_and_reroute": {
