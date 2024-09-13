@@ -843,6 +843,26 @@
                         }
                     ]
                 }
+            ],
+            [
+                "FunctionNodeHashValue",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "exclude": [
+                                "Menu",
+                                "Image",
+                                "Object",
+                                "Boolean",
+                                "Texture",
+                                "Geometry",
+                                "Material",
+                                "Collection"
+                            ]
+                        }
+                    ]
+                }
             ]
         ]
     },
