@@ -586,6 +586,14 @@
                         "mode"
                     ]
                 }
+            ],
+            [
+                "FunctionNodeIntegerMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
             ]
         ]
     },

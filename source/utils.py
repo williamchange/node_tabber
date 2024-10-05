@@ -18,6 +18,7 @@ nodes_with_op_symbols = [
     "TextureNodeMath",
     "ShaderNodeVectorMath",
     "FunctionNodeBooleanMath",
+    "FunctionNodeIntegerMath",
     "FunctionNodeCompare",
 ]
 
