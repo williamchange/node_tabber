@@ -157,7 +157,8 @@
             "GeometryNodeInputNamedLayerSelection",
             "GeometryNodeSetGeometryName",
             "GeometryNodeGreasePencilToCurves",
-            "GeometryNodeCurvesToGreasePencil"
+            "GeometryNodeCurvesToGreasePencil",
+            "FunctionNodeMatrixDeterminant"
         ]
     },
     "zones": {
