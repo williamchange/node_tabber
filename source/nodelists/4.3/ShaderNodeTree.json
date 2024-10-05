@@ -49,8 +49,7 @@
             "ShaderNodeNormal",
             "ShaderNodeVectorCurve",
             "ShaderNodeVectorTransform",
-            "ShaderNodeVolumeAbsorption",
-            "ShaderNodeVolumeScatter"
+            "ShaderNodeVolumeAbsorption"
         ]
     },
     "specific_types": {
@@ -182,6 +181,14 @@
                 {
                     "subtypes": [
                         "vector_type"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeVolumeScatter",
+                {
+                    "subtypes": [
+                        "phase"
                     ]
                 }
             ]
