@@ -578,6 +578,14 @@
                         "data_type"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeMergeLayers",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
             ]
         ]
     },
