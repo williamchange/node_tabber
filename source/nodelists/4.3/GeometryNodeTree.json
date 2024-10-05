@@ -120,7 +120,6 @@
             "FunctionNodeSliceString",
             "FunctionNodeStringLength",
             "GeometryNodeStringToCurves",
-            "FunctionNodeValueToString",
             "FunctionNodeInputSpecialCharacters",
             "ShaderNodeTexBrick",
             "ShaderNodeTexChecker",
@@ -568,6 +567,14 @@
                 {
                     "subtypes": [
                         "warning_type"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeValueToString",
+                {
+                    "subtypes": [
+                        "data_type"
                     ]
                 }
             ]
