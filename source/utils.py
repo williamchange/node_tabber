@@ -129,6 +129,7 @@ def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0),
     tree = fetch_active_nodetree(context)
     input_node = tree.nodes.new(type=input_type)
     output_node = tree.nodes.new(type=output_type)
+    link_geo_socket = settings.get("link_geo_socket", True)
 
     try:
         # Simulation input must be paired with the output.
@@ -145,9 +146,10 @@ def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0),
 
         # Connect geometry sockets by default.
         # Get the sockets by their types, because the name is not guaranteed due to i18n.
-        from_socket = next(s for s in input_node.outputs if s.type == "GEOMETRY")
-        to_socket = next(s for s in output_node.inputs if s.type == "GEOMETRY")
-        tree.links.new(to_socket, from_socket)
+        if link_geo_socket:
+            from_socket = next(s for s in input_node.outputs if s.type == "GEOMETRY")
+            to_socket = next(s for s in output_node.inputs if s.type == "GEOMETRY")
+            tree.links.new(to_socket, from_socket)
 
         return make_selection(context, nodes=(input_node, output_node))
 

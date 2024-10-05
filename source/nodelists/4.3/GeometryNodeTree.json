@@ -184,6 +184,18 @@
                         "output_type": "GeometryNodeRepeatOutput"
                     }
                 }
+            ],
+            [
+                "For Each Element Zone",
+                {
+                    "label": "For Each Element Zone",
+                    "function": "create_zone",
+                    "settings": {
+                        "input_type": "GeometryNodeForeachGeometryElementInput",
+                        "output_type": "GeometryNodeForeachGeometryElementOutput",
+                        "link_geo_socket" : false
+                    }
+                }
             ]
         ]
     },
