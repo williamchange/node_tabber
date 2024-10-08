@@ -43,6 +43,16 @@ else:
                     return True
         return False
 
+if bpy.app.version > (4, 3):
+    def nodegroup_settings(group):
+        return {
+            "node_tree": group.name,
+            "width" : group.default_group_node_width,
+            }
+else:
+    def nodegroup_settings(group):
+        return {"node_tree": group.name}
+
 
 def generate_nodegroup_entries(context):
     active_tree = utils.fetch_active_nodetree(context)
@@ -62,7 +72,7 @@ def generate_nodegroup_entries(context):
     nodegroup_id = lambda group: group.bl_idname.removesuffix("Tree").__add__("Group")
 
     group_entries = [
-        generate_entry_item(nodegroup_id(group), label=group.name, settings={"node_tree": group.name}, can_cause_name_collision=True)
+        generate_entry_item(nodegroup_id(group), label=group.name, settings=nodegroup_settings(group), can_cause_name_collision=True)
         for group in valid_groups
     ]
 
