@@ -23,28 +23,25 @@ vanilla_nodelist = []
 vanilla_labels = set()
 
 
-def contains_group_legacy(parent, group):
-    node_tree_group_type = {
-        "CompositorNodeTree": "CompositorNodeGroup",
-        "ShaderNodeTree": "ShaderNodeGroup",
-        "TextureNodeTree": "TextureNodeGroup",
-        "GeometryNodeTree": "GeometryNodeGroup",
-    }
-
-    if parent == group:
-        return True
-    for node in parent.nodes:
-        if node.bl_idname in node_tree_group_type.values() and node.node_tree is not None:
-            if contains_group_legacy(node.node_tree, group):
-                return True
-    return False
-
-
-def contains_group(parent, group):
-    if app_version[:2] > (3, 4):
+if app_version[:2] > (3, 4):
+    def contains_group(parent, group):
         return parent.contains_tree(group)
-    else:
-        return contains_group_legacy(parent, group)
+else:
+    def contains_group(parent, group):
+        node_tree_group_type = {
+            "CompositorNodeTree": "CompositorNodeGroup",
+            "ShaderNodeTree": "ShaderNodeGroup",
+            "TextureNodeTree": "TextureNodeGroup",
+            "GeometryNodeTree": "GeometryNodeGroup",
+        }
+
+        if parent == group:
+            return True
+        for node in parent.nodes:
+            if node.bl_idname in node_tree_group_type.values() and node.node_tree is not None:
+                if contains_group(node.node_tree, group):
+                    return True
+        return False
 
 
 def generate_nodegroup_entries(context):
