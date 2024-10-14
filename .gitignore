@@ -1,7 +1,6 @@
 .DS_Store
 /scripts
-.vscode
 **/__pycache__/
 **.prof
-*.json
+/source/**/*.json
 !/source/nodelists/**/*.json
