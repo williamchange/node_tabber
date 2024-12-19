@@ -82,12 +82,17 @@ def generate_nodegroup_entries(context):
 def generate_custom_node_entries(context):
     builtin_nodes = set(vanilla_nodelist)
     
-    custom_node_entries = [
-        generate_entry_item(item.nodetype, label=item.label, settings=item.settings, can_cause_name_collision=True) 
-        for item in node_items_iter(context) if not (isinstance(item, NodeItemCustom) or item.nodetype in builtin_nodes)
-    ]
+    try:
+        custom_node_entries = [
+            generate_entry_item(item.nodetype, label=item.label, settings=item.settings, can_cause_name_collision=True) 
+            for item in node_items_iter(context) if not (isinstance(item, NodeItemCustom) or item.nodetype in builtin_nodes)
+        ]
 
-    return custom_node_entries
+        return custom_node_entries
+    
+    except Exception as exc:
+        print(exc)
+        return []
 
 
 def abbreviation(label):
