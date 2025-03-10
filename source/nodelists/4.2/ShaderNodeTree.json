@@ -396,7 +396,7 @@
         "poll": "engine_and_shader_type_poll",
         "poll_args": {
             "shader_types": "OBJECT",
-            "exclude_engines": "BLENDER_EEVEE"
+            "exclude_engines": "BLENDER_EEVEE_NEXT"
         },
         "entries": [
             "ShaderNodeOutputLight",
@@ -425,7 +425,7 @@
         "poll": "engine_and_shader_type_poll",
         "poll_args": {
             "shader_types": "OBJECT",
-            "engines": "BLENDER_EEVEE"
+            "engines": "BLENDER_EEVEE_NEXT"
         },
         "entries": [
             "ShaderNodeShaderToRGB",
