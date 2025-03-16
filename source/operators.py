@@ -38,6 +38,12 @@ class NODE_OT_add_tabber_search(Operator):
             
         except AttributeError:
             return False
+    
+    @staticmethod
+    def store_mouse_cursor(context, event):
+        space = context.space_data
+        if context.region.type == 'WINDOW':
+            space.cursor_location_from_region(event.mouse_region_x, event.mouse_region_y)
 
     @cache_enum_results
     def define_items(self, context):
@@ -57,7 +63,9 @@ class NODE_OT_add_tabber_search(Operator):
 
     search_entry: EnumProperty(items=enum, name="Search Entry", default=None)
 
-    def execute(self, context):
+    def modal(self, context, event):
+        self.store_mouse_cursor(context, event)
+        
         prefs = utils.fetch_user_prefs()
         node_type, function_name, settings = nodelists.settings_dict.get(self.search_entry)
         if settings is None:
@@ -66,12 +74,16 @@ class NODE_OT_add_tabber_search(Operator):
         self.report({"INFO"}, f"Selected: {self.search_entry} - {settings}")
         function = getattr(utils, function_name)
         nodes = function(context, node_type, **settings)
-
+        
         if not prefs.quick_place:
             bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
 
         utils.update_tally(context, entry=self.search_entry)
         return {"FINISHED"}
+
+    def execute(self, context):
+        context.window_manager.modal_handler_add(self)
+        return {'RUNNING_MODAL'}
 
     def invoke(self, context, event):
         self.define_items(context)
