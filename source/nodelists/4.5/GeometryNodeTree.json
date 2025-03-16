@@ -1,0 +1,1490 @@
+{
+    "items": {
+        "entries": [
+            "ShaderNodeValToRGB",
+            "ShaderNodeRGBCurve",
+            "GeometryNodeInputCurveHandlePositions",
+            "GeometryNodeCurveLength",
+            "GeometryNodeInputTangent",
+            "GeometryNodeInputCurveTilt",
+            "GeometryNodeCurveEndpointSelection",
+            "GeometryNodeInputSplineCyclic",
+            "GeometryNodeSplineLength",
+            "GeometryNodeSplineParameter",
+            "GeometryNodeInputSplineResolution",
+            "GeometryNodeSetCurveRadius",
+            "GeometryNodeSetCurveTilt",
+            "GeometryNodeSetSplineCyclic",
+            "GeometryNodeSetSplineResolution",
+            "GeometryNodeCurveToMesh",
+            "GeometryNodeDeformCurvesOnSurface",
+            "GeometryNodeInterpolateCurves",
+            "GeometryNodeReverseCurve",
+            "GeometryNodeSubdivideCurve",
+            "GeometryNodeCurveArc",
+            "GeometryNodeCurvePrimitiveCircle",
+            "GeometryNodeCurvePrimitiveBezierSegment",
+            "GeometryNodeCurvePrimitiveLine",
+            "GeometryNodeCurveSpiral",
+            "GeometryNodeCurveQuadraticBezier",
+            "GeometryNodeCurvePrimitiveQuadrilateral",
+            "GeometryNodeCurveStar",
+            "GeometryNodeCurveOfPoint",
+            "GeometryNodeOffsetPointInCurve",
+            "GeometryNodePointsOfCurve",
+            "GeometryNodeGeometryToInstance",
+            "GeometryNodeJoinGeometry",
+            "GeometryNodeInputID",
+            "GeometryNodeInputIndex",
+            "GeometryNodeInputNormal",
+            "GeometryNodeInputPosition",
+            "GeometryNodeInputRadius",
+            "GeometryNodeSetID",
+            "GeometryNodeSetPosition",
+            "GeometryNodeBoundBox",
+            "GeometryNodeConvexHull",
+            "GeometryNodeSeparateComponents",
+            "GeometryNodeIndexOfNearest",
+            "FunctionNodeInputBool",
+            "FunctionNodeInputColor",
+            "GeometryNodeInputImage",
+            "FunctionNodeInputInt",
+            "GeometryNodeInputMaterial",
+            "FunctionNodeInputString",
+            "ShaderNodeValue",
+            "FunctionNodeInputVector",
+            "GeometryNodeInputActiveCamera",
+            "GeometryNodeCollectionInfo",
+            "GeometryNodeImageInfo",
+            "GeometryNodeIsViewport",
+            "GeometryNodeObjectInfo",
+            "GeometryNodeInputSceneTime",
+            "GeometryNodeSelfObject",
+            "GeometryNodeInstanceOnPoints",
+            "GeometryNodeInstancesToPoints",
+            "GeometryNodeRealizeInstances",
+            "GeometryNodeRotateInstances",
+            "GeometryNodeScaleInstances",
+            "GeometryNodeTranslateInstances",
+            "GeometryNodeInputInstanceRotation",
+            "GeometryNodeInputInstanceScale",
+            "GeometryNodeReplaceMaterial",
+            "GeometryNodeInputMaterialIndex",
+            "GeometryNodeMaterialSelection",
+            "GeometryNodeSetMaterial",
+            "GeometryNodeSetMaterialIndex",
+            "GeometryNodeInputMeshEdgeAngle",
+            "GeometryNodeInputMeshEdgeNeighbors",
+            "GeometryNodeInputMeshEdgeVertices",
+            "GeometryNodeEdgesToFaceGroups",
+            "GeometryNodeInputMeshFaceArea",
+            "GeometryNodeMeshFaceSetBoundaries",
+            "GeometryNodeInputMeshFaceNeighbors",
+            "GeometryNodeInputMeshFaceIsPlanar",
+            "GeometryNodeInputShadeSmooth",
+            "GeometryNodeInputEdgeSmooth",
+            "GeometryNodeInputMeshIsland",
+            "GeometryNodeInputShortestEdgePaths",
+            "GeometryNodeInputMeshVertexNeighbors",
+            "GeometryNodeDualMesh",
+            "GeometryNodeEdgePathsToCurves",
+            "GeometryNodeEdgePathsToSelection",
+            "GeometryNodeFlipFaces",
+            "GeometryNodeMeshToCurve",
+            "GeometryNodeSplitEdges",
+            "GeometryNodeSubdivideMesh",
+            "GeometryNodeSubdivisionSurface",
+            "GeometryNodeMeshCone",
+            "GeometryNodeMeshCube",
+            "GeometryNodeMeshCylinder",
+            "GeometryNodeMeshGrid",
+            "GeometryNodeMeshIcoSphere",
+            "GeometryNodeMeshCircle",
+            "GeometryNodeMeshLine",
+            "GeometryNodeMeshUVSphere",
+            "GeometryNodeCornersOfEdge",
+            "GeometryNodeCornersOfFace",
+            "GeometryNodeCornersOfVertex",
+            "GeometryNodeEdgesOfCorner",
+            "GeometryNodeEdgesOfVertex",
+            "GeometryNodeFaceOfCorner",
+            "GeometryNodeOffsetCornerInFace",
+            "GeometryNodeVertexOfCorner",
+            "GeometryNodeViewer",
+            "GeometryNodePoints",
+            "GeometryNodePointsToCurves",
+            "GeometryNodePointsToVertices",
+            "GeometryNodeSetPointRadius",
+            "GeometryNodeStringJoin",
+            "FunctionNodeReplaceString",
+            "FunctionNodeSliceString",
+            "FunctionNodeStringLength",
+            "GeometryNodeStringToCurves",
+            "FunctionNodeInputSpecialCharacters",
+            "ShaderNodeTexBrick",
+            "ShaderNodeTexChecker",
+            "GeometryNodeImageTexture",
+            "ShaderNodeTexMagic",
+            "FunctionNodeAxisAngleToRotation",
+            "FunctionNodeEulerToRotation",
+            "FunctionNodeInvertRotation",
+            "FunctionNodeRotateVector",
+            "FunctionNodeRotationToAxisAngle",
+            "FunctionNodeRotationToEuler",
+            "FunctionNodeRotationToQuaternion",
+            "FunctionNodeQuaternionToRotation",
+            "ShaderNodeFloatCurve",
+            "GeometryNodeUVPackIslands",
+            "ShaderNodeVectorCurve",
+            "ShaderNodeCombineXYZ",
+            "ShaderNodeSeparateXYZ",
+            "ShaderNodeBlackbody",
+            "GeometryNodeVolumeCube",
+            "GeometryNodeBake",
+            "FunctionNodeCombineTransform",
+            "FunctionNodeSeparateTransform",
+            "FunctionNodeMatrixMultiply",
+            "FunctionNodeProjectPoint",
+            "FunctionNodeTransformDirection",
+            "FunctionNodeTransformPoint",
+            "FunctionNodeInvertMatrix",
+            "FunctionNodeTransposeMatrix",
+            "FunctionNodeCombineMatrix",
+            "FunctionNodeSeparateMatrix",
+            "FunctionNodeInputRotation",
+            "GeometryNodeSetInstanceTransform",
+            "GeometryNodeInstanceTransform",
+            "GeometryNodeInputNamedLayerSelection",
+            "GeometryNodeSetGeometryName",
+            "GeometryNodeGreasePencilToCurves",
+            "GeometryNodeCurvesToGreasePencil",
+            "FunctionNodeMatrixDeterminant",
+            "GeometryNodeInputCollection",
+            "GeometryNodeInputObject",
+            "FunctionNodeFindInString"
+        ]
+    },
+    "zones": {
+        "entries": [
+            [
+                "Simulation Zone",
+                {
+                    "label": "Simulation Zone",
+                    "function": "create_zone",
+                    "settings": {
+                        "input_type": "GeometryNodeSimulationInput",
+                        "output_type": "GeometryNodeSimulationOutput"
+                    }
+                }
+            ],
+            [
+                "Repeat Zone",
+                {
+                    "label": "Repeat Zone",
+                    "function": "create_zone",
+                    "settings": {
+                        "input_type": "GeometryNodeRepeatInput",
+                        "output_type": "GeometryNodeRepeatOutput"
+                    }
+                }
+            ],
+            [
+                "For Each Element Zone",
+                {
+                    "label": "For Each Element Zone",
+                    "function": "create_zone",
+                    "settings": {
+                        "input_type": "GeometryNodeForeachGeometryElementInput",
+                        "output_type": "GeometryNodeForeachGeometryElementOutput",
+                        "link_geo_socket" : false
+                    }
+                }
+            ]
+        ]
+    },
+    "group_nodes": {
+        "entries": [
+            "NodeGroupInput",
+            "NodeGroupOutput"
+        ]
+    },
+    "basic_subtypes": {
+        "entries": [
+            [
+                "ShaderNodeClamp",
+                {
+                    "subtypes": [
+                        "clamp_type"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSwitch",
+                {
+                    "subtypes": [
+                        {
+                            "name": "input_type",
+                            "exclude": [
+                                "Texture"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFilletCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeUVUnwrap",
+                {
+                    "subtypes": [
+                        "method"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeVectorMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeBooleanMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeAttributeDomainSize",
+                {
+                    "subtypes": [
+                        "component"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeProximity",
+                {
+                    "subtypes": [
+                        "target_element"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleNearest",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeCurveSplineType",
+                {
+                    "subtypes": [
+                        "spline_type"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeCurveSetHandles",
+                {
+                    "subtypes": [
+                        "handle_type"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeCurveHandleTypeSelection",
+                {
+                    "subtypes": [
+                        "handle_type"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMeshBoolean",
+                {
+                    "subtypes": [
+                        "operation",
+                        "solver"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeCombineColor",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeSeparateColor",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMergeByDistance",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeAxesToRotation",
+                {
+                    "subtypes": [
+                        "primary_axis",
+                        "secondary_axis"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSeparateGeometry",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSplitToInstances",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeDuplicateElements",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeFloatToInt",
+                {
+                    "subtypes": [
+                        "rounding_mode"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeVectorRotate",
+                {
+                    "subtypes": [
+                        "rotation_type"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeDistributePointsInVolume",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeDistributePointsOnFaces",
+                {
+                    "subtypes": [
+                        "distribute_method"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeTransform",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeDeleteGeometry",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeScaleElements",
+                {
+                    "subtypes": [
+                        "domain",
+                        "scale_mode"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeAlignRotationToVector",
+                {
+                    "subtypes": [
+                        "axis"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeRotateRotation",
+                {
+                    "subtypes": [
+                        "rotation_space"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeExtrudeMesh",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeResampleCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeCurveToPoints",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFillCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMeshToPoints",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeTrimCurve",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodePointsToVolume",
+                {
+                    "subtypes": [
+                        "resolution_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMeshToVolume",
+                {
+                    "subtypes": [
+                        "resolution_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeVolumeToMesh",
+                {
+                    "subtypes": [
+                        "resolution_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetShadeSmooth",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetCurveHandlePositions",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetCurveNormal",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeTriangulate",
+                {
+                    "subtypes": [
+                        "quad_method"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSortElements",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeRemoveAttribute",
+                {
+                    "subtypes": [
+                        "pattern_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeWarning",
+                {
+                    "subtypes": [
+                        "warning_type"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeValueToString",
+                {
+                    "subtypes": [
+                        "data_type"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMergeLayers",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeIntegerMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
+            ]
+        ]
+    },
+    "gizmo_nodes": {
+        "entries": [
+            "GeometryNodeGizmoTransform",
+            [
+                "GeometryNodeGizmoDial",
+                {
+                    "subtypes": [
+                        "color_id"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeGizmoLinear",
+                {
+                    "subtypes": [
+                        "color_id",
+                        "draw_style"
+                    ]
+                }
+            ]
+        ]
+    },
+    "texture_subtypes": {
+        "entries": [
+            [
+                "ShaderNodeTexGradient",
+                {
+                    "subtypes": [
+                        "gradient_type"
+                    ]
+                }
+            ],
+            "ShaderNodeTexVoronoi",
+            [
+                "ShaderNodeTexVoronoi",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        {
+                            "name": "voronoi_dimensions",
+                            "only_include": [
+                                "1D"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexVoronoi",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        "distance",
+                        {
+                            "name": "voronoi_dimensions",
+                            "only_include": [
+                                "2D",
+                                "3D",
+                                "4D"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexNoise",
+                {
+                    "subtypes": [
+                        "noise_dimensions"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexNoise",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        "noise_dimensions",
+                        "noise_type"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexWhiteNoise",
+                {
+                    "subtypes": [
+                        "noise_dimensions"
+                    ]
+                }
+            ],
+            "ShaderNodeTexWave",
+            [
+                "ShaderNodeTexWave",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        {
+                            "name": "bands_direction",
+                            "only_include": [
+                                "X",
+                                "Y",
+                                "Z",
+                                "Diagonal"
+                            ]
+                        },
+                        "wave_profile",
+                        {
+                            "name": "wave_type",
+                            "only_include": "Bands"
+                        }
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexWave",
+                {
+                    "only_subtypes": true,
+                    "subtypes": [
+                        {
+                            "name": "rings_direction",
+                            "only_include": [
+                                "X",
+                                "Y",
+                                "Z",
+                                "Spherical"
+                            ]
+                        },
+                        "wave_profile",
+                        {
+                            "name": "wave_type",
+                            "only_include": "Rings"
+                        }
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeTexGabor",
+                {
+                    "subtypes": [
+                        "gabor_type"
+                    ]
+                }
+            ]
+        ]
+    },
+    "filtered_subtypes": {
+        "entries": [
+            [
+                "FunctionNodeRandomValue",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Boolean"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeBlurAttribute",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleNearestSurface",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleUVSurface",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeInputNamedAttribute",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeIndexSwitch",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Boolean",
+                                "Vector",
+                                "Rotation",
+                                "String",
+                                "Menu",
+                                "Color",
+                                "Object",
+                                "Image",
+                                "Geometry",
+                                "Collection",
+                                "Material",
+                                "Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMenuSwitch",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Boolean",
+                                "Vector",
+                                "Rotation",
+                                "String",
+                                "Color",
+                                "Object",
+                                "Image",
+                                "Geometry",
+                                "Collection",
+                                "Material",
+                                "Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeHashValue",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "exclude": [
+                                "Menu",
+                                "Image",
+                                "Object",
+                                "Boolean",
+                                "Texture",
+                                "Geometry",
+                                "Material",
+                                "Collection"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        ]
+    },
+    "data_type_domain_nodes": {
+        "entries": [
+            [
+                "GeometryNodeAttributeStatistic",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Vector"
+                            ]
+                        },
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeAccumulateField",
+                {
+                    "subtypes": [
+                        "data_type",
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleIndex",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        },
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFieldAtIndex",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        },
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFieldOnDomain",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        },
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeCaptureAttribute",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeStoreNamedAttribute",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Byte Color",
+                                "Boolean",
+                                "2D Vector",
+                                "8-Bit Integer",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        },
+                        "domain"
+                    ]
+                }
+            ]
+        ]
+    },
+    "specific_types": {
+        "entries": [
+            "ShaderNodeMix",
+            [
+                "ShaderNodeMix",
+                {
+                    "label": "Mix Vector",
+                    "settings": {
+                        "data_type": "VECTOR"
+                    },
+                    "subtypes": [
+                        "factor_mode"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeMix",
+                {
+                    "label": "Mix Rotation",
+                    "settings": {
+                        "data_type": "ROTATION"
+                    }
+                }
+            ],
+            "GeometryNodeRaycast",
+            [
+                "GeometryNodeRaycast",
+                {
+                    "label": "Raycast Nearest",
+                    "settings": {
+                        "mapping": "NEAREST"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeRaycast",
+                {
+                    "label": "Raycast Interpolated",
+                    "settings": {
+                        "mapping": "INTERPOLATED"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "ShaderNodeMapRange",
+            [
+                "ShaderNodeMapRange",
+                {
+                    "label": "Map Range - Float",
+                    "settings": {
+                        "data_type": "FLOAT"
+                    },
+                    "subtypes": [
+                        "interpolation_type"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeMapRange",
+                {
+                    "label": "Map Range - Vector",
+                    "settings": {
+                        "data_type": "FLOAT_VECTOR"
+                    },
+                    "subtypes": [
+                        "interpolation_type"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeCompare",
+                {
+                    "label": "Compare",
+                    "settings": {
+                        "data_type": "FLOAT"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "operation",
+                            "only_include": [
+                                "Less Than",
+                                "Less Than or Equal",
+                                "Greater Than",
+                                "Greater Than or Equal",
+                                "Equal",
+                                "Not Equal"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeCompare",
+                {
+                    "label": "Compare Integer",
+                    "settings": {
+                        "data_type": "INT"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "operation",
+                            "only_include": [
+                                "Less Than",
+                                "Less Than or Equal",
+                                "Greater Than",
+                                "Greater Than or Equal",
+                                "Equal",
+                                "Not Equal"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeCompare",
+                {
+                    "label": "Compare Vector",
+                    "settings": {
+                        "data_type": "VECTOR"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "operation",
+                            "only_include": [
+                                "Less Than",
+                                "Less Than or Equal",
+                                "Greater Than",
+                                "Greater Than or Equal",
+                                "Equal",
+                                "Not Equal"
+                            ]
+                        },
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeCompare",
+                {
+                    "label": "Compare String",
+                    "settings": {
+                        "data_type": "STRING"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "operation",
+                            "only_include": [
+                                "Equal",
+                                "Not Equal"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeCompare",
+                {
+                    "label": "Compare Color",
+                    "settings": {
+                        "data_type": "RGBA"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "operation",
+                            "only_include": [
+                                "Equal",
+                                "Not Equal",
+                                "Brighter",
+                                "Darker"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "GeometryNodeSampleCurve",
+            [
+                "GeometryNodeSampleCurve",
+                {
+                    "label": "Sample Curve - Factor",
+                    "settings": {
+                        "mode": "FACTOR"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleCurve",
+                {
+                    "label": "Sample Curve - Length",
+                    "settings": {
+                        "mode": "LENGTH"
+                    },
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Vector",
+                                "Color",
+                                "Boolean",
+                                "Quaternion",
+                                "4x4 Matrix"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        ]
+    },
+    "tool_nodes": {
+        "poll": "is_tool",
+        "entries": [
+            "GeometryNodeToolFaceSet",
+            "GeometryNodeToolSetFaceSet",
+            "GeometryNodeTool3DCursor",
+            [
+                "GeometryNodeToolSetSelection",
+                {
+                    "subtypes": [
+                        "domain",
+                        "selection_type"
+                    ]
+                }
+            ],
+            "GeometryNodeToolSelection",
+            "GeometryNodeViewportTransform",
+            "GeometryNodeToolMousePosition",
+            [
+                "GeometryNodeToolActiveElement",
+                {
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
+            ]
+        ]
+    },
+    "mix_color": {
+        "poll": "check_mix_color_alias",
+        "poll_args": {
+            "valid_options": [
+                "DEFAULT",
+                "MIX_COLOR",
+                "BOTH"
+            ]
+        },
+        "entries": [
+            [
+                "ShaderNodeMix",
+                {
+                    "label": "Mix Color",
+                    "settings": {
+                        "data_type": "RGBA"
+                    },
+                    "subtypes": [
+                        "blend_type"
+                    ]
+                }
+            ]
+        ]
+    },
+    "mix_rgb": {
+        "poll": "check_mix_color_alias",
+        "poll_args": {
+            "valid_options": [
+                "MIX_RGB",
+                "BOTH"
+            ]
+        },
+        "entries": [
+            [
+                "ShaderNodeMix",
+                {
+                    "label": "Mix RGB",
+                    "settings": {
+                        "data_type": "RGBA"
+                    },
+                    "subtypes": [
+                        "blend_type"
+                    ]
+                }
+            ]
+        ]
+    },
+    "experimental_volumes": {
+        "poll": "use_experimental_volume_nodes",
+        "entries": [
+            [
+                "GeometryNodeGetNamedGrid",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeStoreNamedGrid",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "GeometryNodePointsToSDFGrid",
+            "GeometryNodeMeshToSDFGrid",
+            "GeometryNodeMeshToDensityGrid",
+            "GeometryNodeGridToMesh",
+            [
+                "GeometryNodeDistributePointsInGrid",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleGrid",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Boolean",
+                                "Vector"
+                            ]
+                        },
+                        "interpolation_mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSampleGridIndex",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Integer",
+                                "Boolean",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSDFGridBoolean",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
+            ]
+        ]
+    },
+    "import_nodes": {
+        "poll": "use_new_file_import_nodes",
+        "entries": [
+            "GeometryNodeImportSTL",
+            "GeometryNodeImportOBJ",
+            "GeometryNodeImportPLY"
+        ]
+    },
+    "frame_and_reroute": {
+        "entries": [
+            "NodeFrame",
+            "NodeReroute"
+        ]
+    },
+    "deprecated": {
+        "entries": [
+            [
+                "FunctionNodeRotateEuler",
+                {
+                    "is_deprecated": true,
+                    "subtypes": [
+                        "space"
+                    ]
+                }
+            ],
+            [
+                "FunctionNodeAlignEulerToVector",
+                {
+                    "is_deprecated": true,
+                    "subtypes": [
+                        "axis"
+                    ]
+                }
+            ]
+        ]
+    }
+}
