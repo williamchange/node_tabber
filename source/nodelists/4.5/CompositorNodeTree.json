@@ -65,7 +65,8 @@
             "CompositorNodeCombineXYZ",
             "CompositorNodeSeparateXYZ",
             "CompositorNodeNormal",
-            "CompositorNodeCurveVec"
+            "CompositorNodeCurveVec",
+            "CompositorNodeImageInfo"
         ]
     },    
     "combine_and_separate_color": {
