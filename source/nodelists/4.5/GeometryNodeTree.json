@@ -90,7 +90,6 @@
             "GeometryNodeEdgePathsToCurves",
             "GeometryNodeEdgePathsToSelection",
             "GeometryNodeFlipFaces",
-            "GeometryNodeMeshToCurve",
             "GeometryNodeSplitEdges",
             "GeometryNodeSubdivideMesh",
             "GeometryNodeSubdivisionSurface",
@@ -607,6 +606,14 @@
                 {
                     "subtypes": [
                         "operation"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeMeshToCurve",
+                {
+                    "subtypes": [
+                        "mode"
                     ]
                 }
             ]
