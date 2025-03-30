@@ -59,7 +59,6 @@
             "CompositorNodeMapUV",
             "CompositorNodeLensdist",
             "CompositorNodeMapRange",
-            "CompositorNodeMapValue",
             "CompositorNodeNormalize",
             "CompositorNodeSwitch",
             "CompositorNodeCombineXYZ",
