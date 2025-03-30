@@ -7,14 +7,14 @@
             "CompositorNodeMovieClip",
             "CompositorNodeTexture",
             "CompositorNodeRGB",
-            "CompositorNodeValue",
+            "ShaderNodeValue",
             "CompositorNodeRLayers",
             "CompositorNodeSceneTime",
             "CompositorNodeTime",
             "CompositorNodeComposite",
             "CompositorNodeViewer",
             "CompositorNodeOutputFile",
-            "CompositorNodeValToRGB",
+            "ShaderNodeValToRGB",
             "CompositorNodeConvertColorSpace",
             "CompositorNodeInvert",
             "CompositorNodeRGBToBW",
@@ -58,13 +58,12 @@
             "CompositorNodeDisplace",
             "CompositorNodeMapUV",
             "CompositorNodeLensdist",
-            "CompositorNodeMapRange",
             "CompositorNodeNormalize",
             "CompositorNodeSwitch",
-            "CompositorNodeCombineXYZ",
-            "CompositorNodeSeparateXYZ",
+            "ShaderNodeCombineXYZ",
+            "ShaderNodeSeparateXYZ",
             "CompositorNodeNormal",
-            "CompositorNodeCurveVec",
+            "ShaderNodeVectorCurve",
             "CompositorNodeImageInfo"
         ]
     },    
@@ -124,6 +123,44 @@
                 "CompositorNodeSwitchView",
                 {
                     "label": "Switch Stereo View"
+                }
+            ]
+            ,"ShaderNodeMix",
+            [
+                "ShaderNodeMix",
+                {
+                    "label": "Mix Vector",
+                    "settings": {
+                        "data_type": "VECTOR"
+                    },
+                    "subtypes": [
+                        "factor_mode"
+                    ]
+                }
+            ],
+            "ShaderNodeMapRange",
+            [
+                "ShaderNodeMapRange",
+                {
+                    "label": "Map Range - Float",
+                    "settings": {
+                        "data_type": "FLOAT"
+                    },
+                    "subtypes": [
+                        "interpolation_type"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeMapRange",
+                {
+                    "label": "Map Range - Vector",
+                    "settings": {
+                        "data_type": "FLOAT_VECTOR"
+                    },
+                    "subtypes": [
+                        "interpolation_type"
+                    ]
                 }
             ]
         ]
@@ -305,7 +342,7 @@
                 }
             ],
             [
-                "CompositorNodeMath",
+                "ShaderNodeMath",
                 {
                     "subtypes": [
                         "operation"
@@ -349,9 +386,12 @@
         },
         "entries": [
             [
-                "CompositorNodeMixRGB",
+                "ShaderNodeMix",
                 {
                     "label": "Mix Color",
+                    "settings": {
+                        "data_type": "RGBA"
+                    },
                     "subtypes": [
                         "blend_type"
                     ]
