@@ -1459,7 +1459,6 @@
         ]
     },
     "import_nodes": {
-        "poll": "use_new_file_import_nodes",
         "entries": [
             "GeometryNodeImportCSV",
             "GeometryNodeImportSTL",
