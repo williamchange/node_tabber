@@ -64,7 +64,9 @@
             "ShaderNodeSeparateXYZ",
             "CompositorNodeNormal",
             "ShaderNodeVectorCurve",
-            "CompositorNodeImageInfo"
+            "CompositorNodeImageInfo",
+            "ShaderNodeFloatCurve",
+            "ShaderNodeBlackbody"
         ]
     },    
     "combine_and_separate_color": {
@@ -124,8 +126,16 @@
                 {
                     "label": "Switch Stereo View"
                 }
-            ]
-            ,"ShaderNodeMix",
+            ],
+            [
+                "ShaderNodeClamp",
+                {
+                    "subtypes": [
+                        "clamp_type"
+                    ]
+                }
+            ],
+            "ShaderNodeMix",
             [
                 "ShaderNodeMix",
                 {
@@ -160,6 +170,22 @@
                     },
                     "subtypes": [
                         "interpolation_type"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeVectorMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
+            ],
+            [
+                "ShaderNodeVectorRotate",
+                {
+                    "subtypes": [
+                        "rotation_type"
                     ]
                 }
             ]
