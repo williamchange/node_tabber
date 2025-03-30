@@ -160,7 +160,8 @@
             "FunctionNodeMatrixDeterminant",
             "GeometryNodeInputCollection",
             "GeometryNodeInputObject",
-            "FunctionNodeFindInString"
+            "FunctionNodeFindInString",
+            "GeometryNodeCameraInfo"
         ]
     },
     "zones": {
