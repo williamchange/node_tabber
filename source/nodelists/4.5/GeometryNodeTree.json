@@ -1069,6 +1069,33 @@
                         "domain"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeFieldAverage",
+                {
+                    "subtypes": [
+                        "data_type",
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFieldMinAndMax",
+                {
+                    "subtypes": [
+                        "data_type",
+                        "domain"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeFieldVariance",
+                {
+                    "subtypes": [
+                        "data_type",
+                        "domain"
+                    ]
+                }
             ]
         ]
     },
