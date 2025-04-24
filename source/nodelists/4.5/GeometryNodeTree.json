@@ -1541,6 +1541,26 @@
             "GeometryNodeImportText"
         ]
     },
+    "bundles_and_closures": {
+        "poll": "use_bundle_and_closure_nodes",
+        "entries": [
+            "GeometryNodeEvaluateClosure",
+            "GeometryNodeCombineBundle",
+            "GeometryNodeSeparateBundle",
+            [
+                "Closure Zone",
+                {
+                    "label": "Closure Zone",
+                    "function": "create_zone",
+                    "settings": {
+                        "input_type": "GeometryNodeClosureInput",
+                        "output_type": "GeometryNodeClosureOutput",
+                        "link_geo_socket" : false
+                    }
+                }
+            ]
+        ]
+    },
     "frame_and_reroute": {
         "entries": [
             "NodeFrame",

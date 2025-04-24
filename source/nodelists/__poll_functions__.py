@@ -58,3 +58,7 @@ def use_new_file_import_nodes(context):
 
 def use_experimental_grease_pencil_v3(context):
     return getattr(context.preferences.experimental, "use_grease_pencil_version3", False)
+
+
+def use_bundle_and_closure_nodes(context):
+    return getattr(context.preferences.experimental, "use_bundle_and_closure_nodes", False)
