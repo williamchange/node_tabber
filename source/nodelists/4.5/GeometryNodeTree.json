@@ -617,6 +617,22 @@
                         "mode"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeSetGreasePencilColor",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetGreasePencilDepth",
+                {
+                    "subtypes": [
+                        "depth_order"
+                    ]
+                }
             ]
         ]
     },
