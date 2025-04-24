@@ -1347,6 +1347,27 @@
                         }
                     ]
                 }
+            ],
+            [
+                "GeometryNodeSetMeshNormal",
+                {
+                    "subtypes": [
+                        "mode"
+                    ]
+                }
+            ],
+            [
+                "GeometryNodeSetMeshNormal",
+                {
+                    "label": "Set Mesh Normal - Free",
+                    "only_subtypes": true,
+                    "settings": {
+                        "mode": "FREE"
+                    },
+                    "subtypes": [
+                        "domain"
+                    ]
+                }
             ]
         ]
     },
