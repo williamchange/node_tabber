@@ -1531,7 +1531,22 @@
                         "operation"
                     ]
                 }
+            ],
+            [
+                "GeometryNodeGridInfo",
+                {
+                    "subtypes": [
+                        {
+                            "name": "data_type",
+                            "only_include": [
+                                "Float",
+                                "Vector"
+                            ]
+                        }
+                    ]
+                }
             ]
+            
         ]
     },
     "import_nodes": {
