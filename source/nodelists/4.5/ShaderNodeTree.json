@@ -191,6 +191,14 @@
                         "phase"
                     ]
                 }
+            ],
+            [
+                "ShaderNodeVolumeCoefficients",
+                {
+                    "subtypes": [
+                        "phase"
+                    ]
+                }
             ]
         ]
     },
