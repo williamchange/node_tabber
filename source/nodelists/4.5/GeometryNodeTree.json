@@ -1555,7 +1555,8 @@
             "GeometryNodeImportSTL",
             "GeometryNodeImportOBJ",
             "GeometryNodeImportPLY",
-            "GeometryNodeImportText"
+            "GeometryNodeImportText",
+            "GeometryNodeImportVDB"
         ]
     },
     "bundles_and_closures": {
