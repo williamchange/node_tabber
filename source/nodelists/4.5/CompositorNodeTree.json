@@ -53,7 +53,6 @@
             "CompositorNodePlaneTrackDeform",
             "CompositorNodeStabilize",
             "CompositorNodeTrackPos",
-            "CompositorNodeCornerPin",
             "CompositorNodeCrop",
             "CompositorNodeDisplace",
             "CompositorNodeMapUV",
@@ -313,6 +312,7 @@
                 "CompositorNodeScale",
                 {
                     "subtypes": [
+                        "interpolation",
                         "space"
                     ]
                 }
@@ -409,6 +409,14 @@
                 {
                     "subtypes": [
                         "tonemap_type"
+                    ]
+                }
+            ],
+            [
+                "CompositorNodeCornerPin",
+                {
+                    "subtypes": [
+                        "interpolation"
                     ]
                 }
             ]
