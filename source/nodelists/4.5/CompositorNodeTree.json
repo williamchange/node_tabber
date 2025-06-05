@@ -69,7 +69,8 @@
             "ShaderNodeBlackbody",
             "ShaderNodeTexBrick",
             "ShaderNodeTexChecker",
-            "ShaderNodeTexMagic"
+            "ShaderNodeTexMagic",
+            "CompositorNodeImageCoordinates"
         ]
     },    
     "combine_and_separate_color": {
