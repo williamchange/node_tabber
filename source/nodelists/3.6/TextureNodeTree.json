@@ -34,70 +34,27 @@
     },
     "basic_subtypes": {
         "entries": [
-            [
-                "TextureNodeMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "TextureNodeCombineColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "TextureNodeSeparateColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ]
+            ["TextureNodeMath", {"subtypes": ["operation"]}],
+            ["TextureNodeCombineColor", {"subtypes": ["mode"]}],
+            ["TextureNodeSeparateColor", {"subtypes": ["mode"]}]
         ]
     },
     "mix_color": {
         "poll": "check_mix_color_alias",
         "poll_args": {
-            "valid_options": [
-                "MIX_COLOR",
-                "BOTH"
-            ]
+            "valid_options": ["MIX_COLOR", "BOTH"]
         },
         "entries": [
-            [
-                "TextureNodeMixRGB",
-                {
-                    "label": "Mix Color",
-                    "subtypes": [
-                        "blend_type"
-                    ]
-                }
-            ]
+            ["TextureNodeMixRGB", {"label": "Mix Color", "subtypes": ["blend_type"]}]
         ]
     },
     "mix_rgb": {
         "poll": "check_mix_color_alias",
         "poll_args": {
-            "valid_options": [
-                "DEFAULT",
-                "MIX_RGB",
-                "BOTH"
-            ]
+            "valid_options": ["DEFAULT", "MIX_RGB", "BOTH"]
         },
         "entries": [
-            [
-                "TextureNodeMixRGB",
-                {
-                    "subtypes": [
-                        "blend_type"
-                    ]
-                }
-            ]
+            ["TextureNodeMixRGB", {"subtypes": ["blend_type"]}]
         ]
     },
     "group_nodes": {

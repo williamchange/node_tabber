@@ -55,290 +55,82 @@
     "specific_types": {
         "entries": [
             "ShaderNodeMix",
-            [
-                "ShaderNodeMix",
-                {
-                    "label": "Mix Vector",
-                    "settings": {
-                        "data_type": "VECTOR"
-                    },
-                    "subtypes": [
-                        "factor_mode"
-                    ]
-                }
-            ],
+            ["ShaderNodeMix", {"label": "Mix Vector", "settings": {"data_type": "VECTOR"}, "subtypes": ["factor_mode"]}],
             "ShaderNodeMapRange",
-            [
-                "ShaderNodeMapRange",
-                {
-                    "label": "Map Range - Float",
-                    "settings": {
-                        "data_type": "FLOAT"
-                    },
-                    "subtypes": [
-                        "interpolation_type"
-                    ]
+            ["ShaderNodeMapRange", {
+                "label": "Map Range - Float",
+                "settings": {"data_type": "FLOAT"},
+                    "subtypes": ["interpolation_type"]
                 }
             ],
-            [
-                "ShaderNodeMapRange",
-                {
-                    "label": "Map Range - Vector",
-                    "settings": {
-                        "data_type": "FLOAT_VECTOR"
-                    },
-                    "subtypes": [
-                        "interpolation_type"
-                    ]
+            ["ShaderNodeMapRange", {
+                "label": "Map Range - Vector",
+                "settings": {"data_type": "FLOAT_VECTOR"},
+                    "subtypes": ["interpolation_type"]
                 }
             ]
         ]
     },
     "basic_subtypes": {
         "entries": [
-            [
-                "ShaderNodeClamp",
-                {
-                    "subtypes": [
-                        "clamp_type"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVectorMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVectorRotate",
-                {
-                    "subtypes": [
-                        "rotation_type"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeCombineColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeSeparateColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeNormalMap",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeDisplacement",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVectorDisplacement",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeScript",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeMapping",
-                {
-                    "subtypes": [
-                        "vector_type"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVolumeScatter",
-                {
-                    "subtypes": [
-                        "phase"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVolumeCoefficients",
-                {
-                    "subtypes": [
-                        "phase"
-                    ]
-                }
-            ]
+            ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
+            ["ShaderNodeMath", {"subtypes": ["operation"]}],
+            ["ShaderNodeVectorMath", {"subtypes": ["operation"]}],
+            ["ShaderNodeVectorRotate", {"subtypes": ["rotation_type"]}],
+            ["ShaderNodeCombineColor", {"subtypes": ["mode"]}],
+            ["ShaderNodeSeparateColor", {"subtypes": ["mode"]}],
+            ["ShaderNodeNormalMap", {"subtypes": ["space"]}],
+            ["ShaderNodeDisplacement", {"subtypes": ["space"]}],
+            ["ShaderNodeVectorDisplacement", {"subtypes": ["space"]}],
+            ["ShaderNodeScript", {"subtypes": ["mode"]}],
+            ["ShaderNodeMapping", {"subtypes": ["vector_type"]}],
+            ["ShaderNodeVolumeScatter", {"subtypes": ["phase"]}],
+            ["ShaderNodeVolumeCoefficients", {"subtypes": ["phase"]}]
         ]
     },
     "texture_subtypes": {
         "entries": [
-            [
-                "ShaderNodeTexSky",
-                {
-                    "subtypes": [
-                        "sky_type"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeTexIES",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeTexGradient",
-                {
-                    "subtypes": [
-                        "gradient_type"
-                    ]
-                }
-            ],
+            ["ShaderNodeTexSky", {"subtypes": ["sky_type"]}],
+            ["ShaderNodeTexIES", {"subtypes": ["mode"]}],
+            ["ShaderNodeTexGradient", {"subtypes": ["gradient_type"]}],
             "ShaderNodeTexVoronoi",
-            [
-                "ShaderNodeTexVoronoi",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "voronoi_dimensions",
-                            "only_include": [
-                                "1D"
-                            ]
-                        }
+            ["ShaderNodeTexVoronoi", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "voronoi_dimensions", "only_include": ["1D"]}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexVoronoi",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        "distance",
-                        {
-                            "name": "voronoi_dimensions",
-                            "only_include": [
-                                "2D",
-                                "3D",
-                                "4D"
-                            ]
-                        }
+            ["ShaderNodeTexVoronoi", {
+                "only_subtypes": true,
+                "subtypes": [
+                        "distance", {"name": "voronoi_dimensions", "only_include": ["2D", "3D", "4D"]}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexNoise",
-                {
-                    "subtypes": [
-                        "noise_dimensions"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeTexNoise",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        "noise_dimensions",
-                        "noise_type"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeTexWhiteNoise",
-                {
-                    "subtypes": [
-                        "noise_dimensions"
-                    ]
-                }
-            ],
+            ["ShaderNodeTexNoise", {"subtypes": ["noise_dimensions"]}],
+            ["ShaderNodeTexNoise", {"only_subtypes": true, "subtypes": ["noise_dimensions", "noise_type"]}],
+            ["ShaderNodeTexWhiteNoise", {"subtypes": ["noise_dimensions"]}],
             "ShaderNodeTexWave",
-            [
-                "ShaderNodeTexWave",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "bands_direction",
-                            "only_include": [
-                                "X",
-                                "Y",
-                                "Z",
-                                "Diagonal"
-                            ]
-                        },
-                        "wave_profile",
-                        {
-                            "name": "wave_type",
-                            "only_include": "Bands"
-                        }
+            ["ShaderNodeTexWave", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "bands_direction", "only_include": ["X", "Y", "Z", "Diagonal"]},
+                        "wave_profile", 
+                        {"name": "wave_type", "only_include": "Bands"}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexWave",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "rings_direction",
-                            "only_include": [
-                                "X",
-                                "Y",
-                                "Z",
-                                "Spherical"
-                            ]
-                        },
-                        "wave_profile",
-                        {
-                            "name": "wave_type",
-                            "only_include": "Rings"
-                        }
+            ["ShaderNodeTexWave", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "rings_direction", "only_include": ["X", "Y", "Z", "Spherical"]},
+                        "wave_profile", 
+                        {"name": "wave_type", "only_include": "Rings"}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexGabor",
-                {
-                    "subtypes": [
-                        "gabor_type"
-                    ]
-                }
-            ]
+            ["ShaderNodeTexGabor", {"subtypes": ["gabor_type"]}]
         ]
     },
     "group_nodes": {
@@ -350,56 +142,31 @@
     },
     "mix_color": {
         "poll": "check_mix_color_alias",
-        "poll_args": {
-            "valid_options": [
-                "DEFAULT",
-                "MIX_COLOR",
-                "BOTH"
-            ]
-        },
+        "poll_args": {"valid_options": ["DEFAULT", "MIX_COLOR", "BOTH"]},
         "entries": [
-            [
-                "ShaderNodeMix",
-                {
-                    "label": "Mix Color",
-                    "settings": {
-                        "data_type": "RGBA"
-                    },
-                    "subtypes": [
-                        "blend_type"
-                    ]
+            ["ShaderNodeMix", {
+                "label": "Mix Color",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
                 }
             ]
         ]
     },
     "mix_rgb": {
         "poll": "check_mix_color_alias",
-        "poll_args": {
-            "valid_options": [
-                "MIX_RGB",
-                "BOTH"
-            ]
-        },
+        "poll_args": { "valid_options": ["MIX_RGB", "BOTH"]},
         "entries": [
-            [
-                "ShaderNodeMix",
-                {
-                    "label": "Mix RGB",
-                    "settings": {
-                        "data_type": "RGBA"
-                    },
-                    "subtypes": [
-                        "blend_type"
-                    ]
+            ["ShaderNodeMix", {
+                "label": "Mix RGB",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
                 }
             ]
         ]
     },
     "world_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {
-            "shader_types": "WORLD"
-        },
+        "poll_args": {"shader_types": "WORLD"},
         "entries": [
             "ShaderNodeOutputWorld",
             "ShaderNodeBackground"
@@ -407,9 +174,7 @@
     },
     "line_style_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {
-            "shader_types": "LINESTYLE"
-        },
+        "poll_args": {"shader_types": "LINESTYLE"},
         "entries": [
             "ShaderNodeUVAlongStroke",
             "ShaderNodeOutputLineStyle"
@@ -417,39 +182,19 @@
     },
     "object_not_eevee_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {
-            "shader_types": "OBJECT",
-            "exclude_engines": "BLENDER_EEVEE_NEXT"
-        },
+        "poll_args": {"shader_types": "OBJECT", "exclude_engines": "BLENDER_EEVEE_NEXT"},
         "entries": [
             "ShaderNodeOutputLight",
             "ShaderNodeBsdfHair",
             "ShaderNodeBsdfHairPrincipled",
-            [
-                "ShaderNodeBsdfSheen",
-                {
-                    "subtypes": [
-                        "distribution"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeBsdfToon",
-                {
-                    "subtypes": [
-                        "component"
-                    ]
-                }
-            ],
+            ["ShaderNodeBsdfSheen", {"subtypes": ["distribution"]}],
+            ["ShaderNodeBsdfToon", {"subtypes": ["component"]}],
             "ShaderNodeBsdfRayPortal"
         ]
     },
     "object_eevee_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {
-            "shader_types": "OBJECT",
-            "engines": "BLENDER_EEVEE_NEXT"
-        },
+        "poll_args": {"shader_types": "OBJECT", "engines": "BLENDER_EEVEE_NEXT"},
         "entries": [
             "ShaderNodeShaderToRGB",
             "ShaderNodeEeveeSpecular"
@@ -457,57 +202,19 @@
     },
     "object_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {
-            "shader_types": "OBJECT"
-        },
+        "poll_args": {"shader_types": "OBJECT"},
         "entries": [
             "ShaderNodeOutputMaterial",
             "ShaderNodeBsdfDiffuse",
-            [
-                "ShaderNodeBsdfGlass",
-                {
-                    "subtypes": [
-                        "distribution"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeBsdfAnisotropic",
-                {
-                    "subtypes": [
-                        "distribution"
-                    ]
-                }
-            ],
+            ["ShaderNodeBsdfGlass", {"subtypes": ["distribution"]}],
+            ["ShaderNodeBsdfAnisotropic", {"subtypes": ["distribution"]}],
             "ShaderNodeHoldout",
             "ShaderNodeBsdfPrincipled",
-            [
-                "ShaderNodeBsdfRefraction",
-                {
-                    "subtypes": [
-                        "distribution"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeSubsurfaceScattering",
-                {
-                    "subtypes": [
-                        "falloff"
-                    ]
-                }
-            ],
+            ["ShaderNodeBsdfRefraction", {"subtypes": ["distribution"]}],
+            ["ShaderNodeSubsurfaceScattering", {"subtypes": ["falloff"]}],
             "ShaderNodeBsdfTranslucent",
             "ShaderNodeBsdfTransparent",
-            [
-                "ShaderNodeBsdfMetallic",
-                {
-                    "subtypes": [
-                        "distribution",
-                        "fresnel_type"
-                    ]
-                }
-            ]
+            ["ShaderNodeBsdfMetallic", {"subtypes": ["distribution", "fresnel_type"]}]
         ]
     },
     "frame_and_reroute": {

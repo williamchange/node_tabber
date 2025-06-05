@@ -70,48 +70,20 @@
     },    
     "combine_and_separate_color": {
         "entries": [
-            [
-                "CompositorNodeCombineColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeCombineColor",
-                {
-                    "only_subtypes" : true, 
-                    "subtypes": [
-                        {
-                            "name": "mode",
-                            "only_include": [
-                                "YCbCr"
-                            ]
-                        },
+            ["CompositorNodeCombineColor", {"subtypes": ["mode"]}],
+            ["CompositorNodeCombineColor", {
+                "only_subtypes" : true, 
+                "subtypes": [
+                        {"name": "mode", "only_include": ["YCbCr"]},
                         "ycc_mode"
                     ]
                 }
             ],
-            [
-                "CompositorNodeSeparateColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeSeparateColor",
-                {
-                    "only_subtypes" : true, 
-                    "subtypes": [
-                        {
-                            "name": "mode",
-                            "only_include": [
-                                "YCbCr"
-                            ]
-                        },
+            ["CompositorNodeSeparateColor", {"subtypes": ["mode"]}],
+            ["CompositorNodeSeparateColor", {
+                "only_subtypes" : true, 
+                "subtypes": [
+                        {"name": "mode", "only_include": ["YCbCr"]},
                         "ycc_mode"
                     ]
                 }
@@ -120,263 +92,63 @@
     },
     "specific_types": {
         "entries": [
-            [
-                "CompositorNodeSwitchView",
-                {
-                    "label": "Switch Stereo View"
-                }
-            ]
+            ["CompositorNodeSwitchView", {"label": "Switch Stereo View"}]
         ]
     },
     "basic_subtypes": {
         "entries": [
-            [
-                "CompositorNodePremulKey",
-                {
-                    "subtypes": [
-                        "mapping"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeColorBalance",
-                {
-                    "subtypes": [
-                        "correction_method"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeCryptomatteV2",
-                {
-                    "subtypes": [
-                        "source"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeDistanceMatte",
-                {
-                    "subtypes": [
-                        "channel"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeMovieDistortion",
-                {
-                    "subtypes": [
-                        "distortion_type"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeSetAlpha",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeDefocus",
-                {
-                    "subtypes": [
-                        "bokeh"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeDenoise",
-                {
-                    "subtypes": [
-                        "prefilter"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeDilateErode",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeDilateErode",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "mode",
-                            "only_include": [
-                                "Feather"
-                            ]
-                        },
+            ["CompositorNodePremulKey", {"subtypes": ["mapping"]}],
+            ["CompositorNodeColorBalance", {"subtypes": ["correction_method"]}],
+            ["CompositorNodeCryptomatteV2", {"subtypes": ["source"]}],
+            ["CompositorNodeDistanceMatte", {"subtypes": ["channel"]}],
+            ["CompositorNodeMovieDistortion", {"subtypes": ["distortion_type"]}],
+            ["CompositorNodeSetAlpha", {"subtypes": ["mode"]}],
+            ["CompositorNodeDefocus", {"subtypes": ["bokeh"]}],
+            ["CompositorNodeDenoise", {"subtypes": ["prefilter"]}],
+            ["CompositorNodeDilateErode", {"subtypes": ["mode"]}],
+            ["CompositorNodeDilateErode", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "mode", "only_include": ["Feather"]},
                         "falloff"
                     ]
                 }
             ],
-            [
-                "CompositorNodeGlare",
-                {
-                    "subtypes": [
-                        "glare_type"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeRotate",
-                {
-                    "subtypes": [
-                        "filter_type"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeScale",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeScale",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "space",
-                            "only_include": [
-                                "Render Size"
-                            ]
-                        },
+            ["CompositorNodeGlare", {"subtypes": ["glare_type"]}],
+            ["CompositorNodeRotate", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeScale", {"subtypes": ["space"]}],
+            ["CompositorNodeScale", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "space", "only_include": ["Render Size"]},
                         "frame_method"
                     ]
                 }
             ],
-            [
-                "CompositorNodeTransform",
-                {
-                    "subtypes": [
-                        "filter_type"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeTranslate",
-                {
-                    "subtypes": [
-                        "wrap_axis"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeFlip",
-                {
-                    "subtypes": [
-                        "axis"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeBlur",
-                {
-                    "subtypes": [
-                        "filter_type"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeKuwahara",
-                {
-                    "subtypes": [
-                        "variation"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeLevels",
-                {
-                    "subtypes": [
-                        "channel"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeFilter",
-                {
-                    "subtypes": [
-                        "filter_type"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeSplit",
-                {
-                    "subtypes": [
-                        "axis"
-                    ]
-                }
-            ],
-            [
-                "CompositorNodeTonemap",
-                {
-                    "subtypes": [
-                        "tonemap_type"
-                    ]
-                }
-            ]
+            ["CompositorNodeTransform", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeTranslate", {"subtypes": ["wrap_axis"]}],
+            ["CompositorNodeFlip", {"subtypes": ["axis"]}],
+            ["CompositorNodeBlur", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeKuwahara", {"subtypes": ["variation"]}],
+            ["CompositorNodeLevels", {"subtypes": ["channel"]}],
+            ["CompositorNodeMath", {"subtypes": ["operation"]}],
+            ["CompositorNodeFilter", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeSplit", {"subtypes": ["axis"]}],
+            ["CompositorNodeTonemap", {"subtypes": ["tonemap_type"]}]
         ]
     },
     "mix_color": {
         "poll": "check_mix_color_alias",
-        "poll_args": {
-            "valid_options": [
-                "DEFAULT",
-                "MIX_COLOR",
-                "BOTH"
-            ]
-        },
+        "poll_args": {"valid_options": ["DEFAULT", "MIX_COLOR", "BOTH"]},
         "entries": [
-            [
-                "CompositorNodeMixRGB",
-                {
-                    "label": "Mix Color",
-                    "subtypes": [
-                        "blend_type"
-                    ]
-                }
-            ]
+            ["CompositorNodeMixRGB", {"label": "Mix Color", "subtypes": ["blend_type"]}]
         ]
     },
     "mix_rgb": {
         "poll": "check_mix_color_alias",
-        "poll_args": {
-            "valid_options": [
-                "MIX_RGB",
-                "BOTH"
-            ]
-        },
+        "poll_args": { "valid_options": ["MIX_RGB", "BOTH"]},
         "entries": [
-            [
-                "CompositorNodeMixRGB",
-                {
-                    "label": "Mix RGB",
-                    "subtypes": [
-                        "blend_type"
-                    ]
-                }
-            ]
+            ["CompositorNodeMixRGB", {"label": "Mix RGB", "subtypes": ["blend_type"]}]
         ]
     },
     "group_nodes": {

@@ -136,430 +136,84 @@
     },
     "basic_subtypes": {
         "entries": [
-            [
-                "ShaderNodeClamp",
-                {
-                    "subtypes": [
-                        "clamp_type"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeSwitch",
-                {
-                    "subtypes": [
-                        "input_type"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeFilletCurve",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeUVUnwrap",
-                {
-                    "subtypes": [
-                        "method"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVectorMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeBooleanMath",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeAttributeDomainSize",
-                {
-                    "subtypes": [
-                        "component"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeProximity",
-                {
-                    "subtypes": [
-                        "target_element"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeSampleNearest",
-                {
-                    "subtypes": [
-                        "domain"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeCurveSplineType",
-                {
-                    "subtypes": [
-                        "spline_type"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeCurveSetHandles",
-                {
-                    "subtypes": [
-                        "handle_type"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeCurveHandleTypeSelection",
-                {
-                    "subtypes": [
-                        "handle_type"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeMeshBoolean",
-                {
-                    "subtypes": [
-                        "operation"
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeCombineColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeSeparateColor",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeMergeByDistance",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeSeparateGeometry",
-                {
-                    "subtypes": [
-                        "domain"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeDuplicateElements",
-                {
-                    "subtypes": [
-                        "domain"
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeFloatToInt",
-                {
-                    "subtypes": [
-                        "rounding_mode"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeVectorRotate",
-                {
-                    "subtypes": [
-                        "rotation_type"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeDistributePointsInVolume",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeDistributePointsOnFaces",
-                {
-                    "subtypes": [
-                        "distribute_method"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeDeleteGeometry",
-                {
-                    "subtypes": [
-                        "domain"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeScaleElements",
-                {
-                    "subtypes": [
-                        "domain",
-                        "scale_mode"
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeAlignEulerToVector",
-                {
-                    "subtypes": [
-                        "axis"
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeRotateEuler",
-                {
-                    "subtypes": [
-                        "space"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeExtrudeMesh",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeResampleCurve",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeCurveToPoints",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeFillCurve",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeMeshToPoints",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeTrimCurve",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodePointsToVolume",
-                {
-                    "subtypes": [
-                        "resolution_mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeMeshToVolume",
-                {
-                    "subtypes": [
-                        "resolution_mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeVolumeToMesh",
-                {
-                    "subtypes": [
-                        "resolution_mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeSetCurveHandlePositions",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeSetCurveNormal",
-                {
-                    "subtypes": [
-                        "mode"
-                    ]
-                }
-            ],
-            [
-                "GeometryNodeTriangulate",
-                {
-                    "subtypes": [
-                        "quad_method"
-                    ]
-                }
-            ]
+            ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
+            ["GeometryNodeSwitch", {"subtypes": ["input_type"]}],
+            ["GeometryNodeFilletCurve", {"subtypes": ["mode"]}],
+            ["GeometryNodeUVUnwrap", {"subtypes": ["method"]}],
+            ["ShaderNodeMath", {"subtypes": ["operation"]}],
+            ["ShaderNodeVectorMath", {"subtypes": ["operation"]}],
+            ["FunctionNodeBooleanMath", {"subtypes": ["operation"]}],
+            ["GeometryNodeAttributeDomainSize", {"subtypes": ["component"]}],
+            ["GeometryNodeProximity", {"subtypes": ["target_element"]}],
+            ["GeometryNodeSampleNearest", {"subtypes": ["domain"]}],
+            ["GeometryNodeCurveSplineType", {"subtypes": ["spline_type"]}],
+            ["GeometryNodeCurveSetHandles", {"subtypes": ["handle_type"]}],
+            ["GeometryNodeCurveHandleTypeSelection", {"subtypes": ["handle_type"]}],
+            ["GeometryNodeMeshBoolean", {"subtypes": ["operation"]}],
+            ["FunctionNodeCombineColor", {"subtypes": ["mode"]}],
+            ["FunctionNodeSeparateColor", {"subtypes": ["mode"]}],
+            ["GeometryNodeMergeByDistance", {"subtypes": ["mode"]}],
+            ["GeometryNodeSeparateGeometry", {"subtypes": ["domain"]}],
+            ["GeometryNodeDuplicateElements", {"subtypes": ["domain"]}],
+            ["FunctionNodeFloatToInt", {"subtypes": ["rounding_mode"]}],
+            ["ShaderNodeVectorRotate", {"subtypes": ["rotation_type"]}],
+            ["GeometryNodeDistributePointsInVolume", {"subtypes": ["mode"]}],
+            ["GeometryNodeDistributePointsOnFaces", {"subtypes": ["distribute_method"]}],
+            ["GeometryNodeDeleteGeometry", {"subtypes": ["domain"]}],
+            ["GeometryNodeScaleElements", {"subtypes": ["domain", "scale_mode"]}],
+            ["FunctionNodeAlignEulerToVector", {"subtypes": ["axis"]}],
+            ["FunctionNodeRotateEuler", {"subtypes": ["space"]}],
+            ["GeometryNodeExtrudeMesh", {"subtypes": ["mode"]}],
+            ["GeometryNodeResampleCurve", {"subtypes": ["mode"]}],
+            ["GeometryNodeCurveToPoints", {"subtypes": ["mode"]}],
+            ["GeometryNodeFillCurve", {"subtypes": ["mode"]}],
+            ["GeometryNodeMeshToPoints", {"subtypes": ["mode"]}],
+            ["GeometryNodeTrimCurve", {"subtypes": ["mode"]}],
+            ["GeometryNodePointsToVolume", {"subtypes": ["resolution_mode"]}],
+            ["GeometryNodeMeshToVolume", {"subtypes": ["resolution_mode"]}],
+            ["GeometryNodeVolumeToMesh", {"subtypes": ["resolution_mode"]}],
+            ["GeometryNodeSetCurveHandlePositions", {"subtypes": ["mode"]}],
+            ["GeometryNodeSetCurveNormal", {"subtypes": ["mode"]}],
+            ["GeometryNodeTriangulate", {"subtypes": ["quad_method"]}]
         ]
     },
     "texture_subtypes": {
         "entries": [
-            [
-                "ShaderNodeTexGradient",
-                {
-                    "subtypes": [
-                        "gradient_type"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeTexMusgrave",
-                {
-                    "subtypes": [
-                        "musgrave_type",
-                        "musgrave_dimensions"
-                    ]
-                }
-            ],
+            ["ShaderNodeTexGradient", {"subtypes": ["gradient_type"]}],
+            ["ShaderNodeTexMusgrave", {"subtypes": ["musgrave_type", "musgrave_dimensions"]}],
             "ShaderNodeTexVoronoi",
-            [
-                "ShaderNodeTexVoronoi",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "voronoi_dimensions",
-                            "only_include": [
-                                "1D"
-                            ]
-                        }
+            ["ShaderNodeTexVoronoi", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "voronoi_dimensions", "only_include": ["1D"]}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexVoronoi",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        "distance",
-                        {
-                            "name": "voronoi_dimensions",
-                            "only_include": [
-                                "2D",
-                                "3D",
-                                "4D"
-                            ]
-                        }
+            ["ShaderNodeTexVoronoi", {
+                "only_subtypes": true,
+                "subtypes": [
+                        "distance", {"name": "voronoi_dimensions", "only_include": ["2D", "3D", "4D"]}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexNoise",
-                {
-                    "subtypes": [
-                        "noise_dimensions"
-                    ]
-                }
-            ],
-            [
-                "ShaderNodeTexWhiteNoise",
-                {
-                    "subtypes": [
-                        "noise_dimensions"
-                    ]
-                }
-            ],
+            ["ShaderNodeTexNoise", {"subtypes": ["noise_dimensions"]}],
+            ["ShaderNodeTexWhiteNoise", {"subtypes": ["noise_dimensions"]}],
             "ShaderNodeTexWave",
-            [
-                "ShaderNodeTexWave",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "bands_direction",
-                            "only_include": [
-                                "X",
-                                "Y",
-                                "Z",
-                                "Diagonal"
-                            ]
-                        },
-                        "wave_profile",
-                        {
-                            "name": "wave_type",
-                            "only_include": "Bands"
-                        }
+            ["ShaderNodeTexWave", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "bands_direction", "only_include": ["X", "Y", "Z", "Diagonal"]},
+                        "wave_profile", 
+                        {"name": "wave_type", "only_include": "Bands"}
                     ]
                 }
             ],
-            [
-                "ShaderNodeTexWave",
-                {
-                    "only_subtypes": true,
-                    "subtypes": [
-                        {
-                            "name": "rings_direction",
-                            "only_include": [
-                                "X",
-                                "Y",
-                                "Z",
-                                "Spherical"
-                            ]
-                        },
-                        "wave_profile",
-                        {
-                            "name": "wave_type",
-                            "only_include": "Rings"
-                        }
+            ["ShaderNodeTexWave", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "rings_direction", "only_include": ["X", "Y", "Z", "Spherical"]},
+                        "wave_profile", 
+                        {"name": "wave_type", "only_include": "Rings"}
                     ]
                 }
             ]
@@ -567,205 +221,72 @@
     },
     "filtered_subtypes": {
         "entries": [
-            [
-                "FunctionNodeRandomValue",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Boolean"
-                            ]
-                        }
-                    ]
+            ["FunctionNodeRandomValue", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
                 }
             ],
-            [
-                "GeometryNodeSampleNearestSurface",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
-                    ]
+            ["GeometryNodeSampleNearestSurface", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}]
                 }
             ],
-            [
-                "GeometryNodeSampleUVSurface",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
-                    ]
+            ["GeometryNodeSampleUVSurface", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}]
                 }
             ],
-            [
-                "GeometryNodeInputNamedAttribute",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
-                    ]
+            ["GeometryNodeInputNamedAttribute", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}]
                 }
             ]
         ]
     },
     "data_type_domain_nodes": {
         "entries": [
-            [
-                "GeometryNodeAttributeStatistic",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Vector"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeAttributeStatistic", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Vector"]},
+                    "domain"
                     ]
                 }
             ],
-            [
-                "GeometryNodeAccumulateField",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeAccumulateField", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector"]},
+                    "domain"
                     ]
                 }
             ],
-            [
-                "GeometryNodeSampleIndex",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeSampleIndex", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]},
+                    "domain"
                     ]
                 }
             ],
-            [
-                "GeometryNodeFieldAtIndex",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeFieldAtIndex", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]},
+                    "domain"
                     ]
                 }
             ],
-            [
-                "GeometryNodeFieldOnDomain",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeFieldOnDomain", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]},
+                    "domain"
                     ]
                 }
             ],
-            [
-                "GeometryNodeCaptureAttribute",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeCaptureAttribute", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]},
+                    "domain"
                     ]
                 }
             ],
-            [
-                "GeometryNodeStoreNamedAttribute",
-                {
-                    "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Byte Color",
-                                "Boolean",
-                                "2D Vector",
-                                "Quaternion"
-                            ]
-                        },
-                        "domain"
+            ["GeometryNodeStoreNamedAttribute", {
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Byte Color", "Boolean", "2D Vector", "Quaternion"]},
+                    "domain"
                     ]
                 }
             ]
@@ -774,235 +295,92 @@
     "specific_types": {
         "entries": [
             "ShaderNodeMix",
-            [
-                "ShaderNodeMix",
-                {
-                    "label": "Mix Vector",
-                    "settings": {
-                        "data_type": "VECTOR"
-                    },
-                    "subtypes": [
-                        "factor_mode"
-                    ]
-                }
-            ],
+            ["ShaderNodeMix", {"label": "Mix Vector", "settings": {"data_type": "VECTOR"}, "subtypes": ["factor_mode"]}],
             "GeometryNodeRaycast",
-            [
-                "GeometryNodeRaycast",
-                {
-                    "label": "Raycast Nearest",
-                    "settings": {
-                        "mapping": "NEAREST"
-                    },
+            ["GeometryNodeRaycast", {
+                "label": "Raycast Nearest",
+                "settings": {"mapping": "NEAREST"},
                     "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
+                        {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}
                     ]
                 }
             ],
-            [
-                "GeometryNodeRaycast",
-                {
-                    "label": "Raycast Interpolated",
-                    "settings": {
-                        "mapping": "INTERPOLATED"
-                    },
+            ["GeometryNodeRaycast", {
+                "label": "Raycast Interpolated",
+                "settings": {"mapping": "INTERPOLATED"},
                     "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
+                        {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}
                     ]
                 }
             ],
             "ShaderNodeMapRange",
-            [
-                "ShaderNodeMapRange",
-                {
-                    "label": "Map Range - Float",
-                    "settings": {
-                        "data_type": "FLOAT"
-                    },
+            ["ShaderNodeMapRange", {
+                "label": "Map Range - Float",
+                "settings": {"data_type": "FLOAT"},
+                    "subtypes": ["interpolation_type"]
+                }
+            ],
+            ["ShaderNodeMapRange", {
+                "label": "Map Range - Vector",
+                "settings": {"data_type": "FLOAT_VECTOR"},
+                    "subtypes": ["interpolation_type"]
+                }
+            ],
+            ["FunctionNodeCompare", {
+                "label": "Compare",
+                "settings": {"data_type": "FLOAT"},
                     "subtypes": [
-                        "interpolation_type"
+                        {"name": "operation", "only_include": ["Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal"]}
                     ]
                 }
             ],
-            [
-                "ShaderNodeMapRange",
-                {
-                    "label": "Map Range - Vector",
-                    "settings": {
-                        "data_type": "FLOAT_VECTOR"
-                    },
+            ["FunctionNodeCompare", {
+                "label": "Compare Integer",
+                "settings": {"data_type": "INT"},
                     "subtypes": [
-                        "interpolation_type"
+                        {"name": "operation", "only_include": ["Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal"]}
                     ]
                 }
             ],
-            [
-                "FunctionNodeCompare",
-                {
-                    "label": "Compare",
-                    "settings": {
-                        "data_type": "FLOAT"
-                    },
+            ["FunctionNodeCompare", {
+                "label": "Compare Vector",
+                "settings": {"data_type": "VECTOR"},
                     "subtypes": [
-                        {
-                            "name": "operation",
-                            "only_include": [
-                                "Less Than",
-                                "Less Than or Equal",
-                                "Greater Than",
-                                "Greater Than or Equal",
-                                "Equal",
-                                "Not Equal"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeCompare",
-                {
-                    "label": "Compare Integer",
-                    "settings": {
-                        "data_type": "INT"
-                    },
-                    "subtypes": [
-                        {
-                            "name": "operation",
-                            "only_include": [
-                                "Less Than",
-                                "Less Than or Equal",
-                                "Greater Than",
-                                "Greater Than or Equal",
-                                "Equal",
-                                "Not Equal"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            [
-                "FunctionNodeCompare",
-                {
-                    "label": "Compare Vector",
-                    "settings": {
-                        "data_type": "VECTOR"
-                    },
-                    "subtypes": [
-                        {
-                            "name": "operation",
-                            "only_include": [
-                                "Less Than",
-                                "Less Than or Equal",
-                                "Greater Than",
-                                "Greater Than or Equal",
-                                "Equal",
-                                "Not Equal"
-                            ]
-                        },
+                        {"name": "operation", "only_include": ["Less Than", "Less Than or Equal", "Greater Than", "Greater Than or Equal", "Equal", "Not Equal"]},
                         "mode"
                     ]
                 }
             ],
-            [
-                "FunctionNodeCompare",
-                {
-                    "label": "Compare String",
-                    "settings": {
-                        "data_type": "STRING"
-                    },
+            ["FunctionNodeCompare", {
+                "label": "Compare String",
+                "settings": {"data_type": "STRING"},
                     "subtypes": [
-                        {
-                            "name": "operation",
-                            "only_include": [
-                                "Equal",
-                                "Not Equal"
-                            ]
-                        }
+                        {"name": "operation", "only_include": ["Equal", "Not Equal"]}
                     ]
                 }
             ],
-            [
-                "FunctionNodeCompare",
-                {
-                    "label": "Compare Color",
-                    "settings": {
-                        "data_type": "RGBA"
-                    },
+            ["FunctionNodeCompare", {
+                "label": "Compare Color",
+                "settings": {"data_type": "RGBA"},
                     "subtypes": [
-                        {
-                            "name": "operation",
-                            "only_include": [
-                                "Equal",
-                                "Not Equal",
-                                "Brighter",
-                                "Darker"
-                            ]
-                        }
+                        {"name": "operation", "only_include": ["Equal", "Not Equal", "Brighter", "Darker"]}
                     ]
                 }
             ],
             "GeometryNodeSampleCurve",
-            [
-                "GeometryNodeSampleCurve",
-                {
-                    "label": "Sample Curve - Factor",
-                    "settings": {
-                        "mode": "FACTOR"
-                    },
+            ["GeometryNodeSampleCurve", {
+                "label": "Sample Curve - Factor",
+                "settings": {"mode": "FACTOR"},
                     "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
+                        {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}
                     ]
                 }
             ],
-            [
-                "GeometryNodeSampleCurve",
-                {
-                    "label": "Sample Curve - Length",
-                    "settings": {
-                        "mode": "LENGTH"
-                    },
+            ["GeometryNodeSampleCurve", {
+                "label": "Sample Curve - Length",
+                "settings": {"mode": "LENGTH"},
                     "subtypes": [
-                        {
-                            "name": "data_type",
-                            "only_include": [
-                                "Float",
-                                "Integer",
-                                "Vector",
-                                "Color",
-                                "Boolean",
-                                "Quaternion"
-                            ]
-                        }
+                        {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion"]}
                     ]
                 }
             ]
@@ -1010,47 +388,24 @@
     },
     "mix_color": {
         "poll": "check_mix_color_alias",
-        "poll_args": {
-            "valid_options": [
-                "DEFAULT",
-                "MIX_COLOR",
-                "BOTH"
-            ]
-        },
+        "poll_args": {"valid_options": ["DEFAULT", "MIX_COLOR", "BOTH"]},
         "entries": [
-            [
-                "ShaderNodeMix",
-                {
-                    "label": "Mix Color",
-                    "settings": {
-                        "data_type": "RGBA"
-                    },
-                    "subtypes": [
-                        "blend_type"
-                    ]
+            ["ShaderNodeMix", {
+                "label": "Mix Color",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
                 }
             ]
         ]
     },
     "mix_rgb": {
         "poll": "check_mix_color_alias",
-        "poll_args": {
-            "valid_options": [
-                "MIX_RGB",
-                "BOTH"
-            ]
-        },
+        "poll_args": { "valid_options": ["MIX_RGB", "BOTH"]},
         "entries": [
-            [
-                "ShaderNodeMix",
-                {
-                    "label": "Mix RGB",
-                    "settings": {
-                        "data_type": "RGBA"
-                    },
-                    "subtypes": [
-                        "blend_type"
-                    ]
+            ["ShaderNodeMix", {
+                "label": "Mix RGB",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
                 }
             ]
         ]
