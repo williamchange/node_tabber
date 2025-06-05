@@ -162,7 +162,8 @@
             "GeometryNodeInputObject",
             "FunctionNodeFindInString",
             "GeometryNodeCameraInfo",
-            "GeometryNodeInputInstanceBounds"
+            "GeometryNodeInputInstanceBounds",
+            "FunctionNodeFormatString"
         ]
     },
     "zones": {
