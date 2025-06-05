@@ -643,6 +643,14 @@
                         "operation"
                     ]
                 }
+            ],
+            [
+                "FunctionNodeBitMath",
+                {
+                    "subtypes": [
+                        "operation"
+                    ]
+                }
             ]
         ]
     },
