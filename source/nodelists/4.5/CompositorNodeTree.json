@@ -192,6 +192,15 @@
                         "rotation_type"
                     ]
                 }
+            ],
+            [
+                "CompositorNodeRelativeToPixel",
+                {
+                    "subtypes": [
+                        "data_type",
+                        "reference_dimension"
+                    ]
+                }
             ]
         ]
     },
