@@ -3,7 +3,7 @@ import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-versions = ["3.4", "3.5", "3.6", "4.0", "4.1", "4.2", "4.3", "4.4", "4.5"]
+versions = [p.name for p in Path("source", "nodelists").glob("[0-9].[0-9]")]
 root = Path(__file__).parent
 
 RELEASE_FOLDER = Path("release")
