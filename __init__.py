@@ -21,6 +21,7 @@ bl_info = {
     "name": "Node Tabber (Development)",
     "author": "Richard Lyons, williamchange, Quackers",
     "blender": (3, 4, 0),
+    "version": (0, 3, 5),
     "description": "Allows quick smart searching of node types.",
     "category": "Node",
 }

@@ -1,3 +1,4 @@
+import ast
 import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -8,16 +9,23 @@ root = Path(__file__).parent
 RELEASE_FOLDER = Path("release")
 SOURCE_FOLDER = Path("source")
 
-# NOTE - This isn't synced with the bl_info in the __init__.py used in the dev version
-# Be sure to update both when updating one of them
-BL_INFO_BASE = {
-    "name": "Node Tabber",
-    "author": "Richard Lyons, williamchange, Quackers",
-    "version": (0, 3, 5),
-    "blender": (3, 4, 0),
-    "description": "Allows quick smart searching of node types.",
-    "category": "Node",
-}
+
+def get_bl_info(init_path):
+    with open(init_path, 'r') as f:
+        node = ast.parse(f.read())
+
+    n: ast.Module
+    for n in ast.walk(node):
+        for b in n.body:
+            if isinstance(b, ast.Assign) and isinstance(b.value, ast.Dict) and (
+                    any(t.id == 'bl_info' for t in b.targets)):
+                bl_info_dict = ast.literal_eval(b.value)
+                return bl_info_dict
+            
+    raise ValueError('Cannot find bl_info')
+
+
+BL_INFO_BASE = get_bl_info(Path("__init__.py"))
 BL_INFO_PATTERN = "### INSERT BL_INFO BLOCK HERE ###"
 
 
