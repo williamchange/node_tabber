@@ -74,6 +74,8 @@ def replace_text(path, pattern, replacement):
 
 def write_bl_info(init_path, version):
     bl_info = BL_INFO_BASE.copy()
+    bl_info["name"] = bl_info["name"].removesuffix(" (Development)") 
+
     if version is not None:
         bl_info["name"] = bl_info["name"] + f" (v{version})"
         bl_info["blender"] = tuple(map(int, version.split(".") + ["0"]))
