@@ -220,7 +220,12 @@
         "poll": "check_mix_color_alias",
         "poll_args": { "valid_options": ["MIX_RGB", "BOTH"]},
         "entries": [
-            ["CompositorNodeMixRGB", {"label": "Mix RGB", "subtypes": ["blend_type"]}]
+            ["ShaderNodeMix", {
+                "label": "Mix RGB",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
+                }
+            ]
         ]
     },
     "group_nodes": {
