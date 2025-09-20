@@ -56,6 +56,13 @@ def get_addon_builds(user_folder, addon_name, use_multiversion=False):
             yield AddonBuild(version_string, addon_path, zip_path)
 
 
+def is_symbolic_link(path):
+    if hasattr(path, "is_junction"):
+        return path.is_junction() or path.is_symlink()
+    else:
+        return path.is_symlink()
+
+
 def uninstall_addon_builds(builds):
     for build in builds:
         version_string = build.version_string
@@ -64,8 +71,8 @@ def uninstall_addon_builds(builds):
         if not addon_path.exists():
             print(f"Blender {version_string}: No installation found in \"{addon_path}\"")
             continue
-        
-        if addon_path.is_junction() or addon_path.is_symlink():
+
+        if is_symbolic_link(addon_path):
             addon_path.unlink()
             print(f"Blender {version_string}: Unlinked working directory from \"{addon_path}\"")
             continue
