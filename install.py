@@ -60,7 +60,12 @@ def is_symbolic_link(path):
     if hasattr(path, "is_junction"):
         return path.is_junction() or path.is_symlink()
     else:
-        return path.is_symlink()
+        return path.is_symlink() or not path.is_dir()
+    
+
+def remove_symlink(addon_path, version):
+    addon_path.unlink()
+    print(f"Blender {version}: Unlinked working directory from \"{addon_path}\"")
 
 
 def uninstall_addon_builds(builds):
@@ -73,13 +78,16 @@ def uninstall_addon_builds(builds):
             continue
 
         if is_symbolic_link(addon_path):
-            addon_path.unlink()
-            print(f"Blender {version_string}: Unlinked working directory from \"{addon_path}\"")
+            remove_symlink(addon_path, version=version_string)
             continue
         else:
-            shutil.rmtree(addon_path)
-            print(f"Blender {version_string}: Uninstalled addon in \"{addon_path}\"")
-            continue
+            try:
+                shutil.rmtree(addon_path)
+                print(f"Blender {version_string}: Uninstalled addon in \"{addon_path}\"")
+                continue
+            except OSError:
+                remove_symlink(addon_path, version=version_string)
+                continue
 
 
 def install_addon_builds(builds):
