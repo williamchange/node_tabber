@@ -1,0 +1,73 @@
+{
+    "items": {
+        "entries": [
+            "TextureNodeCoordinates",
+            "TextureNodeCurveTime",
+            "TextureNodeImage",
+            "TextureNodeTexture",
+            "TextureNodeOutput",
+            "TextureNodeViewer",
+            "TextureNodeHueSaturation",
+            "TextureNodeInvert",
+            "TextureNodeCurveRGB",
+            "TextureNodeValToRGB",
+            "TextureNodeDistance",
+            "TextureNodeRGBToBW",
+            "TextureNodeValToNor",
+            "TextureNodeAt",
+            "TextureNodeRotate",
+            "TextureNodeScale",
+            "TextureNodeTranslate",
+            "TextureNodeBricks",
+            "TextureNodeChecker",
+            "TextureNodeTexBlend",
+            "TextureNodeTexClouds",
+            "TextureNodeTexDistNoise",
+            "TextureNodeTexMagic",
+            "TextureNodeTexMarble",
+            "TextureNodeTexMusgrave",
+            "TextureNodeTexNoise",
+            "TextureNodeTexStucci",
+            "TextureNodeTexVoronoi",
+            "TextureNodeTexWood"
+        ]
+    },
+    "basic_subtypes": {
+        "entries": [
+            ["TextureNodeMath", {"subtypes": ["operation"]}],
+            ["TextureNodeCombineColor", {"subtypes": ["mode"]}],
+            ["TextureNodeSeparateColor", {"subtypes": ["mode"]}]
+        ]
+    },
+    "mix_color": {
+        "poll": "check_mix_color_alias",
+        "poll_args": {
+            "valid_options": ["MIX_COLOR", "BOTH"]
+        },
+        "entries": [
+            ["TextureNodeMixRGB", {"label": "Mix Color", "subtypes": ["blend_type"]}]
+        ]
+    },
+    "mix_rgb": {
+        "poll": "check_mix_color_alias",
+        "poll_args": {
+            "valid_options": ["DEFAULT", "MIX_RGB", "BOTH"]
+        },
+        "entries": [
+            ["TextureNodeMixRGB", {"subtypes": ["blend_type"]}]
+        ]
+    },
+    "group_nodes": {
+        "poll": "in_nodegroup",
+        "entries": [
+            "NodeGroupInput",
+            "NodeGroupOutput"
+        ]
+    },
+    "frame_and_reroute": {
+        "entries": [
+            "NodeFrame",
+            "NodeReroute"
+        ]
+    }
+}

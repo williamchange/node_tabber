@@ -1,0 +1,244 @@
+{
+    "items": {
+        "entries": [
+            "CompositorNodeBokehImage",
+            "CompositorNodeImage",
+            "CompositorNodeMask",
+            "CompositorNodeMovieClip",
+            "CompositorNodeTexture",
+            "CompositorNodeRGB",
+            "ShaderNodeValue",
+            "CompositorNodeRLayers",
+            "CompositorNodeSceneTime",
+            "CompositorNodeTime",
+            "CompositorNodeComposite",
+            "CompositorNodeViewer",
+            "CompositorNodeOutputFile",
+            "ShaderNodeValToRGB",
+            "CompositorNodeConvertColorSpace",
+            "CompositorNodeInvert",
+            "CompositorNodeRGBToBW",
+            "CompositorNodeBrightContrast",
+            "CompositorNodeColorCorrection",
+            "CompositorNodeExposure",
+            "CompositorNodeGamma",
+            "CompositorNodeHueCorrect",
+            "CompositorNodeHueSat",
+            "CompositorNodeCurveRGB",
+            "CompositorNodeAlphaOver",
+            "CompositorNodeZcombine",
+            "CompositorNodeAntiAliasing",
+            "CompositorNodeDespeckle",
+            "CompositorNodeInpaint",
+            "CompositorNodePixelate",
+            "CompositorNodePosterize",
+            "CompositorNodeSunBeams",
+            "CompositorNodeBilateralblur",
+            "CompositorNodeBokehBlur",
+            "CompositorNodeDBlur",
+            "CompositorNodeVecBlur",
+            "CompositorNodeChannelMatte",
+            "CompositorNodeChromaMatte",
+            "CompositorNodeColorMatte",
+            "CompositorNodeColorSpill",
+            "CompositorNodeDiffMatte",
+            "CompositorNodeKeying",
+            "CompositorNodeKeyingScreen",
+            "CompositorNodeLumaMatte",
+            "CompositorNodeCryptomatte",
+            "CompositorNodeBoxMask",
+            "CompositorNodeEllipseMask",
+            "CompositorNodeDoubleEdgeMask",
+            "CompositorNodeIDMask",
+            "CompositorNodePlaneTrackDeform",
+            "CompositorNodeStabilize",
+            "CompositorNodeTrackPos",
+            "CompositorNodeCrop",
+            "CompositorNodeDisplace",
+            "CompositorNodeMapUV",
+            "CompositorNodeLensdist",
+            "CompositorNodeNormalize",
+            "CompositorNodeSwitch",
+            "ShaderNodeCombineXYZ",
+            "ShaderNodeSeparateXYZ",
+            "CompositorNodeNormal",
+            "ShaderNodeVectorCurve",
+            "CompositorNodeImageInfo",
+            "ShaderNodeFloatCurve",
+            "ShaderNodeBlackbody",
+            "ShaderNodeTexBrick",
+            "ShaderNodeTexChecker",
+            "ShaderNodeTexMagic",
+            "CompositorNodeImageCoordinates"
+        ]
+    },    
+    "combine_and_separate_color": {
+        "entries": [
+            ["CompositorNodeCombineColor", {"subtypes": ["mode"]}],
+            ["CompositorNodeCombineColor", {
+                "only_subtypes" : true, 
+                "subtypes": [
+                        {"name": "mode", "only_include": ["YCbCr"]},
+                        "ycc_mode"
+                    ]
+                }
+            ],
+            ["CompositorNodeSeparateColor", {"subtypes": ["mode"]}],
+            ["CompositorNodeSeparateColor", {
+                "only_subtypes" : true, 
+                "subtypes": [
+                        {"name": "mode", "only_include": ["YCbCr"]},
+                        "ycc_mode"
+                    ]
+                }
+            ]
+        ]
+    },
+    "specific_types": {
+        "entries": [
+            ["CompositorNodeSwitchView", {"label": "Switch Stereo View"}],
+            ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
+            "ShaderNodeMix",
+            ["ShaderNodeMix", {"label": "Mix Vector", "settings": {"data_type": "VECTOR"}, "subtypes": ["factor_mode"]}],
+            "ShaderNodeMapRange",
+            ["ShaderNodeMapRange", {
+                "label": "Map Range - Float",
+                "settings": {"data_type": "FLOAT"},
+                    "subtypes": ["interpolation_type"]
+                }
+            ],
+            ["ShaderNodeMapRange", {
+                "label": "Map Range - Vector",
+                "settings": {"data_type": "FLOAT_VECTOR"},
+                    "subtypes": ["interpolation_type"]
+                }
+            ],
+            ["ShaderNodeVectorMath", {"subtypes": ["operation"]}],
+            ["ShaderNodeVectorRotate", {"subtypes": ["rotation_type"]}],
+            ["CompositorNodeRelativeToPixel", {"subtypes": ["data_type", "reference_dimension"]}]
+        ]
+    },
+    "basic_subtypes": {
+        "entries": [
+            ["CompositorNodePremulKey", {"subtypes": ["mapping"]}],
+            ["CompositorNodeColorBalance", {"subtypes": ["correction_method"]}],
+            ["CompositorNodeCryptomatteV2", {"subtypes": ["source"]}],
+            ["CompositorNodeDistanceMatte", {"subtypes": ["channel"]}],
+            ["CompositorNodeMovieDistortion", {"subtypes": ["distortion_type"]}],
+            ["CompositorNodeSetAlpha", {"subtypes": ["mode"]}],
+            ["CompositorNodeDefocus", {"subtypes": ["bokeh"]}],
+            ["CompositorNodeDenoise", {"subtypes": ["prefilter"]}],
+            ["CompositorNodeDilateErode", {"subtypes": ["mode"]}],
+            ["CompositorNodeDilateErode", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "mode", "only_include": ["Feather"]},
+                        "falloff"
+                    ]
+                }
+            ],
+            ["CompositorNodeGlare", {"subtypes": ["glare_type"]}],
+            ["CompositorNodeRotate", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeScale", {"subtypes": ["interpolation", "space"]}],
+            ["CompositorNodeScale", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "space", "only_include": ["Render Size"]},
+                        "frame_method"
+                    ]
+                }
+            ],
+            ["CompositorNodeTransform", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeTranslate", {"subtypes": ["wrap_axis"]}],
+            ["CompositorNodeFlip", {"subtypes": ["axis"]}],
+            ["CompositorNodeBlur", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeKuwahara", {"subtypes": ["variation"]}],
+            ["CompositorNodeLevels", {"subtypes": ["channel"]}],
+            ["ShaderNodeMath", {"subtypes": ["operation"]}],
+            ["CompositorNodeFilter", {"subtypes": ["filter_type"]}],
+            ["CompositorNodeSplit", {"subtypes": ["axis"]}],
+            ["CompositorNodeTonemap", {"subtypes": ["tonemap_type"]}],
+            ["CompositorNodeCornerPin", {"subtypes": ["interpolation"]}]
+        ]
+    },
+    "texture_subtypes": {
+        "entries": [
+            ["ShaderNodeTexGradient", {"subtypes": ["gradient_type"]}],
+            "ShaderNodeTexVoronoi",
+            ["ShaderNodeTexVoronoi", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "voronoi_dimensions", "only_include": ["1D"]}
+                    ]
+                }
+            ],
+            ["ShaderNodeTexVoronoi", {
+                "only_subtypes": true,
+                "subtypes": [
+                        "distance", {"name": "voronoi_dimensions", "only_include": ["2D", "3D", "4D"]}
+                    ]
+                }
+            ],
+            ["ShaderNodeTexNoise", {"subtypes": ["noise_dimensions"]}],
+            ["ShaderNodeTexNoise", {"only_subtypes": true, "subtypes": ["noise_dimensions", "noise_type"]}],
+            ["ShaderNodeTexWhiteNoise", {"subtypes": ["noise_dimensions"]}],
+            "ShaderNodeTexWave",
+            ["ShaderNodeTexWave", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "bands_direction", "only_include": ["X", "Y", "Z", "Diagonal"]},
+                        "wave_profile", 
+                        {"name": "wave_type", "only_include": "Bands"}
+                    ]
+                }
+            ],
+            ["ShaderNodeTexWave", {
+                "only_subtypes": true,
+                "subtypes": [
+                        {"name": "rings_direction", "only_include": ["X", "Y", "Z", "Spherical"]},
+                        "wave_profile", 
+                        {"name": "wave_type", "only_include": "Rings"}
+                    ]
+                }
+            ],
+            ["ShaderNodeTexGabor", {"subtypes": ["gabor_type"]}]
+        ]
+    },
+    "mix_color": {
+        "poll": "check_mix_color_alias",
+        "poll_args": {"valid_options": ["DEFAULT", "MIX_COLOR", "BOTH"]},
+        "entries": [
+            ["ShaderNodeMix", {
+                "label": "Mix Color",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
+                }
+            ]
+        ]
+    },
+    "mix_rgb": {
+        "poll": "check_mix_color_alias",
+        "poll_args": { "valid_options": ["MIX_RGB", "BOTH"]},
+        "entries": [
+            ["ShaderNodeMix", {
+                "label": "Mix RGB",
+                "settings": {"data_type": "RGBA"},
+                    "subtypes": ["blend_type"]
+                }
+            ]
+        ]
+    },
+    "group_nodes": {
+        "poll": "in_nodegroup",
+        "entries": [
+            "NodeGroupInput",
+            "NodeGroupOutput"
+        ]
+    },
+    "frame_and_reroute": {
+        "entries": [
+            "NodeFrame",
+            "NodeReroute"
+        ]
+    }
+}
