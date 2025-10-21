@@ -5,13 +5,11 @@
             "CompositorNodeImage",
             "CompositorNodeMask",
             "CompositorNodeMovieClip",
-            "CompositorNodeTexture",
             "CompositorNodeRGB",
             "ShaderNodeValue",
             "CompositorNodeRLayers",
             "CompositorNodeSceneTime",
             "CompositorNodeTime",
-            "CompositorNodeComposite",
             "CompositorNodeViewer",
             "CompositorNodeOutputFile",
             "ShaderNodeValToRGB",
@@ -21,7 +19,7 @@
             "CompositorNodeBrightContrast",
             "CompositorNodeColorCorrection",
             "CompositorNodeExposure",
-            "CompositorNodeGamma",
+            "ShaderNodeGamma",
             "CompositorNodeHueCorrect",
             "CompositorNodeHueSat",
             "CompositorNodeCurveRGB",
@@ -32,7 +30,6 @@
             "CompositorNodeInpaint",
             "CompositorNodePixelate",
             "CompositorNodePosterize",
-            "CompositorNodeSunBeams",
             "CompositorNodeBilateralblur",
             "CompositorNodeBokehBlur",
             "CompositorNodeDBlur",
@@ -120,45 +117,45 @@
     },
     "basic_subtypes": {
         "entries": [
-            ["CompositorNodePremulKey", {"subtypes": ["mapping"]}],
-            ["CompositorNodeColorBalance", {"subtypes": ["correction_method"]}],
+            ["CompositorNodePremulKey", {"socket_subtypes": ["mapping"]}],
+            ["CompositorNodeColorBalance", {"socket_subtypes": ["correction_method"]}],
             ["CompositorNodeCryptomatteV2", {"subtypes": ["source"]}],
-            ["CompositorNodeDistanceMatte", {"subtypes": ["channel"]}],
-            ["CompositorNodeMovieDistortion", {"subtypes": ["distortion_type"]}],
-            ["CompositorNodeSetAlpha", {"subtypes": ["mode"]}],
+            ["CompositorNodeDistanceMatte", {"socket_subtypes": ["channel"]}],
+            ["CompositorNodeMovieDistortion", {"socket_subtypes": ["distortion_type"]}],
+            ["CompositorNodeSetAlpha", {"socket_subtypes": ["mode"]}],
             ["CompositorNodeDefocus", {"subtypes": ["bokeh"]}],
-            ["CompositorNodeDenoise", {"subtypes": ["prefilter"]}],
-            ["CompositorNodeDilateErode", {"subtypes": ["mode"]}],
+            ["CompositorNodeDenoise", {"socket_subtypes": ["prefilter"]}],
+            ["CompositorNodeDilateErode", {"socket_subtypes": ["mode"]}],
             ["CompositorNodeDilateErode", {
                 "only_subtypes": true,
-                "subtypes": [
+                "socket_subtypes": [
                         {"name": "mode", "only_include": ["Feather"]},
                         "falloff"
                     ]
                 }
             ],
-            ["CompositorNodeGlare", {"subtypes": ["glare_type"]}],
-            ["CompositorNodeRotate", {"subtypes": ["filter_type"]}],
-            ["CompositorNodeScale", {"subtypes": ["interpolation", "space"]}],
+            ["CompositorNodeGlare", {"socket_subtypes": ["glare_type"]}],
+            ["CompositorNodeRotate", {"socket_subtypes": ["filter_type"]}],
+            ["CompositorNodeScale", {"socket_subtypes": ["interpolation", "space"]}],
             ["CompositorNodeScale", {
                 "only_subtypes": true,
-                "subtypes": [
+                "socket_subtypes": [
                         {"name": "space", "only_include": ["Render Size"]},
                         "frame_method"
                     ]
                 }
             ],
-            ["CompositorNodeTransform", {"subtypes": ["filter_type"]}],
-            ["CompositorNodeTranslate", {"subtypes": ["wrap_axis"]}],
-            ["CompositorNodeFlip", {"subtypes": ["axis"]}],
-            ["CompositorNodeBlur", {"subtypes": ["filter_type"]}],
-            ["CompositorNodeKuwahara", {"subtypes": ["variation"]}],
-            ["CompositorNodeLevels", {"subtypes": ["channel"]}],
+            ["CompositorNodeTransform", {"socket_subtypes": ["filter_type"]}],
+            ["CompositorNodeTranslate", {"socket_subtypes": ["wrap_axis"]}],
+            ["CompositorNodeFlip", {"socket_subtypes": ["socket_axis"]}],
+            ["CompositorNodeBlur", {"socket_subtypes": ["filter_type"]}],
+            ["CompositorNodeKuwahara", {"socket_subtypes": ["variation"]}],
+            ["CompositorNodeLevels", {"socket_subtypes": ["channel"]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
-            ["CompositorNodeFilter", {"subtypes": ["filter_type"]}],
-            ["CompositorNodeSplit", {"subtypes": ["axis"]}],
-            ["CompositorNodeTonemap", {"subtypes": ["tonemap_type"]}],
-            ["CompositorNodeCornerPin", {"subtypes": ["interpolation"]}]
+            ["CompositorNodeFilter", {"socket_subtypes": ["filter_type"]}],
+            ["CompositorNodeSplit", {"socket_subtypes": ["axis"]}],
+            ["CompositorNodeTonemap", {"socket_subtypes": ["tonemap_type"]}],
+            ["CompositorNodeCornerPin", {"socket_subtypes": ["interpolation"]}]
         ]
     },
     "texture_subtypes": {
