@@ -44,7 +44,6 @@
             "ShaderNodeTexEnvironment",
             "ShaderNodeTexImage",
             "ShaderNodeTexMagic",
-            "ShaderNodeTexPointDensity",
             "ShaderNodeBump",
             "ShaderNodeNormal",
             "ShaderNodeVectorCurve",
