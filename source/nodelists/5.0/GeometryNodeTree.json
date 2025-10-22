@@ -208,8 +208,8 @@
         "entries": [
             ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
             ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture"]}]}],
-            ["GeometryNodeFilletCurve", {"subtypes": ["mode"]}],
-            ["GeometryNodeUVUnwrap", {"subtypes": ["method"]}],
+            ["GeometryNodeFilletCurve", {"socket_subtypes": ["mode"]}],
+            ["GeometryNodeUVUnwrap", {"socket_subtypes": ["method"]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
             ["ShaderNodeVectorMath", {"subtypes": ["operation"]}],
             ["FunctionNodeBooleanMath", {"subtypes": ["operation"]}],
@@ -222,35 +222,35 @@
             ["GeometryNodeMeshBoolean", {"subtypes": ["operation", "solver"]}],
             ["FunctionNodeCombineColor", {"subtypes": ["mode"]}],
             ["FunctionNodeSeparateColor", {"subtypes": ["mode"]}],
-            ["GeometryNodeMergeByDistance", {"subtypes": ["mode"]}],
+            ["GeometryNodeMergeByDistance", {"socket_subtypes": ["mode"]}],
             ["FunctionNodeAxesToRotation", {"subtypes": ["primary_axis", "secondary_axis"]}],
             ["GeometryNodeSeparateGeometry", {"subtypes": ["domain"]}],
             ["GeometryNodeSplitToInstances", {"subtypes": ["domain"]}],
             ["GeometryNodeDuplicateElements", {"subtypes": ["domain"]}],
             ["FunctionNodeFloatToInt", {"subtypes": ["rounding_mode"]}],
             ["ShaderNodeVectorRotate", {"subtypes": ["rotation_type"]}],
-            ["GeometryNodeDistributePointsInVolume", {"subtypes": ["mode"]}],
+            ["GeometryNodeDistributePointsInVolume", {"socket_subtypes": ["mode"]}],
             ["GeometryNodeDistributePointsOnFaces", {"subtypes": ["distribute_method"]}],
-            ["GeometryNodeTransform", {"subtypes": ["mode"]}],
+            ["GeometryNodeTransform", {"socket_subtypes": ["mode"]}],
             ["GeometryNodeDeleteGeometry", {"subtypes": ["domain"]}],
-            ["GeometryNodeScaleElements", {"subtypes": ["domain", "scale_mode"]}],
+            ["GeometryNodeScaleElements", {"socket_subtypes": ["domain", "scale_mode"]}],
             ["FunctionNodeAlignRotationToVector", {"subtypes": ["axis"]}],
             ["FunctionNodeRotateRotation", {"subtypes": ["rotation_space"]}],
             ["GeometryNodeExtrudeMesh", {"subtypes": ["mode"]}],
-            ["GeometryNodeResampleCurve", {"subtypes": ["mode"]}],
+            ["GeometryNodeResampleCurve", {"socket_subtypes": ["mode"]}],
             ["GeometryNodeCurveToPoints", {"subtypes": ["mode"]}],
-            ["GeometryNodeFillCurve", {"subtypes": ["mode"]}],
+            ["GeometryNodeFillCurve", {"socket_subtypes": ["mode"]}],
             ["GeometryNodeMeshToPoints", {"subtypes": ["mode"]}],
             ["GeometryNodeTrimCurve", {"subtypes": ["mode"]}],
-            ["GeometryNodePointsToVolume", {"subtypes": ["resolution_mode"]}],
-            ["GeometryNodeMeshToVolume", {"subtypes": ["resolution_mode"]}],
-            ["GeometryNodeVolumeToMesh", {"subtypes": ["resolution_mode"]}],
+            ["GeometryNodePointsToVolume", {"socket_subtypes": ["resolution_mode"]}],
+            ["GeometryNodeMeshToVolume", {"socket_subtypes": ["resolution_mode"]}],
+            ["GeometryNodeVolumeToMesh", {"socket_subtypes": ["resolution_mode"]}],
             ["GeometryNodeSetShadeSmooth", {"subtypes": ["domain"]}],
             ["GeometryNodeSetCurveHandlePositions", {"subtypes": ["mode"]}],
-            ["GeometryNodeSetCurveNormal", {"subtypes": ["mode"]}],
-            ["GeometryNodeTriangulate", {"subtypes": ["quad_method"]}],
+            ["GeometryNodeSetCurveNormal", {"socket_subtypes": ["mode"]}],
+            ["GeometryNodeTriangulate", {"socket_subtypes": ["quad_method"]}],
             ["GeometryNodeSortElements", {"subtypes": ["domain"]}],
-            ["GeometryNodeRemoveAttribute", {"subtypes": ["pattern_mode"]}],
+            ["GeometryNodeRemoveAttribute", {"socket_subtypes": ["pattern_mode"]}],
             ["GeometryNodeWarning", {"subtypes": ["warning_type"]}],
             ["FunctionNodeValueToString", {"subtypes": ["data_type"]}],
             ["GeometryNodeMergeLayers", {"subtypes": ["mode"]}],
@@ -258,7 +258,7 @@
             ["GeometryNodeMeshToCurve", {"subtypes": ["mode"]}],
             ["GeometryNodeSetGreasePencilColor", {"subtypes": ["mode"]}],
             ["GeometryNodeSetGreasePencilDepth", {"subtypes": ["depth_order"]}],
-            ["FunctionNodeMatchString", {"subtypes": ["operation"]}],
+            ["FunctionNodeMatchString", {"socket_subtypes": ["operation"]}],
             ["FunctionNodeBitMath", {"subtypes": ["operation"]}]
         ]
     },
@@ -416,16 +416,16 @@
             "GeometryNodeRaycast",
             ["GeometryNodeRaycast", {
                 "label": "Raycast Nearest",
-                "settings": {"mapping": "NEAREST"},
-                    "subtypes": [
+                "socket_settings": {"mapping": "NEAREST"},
+                    "socket_subtypes": [
                         {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion", "4x4 Matrix"]}
                     ]
                 }
             ],
             ["GeometryNodeRaycast", {
                 "label": "Raycast Interpolated",
-                "settings": {"mapping": "INTERPOLATED"},
-                    "subtypes": [
+                "socket_settings": {"mapping": "INTERPOLATED"},
+                    "socket_subtypes": [
                         {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion", "4x4 Matrix"]}
                     ]
                 }
