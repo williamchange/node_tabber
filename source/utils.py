@@ -103,7 +103,7 @@ def fetch_active_nodetree(context):
         return node_tree
 
 
-def create_node(context, node_type=None, *_, node_tree=None, **settings):
+def create_node(context, node_type=None, *_, node_tree=None, socket_settings=None, **settings):
     tree = fetch_active_nodetree(context)
     node = tree.nodes.new(type=node_type)
     prefs = fetch_user_prefs()
@@ -112,6 +112,10 @@ def create_node(context, node_type=None, *_, node_tree=None, **settings):
         if settings is not None:
             for key, value in settings.items():
                 setattr(node, key, value)
+
+        if socket_settings is not None:
+            for key, value in socket_settings.items():
+                node.inputs[key].default_value = value
 
         if node_tree is not None:
             node.node_tree = context.blend_data.node_groups.get(node_tree)

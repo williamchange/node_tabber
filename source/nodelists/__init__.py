@@ -168,13 +168,14 @@ def merge_settings(settings, subtype_settings):
 
 
 def generate_entry_item(
-    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, can_cause_name_collision=False, is_deprecated=False, **kwargs
+    idname, label=None, function="create_node", settings=None, subtype_labels=None, subtype_settings=None, can_cause_name_collision=False, is_deprecated=False, socket_settings=None, **kwargs
 ):
     enum_label = generate_label(idname, label, subtype_labels, can_cause_name_collision, is_deprecated)
     identifier = str((idname, enum_label))
     all_settings = merge_settings(settings, subtype_settings)
+    all_socket_settings = socket_settings
 
-    settings_dict[identifier] = (idname, function, all_settings)
+    settings_dict[identifier] = (idname, function, all_settings, all_socket_settings)
     if not can_cause_name_collision:
         vanilla_nodelist.append(idname)
 

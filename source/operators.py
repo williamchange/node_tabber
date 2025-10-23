@@ -67,13 +67,14 @@ class NODE_OT_add_tabber_search(Operator):
         self.store_mouse_cursor(context, event)
         
         prefs = utils.fetch_user_prefs()
-        node_type, function_name, settings = nodelists.settings_dict.get(self.search_entry)
+        node_type, function_name, settings, socket_settings = nodelists.settings_dict.get(self.search_entry)
+
         if settings is None:
             settings = {}
 
         self.report({"INFO"}, f"Selected: {self.search_entry} - {settings}")
         function = getattr(utils, function_name)
-        nodes = function(context, node_type, **settings)
+        nodes = function(context, node_type, socket_settings=socket_settings, **settings)
         
         if not prefs.quick_place:
             bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
