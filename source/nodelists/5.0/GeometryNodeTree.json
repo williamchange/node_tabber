@@ -416,13 +416,13 @@
             "GeometryNodeRaycast",
             ["GeometryNodeRaycast", {
                 "label": "Raycast Nearest",
-                "socket_settings": {"mapping": "NEAREST"},
+                "socket_settings": {"Interpolation": "Nearest"},
                 "socket_subtypes": [{"data_type": {"Float": "FLOAT", "Integer": "INT", "Vector": "FLOAT_VECTOR", "Color": "FLOAT_COLOR", "Boolean": "BOOLEAN", "Quaternion": "QUATERNION", "4x4 Matrix": "FLOAT4X4"}}]
                 }
             ],
             ["GeometryNodeRaycast", {
                 "label": "Raycast Interpolated",
-                "socket_settings": {"mapping": "INTERPOLATED"},
+                "socket_settings": {"Interpolation": "Interpolated"},
                 "socket_subtypes": [{"data_type": {"Float": "FLOAT", "Integer": "INT", "Vector": "FLOAT_VECTOR", "Color": "FLOAT_COLOR", "Boolean": "BOOLEAN", "Quaternion": "QUATERNION", "4x4 Matrix": "FLOAT4X4"}}]
                 }
             ],
