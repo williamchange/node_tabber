@@ -3,15 +3,21 @@ import json
 from bpy import context
 from pathlib import Path
 from ..debug import profile_code
+from dataclasses import dataclass
 
 ADDON_FOLDER = Path(__file__).parent
 TALLY_FOLDER = ADDON_FOLDER / "tally_cache"
 
 # Create Folder for caching node tallies
 if not TALLY_FOLDER.exists():
-    TALLY_FOLDER.mkdir()
+    TALLY_FOLDER.mkdir()    
 
 
+@dataclass(frozen=True)
+class Socket:
+    name : str
+    
+    
 nodes_with_op_symbols = [
     "ShaderNodeMath",
     "CompositorNodeMath",
@@ -103,7 +109,7 @@ def fetch_active_nodetree(context):
         return node_tree
 
 
-def create_node(context, node_type=None, *_, node_tree=None, socket_settings=None, **settings):
+def create_node(context, node_type=None, *_, node_tree=None, socket_settings=None, settings):
     tree = fetch_active_nodetree(context)
     node = tree.nodes.new(type=node_type)
     prefs = fetch_user_prefs()
@@ -111,7 +117,10 @@ def create_node(context, node_type=None, *_, node_tree=None, socket_settings=Non
     try:
         if settings is not None:
             for key, value in settings.items():
-                setattr(node, key, value)
+                if isinstance(key, Socket):
+                    node.inputs[key.name].default_value = value
+                else:
+                    setattr(node, key, value)
 
         if socket_settings is not None:
             for key, value in socket_settings.items():
@@ -129,7 +138,7 @@ def create_node(context, node_type=None, *_, node_tree=None, socket_settings=Non
         raise error
 
 
-def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0), **settings,):
+def create_zone(context, *_, input_type=None, output_type=None, offset=(150, 0), settings):
     tree = fetch_active_nodetree(context)
     input_node = tree.nodes.new(type=input_type)
     output_node = tree.nodes.new(type=output_type)

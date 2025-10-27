@@ -256,6 +256,26 @@ def get_data_from_filepath(editor_type):
     return json_data
 
 
+def generate_subtype_labels(props):
+    for prop in props:
+        if isinstance(prop, bpy.types.EnumPropertyItem):
+            yield iface_(prop.name)
+        elif isinstance(prop, tuple):
+            yield prop[0]
+        else:
+            raise TypeError(f"Unrecognized Type: {prop}")
+
+
+def generate_subtype_settings(names, props,):
+    for name, prop in zip(names, props):
+        if isinstance(prop, bpy.types.EnumPropertyItem):
+            yield (name, prop.identifier)
+        elif isinstance(prop, tuple):
+            yield (utils.Socket(name), prop[1])
+        else:
+            raise TypeError(f"Unrecognized Type: {prop}")
+
+
 def generate_entries(context, editor_type):
     entries = []
     settings_dict.clear()
@@ -278,30 +298,40 @@ def generate_entries(context, editor_type):
             continue
 
         subtypes = properties.get("subtypes", None)
+        socket_subtypes = properties.get("socket_subtypes", None)
         only_subtypes = properties.get("only_subtypes", False)
         properties["is_deprecated"] = is_deprecated
 
         if not only_subtypes:
             entries.append(generate_entry_item(idname, **properties))
 
-        if prefs.include_subtypes and subtypes is not None:
-            enum_list, name_list = [], []
-            for subtype in subtypes:
-                if isinstance(subtype, dict):
-                    enum_list.append(fetch_subtypes_from_bl_rna(idname, **subtype))
-                    name_list.append(subtype.get("name"))
-                else:
-                    enum_list.append(fetch_subtypes_from_bl_rna(idname, subtype))
-                    name_list.append(subtype)
+        if prefs.include_subtypes:
+            if (subtypes is not None) or (socket_subtypes is not None):
+                enum_list, name_list = [], []
+                if (subtypes is not None):
+                    for subtype in subtypes:
+                        if isinstance(subtype, dict):
+                            enum_list.append(fetch_subtypes_from_bl_rna(idname, **subtype))
+                            name_list.append(subtype.get("name"))
+                        else:
+                            enum_list.append(fetch_subtypes_from_bl_rna(idname, subtype))
+                            name_list.append(subtype)
+                
+                if (socket_subtypes is not None):
+                    for subtype in socket_subtypes:
+                        for key, value in subtype.items():
+                            enum_list.append(list(value.items()))
+                            name_list.append(key)
 
-            for props in itertools.product(*enum_list):
-                subtype_labels = [iface_(prop.name) for prop in props]
-                subtype_settings = {name: prop.identifier for (name, prop) in zip(name_list, props)}
-                entries.append(
-                    generate_entry_item(
-                        idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties
+                for props in itertools.product(*enum_list):
+                    subtype_labels = list(generate_subtype_labels(props))
+                    subtype_settings = dict(generate_subtype_settings(name_list, props))
+
+                    entries.append( 
+                        generate_entry_item(
+                            idname, subtype_labels=subtype_labels, subtype_settings=subtype_settings, **properties
+                        )
                     )
-                )
 
     entries.extend(generate_nodegroup_entries(context))
 
