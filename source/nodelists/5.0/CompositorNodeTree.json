@@ -119,7 +119,7 @@
         "entries": [
             ["CompositorNodePremulKey", {"socket_subtypes": [{"mapping": {"To Premultiplied": "STRAIGHT_TO_PREMUL", "To Straight": "PREMUL_TO_STRAIGHT"}}]}],
             ["CompositorNodeColorBalance", {"socket_subtypes": [{"correction_method": {"Lift/Gamma/Gain": "LIFT_GAMMA_GAIN", "Offset/Power/Slope (ASC-CDL)": "OFFSET_POWER_SLOPE", "White Point": "WHITEPOINT"}}]}],
-            ["CompositorNodeCryptomatteV2", {"subtypes": [{"source": {"Render": "RENDER", "Image": "IMAGE"}}]}],
+            ["CompositorNodeCryptomatteV2", {"subtypes": ["source"]}],
             ["CompositorNodeDistanceMatte", {"socket_subtypes": [{"channel": {"RGB": "RGB", "YCC": "YCC"}}]}],
             ["CompositorNodeMovieDistortion", {"socket_subtypes": [{"distortion_type": {"Undistort": "UNDISTORT", "Distort": "DISTORT"}}]}],
             ["CompositorNodeSetAlpha", {"socket_subtypes": [{"mode": {"Apply Mask": "APPLY", "Replace Alpha": "REPLACE_ALPHA"}}]}],
