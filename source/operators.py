@@ -74,7 +74,9 @@ class NODE_OT_add_tabber_search(Operator):
 
         self.report({"INFO"}, f"Selected: {self.search_entry} - {settings}")
         function = getattr(utils, function_name)
-        nodes = function(context, node_type, socket_settings=socket_settings, settings=settings)
+
+        keyword_settings = dict((key, value) for key, value in settings.items() if (type(key) is str))
+        nodes = function(context, node_type, socket_settings=socket_settings, settings=settings, **keyword_settings)
         
         if not prefs.quick_place:
             bpy.ops.node.translate_attach_remove_on_cancel("INVOKE_DEFAULT")
