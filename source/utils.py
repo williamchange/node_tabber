@@ -120,10 +120,12 @@ def create_node(context, node_type=None, *_, node_tree=None, socket_settings=Non
                 if isinstance(key, Socket):
                     node.inputs[key.name].default_value = value
                 else:
-                    setattr(node, key, value)
+                    if key != "node_tree":
+                        setattr(node, key, value)
 
         for key, value in keyword_settings.items():
-            setattr(node, key, value)
+            if key != "node_tree":
+                setattr(node, key, value)
 
         if socket_settings is not None:
             for key, value in socket_settings.items():
