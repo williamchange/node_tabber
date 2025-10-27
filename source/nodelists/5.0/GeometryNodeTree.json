@@ -417,14 +417,16 @@
             ["GeometryNodeRaycast", {
                 "label": "Raycast Nearest",
                 "socket_settings": {"Interpolation": "Nearest"},
-                "socket_subtypes": [{"data_type": {"Float": "FLOAT", "Integer": "INT", "Vector": "FLOAT_VECTOR", "Color": "FLOAT_COLOR", "Boolean": "BOOLEAN", "Quaternion": "QUATERNION", "4x4 Matrix": "FLOAT4X4"}}]
-                }
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion", "4x4 Matrix"]}
+                ]}
             ],
             ["GeometryNodeRaycast", {
                 "label": "Raycast Interpolated",
                 "socket_settings": {"Interpolation": "Interpolated"},
-                "socket_subtypes": [{"data_type": {"Float": "FLOAT", "Integer": "INT", "Vector": "FLOAT_VECTOR", "Color": "FLOAT_COLOR", "Boolean": "BOOLEAN", "Quaternion": "QUATERNION", "4x4 Matrix": "FLOAT4X4"}}]
-                }
+                "subtypes": [
+                    {"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Color", "Boolean", "Quaternion", "4x4 Matrix"]}
+                ]}
             ],
             "ShaderNodeMapRange",
             ["ShaderNodeMapRange", {
