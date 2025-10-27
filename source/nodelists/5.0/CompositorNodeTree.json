@@ -66,7 +66,8 @@
             "ShaderNodeTexBrick",
             "ShaderNodeTexChecker",
             "ShaderNodeTexMagic",
-            "CompositorNodeImageCoordinates"
+            "CompositorNodeImageCoordinates",
+            "CompositorNodeSplit"
         ]
     },    
     "combine_and_separate_color": {
@@ -117,39 +118,41 @@
     },
     "basic_subtypes": {
         "entries": [
-            ["CompositorNodePremulKey", {"socket_subtypes": [{"mapping": {"To Premultiplied": "STRAIGHT_TO_PREMUL", "To Straight": "PREMUL_TO_STRAIGHT"}}]}],
-            ["CompositorNodeColorBalance", {"socket_subtypes": [{"correction_method": {"Lift/Gamma/Gain": "LIFT_GAMMA_GAIN", "Offset/Power/Slope (ASC-CDL)": "OFFSET_POWER_SLOPE", "White Point": "WHITEPOINT"}}]}],
+            ["CompositorNodePremulKey", {"socket_subtypes": [{"Type": {"To Premultiplied": "To Premultiplied", "To Straight": "To Straight"}}]}],
+            ["CompositorNodeColorBalance", {"socket_subtypes": [{"Type": {"Lift/Gamma/Gain": "Lift/Gamma/Gain", "Offset/Power/Slope": "Offset/Power/Slope (ASC-CDL)", "White Point": "White Point"}}]}],
             ["CompositorNodeCryptomatteV2", {"subtypes": ["source"]}],
-            ["CompositorNodeDistanceMatte", {"socket_subtypes": [{"channel": {"RGB": "RGB", "YCC": "YCC"}}]}],
-            ["CompositorNodeMovieDistortion", {"socket_subtypes": [{"distortion_type": {"Undistort": "UNDISTORT", "Distort": "DISTORT"}}]}],
-            ["CompositorNodeSetAlpha", {"socket_subtypes": [{"mode": {"Apply Mask": "APPLY", "Replace Alpha": "REPLACE_ALPHA"}}]}],
+            ["CompositorNodeDistanceMatte", {"socket_subtypes": [{"Type": {"RGB": "RGB", "YCC": "YCC"}}]}],
+            ["CompositorNodeMovieDistortion", {"socket_subtypes": [{"Type": {"Undistort": "Undistort", "Distort": "Distort"}}]}],
+            ["CompositorNodeSetAlpha", {"socket_subtypes": [{"Type": {"Apply Mask": "Apply Mask", "Replace Alpha": "Replace Alpha"}}]}],
             ["CompositorNodeDefocus", {"subtypes": ["bokeh"]}],
-            ["CompositorNodeDenoise", {"socket_subtypes": [{"prefilter": {"None": "NONE", "Fast": "FAST", "Accurate": "ACCURATE"}}]}],
-            ["CompositorNodeDilateErode", {"socket_subtypes": [{"mode": {"Steps": "STEP", "Threshold": "THRESHOLD", "Distance": "DISTANCE", "Feather": "FEATHER"}}]}],
+            ["CompositorNodeDenoise", {"socket_subtypes": [{"Prefilter": {"None": "None", "Fast": "Fast", "Accurate": "Accurate"}}]}],
+            ["CompositorNodeDilateErode", {"socket_subtypes": [{"Type": {"Steps": "Steps", "Threshold": "Threshold", "Distance": "Distance", "Feather": "Feather"}}]}],
             ["CompositorNodeDilateErode", {
                 "only_subtypes": true,
-                "socket_subtypes": [{"mode": {"Feather": "FEATHER"}, "falloff": {"Smooth": "SMOOTH", "Sphere": "SPHERE", "Root": "ROOT", "Inverse Square": "INVERSE_SQUARE", "Sharp": "SHARP", "Linear": "LINEAR"}}]
+                "socket_subtypes": [{"Type": {"Feather": "Feather"}}, {"Falloff": {"Smooth": "Smooth", "Sphere": "Sphere", "Root": "Root", "Inverse Square": "Inverse Square", "Sharp": "Sharp", "Linear": "Linear"}}]
                 }
             ],
-            ["CompositorNodeGlare", {"socket_subtypes": [{"glare_type": {"Bloom": "BLOOM", "Ghosts": "GHOSTS", "Streaks": "STREAKS", "Fog Glow": "FOG_GLOW", "Simple Star": "SIMPLE_STAR"}}]}],
-            ["CompositorNodeRotate", {"socket_subtypes": [{"filter_type": {"Nearest": "NEAREST", "Bilinear": "BILINEAR", "Bicubic": "BICUBIC"}}]}],
-            ["CompositorNodeScale", {"socket_subtypes": [{"interpolation": {"Nearest": "NEAREST", "Bilinear": "BILINEAR", "Bicubic": "BICUBIC"}, "space": {"Relative": "RELATIVE", "Absolute": "ABSOLUTE", "Scene Size": "SCENE_SIZE", "Render Size": "RENDER_SIZE"}}]}],
+            ["CompositorNodeGlare", {"socket_subtypes": [{"Type": {"Bloom": "Bloom", "Ghosts": "Ghosts", "Streaks": "Streaks", "Fog Glow": "Fog Glow", "Simple Star": "Simple Star", "Sun Beams": "Sun Beams", "Kernel": "Kernel"}}]}],
+            ["CompositorNodeRotate", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}],
+            ["CompositorNodeScale", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}, "Type": {"Relative": "Relative", "Absolute": "Absolute", "Scene Size": "Scene Size", "Render Size": "Render Size"}}]}],
             ["CompositorNodeScale", {
                 "only_subtypes": true,
-                "socket_subtypes": [{"space": {"Render Size": "RENDER_SIZE"}, "frame_method": {"Stretch": "STRETCH", "Fit": "FIT", "Crop": "CROP"}}]
+                "socket_subtypes": [{"Type": {"Render Size": "Render Size"}, "Frame Type": {"Stretch": "Stretch", "Fit": "Fit", "Crop": "Crop"}}]
                 }
             ],
-            ["CompositorNodeTransform", {"socket_subtypes": [{"filter_type": {"Nearest": "NEAREST", "Bilinear": "BILINEAR", "Bicubic": "BICUBIC"}}]}],
-            ["CompositorNodeTranslate", {"socket_subtypes": [{"wrap_axis": {"None": "NONE", "X Axis": "XAXIS", "Y Axis": "YAXIS", "Both Axes": "BOTH"}}]}],
-            ["CompositorNodeFlip", {"socket_subtypes": [{"axis": {"Flip X": "X", "Flip Y": "Y", "Flip X & Y": "XY"}}]}],
-            ["CompositorNodeBlur", {"socket_subtypes": [{"filter_type": {"Flat": "FLAT", "Tent": "TENT", "Quadratic": "QUAD", "Cubic": "CUBIC", "Gaussian": "GAUSS", "Fast Gaussian": "FAST_GAUSS", "Catrom": "CATROM", "Mitch": "MITCH"}}]}],
-            ["CompositorNodeKuwahara", {"socket_subtypes": [{"variation": {"Classic": "CLASSIC", "Anisotropic": "ANISOTROPIC"}}]}],
-            ["CompositorNodeLevels", {"socket_subtypes": [{"channel": {"Combined": "COMBINED_RGB", "Red": "RED", "Green": "GREEN", "Blue": "BLUE", "Luminance": "LUMINANCE"}}]}],
+            ["CompositorNodeTransform", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}],
+            ["CompositorNodeTranslate", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}],
+            "CompositorNodeFlip",
+            ["CompositorNodeFlip", {"label": "Flip X", "socket_settings": {"Flip X": true}}],
+            ["CompositorNodeFlip", {"label": "Flip Y", "socket_settings": {"Flip Y": true}}],
+            ["CompositorNodeFlip", {"label": "Flip X & Y", "socket_settings": {"Flip X": true, "Flip Y": true}}],
+            ["CompositorNodeBlur", {"socket_subtypes": [{"Filter Type": {"Flat": "Flat", "Tent": "Tent", "Quadratic": "Quadratic", "Cubic": "Cubic", "Gaussian": "Gaussian", "Fast Gaussian": "Fast Gaussian", "Catrom": "Catrom", "Mitch": "Mitch"}}]}],
+            ["CompositorNodeKuwahara", {"socket_subtypes": [{"Type": {"Classic": "Classic", "Anisotropic": "Anisotropic"}}]}],
+            ["CompositorNodeLevels", {"socket_subtypes": [{"Channel": {"Combined": "Combined", "Red": "Red", "Green": "Green", "Blue": "Blue", "Luminance": "Luminance"}}]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
-            ["CompositorNodeFilter", {"socket_subtypes": [{"filter_type": {"Soften": "SOFTEN", "Box Sharpen": "SHARPEN", "Diamond Sharpen": "SHARPEN_DIAMOND", "Laplace": "LAPLACE", "Sobel": "SOBEL", "Prewitt": "PREWITT", "Kirsch": "KIRSCH", "Shadow": "SHADOW"}}]}],
-            ["CompositorNodeSplit", {"socket_subtypes": [{"axis": {"X": "X", "Y": "Y"}}]}],
-            ["CompositorNodeTonemap", {"socket_subtypes": [{"tonemap_type": {"R/D Photoreceptor": "RD_PHOTORECEPTOR", "Rh Simple": "RH_SIMPLE"}}]}],
-            ["CompositorNodeCornerPin", {"socket_subtypes": [{"interpolation": {"Nearest": "NEAREST", "Bilinear": "BILINEAR", "Bicubic": "BICUBIC", "Anisotropic": "ANISOTROPIC"}}]}]
+            ["CompositorNodeFilter", {"socket_subtypes": [{"Type": {"Soften": "Soften", "Box Sharpen": "Box Sharpen", "Diamond Sharpen": "Diamond Sharpen", "Laplace": "Laplace", "Sobel": "Sobel", "Prewitt": "Prewitt", "Kirsch": "Kirsch", "Shadow": "Shadow"}}]}],
+            ["CompositorNodeTonemap", {"socket_subtypes": [{"Type": {"R/D Photoreceptor": "R/D Photoreceptor", "Rh Simple": "Rh Simple"}}]}],
+            ["CompositorNodeCornerPin", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}]
         ]
     },
     "texture_subtypes": {
