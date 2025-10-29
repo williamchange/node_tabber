@@ -152,7 +152,11 @@
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
             ["CompositorNodeFilter", {"socket_subtypes": [{"Type": {"Soften": "Soften", "Box Sharpen": "Box Sharpen", "Diamond Sharpen": "Diamond Sharpen", "Laplace": "Laplace", "Sobel": "Sobel", "Prewitt": "Prewitt", "Kirsch": "Kirsch", "Shadow": "Shadow"}}]}],
             ["CompositorNodeTonemap", {"socket_subtypes": [{"Type": {"R/D Photoreceptor": "R/D Photoreceptor", "Rh Simple": "Rh Simple"}}]}],
-            ["CompositorNodeCornerPin", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}]
+            ["CompositorNodeCornerPin", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}],
+            ["GeometryNodeMenuSwitch", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "String", "Menu", "Color"]}]
+                }
+            ]
         ]
     },
     "texture_subtypes": {
