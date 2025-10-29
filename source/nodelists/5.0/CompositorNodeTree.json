@@ -51,7 +51,6 @@
             "CompositorNodeStabilize",
             "CompositorNodeTrackPos",
             "CompositorNodeCrop",
-            "CompositorNodeDisplace",
             "CompositorNodeMapUV",
             "CompositorNodeLensdist",
             "CompositorNodeNormalize",
@@ -156,7 +155,8 @@
             ["GeometryNodeMenuSwitch", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "String", "Menu", "Color"]}]
                 }
-            ]
+            ],
+            ["CompositorNodeDisplace", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}]
         ]
     },
     "texture_subtypes": {
