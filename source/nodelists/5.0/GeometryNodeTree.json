@@ -133,7 +133,6 @@
             "FunctionNodeRotationToQuaternion",
             "FunctionNodeQuaternionToRotation",
             "ShaderNodeFloatCurve",
-            "GeometryNodeUVPackIslands",
             "ShaderNodeVectorCurve",
             "ShaderNodeCombineXYZ",
             "ShaderNodeSeparateXYZ",
@@ -272,7 +271,8 @@
             ["GeometryNodeSetGreasePencilColor", {"subtypes": ["mode"]}],
             ["GeometryNodeSetGreasePencilDepth", {"subtypes": ["depth_order"]}],
             ["FunctionNodeMatchString", {"socket_subtypes": [{"Operation": {"Starts With": "Starts With", "Ends With": "Ends With", "Contains": "Contains"}}]}],
-            ["FunctionNodeBitMath", {"subtypes": ["operation"]}]
+            ["FunctionNodeBitMath", {"subtypes": ["operation"]}],
+            ["GeometryNodeUVPackIslands", {"socket_subtypes": [{"Method": {"Bounding Box": "Bounding Box", "Convex Hull": "Convex Hull", "Exact Shape": "Exact Shape"}}]}]
         ]
     },
     "gizmo_nodes": {
