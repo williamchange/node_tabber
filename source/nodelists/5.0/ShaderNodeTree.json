@@ -181,7 +181,7 @@
     },
     "object_not_eevee_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {"shader_types": "OBJECT", "exclude_engines": "BLENDER_EEVEE_NEXT"},
+        "poll_args": {"shader_types": "OBJECT", "exclude_engines": "BLENDER_EEVEE"},
         "entries": [
             "ShaderNodeOutputLight",
             "ShaderNodeBsdfHair",
@@ -193,7 +193,7 @@
     },
     "object_eevee_shader_nodes": {
         "poll": "engine_and_shader_type_poll",
-        "poll_args": {"shader_types": "OBJECT", "engines": "BLENDER_EEVEE_NEXT"},
+        "poll_args": {"shader_types": "OBJECT", "engines": "BLENDER_EEVEE"},
         "entries": [
             "ShaderNodeShaderToRGB",
             "ShaderNodeEeveeSpecular"
