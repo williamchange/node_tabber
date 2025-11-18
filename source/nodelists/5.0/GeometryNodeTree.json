@@ -584,8 +584,11 @@
                         }
                     ]
                 }
+            ],
+            ["GeometryNodeFieldToGrid", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
+                }
             ]
-            
         ]
     },
     "import_nodes": {
