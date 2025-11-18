@@ -207,7 +207,7 @@
     "basic_subtypes": {
         "entries": [
             ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
-            ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture"]}]}],
+            ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture", "Bundle", "Closure"]}]}],
             ["GeometryNodeFilletCurve", {"subtypes": ["mode"]}],
             ["GeometryNodeUVUnwrap", {"subtypes": ["method"]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
@@ -601,7 +601,10 @@
                         "link_geo_socket" : false
                     }
                 }
-            ]
+            ],
+            ["GeometryNodeSwitch", {"only_subtypes": true, "subtypes": [{"name": "input_type", "only_include": ["Bundle", "Closure"]}]}],
+            ["GeometryNodeIndexSwitch", {"only_subtypes": true, "subtypes": [{"name": "data_type", "only_include": ["Bundle", "Closure"]}]}],
+            ["GeometryNodeMenuSwitch", {"only_subtypes": true, "subtypes": [{"name": "data_type", "only_include": ["Bundle", "Closure"]}]}]
         ]
     },
     "frame_and_reroute": {
