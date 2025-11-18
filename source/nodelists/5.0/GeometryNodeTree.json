@@ -643,6 +643,7 @@
     "bundles_and_closures": {
         "entries": [
             "NodeEvaluateClosure",
+            "NodeJoinBundle",
             "NodeCombineBundle",
             "NodeSeparateBundle",
             ["Closure Zone", {
