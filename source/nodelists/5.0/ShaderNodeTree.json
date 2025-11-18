@@ -48,7 +48,8 @@
             "ShaderNodeNormal",
             "ShaderNodeVectorCurve",
             "ShaderNodeVectorTransform",
-            "ShaderNodeVolumeAbsorption"
+            "ShaderNodeVolumeAbsorption",
+            "ShaderNodeRadialTiling"
         ]
     },
     "specific_types": {

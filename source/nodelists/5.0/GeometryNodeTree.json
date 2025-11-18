@@ -163,7 +163,8 @@
             "FunctionNodeFindInString",
             "GeometryNodeCameraInfo",
             "GeometryNodeInputInstanceBounds",
-            "FunctionNodeFormatString"
+            "FunctionNodeFormatString",
+            "ShaderNodeRadialTiling"
         ]
     },
     "zones": {
