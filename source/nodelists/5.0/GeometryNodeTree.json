@@ -272,7 +272,8 @@
             ["GeometryNodeSetGreasePencilDepth", {"subtypes": ["depth_order"]}],
             ["FunctionNodeMatchString", {"socket_subtypes": [{"Operation": {"Starts With": "Starts With", "Ends With": "Ends With", "Contains": "Contains"}}]}],
             ["FunctionNodeBitMath", {"subtypes": ["operation"]}],
-            ["GeometryNodeUVPackIslands", {"socket_subtypes": [{"Method": {"Bounding Box": "Bounding Box", "Convex Hull": "Convex Hull", "Exact Shape": "Exact Shape"}}]}]
+            ["GeometryNodeUVPackIslands", {"socket_subtypes": [{"Method": {"Bounding Box": "Bounding Box", "Convex Hull": "Convex Hull", "Exact Shape": "Exact Shape"}}]}],
+            ["GeometryNodeUVTangent", {"socket_subtypes": [{"Method": {"Exact": "Exact", "Fast": "Fast"}}]}]
         ]
     },
     "gizmo_nodes": {
