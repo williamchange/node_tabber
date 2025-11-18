@@ -640,17 +640,16 @@
         ]
     },
     "bundles_and_closures": {
-        "poll": "use_bundle_and_closure_nodes",
         "entries": [
-            "GeometryNodeEvaluateClosure",
-            "GeometryNodeCombineBundle",
-            "GeometryNodeSeparateBundle",
+            "NodeEvaluateClosure",
+            "NodeCombineBundle",
+            "NodeSeparateBundle",
             ["Closure Zone", {
                 "label": "Closure Zone",
                 "function": "create_zone",
                     "settings": {
-                        "input_type": "GeometryNodeClosureInput",
-                        "output_type": "GeometryNodeClosureOutput",
+                        "input_type": "NodeClosureInput",
+                        "output_type": "NodeClosureOutput",
                         "link_geo_socket" : false
                     }
                 }
