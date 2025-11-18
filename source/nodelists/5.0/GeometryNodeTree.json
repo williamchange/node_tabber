@@ -570,6 +570,11 @@
             "GeometryNodeGridToMesh",
             ["GeometryNodeDistributePointsInGrid", {"subtypes": ["mode"]}],
             ["GeometryNodeSampleGrid", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
+                }
+            ],
+            ["GeometryNodeSampleGrid", {
+                "only_subtypes" : true,
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}], 
                 "socket_subtypes": [{"Interpolation" : {"Nearest Neighbor": "Nearest Neighbor", "Trilinear": "Trilinear", "Triquadratic": "Triquadratic"}}]
                 }
