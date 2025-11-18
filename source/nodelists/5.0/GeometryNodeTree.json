@@ -589,6 +589,12 @@
             "GeometryNodeGridGradient",
             "GeometryNodeGridLaplacian",
             "GeometryNodeInputVoxelIndex",
+            "GeometryNodeSDFGridFillet",
+            "GeometryNodeSDFGridLaplacian",
+            "GeometryNodeSDFGridMean",
+            "GeometryNodeSDFGridMeanCurvature",
+            "GeometryNodeSDFGridMedian",
+            "GeometryNodeSDFGridOffset",
             ["GeometryNodeDistributePointsInGrid", {"subtypes": ["mode"]}],
             ["GeometryNodeSetGridBackground", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
