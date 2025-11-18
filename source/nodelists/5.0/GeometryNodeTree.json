@@ -618,6 +618,10 @@
             ["GeometryNodeFieldToGrid", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
                 }
+            ],
+            ["GeometryNodeGridAdvect", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector"]}]
+                }
             ]
         ]
     },
