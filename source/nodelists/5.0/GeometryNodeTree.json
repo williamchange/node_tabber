@@ -573,6 +573,10 @@
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
                 }
             ],
+            ["GeometryNodeSetGridTransform", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
+                }
+            ],
             ["GeometryNodeSampleGrid", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
                 }
