@@ -588,6 +588,7 @@
             "GeometryNodeGridDivergence",
             "GeometryNodeGridGradient",
             "GeometryNodeGridLaplacian",
+            "GeometryNodeInputVoxelIndex",
             ["GeometryNodeDistributePointsInGrid", {"subtypes": ["mode"]}],
             ["GeometryNodeSetGridBackground", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
