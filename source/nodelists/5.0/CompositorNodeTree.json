@@ -146,7 +146,7 @@
             ["CompositorNodeFlip", {"label": "Flip X", "socket_settings": {"Flip X": true}}],
             ["CompositorNodeFlip", {"label": "Flip Y", "socket_settings": {"Flip Y": true}}],
             ["CompositorNodeFlip", {"label": "Flip X & Y", "socket_settings": {"Flip X": true, "Flip Y": true}}],
-            ["CompositorNodeBlur", {"socket_subtypes": [{"Filter Type": {"Flat": "Flat", "Tent": "Tent", "Quadratic": "Quadratic", "Cubic": "Cubic", "Gaussian": "Gaussian", "Fast Gaussian": "Fast Gaussian", "Catrom": "Catrom", "Mitch": "Mitch"}}]}],
+            ["CompositorNodeBlur", {"socket_subtypes": [{"Type": {"Flat": "Flat", "Tent": "Tent", "Quadratic": "Quadratic", "Cubic": "Cubic", "Gaussian": "Gaussian", "Fast Gaussian": "Fast Gaussian", "Catrom": "Catrom", "Mitch": "Mitch"}}]}],
             ["CompositorNodeKuwahara", {"socket_subtypes": [{"Type": {"Classic": "Classic", "Anisotropic": "Anisotropic"}}]}],
             ["CompositorNodeLevels", {"socket_subtypes": [{"Channel": {"Combined": "Combined", "Red": "Red", "Green": "Green", "Blue": "Blue", "Luminance": "Luminance"}}]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
