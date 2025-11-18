@@ -266,6 +266,7 @@
             ["GeometryNodeRemoveAttribute", {"socket_subtypes": [{"Pattern Mode": {"Exact": "Exact", "Wildcard": "Wildcard"}}]}],
             ["GeometryNodeWarning", {"subtypes": ["warning_type"]}],
             ["FunctionNodeValueToString", {"subtypes": ["data_type"]}],
+            ["FunctionNodeStringToValue", {"subtypes": ["data_type"]}],
             ["GeometryNodeMergeLayers", {"subtypes": ["mode"]}],
             ["FunctionNodeIntegerMath", {"subtypes": ["operation"]}],
             ["GeometryNodeMeshToCurve", {"subtypes": ["mode"]}],
