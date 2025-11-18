@@ -85,7 +85,11 @@
             ["ShaderNodeScript", {"subtypes": ["mode"]}],
             ["ShaderNodeMapping", {"subtypes": ["vector_type"]}],
             ["ShaderNodeVolumeScatter", {"subtypes": ["phase"]}],
-            ["ShaderNodeVolumeCoefficients", {"subtypes": ["phase"]}]
+            ["ShaderNodeVolumeCoefficients", {"subtypes": ["phase"]}],
+            ["GeometryNodeMenuSwitch", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "Menu", "Color", "Shader", "Bundle", "Closure"]}]
+                }
+            ]
         ]
     },
     "texture_subtypes": {
