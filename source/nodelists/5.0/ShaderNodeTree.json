@@ -216,6 +216,23 @@
             ["ShaderNodeBsdfMetallic", {"subtypes": ["distribution", "fresnel_type"]}]
         ]
     },
+    "bundles_and_closures": {
+        "entries": [
+            "NodeEvaluateClosure",
+            "NodeCombineBundle",
+            "NodeSeparateBundle",
+            ["Closure Zone", {
+                "label": "Closure Zone",
+                "function": "create_zone",
+                    "settings": {
+                        "input_type": "NodeClosureInput",
+                        "output_type": "NodeClosureOutput",
+                        "link_geo_socket" : false
+                    }
+                }
+            ]
+        ]
+    },
     "frame_and_reroute": {
         "entries": [
             "NodeFrame",
