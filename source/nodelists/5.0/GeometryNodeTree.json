@@ -207,7 +207,7 @@
     "basic_subtypes": {
         "entries": [
             ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
-            ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture"]}]}],
+            ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture", "Shader"]}]}],
             ["GeometryNodeFilletCurve", {"socket_subtypes": [{"Mode": {"Bézier": "Bézier", "Poly": "Poly"}}]}],
             ["GeometryNodeUVUnwrap", {"socket_subtypes": [{"Method": {"Angle Based": "Angle Based", "Conformal": "Conformal"}}]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
@@ -372,7 +372,8 @@
                                 "Material",
                                 "Collection",
                                 "Bundle",
-                                "Closure"
+                                "Closure",
+                                "Shader"
                             ]
                         }
                     ]
