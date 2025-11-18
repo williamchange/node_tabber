@@ -3,6 +3,7 @@
         "entries": [
             "ShaderNodeValToRGB",
             "ShaderNodeRGBCurve",
+            "ShaderNodeGamma",
             "GeometryNodeInputCurveHandlePositions",
             "GeometryNodeCurveLength",
             "GeometryNodeInputTangent",
