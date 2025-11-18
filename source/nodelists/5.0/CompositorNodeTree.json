@@ -174,7 +174,8 @@
                         "Rotation",
                         "Shader"
                     ]
-            }]}]
+            }]}],
+            ["CompositorNodeConvolve", {"socket_subtypes": [{"Kernel Data Type": {"Float": "Float", "Color": "Color"}}]}]
         ]
     },
     "texture_subtypes": {
