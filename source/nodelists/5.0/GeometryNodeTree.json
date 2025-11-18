@@ -569,6 +569,10 @@
             "GeometryNodeMeshToDensityGrid",
             "GeometryNodeGridToMesh",
             ["GeometryNodeDistributePointsInGrid", {"subtypes": ["mode"]}],
+            ["GeometryNodeSetGridBackground", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
+                }
+            ],
             ["GeometryNodeSampleGrid", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
                 }
