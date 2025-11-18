@@ -157,7 +157,24 @@
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "String", "Menu", "Color"]}]
                 }
             ],
-            ["CompositorNodeDisplace", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}]
+            ["CompositorNodeDisplace", {"socket_subtypes": [{"Interpolation": {"Nearest": "Nearest", "Bilinear": "Bilinear", "Bicubic": "Bicubic", "Anisotropic": "Anisotropic"}}]}],
+            ["NodeEnableOutput", {
+                "subtypes": [{
+                    "name": "data_type",
+                    "exclude": [
+                        "Image",
+                        "Object",
+                        "Texture",
+                        "Geometry",
+                        "Material",
+                        "Collection",
+                        "Bundle",
+                        "Closure",
+                        "Matrix",
+                        "Rotation",
+                        "Shader"
+                    ]
+            }]}]
         ]
     },
     "texture_subtypes": {

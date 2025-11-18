@@ -377,6 +377,18 @@
                         }
                     ]
                 }
+            ],
+            ["NodeEnableOutput", {
+                "subtypes": [
+                    {
+                            "name": "data_type",
+                            "exclude": [
+                                "Shader",
+                                "Texture"
+                            ]
+                        }
+                    ]
+                }
             ]
         ]
     },
