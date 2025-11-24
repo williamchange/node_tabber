@@ -62,3 +62,7 @@ def use_experimental_grease_pencil_v3(context):
 
 def use_bundle_and_closure_nodes(context):
     return getattr(context.preferences.experimental, "use_bundle_and_closure_nodes", False)
+
+
+def use_geometry_nodes_lists(context):
+    return getattr(context.preferences.experimental, "use_geometry_nodes_lists", False)

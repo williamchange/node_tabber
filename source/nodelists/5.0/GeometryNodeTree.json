@@ -675,6 +675,23 @@
             ]
         ]
     },
+    "list_nodes": {
+        "poll": "use_geometry_nodes_lists",
+        "entries": [
+            ["GeometryNodeList", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean", "Color", "Rotation", "Matrix", "Menu"]}]
+                }
+            ],
+            ["GeometryNodeListGetItem", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean", "Color", "Rotation", "Matrix", "Menu"]}]
+                }
+            ],
+            ["GeometryNodeListLength", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean", "Color", "Rotation", "Matrix", "Menu"]}]
+                }
+            ]
+        ]
+    },
     "frame_and_reroute": {
         "entries": [
             "NodeFrame",
