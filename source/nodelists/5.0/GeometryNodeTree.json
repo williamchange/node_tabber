@@ -636,6 +636,11 @@
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector"]}]
                 }
             ],
+            ["GeometryNodeGridPrune", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}],
+                "socket_subtypes": [{"Mode" : {"Inactive": "Inactive", "Threshold": "Threshold", "SDF": "SDF"}}]
+                }
+            ],
             ["GeometryNodeGridVoxelize", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
                 }
