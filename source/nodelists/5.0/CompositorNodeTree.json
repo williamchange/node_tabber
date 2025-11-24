@@ -119,7 +119,7 @@
             ["CompositorNodePremulKey", {"socket_subtypes": [{"Type": {"To Premultiplied": "To Premultiplied", "To Straight": "To Straight"}}]}],
             ["CompositorNodeColorBalance", {"socket_subtypes": [{"Type": {"Lift/Gamma/Gain": "Lift/Gamma/Gain", "Offset/Power/Slope": "Offset/Power/Slope (ASC-CDL)", "White Point": "White Point"}}]}],
             ["CompositorNodeCryptomatteV2", {"subtypes": ["source"]}],
-            ["CompositorNodeDistanceMatte", {"socket_subtypes": [{"Type": {"RGB": "RGB", "YCC": "YCC"}}]}],
+            ["CompositorNodeDistanceMatte", {"socket_subtypes": [{"Color Space": {"RGB": "RGB", "YCC": "YCC"}}]}],
             ["CompositorNodeMovieDistortion", {"socket_subtypes": [{"Type": {"Undistort": "Undistort", "Distort": "Distort"}}]}],
             ["CompositorNodeSetAlpha", {"socket_subtypes": [{"Type": {"Apply Mask": "Apply Mask", "Replace Alpha": "Replace Alpha"}}]}],
             ["CompositorNodeDefocus", {"subtypes": ["bokeh"]}],
