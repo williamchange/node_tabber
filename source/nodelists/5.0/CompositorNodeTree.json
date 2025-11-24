@@ -23,7 +23,6 @@
             "CompositorNodeHueCorrect",
             "CompositorNodeHueSat",
             "CompositorNodeCurveRGB",
-            "CompositorNodeAlphaOver",
             "CompositorNodeZcombine",
             "CompositorNodeAntiAliasing",
             "CompositorNodeDespeckle",
@@ -175,7 +174,8 @@
                         "Shader"
                     ]
             }]}],
-            ["CompositorNodeConvolve", {"socket_subtypes": [{"Kernel Data Type": {"Float": "Float", "Color": "Color"}}]}]
+            ["CompositorNodeConvolve", {"socket_subtypes": [{"Kernel Data Type": {"Float": "Float", "Color": "Color"}}]}],
+            ["CompositorNodeAlphaOver", {"socket_subtypes": [{"Type": {"Over": "Over", "Conjoint Over": "Conjoint Over", "Disjoint Over": "Disjoint Over"}}]}]
         ]
     },
     "texture_subtypes": {
