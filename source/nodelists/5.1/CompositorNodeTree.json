@@ -67,7 +67,8 @@
             "CompositorNodeSplit",
             "CompositorNodeConvertToDisplay",
             "CompositorNodeMaskToSDF",
-            "ShaderNodeRadialTiling"
+            "ShaderNodeRadialTiling",
+            "CompositorNodeSequencerStripInfo"
         ]
     },    
     "combine_and_separate_color": {
