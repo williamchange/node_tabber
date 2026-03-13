@@ -79,7 +79,7 @@
             ["ShaderNodeVectorRotate", {"subtypes": ["rotation_type"]}],
             ["ShaderNodeCombineColor", {"subtypes": ["mode"]}],
             ["ShaderNodeSeparateColor", {"subtypes": ["mode"]}],
-            ["ShaderNodeNormalMap", {"subtypes": ["space"]}],
+            ["ShaderNodeNormalMap", {"subtypes": ["convention", "space"]}],
             ["ShaderNodeDisplacement", {"subtypes": ["space"]}],
             ["ShaderNodeVectorDisplacement", {"subtypes": ["space"]}],
             ["ShaderNodeScript", {"subtypes": ["mode"]}],
