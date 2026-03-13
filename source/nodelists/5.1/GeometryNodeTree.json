@@ -597,6 +597,7 @@
             "GeometryNodeSDFGridMeanCurvature",
             "GeometryNodeSDFGridMedian",
             "GeometryNodeSDFGridOffset",
+            "GeometryNodeCubeGridTopology",
             ["GeometryNodeDistributePointsInGrid", {"subtypes": ["mode"]}],
             ["GeometryNodeSetGridBackground", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector"]}]
