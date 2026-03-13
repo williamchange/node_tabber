@@ -210,7 +210,7 @@
     "basic_subtypes": {
         "entries": [
             ["ShaderNodeClamp", {"subtypes": ["clamp_type"]}],
-            ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture", "Shader"]}]}],
+            ["GeometryNodeSwitch", {"subtypes": [{"name": "input_type", "exclude": ["Texture", "Shader", "Scene", "Sound", "Mask", "Text"]}]}],
             ["GeometryNodeFilletCurve", {"socket_subtypes": [{"Mode": {"Bézier": "Bézier", "Poly": "Poly"}}]}],
             ["GeometryNodeUVUnwrap", {"socket_subtypes": [{"Method": {"Angle Based": "Angle Based", "Conformal": "Conformal"}}]}],
             ["ShaderNodeMath", {"subtypes": ["operation"]}],
@@ -376,7 +376,12 @@
                                 "Collection",
                                 "Bundle",
                                 "Closure",
-                                "Shader"
+                                "Shader",
+                                "Font",
+                                "Scene", 
+                                "Sound", 
+                                "Mask", 
+                                "Text"
                             ]
                         }
                     ]
@@ -387,8 +392,12 @@
                     {
                             "name": "data_type",
                             "exclude": [
-                                "Shader",
-                                "Texture"
+                                "Texture", 
+                                "Shader", 
+                                "Scene", 
+                                "Sound", 
+                                "Mask", 
+                                "Text"
                             ]
                         }
                     ]
