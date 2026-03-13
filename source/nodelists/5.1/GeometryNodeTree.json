@@ -647,7 +647,28 @@
             ["GeometryNodeGridVoxelize", {
                 "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
                 }
+            ],
+            ["GeometryNodeGridMean", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector"]}]
+                }
+            ],
+            ["GeometryNodeGridMedian", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector"]}]
+                }
+            ],
+            ["GeometryNodeGridClip", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
+                }
+            ],
+            ["GeometryNodeGridDilateAndErode", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
+                }
+            ],
+            ["GeometryNodeGridToPoints", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Vector", "Boolean"]}]
+                }
             ]
+
         ]
     },
     "import_nodes": {
