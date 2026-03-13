@@ -673,6 +673,14 @@
                         "link_geo_socket" : false
                     }
                 }
+            ],
+            ["NodeGetBundleItem", {
+                "subtypes": [{"name": "socket_type", "exclude":["Texture", "Shader", "Mask", "Scene", "Sound", "Text"]}]
+                }
+            ],
+            ["NodeStoreBundleItem", {
+                "subtypes": [{"name": "socket_type", "exclude":["Texture", "Shader", "Mask", "Scene", "Sound", "Text"]}]
+                }
             ]
         ]
     },
