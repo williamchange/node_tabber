@@ -165,7 +165,8 @@
             "GeometryNodeInputInstanceBounds",
             "FunctionNodeFormatString",
             "ShaderNodeRadialTiling",
-            "GeometryNodeBoneInfo"
+            "GeometryNodeBoneInfo",
+            "FunctionNodeMatrixSVD"
         ]
     },
     "zones": {
