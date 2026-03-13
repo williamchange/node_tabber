@@ -354,11 +354,11 @@
                 }
             ],
             ["GeometryNodeIndexSwitch", {
-                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "Rotation", "String", "Menu", "Color", "Object", "Image", "Geometry", "Collection", "Material", "Matrix"]}]
+                "subtypes": [{"name": "data_type", "exclude": ["Texture", "Shader", "Scene", "Sound", "Mask", "Text"]}]
                 }
             ],
             ["GeometryNodeMenuSwitch", {
-                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "Rotation", "String", "Menu", "Color", "Object", "Image", "Geometry", "Collection", "Material", "Matrix"]}]
+                "subtypes": [{"name": "data_type", "exclude": ["Texture", "Shader", "Scene", "Sound", "Mask", "Text"]}]
                 }
             ],
             ["FunctionNodeHashValue", {
