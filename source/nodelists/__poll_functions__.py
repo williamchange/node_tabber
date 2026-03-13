@@ -66,3 +66,7 @@ def use_bundle_and_closure_nodes(context):
 
 def use_geometry_nodes_lists(context):
     return getattr(context.preferences.experimental, "use_geometry_nodes_lists", False)
+
+
+def use_geometry_bundle(context):
+    return getattr(context.preferences.experimental, "use_geometry_bundle", False)

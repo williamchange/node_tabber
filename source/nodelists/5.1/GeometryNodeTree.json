@@ -724,6 +724,12 @@
             ]
         ]
     },
+    "geometry_in_bundle": {
+        "poll": "use_geometry_bundle",
+        "entries": [
+            "GeometryNodeGetGeometryBundle"
+        ]
+    },
     "frame_and_reroute": {
         "entries": [
             "NodeFrame",
