@@ -180,6 +180,14 @@
             ["CompositorNodeAlphaOver", {"socket_subtypes": [{"Type": {"Over": "Over", "Conjoint Over": "Conjoint Over", "Disjoint Over": "Disjoint Over"}}]}]
         ]
     },
+    "filtered_subtypes": {
+        "entries": [
+            ["GeometryNodeIndexSwitch", {
+                "subtypes": [{"name": "data_type", "only_include": ["Float", "Integer", "Boolean", "Vector", "String", "Menu", "Color"]}]
+                }
+            ]
+        ]
+    },
     "texture_subtypes": {
         "entries": [
             ["ShaderNodeTexGradient", {"subtypes": ["gradient_type"]}],
