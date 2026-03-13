@@ -243,7 +243,7 @@
             ["GeometryNodeExtrudeMesh", {"subtypes": ["mode"]}],
             ["GeometryNodeResampleCurve", {"socket_subtypes": [{"Mode": {"Evaluated": "Evaluated", "Count": "Count", "Length": "Length"}}]}],
             ["GeometryNodeCurveToPoints", {"subtypes": ["mode"]}],
-            ["GeometryNodeFillCurve", {"socket_subtypes": [{"Mode": {"Triangles": "Triangles", "N-gons": "N-gons"}}]}],
+            ["GeometryNodeFillCurve", {"socket_subtypes": [{"Mode": {"Triangles": "Triangles", "N-gons": "N-gons"}}, {"Fill Rule": {"Even-Odd": "Even-Odd", "Non-Zero": "Non-Zero"}}]}],
             ["GeometryNodeMeshToPoints", {"subtypes": ["mode"]}],
             ["GeometryNodeTrimCurve", {"subtypes": ["mode"]}],
             ["GeometryNodePointsToVolume", {"socket_subtypes": [{"Resolution Mode": {"Amount": "Amount", "Size": "Size"}}]}],
