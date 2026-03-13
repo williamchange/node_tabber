@@ -65,7 +65,8 @@
             "ShaderNodeTexMagic",
             "CompositorNodeImageCoordinates",
             "CompositorNodeSplit",
-            "CompositorNodeConvertToDisplay"
+            "CompositorNodeConvertToDisplay",
+            "CompositorNodeMaskToSDF"
         ]
     },    
     "combine_and_separate_color": {
