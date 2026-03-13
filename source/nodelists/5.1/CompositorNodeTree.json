@@ -66,7 +66,8 @@
             "CompositorNodeImageCoordinates",
             "CompositorNodeSplit",
             "CompositorNodeConvertToDisplay",
-            "CompositorNodeMaskToSDF"
+            "CompositorNodeMaskToSDF",
+            "ShaderNodeRadialTiling"
         ]
     },    
     "combine_and_separate_color": {
